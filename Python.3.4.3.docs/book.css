@@ -29,11 +29,11 @@
  */
 
 body {
-    font-family: Helvetica, Arial, Freesans, clean, sans-serif;
+    font-family: Corbel, Helvetica, Arial, 'Courier New', Freesans, clean, sans-serif;
 padding:1em;
 margin:auto;
 max-width:42em;
-background:#fefefe;
+background:#87ceeb;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -81,18 +81,21 @@ p, blockquote, ul, ol, dl, li, table, pre {
 }
 
 code, pre {
+	font-family: 'Courier New';
     border-radius: 3px;
     background-color: #F8F8F8;
     color: inherit;
 }
 
 code {
+	font-family: 'Courier New';
     border: 1px solid #EAEAEA;
     margin: 0 2px;
     padding: 0 5px;
 }
 
 pre {
+	font-family: 'Courier New';
     border: 1px solid #CCCCCC;
     line-height: 1.25em;
     overflow: auto;
@@ -100,6 +103,7 @@ pre {
 }
 
 pre > code {
+	font-family: 'Courier New';
     border: 0;
     margin: 0;
     padding: 0;
