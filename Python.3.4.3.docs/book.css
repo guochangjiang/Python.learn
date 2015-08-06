@@ -29,7 +29,7 @@
  */
 
 body {
-    font-family: Corbel, Helvetica, Arial, 'Courier New', Freesans, clean, sans-serif;
+    font-family: Corbel, Helvetica, Arial, Consolas, 'Courier New', Freesans, clean, sans-serif;
 padding:1em;
 margin:auto;
 max-width:42em;
@@ -76,26 +76,34 @@ hr {
     background-color: #CCCCCC;
 }
 
-p, blockquote, ul, ol, dl, li, table, pre {
+p, ul, ol, dl, li, table, pre {
     margin: 15px 0;
 }
 
+blockquote {
+	font-family: Arial;
+    border-left:.5em solid #eee;
+    padding: 0 2em;
+    margin: 0;
+    margin-left:0;
+}
+
 code, pre {
-	font-family: 'Courier New';
+	font-family: Consolas;
     border-radius: 3px;
     background-color: #F8F8F8;
     color: inherit;
 }
 
 code {
-	font-family: 'Courier New';
+	font-family: Consolas;
     border: 1px solid #EAEAEA;
     margin: 0 2px;
     padding: 0 5px;
 }
 
 pre {
-	font-family: 'Courier New';
+	font-family: Consolas;
     border: 1px solid #CCCCCC;
     line-height: 1.25em;
     overflow: auto;
@@ -103,7 +111,7 @@ pre {
 }
 
 pre > code {
-	font-family: 'Courier New';
+	font-family: Consolas;
     border: 0;
     margin: 0;
     padding: 0;
