@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="book.css" type="text/css" />
+</head>
+<body>
+<h2 id="&#26631;&#20934;&#24211;&#27010;&#35272;">10. &#26631;&#20934;&#24211;&#27010;&#35272;</h2>
+<h3 id="&#25805;&#20316;&#31995;&#32479;&#25509;&#21475;">10.1 &#25805;&#20316;&#31995;&#32479;&#25509;&#21475;</h3>
+<p><code>os</code>&#27169;&#22359;&#25552;&#20379;&#20102;&#20960;&#21313;&#20010;&#20989;&#25968;&#19982;&#25805;&#20316;&#31995;&#32479;&#20132;&#20114;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> os
+os.getcwd()      <span class="co"># Return the current working directory</span>
+<span class="co">## &#39;C:\\Python34&#39;</span>
+os.chdir(<span class="st">&#39;/server/accesslogs&#39;</span>)   <span class="co"># Change current working directory</span>
+os.system(<span class="st">&#39;mkdir today&#39;</span>)   <span class="co"># Run the command mkdir in the system shell</span>
+<span class="co">## 0</span></code></pre></div>
+<p>&#19968;&#23450;&#35201;&#20351;&#29992;<code>import os</code>&#30340;&#24418;&#24335;&#32780;&#19981;&#35201;&#29992;<code>from os import *</code>&#12290;&#36825;&#23558;&#20351;&#29992;<code>os.open()</code>&#20174;&#32780;&#36991;&#20813;&#23631;&#34109;&#20869;&#32622;&#30340;<code>open()</code>&#20989;&#25968;&#65292;&#23427;&#20204;&#30340;&#21151;&#33021;&#23436;&#20840;&#19981;&#21516;&#12290;</p>
+<p>&#20869;&#32622;&#30340;<code>dir()</code>&#21644;<code>help()</code>&#20989;&#25968;&#23545;&#20110;&#20351;&#29992;&#20687;<code>os</code>&#36825;&#26679;&#30340;&#22823;&#22411;&#27169;&#22359;&#21487;&#20197;&#25552;&#20379;&#38750;&#24120;&#26377;&#29992;&#30340;&#20132;&#20114;&#24335;&#24110;&#21161;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> os
+<span class="bu">dir</span>(os)
+<span class="co"># &lt;returns a list of all module functions&gt;</span>
+<span class="bu">help</span>(os)
+<span class="co">## &lt;returns an extensive manual page created from the module&#39;s docstrings&gt;</span></code></pre></div>
+<p>&#23545;&#20110;&#26085;&#24120;&#30340;&#25991;&#20214;&#21644;&#30446;&#24405;&#31649;&#29702;&#20219;&#21153;&#65292;<code>shutil</code>&#27169;&#22359;&#25552;&#20379;&#20102;&#19968;&#20010;&#26131;&#20110;&#20351;&#29992;&#30340;&#39640;&#32423;&#25509;&#21475;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> shutil
+shutil.copyfile(<span class="st">&#39;data.db&#39;</span>, <span class="st">&#39;archive.db&#39;</span>)
+<span class="co">## &#39;archive.db&#39;</span>
+shutil.move(<span class="st">&#39;/build/executables&#39;</span>, <span class="st">&#39;installdir&#39;</span>)
+<span class="co">## &#39;installdir&#39;</span></code></pre></div>
+<h3 id="&#25991;&#20214;&#36890;&#37197;&#31526;">10.2 &#25991;&#20214;&#36890;&#37197;&#31526;</h3>
+<p>glob&#27169;&#22359;&#25552;&#20379;&#20102;&#19968;&#20010;&#20989;&#25968;&#29992;&#20110;&#22312;&#30446;&#24405;&#20013;&#20197;&#36890;&#37197;&#31526;&#25628;&#32034;&#25991;&#20214;&#65292;&#24182;&#29983;&#25104;&#21305;&#37197;&#30340;&#25991;&#20214;&#21015;&#34920;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> glob
+glob.glob(<span class="st">&#39;*.py&#39;</span>)
+<span class="co">## [&#39;primes.py&#39;, &#39;random.py&#39;, &#39;quote.py&#39;]</span></code></pre></div>
+<h3 id="&#21629;&#20196;&#34892;&#21442;&#25968;">10.3 &#21629;&#20196;&#34892;&#21442;&#25968;</h3>
+<p>&#24120;&#35265;&#30340;&#23454;&#29992;&#31243;&#24207;&#33050;&#26412;&#36890;&#24120;&#38656;&#35201;&#22788;&#29702;&#21629;&#20196;&#34892;&#21442;&#25968;&#12290;&#36825;&#20123;&#21442;&#25968;&#20197;&#19968;&#20010;&#21015;&#34920;&#23384;&#20648;&#22312;<code>sys</code>&#27169;&#22359;&#30340;<code>argv</code> &#23646;&#24615;&#20013;&#12290;&#20363;&#22914;&#19979;&#38754;&#30340;&#36755;&#20986;&#32467;&#26524;&#26469;&#33258;&#20110;&#20174;&#21629;&#20196;&#34892;&#36816;&#34892;<code>python demo.py one two three</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> sys
+<span class="bu">print</span>(sys.argv)
+<span class="co">## [&#39;demo.py&#39;, &#39;one&#39;, &#39;two&#39;, &#39;three&#39;]</span></code></pre></div>
+<p><code>getopt</code>&#27169;&#22359;&#20351;&#29992;<code>Unix getopt()</code>&#20989;&#25968;&#30340;&#32422;&#23450;&#22788;&#29702;<code>sys.argv</code>&#12290;<code>argparse</code>&#27169;&#22359;&#25552;&#20379;&#26356;&#24378;&#22823;&#12289; &#26356;&#28789;&#27963;&#30340;&#21629;&#20196;&#34892;&#22788;&#29702;&#21151;&#33021;&#12290;</p>
+<h3 id="&#38169;&#35823;&#36755;&#20986;&#37325;&#23450;&#21521;&#21644;&#31243;&#24207;&#32456;&#27490;">10.4 &#38169;&#35823;&#36755;&#20986;&#37325;&#23450;&#21521;&#21644;&#31243;&#24207;&#32456;&#27490;</h3>
+<p><code>sys</code>&#27169;&#22359;&#36824;&#20855;&#26377;<code>stdin</code>&#12289;<code>stdout</code>&#21644;<code>stderr</code>&#23646;&#24615;&#12290;&#21363;&#20351;&#22312;<code>stdout</code>&#34987;&#37325;&#23450;&#21521;&#26102;&#65292;&#21518;&#32773;&#20063;&#21487;&#20197;&#29992;&#20110;&#26174;&#31034;&#35686;&#21578;&#21644;&#38169;&#35823;&#20449;&#24687;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">sys.stderr.write(<span class="st">&#39;Warning, log file not found starting a new one</span><span class="ch">\n</span><span class="st">&#39;</span>)
+<span class="pp">Warning</span>, log <span class="bu">file</span> <span class="op">not</span> found starting a new one</code></pre></div>
+<p>&#32456;&#27490;&#33050;&#26412;&#26368;&#30452;&#25509;&#30340;&#26041;&#27861;&#26469;&#26159;&#20351;&#29992;<code>sys.exit()</code>&#12290;</p>
+<h3 id="&#23383;&#31526;&#20018;&#27169;&#24335;&#21305;&#37197;">10.5 &#23383;&#31526;&#20018;&#27169;&#24335;&#21305;&#37197;</h3>
+<p><code>re</code>&#27169;&#22359;&#20026;&#39640;&#32423;&#30340;&#23383;&#31526;&#20018;&#22788;&#29702;&#25552;&#20379;&#20102;&#27491;&#21017;&#34920;&#36798;&#24335;&#24037;&#20855;&#12290;&#23545;&#20110;&#22797;&#26434;&#30340;&#21305;&#37197;&#21644;&#25805;&#20316;&#65292;&#27491;&#21017;&#34920;&#36798;&#24335;&#25552;&#20379;&#20102;&#31616;&#27905;&#12289;&#20248;&#21270;&#30340;&#35299;&#20915;&#26041;&#26696;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> re
+re.findall(<span class="vs">r&#39;\bf[a-z]*&#39;</span>, <span class="st">&#39;which foot or hand fell fastest&#39;</span>)
+<span class="co">## [&#39;foot&#39;, &#39;fell&#39;, &#39;fastest&#39;]</span>
+re.sub(<span class="vs">r&#39;(\b[a-z]+) \1&#39;</span>, <span class="vs">r&#39;\1&#39;</span>, <span class="st">&#39;cat in the the hat&#39;</span>)
+<span class="co">## &#39;cat in the hat&#39;</span></code></pre></div>
+<p>&#24403;&#21482;&#38656;&#35201;&#31616;&#21333;&#30340;&#21151;&#33021;&#26102;&#65292;&#26368;&#22909;&#20351;&#29992;&#23383;&#31526;&#20018;&#26041;&#27861;&#65292;&#22240;&#20026;&#23427;&#20204;&#26356;&#23481;&#26131;&#38405;&#35835;&#21644;&#35843;&#35797;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co">&#39;tea for too&#39;</span>.replace(<span class="st">&#39;too&#39;</span>, <span class="st">&#39;two&#39;</span>)
+<span class="co">## &#39;tea for two&#39;</span></code></pre></div>
+<h2 id="&#25968;&#23398;">10.6 &#25968;&#23398;</h2>
+<p><code>math</code>&#27169;&#22359;&#20026;&#28014;&#28857;&#36816;&#31639;&#25552;&#20379;&#20102;&#23545;&#24213;&#23618; <code>C &#20989;&#25968;&#24211;</code>&#30340;&#35775;&#38382;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> math
+math.cos(math.pi <span class="op">/</span> <span class="fl">4.0</span>)
+<span class="co">## 0.70710678118654757</span>
+math.log(<span class="dv">1024</span>, <span class="dv">2</span>)
+<span class="co">## 10.0</span></code></pre></div>
+<p><code>random</code>&#27169;&#22359;&#25552;&#20379;&#20102;&#36827;&#34892;&#38543;&#26426;&#36873;&#25321;&#30340;&#24037;&#20855;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> random
+random.choice([<span class="st">&#39;apple&#39;</span>, <span class="st">&#39;pear&#39;</span>, <span class="st">&#39;banana&#39;</span>])
+<span class="co">## &#39;apple&#39;</span>
+random.sample(<span class="bu">range</span>(<span class="dv">100</span>), <span class="dv">10</span>)   <span class="co"># sampling without replacement</span>
+<span class="co">## [30, 83, 16, 4, 8, 81, 41, 50, 18, 33]</span>
+random.random()    <span class="co"># random float</span>
+<span class="co">## 0.17970987693706186</span>
+random.randrange(<span class="dv">6</span>)    <span class="co"># random integer chosen from range(6)</span>
+<span class="co"># 4</span></code></pre></div>
+<p><code>SciPy</code>&#39033;&#30446;<a href="http://scipy.org" class="uri">http://scipy.org</a>&#26377;&#24456;&#22810;&#20854;&#23427;&#29992;&#20110;&#25968;&#20540;&#35745;&#31639;&#30340;&#27169;&#22359;&#12290;</p>
+<h3 id="&#20114;&#32852;&#32593;&#35775;&#38382;">10.7 &#20114;&#32852;&#32593;&#35775;&#38382;</h3>
+<p>&#26377;&#24456;&#22810;&#30340;&#27169;&#22359;&#29992;&#20110;&#35775;&#38382;&#20114;&#32852;&#32593;&#21644;&#22788;&#29702;&#30340;&#20114;&#32852;&#32593;&#21327;&#35758;&#12290;&#26368;&#31616;&#21333;&#30340;&#20004;&#20010;&#26159;&#20174;<code>URL</code>&#33719;&#21462;&#25968;&#25454;&#30340;<code>urllib.request</code> &#21644;&#21457;&#36865;&#37038;&#20214;&#30340;<code>smtplib</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> urllib.request <span class="im">import</span> urlopen
+<span class="cf">with</span> urlopen(<span class="st">&#39;http://tycho.usno.navy.mil/cgi-bin/timer.pl&#39;</span>) <span class="im">as</span> response:
+    <span class="cf">for</span> line <span class="op">in</span> response:
+        line <span class="op">=</span> line.decode(<span class="st">&#39;utf-8&#39;</span>)  <span class="co"># Decoding the binary data to text.</span>
+        <span class="cf">if</span> <span class="st">&#39;EST&#39;</span> <span class="op">in</span> line <span class="op">or</span> <span class="st">&#39;EDT&#39;</span> <span class="op">in</span> line:  <span class="co"># look for Eastern Time</span>
+            <span class="bu">print</span>(line)
+
+<span class="co">## &lt;BR&gt;Nov. 25, 09:43:32 PM EST</span>
+
+<span class="im">import</span> smtplib
+server <span class="op">=</span> smtplib.SMTP(<span class="st">&#39;localhost&#39;</span>)
+server.sendmail(<span class="st">&#39;soothsayer@example.org&#39;</span>, <span class="st">&#39;jcaesar@example.org&#39;</span>,
+<span class="co">&quot;&quot;&quot;To: jcaesar@example.org</span>
+<span class="co">From: soothsayer@example.org</span>
+<span class="co">Beware the Ides of March.</span>
+<span class="co">... &quot;&quot;&quot;</span>)
+server.quit()</code></pre></div>
+<p>&#65288;&#35831;&#27880;&#24847;&#31532;&#20108;&#20010;&#31034;&#20363;&#38656;&#35201;&#22312;&#26412;&#22320;&#20027;&#26426;&#19978;&#36816;&#34892;&#37038;&#20214;&#26381;&#21153;&#22120;&#65289;&#12290;</p>
+<h3 id="&#26085;&#26399;&#21644;&#26102;&#38388;">10.8 &#26085;&#26399;&#21644;&#26102;&#38388;</h3>
+<p><code>datetime</code>&#27169;&#22359;&#25552;&#20379;&#20102;&#22788;&#29702;&#26085;&#26399;&#21644;&#26102;&#38388;&#30340;&#31867;&#65292;&#26082;&#26377;&#31616;&#21333;&#30340;&#26041;&#27861;&#20063;&#26377;&#22797;&#26434;&#30340;&#26041;&#27861;&#12290;&#25903;&#25345;&#26085;&#26399;&#21644;&#26102;&#38388;&#31639;&#27861;&#30340;&#21516;&#26102;&#65292;&#23454;&#29616;&#30340;&#37325;&#28857;&#25918;&#22312;&#26356;&#26377;&#25928;&#30340;&#22788;&#29702;&#21644;&#26684;&#24335;&#21270;&#36755;&#20986;&#12290;&#35813;&#27169;&#22359;&#36824;&#25903;&#25345;&#22788;&#29702;&#26102;&#21306;&#12290;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># dates are easily constructed and formatted</span>
+<span class="im">from</span> datetime <span class="im">import</span> date
+now <span class="op">=</span> date.today()
+<span class="co">## now</span>
+datetime.date(<span class="dv">2003</span>, <span class="dv">12</span>, <span class="dv">2</span>)
+now.strftime(<span class="st">&quot;%m-</span><span class="sc">%d</span><span class="st">-%y. </span><span class="sc">%d</span><span class="st"> %b %Y is a %A on the </span><span class="sc">%d</span><span class="st"> day of %B.&quot;</span>)
+<span class="co">## &#39;12-02-03. 02 Dec 2003 is a Tuesday on the 02 day of December.&#39;</span>
+
+<span class="co"># dates support calendar arithmetic</span>
+birthday <span class="op">=</span> date(<span class="dv">1964</span>, <span class="dv">7</span>, <span class="dv">31</span>)
+age <span class="op">=</span> now <span class="op">-</span> birthday
+age.days
+<span class="co">## 14368</span></code></pre></div>
+<h3 id="&#25968;&#25454;&#21387;&#32553;">10.9 &#25968;&#25454;&#21387;&#32553;</h3>
+<p>&#24120;&#35265;&#30340;&#25968;&#25454;&#25171;&#21253;&#21644;&#21387;&#32553;&#26684;&#24335;&#26377;&#27169;&#22359;&#30452;&#25509;&#25903;&#25345;&#65292;&#21253;&#25324;&#65306;<code>zlib, gzip, bz2, lzma, zipfile &#21644; tarfile</code>&#12290;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> zlib
+s <span class="op">=</span> b<span class="st">&#39;witch which has which witches wrist watch&#39;</span>
+<span class="bu">len</span>(s)
+<span class="co">## 41</span>
+t <span class="op">=</span> zlib.compress(s)
+<span class="bu">len</span>(t)
+<span class="co">## 37</span>
+zlib.decompress(t)
+<span class="co">## b&#39;witch which has which witches wrist watch&#39;</span>
+zlib.crc32(s)
+<span class="co">## 226805979</span></code></pre></div>
+<h3 id="&#24615;&#33021;&#24230;&#37327;">10.10 &#24615;&#33021;&#24230;&#37327;</h3>
+<p>&#19968;&#20123; Python &#29992;&#25143;&#23545;&#21516;&#19968;&#38382;&#39064;&#30340;&#19981;&#21516;&#35299;&#20915;&#26041;&#27861;&#20043;&#38388;&#30340;&#24615;&#33021;&#24046;&#24322;&#28145;&#26377;&#20852;&#36259;&#12290;Python &#25552;&#20379;&#20102;&#30340;&#19968;&#20010;&#24230;&#37327;&#24037;&#20855;&#21487;&#20197;&#31435;&#21363;&#35299;&#20915;&#36825;&#20123;&#38382;&#39064;&#12290;</p>
+<p>&#20363;&#22914;&#65292;&#20351;&#29992;&#20803;&#32452;&#23553;&#35013;&#21644;&#25286;&#23553;&#21151;&#33021;&#32780;&#19981;&#26159;&#20256;&#32479;&#30340;&#26041;&#27861;&#26469;&#20132;&#25442;&#21442;&#25968;&#21487;&#33021;&#20250;&#26356;&#21560;&#24341;&#20154;&#12290;<code>timeit</code>&#27169;&#22359;&#24555;&#36895;&#35777;&#26126;&#20102;&#29616;&#20195;&#30340;&#26041;&#27861;&#26356;&#24555;&#19968;&#20123;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> timeit <span class="im">import</span> Timer
+Timer(<span class="st">&#39;t=a; a=b; b=t&#39;</span>, <span class="st">&#39;a=1; b=2&#39;</span>).timeit()
+<span class="co">## 0.57535828626024577</span>
+Timer(<span class="st">&#39;a,b = b,a&#39;</span>, <span class="st">&#39;a=1; b=2&#39;</span>).timeit()
+<span class="co">## 0.54962537085770791</span></code></pre></div>
+<p>&#19982;<code>timeit</code>&#30340;&#31934;&#32454;&#30340;&#31890;&#24230;&#30456;&#21453;&#65292;<code>profile</code>&#21644;<code>pstats</code>&#27169;&#22359;&#25552;&#20379;&#20102;&#38024;&#23545;&#26356;&#22823;&#20195;&#30721;&#22359;&#30340;&#26102;&#38388;&#24230;&#37327;&#24037;&#20855;&#12290;</p>
+<h3 id="&#36136;&#37327;&#25511;&#21046;">10.11 &#36136;&#37327;&#25511;&#21046;</h3>
+<p>&#24320;&#21457;&#39640;&#36136;&#37327;&#36719;&#20214;&#30340;&#26041;&#27861;&#20043;&#19968;&#26159;&#20026;&#27599;&#19968;&#20010;&#20989;&#25968;&#24320;&#21457;&#27979;&#35797;&#20195;&#30721;&#65292;&#24182;&#19988;&#22312;&#24320;&#21457;&#36807;&#31243;&#20013;&#32463;&#24120;&#36827;&#34892;&#27979;&#35797;&#12290;</p>
+<p><code>doctest</code>&#27169;&#22359;&#25552;&#20379;&#19968;&#20010;&#24037;&#20855;&#65292;&#25195;&#25551;&#27169;&#22359;&#24182;&#26681;&#25454;&#31243;&#24207;&#20013;&#20869;&#23884;&#30340;&#25991;&#26723;&#23383;&#31526;&#20018;&#25191;&#34892;&#27979;&#35797;&#12290;&#27979;&#35797;&#26500;&#36896;&#22914;&#21516;&#31616;&#21333;&#30340;&#23558;&#23427;&#30340;&#36755;&#20986;&#32467;&#26524;&#21098;&#20999;&#24182;&#31896;&#36148;&#21040;&#25991;&#26723;&#23383;&#31526;&#20018;&#20013;&#12290;&#36890;&#36807;&#29992;&#25143;&#25552;&#20379;&#30340;&#20363;&#23376;&#65292;&#23427;&#21457;&#23637;&#20102;&#25991;&#26723;&#65292;&#20801;&#35768; <code>doctest</code> &#27169;&#22359;&#30830;&#35748;&#20195;&#30721;&#30340;&#32467;&#26524;&#26159;&#21542;&#19982;&#25991;&#26723;&#19968;&#33268;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> average(values):
+    <span class="co">&quot;&quot;&quot;Computes the arithmetic mean of a list of numbers.</span>
+
+<span class="co">    &gt;&gt;&gt; print(average([20, 30, 70]))</span>
+<span class="co">    40.0</span>
+<span class="co">    &quot;&quot;&quot;</span>
+    <span class="cf">return</span> <span class="bu">sum</span>(values) <span class="op">/</span> <span class="bu">len</span>(values)
+
+<span class="im">import</span> doctest
+doctest.testmod()   <span class="co"># automatically validate the embedded tests</span></code></pre></div>
+<p><code>unittest</code>&#27169;&#22359;&#19981;&#20687;<code>doctest</code>&#27169;&#22359;&#37027;&#26679;&#23481;&#26131;&#65292;&#19981;&#36807;&#23427;&#21487;&#20197;&#22312;&#19968;&#20010;&#29420;&#31435;&#30340;&#25991;&#20214;&#37324;&#25552;&#20379;&#19968;&#20010;&#26356;&#20840;&#38754;&#30340;&#27979;&#35797;&#38598;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> unittest
+
+<span class="kw">class</span> TestStatisticalFunctions(unittest.TestCase):
+
+    <span class="kw">def</span> test_average(<span class="va">self</span>):
+        <span class="va">self</span>.assertEqual(average([<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">70</span>]), <span class="fl">40.0</span>)
+        <span class="va">self</span>.assertEqual(<span class="bu">round</span>(average([<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">7</span>]), <span class="dv">1</span>), <span class="fl">4.3</span>)
+        <span class="cf">with</span> <span class="va">self</span>.assertRaises(<span class="pp">ZeroDivisionError</span>):
+            average([])
+        <span class="cf">with</span> <span class="va">self</span>.assertRaises(<span class="pp">TypeError</span>):
+            average(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">70</span>)
+
+unittest.main() <span class="co"># Calling from the command line invokes all tests</span></code></pre></div>
+<h3 id="batteries-included">10.12 Batteries Included</h3>
+<p>Python &#26377;&quot;<code>Batteries Included</code>&quot;&#30340;&#21746;&#23398;&#12290;&#36825;&#26368;&#22909;&#26159;&#36890;&#36807;&#20854;&#36739;&#22823;&#30340;&#25991;&#20214;&#21253;&#30340;&#20808;&#36827;&#21644;&#24378;&#22823;&#21151;&#33021;&#12290;&#20363;&#22914;&#65306;</p>
+<ul>
+<li><code>xmlrpc.client</code>&#21644;<code>xmlrpc.server</code>&#27169;&#22359;&#35753;&#36828;&#31243;&#36807;&#31243;&#35843;&#29992;&#21464;&#24471;&#36731;&#32780;&#26131;&#20030;&#12290;&#23613;&#31649;&#27169;&#22359;&#26377;&#36825;&#26679;&#30340;&#21517;&#23383;&#65292;&#23427;&#19981;&#38656;&#35201;&#30452;&#25509;XML&#30693;&#35782;&#25110;&#22788;&#29702; XML &#12290;</li>
+<li><code>email</code>&#21253;&#26159;&#26159;&#19968;&#20010;&#22788;&#29702;&#30005;&#23376;&#37038;&#20214;&#30340;&#24211;&#65292;&#21253;&#25324;<code>MIME</code>&#21644;&#20854;&#23427;&#22522;&#20110;<code>RFC 2822</code>&#30340;&#37038;&#20214;&#12290;&#19982;<code>smtplib</code>&#21644;<code>poplib</code>&#29992;&#20110;&#23454;&#38469;&#21457;&#36865;&#21644;&#25509;&#25910;&#37038;&#20214;&#65292;<code>email</code>&#21253;&#26377;&#19968;&#20010;&#23436;&#25972;&#30340;&#24037;&#20855;&#38598;&#29992;&#20110;&#26500;&#24314;&#25110;&#32773;&#35299;&#30721;&#22797;&#26434;&#37038;&#20214;&#32467;&#26500;&#65288;&#21253;&#25324;&#38468;&#20214;&#65289;&#65292;&#24182;&#23454;&#29616;&#20114;&#32852;&#32593;&#32534;&#30721;&#21644;&#22836;&#21327;&#35758;&#12290;</li>
+<li><code>xml.dom</code>&#21644;<code>xml.sax</code>&#30340;&#21253;&#20026;&#36825;&#31181;&#27969;&#34892;&#30340;&#25968;&#25454;&#20132;&#25442;&#26684;&#24335;&#25552;&#20379;&#20102;&#24378;&#22823;&#30340;&#25903;&#25345;&#12290;&#21516;&#26679;&#65292;<code>csv</code>&#27169;&#22359;&#25903;&#25345;&#20197;&#24120;&#35265;&#30340;&#25968;&#25454;&#24211;&#26684;&#24335;&#30452;&#25509;&#35835;&#21462;&#21644;&#20889;&#20837;&#12290;&#36825;&#20123;&#27169;&#22359;&#21644;&#21253;&#19968;&#36215;&#22823;&#22823;&#31616;&#21270;&#20102; Python &#24212;&#29992;&#31243;&#24207;&#21644;&#20854;&#20182;&#24037;&#20855;&#20043;&#38388;&#30340;&#25968;&#25454;&#20132;&#25442;&#12290;</li>
+<li>&#22269;&#38469;&#21270;&#25903;&#25345;&#27169;&#22359;&#21253;&#25324;<code>gettext</code>&#12289;<code>locale</code>&#21644;<code>codecs</code>&#21253;&#12290;</li>
+</ul>
+</body>
+</html>
