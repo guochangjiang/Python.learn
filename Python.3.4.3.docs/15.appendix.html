@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="book.css" type="text/css" />
+</head>
+<body>
+<h2 id="&#38468;&#24405;">15. &#38468;&#24405;</h2>
+<h3 id="interactive-mode">15.1 Interactive Mode</h3>
+<h4 id="error-handling">15.1.1 Error Handling</h4>
+<p>&#24403;&#38169;&#35823;&#21457;&#29983;&#26102;&#65292;&#35299;&#37322;&#22120;&#20250;&#36755;&#20986;&#38169;&#35823;&#20449;&#24687;&#21644;&#22534;&#26632;&#36861;&#36394;&#12290;&#22312;&#20132;&#20114;&#27169;&#24335;&#19979;&#65292;Python&#35299;&#37322;&#22120;&#20250;&#36820;&#22238;&#20027;&#35201;&#38169;&#35823;&#20449;&#24687;&#65307;when input came from a file, it exits with a nonzero exit status after printing the stack trace. (Exceptions handled by an <code>except</code> clause in a <code>try</code> statement are not errors in this context.) Some errors are unconditionally fatal and cause an exit with a nonzero exit; this applies to internal inconsistencies and some cases of running out of memory. All error messages are written to the standard error stream; normal output from executed commands is written to standard output.</p>
+<p>Typing the interrupt character (usually Control-C or DEL) to the primary or secondary prompt cancels the input and returns to the primary prompt. <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> Typing an interrupt while a command is executing raises the <code>KeyboardInterrupt</code> exception, which may be handled by a try statement.</p>
+<h4 id="executable-python-scripts">15.1.2 Executable Python Scripts</h4>
+<p>On BSD&#8217;ish Unix systems, Python scripts can be made directly executable, like shell scripts, by putting the line</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co">#!/usr/bin/env python3.4</span></code></pre></div>
+<p>(assuming that the interpreter is on the user&#8217;s PATH) at the beginning of the script and giving the file an executable mode. The <code>#!</code> must be the first two characters of the file. On some platforms, this first line must end with a Unix-style line ending (<code>' '</code>), not a Windows (<code>'r '</code>) line ending. Note that the hash, or pound, character, <code>'#'</code>, is used to start a comment in Pyth</p>
+<p>The script can be given an executable mode, or permission, using the <strong>chmod command</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">chmod</span> +x myscript.py</code></pre></div>
+<p>On Windows systems, there is no notion of an &#8220;executable mode&#8221;. The Python installer automatically associates <code>.py</code> files with <code>python.exe</code> so that a double-click on a Python file will run it as a script. The extension can also be <code>.pyw</code>, in that case, the console window that normally appears is suppressed.</p>
+<h4 id="the-interactive-startup-file">15.1.3 The Interactive Startup File</h4>
+<p>When you use Python interactively, it is frequently handy to have some standard commands executed every time the interpreter is started. You can do this by setting an environment variable named <code>PYTHONSTARTUP</code> to the name of a file containing your start-up commands. This is similar to the <code>.profile</code> feature of the Unix shells.</p>
+<p>This file is only read in interactive sessions, not when Python reads commands from a script, and not when <code>/dev/tty</code> is given as the explicit source of commands (which otherwise behaves like an interactive session). It is executed in the same namespace where interactive commands are executed, so that objects that it defines or imports can be used without qualification in the interactive session. You can also change the prompts <code>sys.ps1</code> and <code>sys.ps2</code> in this file.</p>
+<p>If you want to read an additional start-up file from the current directory, you can program this in the global start-up file using code like <code>if os.path.isfile('.pythonrc.py'): exec(open('.pythonrc.py').read())</code>. If you want to use the startup file in a script, you must do this explicitly in the script:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> os
+filename <span class="op">=</span> os.environ.get(<span class="st">&#39;PYTHONSTARTUP&#39;</span>)
+<span class="cf">if</span> filename <span class="op">and</span> os.path.isfile(filename):
+    <span class="cf">with</span> <span class="bu">open</span>(filename) <span class="im">as</span> fobj:
+       startup_file <span class="op">=</span> fobj.read()
+    <span class="bu">exec</span>(startup_file)</code></pre></div>
+<h4 id="the-customization-modules">15.1.4 The Customization Modules</h4>
+<p>Python provides two hooks to let you customize it: <code>sitecustomize</code> and <code>usercustomize</code>. To see how it works, you need first to find the location of your user site-packages directory. Start Python and run this code:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> site
+<span class="op">&gt;&gt;&gt;</span> site.getusersitepackages()
+<span class="co">&#39;/home/user/.local/lib/python3.4/site-packages&#39;</span></code></pre></div>
+<p>Now you can create a file named <code>usercustomize.py</code> in that directory and put anything you want in it. It will affect every invocation of Python, unless it is started with the <code>-s</code> option to disable the automatic import.</p>
+<p><code>sitecustomize</code> works in the same way, but is typically created by an administrator of the computer in the global site-packages directory, and is imported before <code>usercustomize</code>. See the documentation of the <a href="http://python.usyiyi.cn/python_343/library/site.html#module-site">site</a> module for more details.</p>
+<p>Footnotes</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>A problem with the GNU Readline package may prevent this.<a href="#fnref1">&#8617;</a></p></li>
+</ol>
+</div>
+</body>
+</html>
