@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="book.css" type="text/css" />
+</head>
+<body>
+<h2 id="&#20989;&#25968;">5. &#20989;&#25968;</h2>
+<p>&#25105;&#20204;&#30693;&#36947;&#22278;&#30340;&#38754;&#31215;&#35745;&#31639;&#20844;&#24335;&#20026;&#65306; <br /><span class="math display"><em>S</em>&#8196;=&#8196;<em>&#960;</em><em>r</em><sup>2</sup></span><br /></p>
+<p>&#24403;&#25105;&#20204;&#30693;&#36947;&#21322;&#24452;r&#30340;&#20540;&#26102;&#65292;&#23601;&#21487;&#20197;&#26681;&#25454;&#20844;&#24335;&#35745;&#31639;&#20986;&#38754;&#31215;&#12290;&#20551;&#35774;&#25105;&#20204;&#38656;&#35201;&#35745;&#31639;3&#20010;&#19981;&#21516;&#22823;&#23567;&#30340;&#22278;&#30340;&#38754;&#31215;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">r1 <span class="op">=</span> <span class="fl">12.34</span>
+r2 <span class="op">=</span> <span class="fl">9.08</span>
+r3 <span class="op">=</span> <span class="fl">73.1</span>
+s1 <span class="op">=</span> <span class="fl">3.14</span> <span class="op">*</span> r1 <span class="op">*</span> r1
+s2 <span class="op">=</span> <span class="fl">3.14</span> <span class="op">*</span> r2 <span class="op">*</span> r2
+s3 <span class="op">=</span> <span class="fl">3.14</span> <span class="op">*</span> r3 <span class="op">*</span> r3</code></pre></div>
+<p>&#24403;&#20195;&#30721;&#20986;&#29616;&#26377;&#35268;&#24459;&#30340;&#37325;&#22797;&#30340;&#26102;&#20505;&#65292;&#20320;&#23601;&#38656;&#35201;&#24403;&#24515;&#20102;&#65292;&#27599;&#27425;&#20889;<code>3.14 * x * x</code>&#19981;&#20165;&#24456;&#40635;&#28902;&#65292;&#32780;&#19988;&#65292;&#22914;&#26524;&#35201;&#25226;<code>3.14</code>&#25913;&#25104;<code>3.14159265359</code>&#30340;&#26102;&#20505;&#65292;&#24471;&#20840;&#37096;&#26367;&#25442;&#12290;</p>
+<p>&#26377;&#20102;&#20989;&#25968;&#65292;&#25105;&#20204;&#23601;&#19981;&#20877;&#27599;&#27425;&#20889;<code>s = 3.14 * x * x</code>&#65292;&#32780;&#26159;&#20889;&#25104;&#26356;&#26377;&#24847;&#20041;&#30340;&#20989;&#25968;&#35843;&#29992;<code>s = area_of_circle(x)</code>&#65292;&#32780;&#20989;&#25968;<code>area_of_circle</code>&#26412;&#36523;&#21482;&#38656;&#35201;&#20889;&#19968;&#27425;&#65292;&#23601;&#21487;&#20197;&#22810;&#27425;&#35843;&#29992;&#12290;</p>
+<p>&#22522;&#26412;&#19978;&#25152;&#26377;&#30340;&#39640;&#32423;&#35821;&#35328;&#37117;&#25903;&#25345;&#20989;&#25968;&#65292;Python&#20063;&#19981;&#20363;&#22806;&#12290;Python&#19981;&#20294;&#33021;&#38750;&#24120;&#28789;&#27963;&#22320;&#23450;&#20041;&#20989;&#25968;&#65292;&#32780;&#19988;&#26412;&#36523;&#20869;&#32622;&#20102;&#24456;&#22810;&#26377;&#29992;&#30340;&#20989;&#25968;&#65292;&#21487;&#20197;&#30452;&#25509;&#35843;&#29992;&#12290; &#25277;&#35937;</p>
+<p>&#25277;&#35937;&#26159;&#25968;&#23398;&#20013;&#38750;&#24120;&#24120;&#35265;&#30340;&#27010;&#24565;&#12290;&#20030;&#20010;&#20363;&#23376;&#65306;</p>
+<p>&#35745;&#31639;&#25968;&#21015;&#30340;&#21644;&#65292;&#27604;&#22914;&#65306;<code>1 + 2 + 3 + ... + 100</code>&#65292;&#20889;&#36215;&#26469;&#21313;&#20998;&#19981;&#26041;&#20415;&#65292;&#20110;&#26159;&#25968;&#23398;&#23478;&#21457;&#26126;&#20102;&#27714;&#21644;&#31526;&#21495;<code>&#8721;</code>&#65292;&#21487;&#20197;&#25226;<code>1 + 2 + 3 + ... + 100</code>&#35760;&#20316;&#65306; <br /><span class="math display">$$\sum_{n=1}^{100} n$$</span><br /></p>
+<p>&#36825;&#31181;&#25277;&#35937;&#35760;&#27861;&#38750;&#24120;&#24378;&#22823;&#65292;&#22240;&#20026;&#25105;&#20204;&#30475;&#21040; &#8721; &#23601;&#21487;&#20197;&#29702;&#35299;&#25104;&#27714;&#21644;&#65292;&#32780;&#19981;&#26159;&#36824;&#21407;&#25104;&#20302;&#32423;&#30340;&#21152;&#27861;&#36816;&#31639;&#12290;</p>
+<p>&#32780;&#19988;&#65292;&#36825;&#31181;&#25277;&#35937;&#35760;&#27861;&#26159;&#21487;&#25193;&#23637;&#30340;&#65292;&#27604;&#22914;&#65306; <br /><span class="math display">$$\sum_{n=1}^{100}(n^2+1)$$</span><br /></p>
+<p><br /><span class="math display">$$\sum^{10} _{2}$$</span><br /></p>
+<p>&#36824;&#21407;&#25104;&#21152;&#27861;&#36816;&#31639;&#23601;&#21464;&#25104;&#20102;&#65306;</p>
+<p>(1 x 1 + 1) + (2 x 2 + 1) + (3 x 3 + 1) + ... + (100 x 100 + 1)</p>
+<p>&#21487;&#35265;&#65292;&#20511;&#21161;&#25277;&#35937;&#65292;&#25105;&#20204;&#25165;&#33021;&#19981;&#20851;&#24515;&#24213;&#23618;&#30340;&#20855;&#20307;&#35745;&#31639;&#36807;&#31243;&#65292;&#32780;&#30452;&#25509;&#22312;&#26356;&#39640;&#30340;&#23618;&#27425;&#19978;&#24605;&#32771;&#38382;&#39064;&#12290;</p>
+<p>&#20889;&#35745;&#31639;&#26426;&#31243;&#24207;&#20063;&#26159;&#19968;&#26679;&#65292;&#20989;&#25968;&#23601;&#26159;&#26368;&#22522;&#26412;&#30340;&#19968;&#31181;&#20195;&#30721;&#25277;&#35937;&#30340;&#26041;&#24335;&#12290;</p>
+<p>5.1 &#35843;&#29992;&#20989;&#25968; 5.2 &#23450;&#20041;&#20989;&#25968; 5.3 &#20989;&#25968;&#30340;&#21442;&#25968; 5.4 &#36882;&#24402;&#20989;&#25968;</p>
+</body>
+</html>

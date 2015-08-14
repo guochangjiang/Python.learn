@@ -136,6 +136,8 @@ classmates.pop(0) #删除知道你敢位置的元素
 print(classmates)
 classmates[0]='Sarah' #替换元素
 print(classmates)
+classmates.sort()
+print(classmates)
 
 s1 = ['Python', 'java', 123] #不同类型元素
 s2 = ['python', 'java', ['asp', 'php'], 'perl'] #元素可以是列表（嵌套）
@@ -180,5 +182,32 @@ print(sum)
 ## 字典dict
 d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
 print(d['Bob'])
+d['Tom'] = '60'
 
+print('Tom' in d) # 检查key
+print(d.get('Tom'))
+print(d.get('Tom',-1))
+
+d.pop('Bob') # 删除键值对
+print('Bob' in d)
+
+## 集合set
+s = set([1, 2, 1, 2, 3]) # 以list作为输入
+print(s)
+s.add(4)
+print(s)
+s.remove(4)
+print(s)
+
+s1 = set([1,2,3])
+s2 = set([2,3,4])
+share = s1 & s2
+print(share)
+print(s1 | s2)
+
+
+a = 'abc'
+b = a.replace('a', 'A')
+print('a is', a)
+print('b is', b)
 
