@@ -16,3 +16,6 @@ def add(x, y, f):
     return f(x) + f(y)
 print(add(-15, -6, abs))
 
+
+s = 'abc'
+print(s[0].upper() + s[1:].lower())

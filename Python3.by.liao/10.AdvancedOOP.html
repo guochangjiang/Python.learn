@@ -1,0 +1,778 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="book.css" type="text/css" />
+</head>
+<body>
+<h2 id="&#38754;&#21521;&#23545;&#35937;&#39640;&#32423;&#32534;&#31243;">10. &#38754;&#21521;&#23545;&#35937;&#39640;&#32423;&#32534;&#31243;</h2>
+<p><code>&#25968;&#25454;&#23553;&#35013;</code>&#12289;<code>&#32487;&#25215;</code>&#21644;<code>&#22810;&#24577;</code>&#21482;&#26159;&#38754;&#21521;&#23545;&#35937;&#31243;&#24207;&#35774;&#35745;&#20013;&#26368;&#22522;&#30784;&#30340;3&#20010;&#27010;&#24565;&#12290;&#22312;Python&#20013;&#65292;&#38754;&#21521;&#23545;&#35937;&#36824;&#26377;&#24456;&#22810;&#39640;&#32423;&#29305;&#24615;&#65292;&#20801;&#35768;&#25105;&#20204;&#20889;&#20986;&#38750;&#24120;&#24378;&#22823;&#30340;&#21151;&#33021;&#12290;</p>
+<p>&#25105;&#20204;&#20250;&#35752;&#35770;<code>&#22810;&#37325;&#32487;&#25215;</code>&#12289;<code>&#23450;&#21046;&#31867;</code>&#12289;<code>&#20803;&#31867;</code>&#31561;&#27010;&#24565;</p>
+<h3 id="&#20351;&#29992;__slots__">10.1 &#20351;&#29992;__slots__</h3>
+<p>&#27491;&#24120;&#24773;&#20917;&#19979;&#65292;&#24403;&#25105;&#20204;&#23450;&#20041;&#20102;&#19968;&#20010;<code>class</code>&#65292;&#21019;&#24314;&#20102;&#19968;&#20010;<code>class</code>&#30340;&#23454;&#20363;&#21518;&#65292;&#25105;&#20204;&#21487;&#20197;&#32473;&#35813;&#23454;&#20363;&#32465;&#23450;&#20219;&#20309;&#23646;&#24615;&#21644;&#26041;&#27861;&#65292;&#36825;&#23601;&#26159;&#21160;&#24577;&#35821;&#35328;&#30340;&#28789;&#27963;&#24615;&#12290;&#20808;&#23450;&#20041;<code>class</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Student(<span class="bu">object</span>):
+    <span class="cf">pass</span></code></pre></div>
+<p>&#28982;&#21518;&#65292;&#23581;&#35797;&#32473;&#23454;&#20363;&#32465;&#23450;&#19968;&#20010;&#23646;&#24615;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> Student()
+<span class="op">&gt;&gt;&gt;</span> s.name <span class="op">=</span> <span class="st">&#39;Michael&#39;</span> <span class="co"># &#21160;&#24577;&#32473;&#23454;&#20363;&#32465;&#23450;&#19968;&#20010;&#23646;&#24615;</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(s.name)
+Michael</code></pre></div>
+<p>&#36824;&#21487;&#20197;&#23581;&#35797;&#32473;&#23454;&#20363;&#32465;&#23450;&#19968;&#20010;&#26041;&#27861;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> set_age(<span class="va">self</span>, age): <span class="co"># &#23450;&#20041;&#19968;&#20010;&#20989;&#25968;&#20316;&#20026;&#23454;&#20363;&#26041;&#27861;</span>
+...     <span class="va">self</span>.age <span class="op">=</span> age
+...
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> types <span class="im">import</span> MethodType
+<span class="op">&gt;&gt;&gt;</span> s.set_age <span class="op">=</span> MethodType(set_age, s) <span class="co"># &#32473;&#23454;&#20363;&#32465;&#23450;&#19968;&#20010;&#26041;&#27861;</span>
+<span class="op">&gt;&gt;&gt;</span> s.set_age(<span class="dv">25</span>) <span class="co"># &#35843;&#29992;&#23454;&#20363;&#26041;&#27861;</span>
+<span class="op">&gt;&gt;&gt;</span> s.age <span class="co"># &#27979;&#35797;&#32467;&#26524;</span>
+<span class="dv">25</span></code></pre></div>
+<p>&#20294;&#26159;&#65292;&#32473;&#19968;&#20010;&#23454;&#20363;&#32465;&#23450;&#30340;&#26041;&#27861;&#65292;&#23545;&#21478;&#19968;&#20010;&#23454;&#20363;&#26159;&#19981;&#36215;&#20316;&#29992;&#30340;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> s2 <span class="op">=</span> Student() <span class="co"># &#21019;&#24314;&#26032;&#30340;&#23454;&#20363;</span>
+<span class="op">&gt;&gt;&gt;</span> s2.set_age(<span class="dv">25</span>) <span class="co"># &#23581;&#35797;&#35843;&#29992;&#26041;&#27861;</span>
+Traceback (most recent call last):
+  File <span class="st">&quot;&lt;stdin&gt;&quot;</span>, line <span class="dv">1</span>, <span class="op">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span>
+<span class="pp">AttributeError</span>: <span class="st">&#39;Student&#39;</span> <span class="bu">object</span> has no attribute <span class="st">&#39;set_age&#39;</span></code></pre></div>
+<p>&#20026;&#20102;&#32473;&#25152;&#26377;&#23454;&#20363;&#37117;&#32465;&#23450;&#26041;&#27861;&#65292;&#21487;&#20197;&#32473;<code>class</code>&#32465;&#23450;&#26041;&#27861;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> set_score(<span class="va">self</span>, score):
+...     <span class="va">self</span>.score <span class="op">=</span> score
+...
+<span class="op">&gt;&gt;&gt;</span> Student.set_score <span class="op">=</span> MethodType(set_score, Student)</code></pre></div>
+<p>&#32473;<code>class</code>&#32465;&#23450;&#26041;&#27861;&#21518;&#65292;&#25152;&#26377;&#23454;&#20363;&#22343;&#21487;&#35843;&#29992;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> s.set_score(<span class="dv">100</span>)
+<span class="op">&gt;&gt;&gt;</span> s.score
+<span class="dv">100</span>
+<span class="op">&gt;&gt;&gt;</span> s2.set_score(<span class="dv">99</span>)
+<span class="op">&gt;&gt;&gt;</span> s2.score
+<span class="dv">99</span></code></pre></div>
+<p>&#36890;&#24120;&#24773;&#20917;&#19979;&#65292;&#19978;&#38754;&#30340;<code>set_score</code>&#26041;&#27861;&#21487;&#20197;&#30452;&#25509;&#23450;&#20041;&#22312;<code>class</code>&#20013;&#65292;&#20294;&#21160;&#24577;&#32465;&#23450;&#20801;&#35768;&#25105;&#20204;&#22312;&#31243;&#24207;&#36816;&#34892;&#30340;&#36807;&#31243;&#20013;&#21160;&#24577;&#32473;<code>class</code>&#21152;&#19978;&#21151;&#33021;&#65292;&#36825;&#22312;&#38745;&#24577;&#35821;&#35328;&#20013;&#24456;&#38590;&#23454;&#29616;&#12290;</p>
+<h4 id="&#20351;&#29992;__slots__-1">&#20351;&#29992;<code>__slots__</code></h4>
+<p>&#20294;&#26159;&#65292;&#22914;&#26524;&#25105;&#20204;&#24819;&#35201;&#38480;&#21046;&#23454;&#20363;&#30340;&#23646;&#24615;&#24590;&#20040;&#21150;&#65311;&#27604;&#22914;&#65292;&#21482;&#20801;&#35768;&#23545;<code>Student</code>&#23454;&#20363;&#28155;&#21152;<code>name</code>&#21644;<code>age</code>&#23646;&#24615;&#12290;</p>
+<p>&#20026;&#20102;&#36798;&#21040;&#38480;&#21046;&#30340;&#30446;&#30340;&#65292;Python&#20801;&#35768;&#22312;&#23450;&#20041;<code>class</code>&#30340;&#26102;&#20505;&#65292;&#23450;&#20041;&#19968;&#20010;&#29305;&#27530;&#30340;<code>__slots__</code>&#21464;&#37327;&#65292;&#26469;&#38480;&#21046;&#35813;<code>class</code>&#23454;&#20363;&#33021;&#28155;&#21152;&#30340;&#23646;&#24615;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Student(<span class="bu">object</span>):
+    __slots__ <span class="op">=</span> (<span class="st">&#39;name&#39;</span>, <span class="st">&#39;age&#39;</span>) <span class="co"># &#29992;tuple&#23450;&#20041;&#20801;&#35768;&#32465;&#23450;&#30340;&#23646;&#24615;&#21517;&#31216;</span></code></pre></div>
+<p>&#28982;&#21518;&#65292;&#25105;&#20204;&#35797;&#35797;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> Student() <span class="co"># &#21019;&#24314;&#26032;&#30340;&#23454;&#20363;</span>
+<span class="op">&gt;&gt;&gt;</span> s.name <span class="op">=</span> <span class="st">&#39;Michael&#39;</span> <span class="co"># &#32465;&#23450;&#23646;&#24615;&#39;name&#39;</span>
+<span class="op">&gt;&gt;&gt;</span> s.age <span class="op">=</span> <span class="dv">25</span> <span class="co"># &#32465;&#23450;&#23646;&#24615;&#39;age&#39;</span>
+<span class="op">&gt;&gt;&gt;</span> s.score <span class="op">=</span> <span class="dv">99</span> <span class="co"># &#32465;&#23450;&#23646;&#24615;&#39;score&#39;</span>
+Traceback (most recent call last):
+  File <span class="st">&quot;&lt;stdin&gt;&quot;</span>, line <span class="dv">1</span>, <span class="op">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span>
+<span class="pp">AttributeError</span>: <span class="st">&#39;Student&#39;</span> <span class="bu">object</span> has no attribute <span class="st">&#39;score&#39;</span></code></pre></div>
+<p>&#30001;&#20110;<code>'score'</code>&#27809;&#26377;&#34987;&#25918;&#21040;<code>__slots__</code>&#20013;&#65292;&#25152;&#20197;&#19981;&#33021;&#32465;&#23450;<code>score</code>&#23646;&#24615;&#65292;&#35797;&#22270;&#32465;&#23450;<code>score</code>&#23558;&#24471;&#21040;<code>AttributeError</code>&#30340;&#38169;&#35823;&#12290;</p>
+<p>&#20351;&#29992;<code>__slots__</code>&#35201;&#27880;&#24847;&#65292;<code>__slots__</code>&#23450;&#20041;&#30340;&#23646;&#24615;&#20165;&#23545;&#24403;&#21069;&#31867;&#23454;&#20363;&#36215;&#20316;&#29992;&#65292;&#23545;&#32487;&#25215;&#30340;&#23376;&#31867;&#26159;&#19981;&#36215;&#20316;&#29992;&#30340;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> GraduateStudent(Student):
+...     <span class="cf">pass</span>
+...
+<span class="op">&gt;&gt;&gt;</span> g <span class="op">=</span> GraduateStudent()
+<span class="op">&gt;&gt;&gt;</span> g.score <span class="op">=</span> <span class="dv">9999</span></code></pre></div>
+<p>&#38500;&#38750;&#22312;&#23376;&#31867;&#20013;&#20063;&#23450;&#20041;<code>__slots__</code>&#65292;&#36825;&#26679;&#65292;&#23376;&#31867;&#23454;&#20363;&#20801;&#35768;&#23450;&#20041;&#30340;&#23646;&#24615;&#23601;&#26159;&#33258;&#36523;&#30340;<code>__slots__</code>&#21152;&#19978;&#29238;&#31867;&#30340;<code>__slots__</code>&#12290;</p>
+<h3 id="&#20351;&#29992;property">10.2 &#20351;&#29992;@property</h3>
+<p>&#22312;&#32465;&#23450;&#23646;&#24615;&#26102;&#65292;&#22914;&#26524;&#25105;&#20204;&#30452;&#25509;&#25226;&#23646;&#24615;&#26292;&#38706;&#20986;&#21435;&#65292;&#34429;&#28982;&#20889;&#36215;&#26469;&#24456;&#31616;&#21333;&#65292;&#20294;&#26159;&#65292;&#27809;&#21150;&#27861;&#26816;&#26597;&#21442;&#25968;&#65292;&#23548;&#33268;&#21487;&#20197;&#25226;&#25104;&#32489;&#38543;&#20415;&#25913;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">s <span class="op">=</span> Student()
+s.score <span class="op">=</span> <span class="dv">9999</span></code></pre></div>
+<p>&#36825;&#26174;&#28982;&#19981;&#21512;&#36923;&#36753;&#12290;&#20026;&#20102;&#38480;&#21046;<code>score</code>&#30340;&#33539;&#22260;&#65292;&#21487;&#20197;&#36890;&#36807;&#19968;&#20010;<code>set_score()</code>&#26041;&#27861;&#26469;&#35774;&#32622;&#25104;&#32489;&#65292;&#20877;&#36890;&#36807;&#19968;&#20010;<code>get_score()</code>&#26469;&#33719;&#21462;&#25104;&#32489;&#65292;&#36825;&#26679;&#65292;&#22312;<code>set_score()</code>&#26041;&#27861;&#37324;&#65292;&#23601;&#21487;&#20197;&#26816;&#26597;&#21442;&#25968;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Student(<span class="bu">object</span>):
+
+    <span class="kw">def</span> get_score(<span class="va">self</span>):
+         <span class="cf">return</span> <span class="va">self</span>._score
+
+    <span class="kw">def</span> set_score(<span class="va">self</span>, value):
+        <span class="cf">if</span> <span class="op">not</span> <span class="bu">isinstance</span>(value, <span class="bu">int</span>):
+            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&#39;score must be an integer!&#39;</span>)
+        <span class="cf">if</span> value <span class="op">&lt;</span> <span class="dv">0</span> <span class="op">or</span> value <span class="op">&gt;</span> <span class="dv">100</span>:
+            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&#39;score must between 0 ~ 100!&#39;</span>)
+        <span class="va">self</span>._score <span class="op">=</span> value</code></pre></div>
+<p>&#29616;&#22312;&#65292;&#23545;&#20219;&#24847;&#30340;<code>Student</code>&#23454;&#20363;&#36827;&#34892;&#25805;&#20316;&#65292;&#23601;&#19981;&#33021;&#38543;&#24515;&#25152;&#27442;&#22320;&#35774;&#32622;<code>score</code>&#20102;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> Student()
+<span class="op">&gt;&gt;&gt;</span> s.set_score(<span class="dv">60</span>) <span class="co"># ok!</span>
+<span class="op">&gt;&gt;&gt;</span> s.get_score()
+<span class="dv">60</span>
+<span class="op">&gt;&gt;&gt;</span> s.set_score(<span class="dv">9999</span>)
+Traceback (most recent call last):
+  ...
+<span class="pp">ValueError</span>: score must between <span class="dv">0</span> <span class="op">~</span> <span class="dv">100</span><span class="op">!</span></code></pre></div>
+<p>&#20294;&#26159;&#65292;&#19978;&#38754;&#30340;&#35843;&#29992;&#26041;&#27861;&#21448;&#30053;&#26174;&#22797;&#26434;&#65292;&#27809;&#26377;&#30452;&#25509;&#29992;&#23646;&#24615;&#36825;&#20040;&#30452;&#25509;&#31616;&#21333;&#12290;</p>
+<p>&#26377;&#27809;&#26377;&#26082;&#33021;&#26816;&#26597;&#21442;&#25968;&#65292;&#21448;&#21487;&#20197;&#29992;&#31867;&#20284;&#23646;&#24615;&#36825;&#26679;&#31616;&#21333;&#30340;&#26041;&#24335;&#26469;&#35775;&#38382;&#31867;&#30340;&#21464;&#37327;&#21602;&#65311;&#23545;&#20110;&#36861;&#27714;&#23436;&#32654;&#30340;Python&#31243;&#24207;&#21592;&#26469;&#35828;&#65292;&#36825;&#26159;&#24517;&#39035;&#35201;&#20570;&#21040;&#30340;&#65281;</p>
+<p>&#36824;&#35760;&#24471;<code>&#35013;&#39280;&#22120;&#65288;decorator&#65289;</code>&#21487;&#20197;&#32473;&#20989;&#25968;&#21160;&#24577;&#21152;&#19978;&#21151;&#33021;&#21527;&#65311;&#23545;&#20110;&#31867;&#30340;&#26041;&#27861;&#65292;&#35013;&#39280;&#22120;&#19968;&#26679;&#36215;&#20316;&#29992;&#12290;Python&#20869;&#32622;&#30340;<code>@property</code>&#35013;&#39280;&#22120;&#23601;&#26159;&#36127;&#36131;&#25226;&#19968;&#20010;&#26041;&#27861;&#21464;&#25104;&#23646;&#24615;&#35843;&#29992;&#30340;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Student(<span class="bu">object</span>):
+
+    <span class="at">@property</span>
+    <span class="kw">def</span> score(<span class="va">self</span>):
+        <span class="cf">return</span> <span class="va">self</span>._score
+
+    <span class="at">@score.setter</span>
+    <span class="kw">def</span> score(<span class="va">self</span>, value):
+        <span class="cf">if</span> <span class="op">not</span> <span class="bu">isinstance</span>(value, <span class="bu">int</span>):
+            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&#39;score must be an integer!&#39;</span>)
+        <span class="cf">if</span> value <span class="op">&lt;</span> <span class="dv">0</span> <span class="op">or</span> value <span class="op">&gt;</span> <span class="dv">100</span>:
+            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&#39;score must between 0 ~ 100!&#39;</span>)
+        <span class="va">self</span>._score <span class="op">=</span> value</code></pre></div>
+<p><code>@property</code>&#30340;&#23454;&#29616;&#27604;&#36739;&#22797;&#26434;&#65292;&#25105;&#20204;&#20808;&#32771;&#23519;&#22914;&#20309;&#20351;&#29992;&#12290;&#25226;&#19968;&#20010;<code>getter&#26041;&#27861;</code>&#21464;&#25104;&#23646;&#24615;&#65292;&#21482;&#38656;&#35201;&#21152;&#19978;<code>@property</code>&#23601;&#21487;&#20197;&#20102;&#65292;&#27492;&#26102;&#65292;<code>@property</code>&#26412;&#36523;&#21448;&#21019;&#24314;&#20102;&#21478;&#19968;&#20010;&#35013;&#39280;&#22120;<code>@score.setter</code>&#65292;&#36127;&#36131;&#25226;&#19968;&#20010;<code>setter</code>&#26041;&#27861;&#21464;&#25104;&#23646;&#24615;&#36171;&#20540;&#65292;&#20110;&#26159;&#65292;&#25105;&#20204;&#23601;&#25317;&#26377;&#19968;&#20010;&#21487;&#25511;&#30340;&#23646;&#24615;&#25805;&#20316;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> Student()
+<span class="op">&gt;&gt;&gt;</span> s.score <span class="op">=</span> <span class="dv">60</span> <span class="co"># OK&#65292;&#23454;&#38469;&#36716;&#21270;&#20026;s.set_score(60)</span>
+<span class="op">&gt;&gt;&gt;</span> s.score <span class="co"># OK&#65292;&#23454;&#38469;&#36716;&#21270;&#20026;s.get_score()</span>
+<span class="dv">60</span>
+<span class="op">&gt;&gt;&gt;</span> s.score <span class="op">=</span> <span class="dv">9999</span>
+Traceback (most recent call last):
+  ...
+<span class="pp">ValueError</span>: score must between <span class="dv">0</span> <span class="op">~</span> <span class="dv">100</span><span class="op">!</span></code></pre></div>
+<p>&#27880;&#24847;&#21040;&#36825;&#20010;&#31070;&#22855;&#30340;<code>@property</code>&#65292;&#25105;&#20204;&#22312;&#23545;&#23454;&#20363;&#23646;&#24615;&#25805;&#20316;&#30340;&#26102;&#20505;&#65292;&#23601;&#30693;&#36947;&#35813;&#23646;&#24615;&#24456;&#21487;&#33021;&#19981;&#26159;&#30452;&#25509;&#26292;&#38706;&#30340;&#65292;&#32780;&#26159;&#36890;&#36807;<code>getter</code>&#21644;<code>setter</code>&#26041;&#27861;&#26469;&#23454;&#29616;&#30340;&#12290;</p>
+<p>&#36824;&#21487;&#20197;&#23450;&#20041;&#21482;&#35835;&#23646;&#24615;&#65292;&#21482;&#23450;&#20041;<code>getter</code>&#26041;&#27861;&#65292;&#19981;&#23450;&#20041;<code>setter</code>&#26041;&#27861;&#23601;&#26159;&#19968;&#20010;&#21482;&#35835;&#23646;&#24615;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Student(<span class="bu">object</span>):
+
+    <span class="at">@property</span>
+    <span class="kw">def</span> birth(<span class="va">self</span>):
+        <span class="cf">return</span> <span class="va">self</span>._birth
+
+    <span class="at">@birth.setter</span>
+    <span class="kw">def</span> birth(<span class="va">self</span>, value):
+        <span class="va">self</span>._birth <span class="op">=</span> value
+
+    <span class="at">@property</span>
+    <span class="kw">def</span> age(<span class="va">self</span>):
+        <span class="cf">return</span> <span class="dv">2015</span> <span class="op">-</span> <span class="va">self</span>._birth</code></pre></div>
+<p>&#19978;&#38754;&#30340;<code>birth</code>&#26159;&#21487;&#35835;&#20889;&#23646;&#24615;&#65292;&#32780;<code>age</code>&#23601;&#26159;&#19968;&#20010;&#21482;&#35835;&#23646;&#24615;&#65292;&#22240;&#20026;<code>age</code>&#21487;&#20197;&#26681;&#25454;<code>birth</code>&#21644;&#24403;&#21069;&#26102;&#38388;&#35745;&#31639;&#20986;&#26469;&#12290;</p>
+<h4 id="&#23567;&#32467;">&#23567;&#32467;</h4>
+<p><code>@property</code>&#24191;&#27867;&#24212;&#29992;&#22312;&#31867;&#30340;&#23450;&#20041;&#20013;&#65292;&#21487;&#20197;&#35753;&#35843;&#29992;&#32773;&#20889;&#20986;&#31616;&#30701;&#30340;&#20195;&#30721;&#65292;&#21516;&#26102;&#20445;&#35777;&#23545;&#21442;&#25968;&#36827;&#34892;&#24517;&#35201;&#30340;&#26816;&#26597;&#65292;&#36825;&#26679;&#65292;&#31243;&#24207;&#36816;&#34892;&#26102;&#23601;&#20943;&#23569;&#20102;&#20986;&#38169;&#30340;&#21487;&#33021;&#24615;&#12290;</p>
+<h4 id="&#32451;&#20064;">&#32451;&#20064;</h4>
+<p>&#35831;&#21033;&#29992;@property&#32473;&#19968;&#20010;<code>Screen</code>&#23545;&#35937;&#21152;&#19978;<code>width</code>&#21644;<code>height</code>&#23646;&#24615;&#65292;&#20197;&#21450;&#19968;&#20010;&#21482;&#35835;&#23646;&#24615;<code>resolution</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># -*- coding: utf-8 -*-</span>
+
+<span class="kw">class</span> Screen(<span class="bu">object</span>):
+        
+        <span class="at">@property</span>
+        <span class="kw">def</span> width(<span class="va">self</span>):
+                <span class="cf">return</span> <span class="va">self</span>._width
+
+        <span class="at">@width.setter</span>
+        <span class="kw">def</span> width(<span class="va">self</span>, value):
+                <span class="va">self</span>._width <span class="op">=</span> value
+
+        <span class="at">@property</span>
+        <span class="kw">def</span> height(<span class="va">self</span>):
+                <span class="cf">return</span> <span class="va">self</span>._height
+
+        <span class="at">@height.setter</span>
+        <span class="kw">def</span> height(<span class="va">self</span>, value):
+                <span class="va">self</span>._height <span class="op">=</span> value
+
+        <span class="at">@property</span>
+        <span class="kw">def</span> resolution(<span class="va">self</span>):
+                <span class="cf">return</span> <span class="va">self</span>._height <span class="op">*</span> <span class="va">self</span>._width
+
+<span class="co"># test:</span>
+s <span class="op">=</span> Screen()
+s.width <span class="op">=</span> <span class="dv">1024</span>
+s.height <span class="op">=</span> <span class="dv">768</span>
+<span class="bu">print</span>(s.resolution)
+<span class="cf">assert</span> s.resolution <span class="op">==</span> <span class="dv">786432</span>, <span class="st">&#39;1024 * 768 = </span><span class="sc">%d</span><span class="st"> ?&#39;</span> <span class="op">%</span> s.resolution</code></pre></div>
+<h3 id="&#22810;&#37325;&#32487;&#25215;">10.3 &#22810;&#37325;&#32487;&#25215;</h3>
+<p><strong>&#32487;&#25215;</strong>&#26159;&#38754;&#21521;&#23545;&#35937;&#32534;&#31243;&#30340;&#19968;&#20010;&#37325;&#35201;&#30340;&#26041;&#24335;&#65292;&#22240;&#20026;&#36890;&#36807;&#32487;&#25215;&#65292;&#23376;&#31867;&#23601;&#21487;&#20197;&#25193;&#23637;&#29238;&#31867;&#30340;&#21151;&#33021;&#12290;</p>
+<p>&#22238;&#24518;&#19968;&#19979;<code>Animal</code>&#31867;&#23618;&#27425;&#30340;&#35774;&#35745;&#65292;&#20551;&#35774;&#25105;&#20204;&#35201;&#23454;&#29616;&#20197;&#19979;4&#31181;&#21160;&#29289;&#65306;</p>
+<pre><code>    Dog - &#29399;&#29399;&#65307;
+    Bat - &#34649;&#34656;&#65307;
+    Parrot - &#40550;&#40521;&#65307;
+    Ostrich - &#40501;&#40479;&#12290;</code></pre>
+<p>&#22914;&#26524;&#25353;&#29031;&#21754;&#20083;&#21160;&#29289;&#21644;&#40479;&#31867;&#24402;&#31867;&#65292;&#25105;&#20204;&#21487;&#20197;&#35774;&#35745;&#20986;&#36825;&#26679;&#30340;&#31867;&#30340;&#23618;&#27425;&#65306;</p>
+<div class="figure">
+<img src="http://www.liaoxuefeng.com/files/attachments/0013946302979476f6c8274380449f6b1661232f3c87e27000/0" alt="" />
+
+</div>
+<p>&#20294;&#26159;&#22914;&#26524;&#25353;&#29031;&#8220;&#33021;&#36305;&#8221;&#21644;&#8220;&#33021;&#39134;&#8221;&#26469;&#24402;&#31867;&#65292;&#25105;&#20204;&#23601;&#24212;&#35813;&#35774;&#35745;&#20986;&#36825;&#26679;&#30340;&#31867;&#30340;&#23618;&#27425;&#65306;</p>
+<div class="figure">
+<img src="http://www.liaoxuefeng.com/files/attachments/0013946303378967df13b07e0f64ed396560af4f6a98207000/0" alt="" />
+
+</div>
+<p>&#22914;&#26524;&#35201;&#25226;&#19978;&#38754;&#30340;&#20004;&#31181;&#20998;&#31867;&#37117;&#21253;&#21547;&#36827;&#26469;&#65292;&#25105;&#20204;&#23601;&#24471;&#35774;&#35745;&#26356;&#22810;&#30340;&#23618;&#27425;&#65306;</p>
+<pre><code>    &#21754;&#20083;&#31867;&#65306;&#33021;&#36305;&#30340;&#21754;&#20083;&#31867;&#65292;&#33021;&#39134;&#30340;&#21754;&#20083;&#31867;&#65307;
+    &#40479;&#31867;&#65306;&#33021;&#36305;&#30340;&#40479;&#31867;&#65292;&#33021;&#39134;&#30340;&#40479;&#31867;&#12290;</code></pre>
+<p>&#36825;&#20040;&#19968;&#26469;&#65292;&#31867;&#30340;&#23618;&#27425;&#23601;&#22797;&#26434;&#20102;&#65306;</p>
+<div class="figure">
+<img src="http://www.liaoxuefeng.com/files/attachments/0013946304409926336fd4395ef4ce1809253a1d87dd2fe000/0" alt="" />
+
+</div>
+<p>&#22914;&#26524;&#35201;&#20877;&#22686;&#21152;&#8220;&#23456;&#29289;&#31867;&#8221;&#21644;&#8220;&#38750;&#23456;&#29289;&#31867;&#8221;&#65292;&#36825;&#20040;&#25630;&#19979;&#21435;&#65292;&#31867;&#30340;&#25968;&#37327;&#20250;&#21576;&#25351;&#25968;&#22686;&#38271;&#65292;&#24456;&#26126;&#26174;&#36825;&#26679;&#35774;&#35745;&#26159;&#19981;&#34892;&#30340;&#12290;</p>
+<p>&#27491;&#30830;&#30340;&#20570;&#27861;&#26159;&#37319;&#29992;<code>&#22810;&#37325;&#32487;&#25215;</code>&#12290;&#39318;&#20808;&#65292;&#20027;&#35201;&#30340;&#31867;&#23618;&#27425;&#20173;&#25353;&#29031;&#21754;&#20083;&#31867;&#21644;&#40479;&#31867;&#35774;&#35745;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Animal(<span class="bu">object</span>):
+    <span class="cf">pass</span>
+
+<span class="co"># &#22823;&#31867;:</span>
+<span class="kw">class</span> Mammal(Animal):
+    <span class="cf">pass</span>
+
+<span class="kw">class</span> Bird(Animal):
+    <span class="cf">pass</span>
+
+<span class="co"># &#21508;&#31181;&#21160;&#29289;:</span>
+<span class="kw">class</span> Dog(Mammal):
+    <span class="cf">pass</span>
+
+<span class="kw">class</span> Bat(Mammal):
+    <span class="cf">pass</span>
+
+<span class="kw">class</span> Parrot(Bird):
+    <span class="cf">pass</span>
+
+<span class="kw">class</span> Ostrich(Bird):
+    <span class="cf">pass</span></code></pre></div>
+<p>&#29616;&#22312;&#65292;&#25105;&#20204;&#35201;&#32473;&#21160;&#29289;&#20877;&#21152;&#19978;<code>Runnable</code>&#21644;<code>Flyable</code>&#30340;&#21151;&#33021;&#65292;&#21482;&#38656;&#35201;&#20808;&#23450;&#20041;&#22909;<code>Runnable</code>&#21644;<code>Flyable</code>&#30340;&#31867;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Runnable(<span class="bu">object</span>):
+    <span class="kw">def</span> run(<span class="va">self</span>):
+        <span class="bu">print</span>(<span class="st">&#39;Running...&#39;</span>)
+
+<span class="kw">class</span> Flyable(<span class="bu">object</span>):
+    <span class="kw">def</span> fly(<span class="va">self</span>):
+        <span class="bu">print</span>(<span class="st">&#39;Flying...&#39;</span>)</code></pre></div>
+<p>&#23545;&#20110;&#38656;&#35201;<code>Runnable</code>&#21151;&#33021;&#30340;&#21160;&#29289;&#65292;&#23601;&#22810;&#32487;&#25215;&#19968;&#20010;<code>Runnable</code>&#65292;&#20363;&#22914;<code>Dog</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Dog(Mammal, Runnable):
+    <span class="cf">pass</span></code></pre></div>
+<p>&#23545;&#20110;&#38656;&#35201;<code>Flyable</code>&#21151;&#33021;&#30340;&#21160;&#29289;&#65292;&#23601;&#22810;&#32487;&#25215;&#19968;&#20010;<code>Flyable</code>&#65292;&#20363;&#22914;<code>Bat</code>&#65306;</p>
+<pre><code>class Bat(Mammal, Flyable):
+    pass</code></pre>
+<p>&#36890;&#36807;&#22810;&#37325;&#32487;&#25215;&#65292;&#19968;&#20010;&#23376;&#31867;&#23601;&#21487;&#20197;&#21516;&#26102;&#33719;&#24471;&#22810;&#20010;&#29238;&#31867;&#30340;&#25152;&#26377;&#21151;&#33021;&#12290;</p>
+<h4 id="mixin">MixIn</h4>
+<p>&#22312;&#35774;&#35745;&#31867;&#30340;&#32487;&#25215;&#20851;&#31995;&#26102;&#65292;&#36890;&#24120;&#65292;&#20027;&#32447;&#37117;&#26159;&#21333;&#19968;&#32487;&#25215;&#19979;&#26469;&#30340;&#65292;&#20363;&#22914;&#65292;<code>Ostrich</code>&#32487;&#25215;&#33258;<code>Bird</code>&#12290;&#20294;&#26159;&#65292;&#22914;&#26524;&#38656;&#35201;&#8220;&#28151;&#20837;&#8221;&#39069;&#22806;&#30340;&#21151;&#33021;&#65292;&#36890;&#36807;&#22810;&#37325;&#32487;&#25215;&#23601;&#21487;&#20197;&#23454;&#29616;&#65292;&#27604;&#22914;&#65292;&#35753;<code>Ostrich</code>&#38500;&#20102;&#32487;&#25215;&#33258;<code>Bird</code>&#22806;&#65292;&#20877;&#21516;&#26102;&#32487;&#25215;<code>Runnable</code>&#12290;&#36825;&#31181;&#35774;&#35745;&#36890;&#24120;&#31216;&#20043;&#20026;<code>MixIn</code>&#12290;</p>
+<p>&#20026;&#20102;&#26356;&#22909;&#22320;&#30475;&#20986;&#32487;&#25215;&#20851;&#31995;&#65292;&#25105;&#20204;&#25226;<code>Runnable</code>&#21644;<code>Flyable</code>&#25913;&#20026;<code>RunnableMixIn</code>&#21644;<code>FlyableMixIn</code>&#12290;&#31867;&#20284;&#30340;&#65292;&#20320;&#36824;&#21487;&#20197;&#23450;&#20041;&#20986;&#32905;&#39135;&#21160;&#29289;<code>CarnivorousMixIn</code>&#21644;&#26893;&#39135;&#21160;&#29289;<code>HerbivoresMixIn</code>&#65292;&#35753;&#26576;&#20010;&#21160;&#29289;&#21516;&#26102;&#25317;&#26377;&#22909;&#20960;&#20010;<code>MixIn</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Dog(Mammal, RunnableMixIn, CarnivorousMixIn):
+    <span class="cf">pass</span></code></pre></div>
+<p><code>MixIn</code>&#30340;&#30446;&#30340;&#23601;&#26159;&#32473;&#19968;&#20010;&#31867;&#22686;&#21152;&#22810;&#20010;&#21151;&#33021;&#65292;&#36825;&#26679;&#65292;&#22312;&#35774;&#35745;&#31867;&#30340;&#26102;&#20505;&#65292;&#25105;&#20204;&#20248;&#20808;&#32771;&#34385;&#36890;&#36807;&#22810;&#37325;&#32487;&#25215;&#26469;&#32452;&#21512;&#22810;&#20010;<code>MixIn</code>&#30340;&#21151;&#33021;&#65292;&#32780;&#19981;&#26159;&#35774;&#35745;&#22810;&#23618;&#27425;&#30340;&#22797;&#26434;&#30340;&#32487;&#25215;&#20851;&#31995;&#12290;</p>
+<p>Python&#33258;&#24102;&#30340;&#24456;&#22810;&#24211;&#20063;&#20351;&#29992;&#20102;<code>MixIn</code>&#12290;&#20030;&#20010;&#20363;&#23376;&#65292;<code>Python</code>&#33258;&#24102;&#20102;<code>TCPServer</code>&#21644;<code>UDPServer</code>&#36825;&#20004;&#31867;&#32593;&#32476;&#26381;&#21153;&#65292;&#32780;&#35201;&#21516;&#26102;&#26381;&#21153;&#22810;&#20010;&#29992;&#25143;&#23601;&#24517;&#39035;&#20351;&#29992;&#22810;&#36827;&#31243;&#25110;&#22810;&#32447;&#31243;&#27169;&#22411;&#65292;&#36825;&#20004;&#31181;&#27169;&#22411;&#30001;<code>ForkingMixIn</code>&#21644;<code>ThreadingMixIn</code>&#25552;&#20379;&#12290;&#36890;&#36807;&#32452;&#21512;&#65292;&#25105;&#20204;&#23601;&#21487;&#20197;&#21019;&#36896;&#20986;&#21512;&#36866;&#30340;&#26381;&#21153;&#26469;&#12290;</p>
+<p>&#27604;&#22914;&#65292;&#32534;&#20889;&#19968;&#20010;&#22810;&#36827;&#31243;&#27169;&#24335;&#30340;TCP&#26381;&#21153;&#65292;&#23450;&#20041;&#22914;&#19979;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> MyTCPServer(TCPServer, ForkingMixIn):
+    <span class="cf">pass</span></code></pre></div>
+<p>&#32534;&#20889;&#19968;&#20010;&#22810;&#32447;&#31243;&#27169;&#24335;&#30340;UDP&#26381;&#21153;&#65292;&#23450;&#20041;&#22914;&#19979;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> MyUDPServer(UDPServer, ThreadingMixIn):
+    <span class="cf">pass</span></code></pre></div>
+<p>&#22914;&#26524;&#20320;&#25171;&#31639;&#25630;&#19968;&#20010;&#26356;&#20808;&#36827;&#30340;&#21327;&#31243;&#27169;&#22411;&#65292;&#21487;&#20197;&#32534;&#20889;&#19968;&#20010;<code>CoroutineMixIn</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> MyTCPServer(TCPServer, CoroutineMixIn):
+    <span class="cf">pass</span></code></pre></div>
+<p>&#36825;&#26679;&#19968;&#26469;&#65292;&#25105;&#20204;&#19981;&#38656;&#35201;&#22797;&#26434;&#32780;&#24222;&#22823;&#30340;&#32487;&#25215;&#38142;&#65292;&#21482;&#35201;&#36873;&#25321;&#32452;&#21512;&#19981;&#21516;&#30340;&#31867;&#30340;&#21151;&#33021;&#65292;&#23601;&#21487;&#20197;&#24555;&#36895;&#26500;&#36896;&#20986;&#25152;&#38656;&#30340;&#23376;&#31867;&#12290;</p>
+<h4 id="&#23567;&#32467;-1">&#23567;&#32467;</h4>
+<p>&#30001;&#20110;Python&#20801;&#35768;&#20351;&#29992;&#22810;&#37325;&#32487;&#25215;&#65292;&#22240;&#27492;&#65292;<code>MixIn</code>&#23601;&#26159;&#19968;&#31181;&#24120;&#35265;&#30340;&#35774;&#35745;&#12290;</p>
+<p>&#21482;&#20801;&#35768;&#21333;&#19968;&#32487;&#25215;&#30340;&#35821;&#35328;&#65288;&#22914;<code>Java</code>&#65289;&#19981;&#33021;&#20351;&#29992;<code>MixIn</code>&#30340;&#35774;&#35745;&#12290;</p>
+<h3 id="&#23450;&#21046;&#31867;">10.4 &#23450;&#21046;&#31867;</h3>
+<p>&#30475;&#21040;&#31867;&#20284;<code>__slots__</code>&#36825;&#31181;&#24418;&#22914;<code>__xxx__</code>&#30340;&#21464;&#37327;&#25110;&#32773;&#20989;&#25968;&#21517;&#23601;&#35201;&#27880;&#24847;&#65292;&#36825;&#20123;&#22312;Python&#20013;&#26159;&#26377;&#29305;&#27530;&#29992;&#36884;&#30340;&#12290;</p>
+<p><code>__slots__</code>&#25105;&#20204;&#24050;&#32463;&#30693;&#36947;&#24590;&#20040;&#29992;&#20102;&#65292;<code>__len__()</code>&#26041;&#27861;&#25105;&#20204;&#20063;&#30693;&#36947;&#26159;&#20026;&#20102;&#33021;&#35753;<code>class</code>&#20316;&#29992;&#20110;<code>len()</code>&#20989;&#25968;&#12290;</p>
+<p>&#38500;&#27492;&#20043;&#22806;&#65292;Python&#30340;class&#20013;&#36824;&#26377;&#35768;&#22810;&#36825;&#26679;&#26377;&#29305;&#27530;&#29992;&#36884;&#30340;&#20989;&#25968;&#65292;&#21487;&#20197;&#24110;&#21161;&#25105;&#20204;&#23450;&#21046;&#31867;&#12290;</p>
+<h4 id="str"><strong>str</strong></h4>
+<p>&#25105;&#20204;&#20808;&#23450;&#20041;&#19968;&#20010;<code>Student</code>&#31867;&#65292;&#25171;&#21360;&#19968;&#20010;&#23454;&#20363;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Student(<span class="bu">object</span>):
+...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):
+...         <span class="va">self</span>.name <span class="op">=</span> name
+...
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(Student(<span class="st">&#39;Michael&#39;</span>))
+<span class="op">&lt;</span>__main__.Student <span class="bu">object</span> at <span class="bn">0x109afb190</span><span class="op">&gt;</span></code></pre></div>
+<p>&#25171;&#21360;&#20986;&#19968;&#22534;<code>&lt;__main__.Student object at 0x109afb190&gt;</code>&#65292;&#19981;&#22909;&#30475;&#12290;</p>
+<p>&#24590;&#20040;&#25165;&#33021;&#25171;&#21360;&#24471;&#22909;&#30475;&#21602;&#65311;&#21482;&#38656;&#35201;&#23450;&#20041;&#22909;<code>__str__()</code>&#26041;&#27861;&#65292;&#36820;&#22238;&#19968;&#20010;&#22909;&#30475;&#30340;&#23383;&#31526;&#20018;&#23601;&#21487;&#20197;&#20102;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Student(<span class="bu">object</span>):
+...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):
+...         <span class="va">self</span>.name <span class="op">=</span> name
+...     <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):
+...         <span class="cf">return</span> <span class="st">&#39;Student object (name: </span><span class="sc">%s</span><span class="st">)&#39;</span> <span class="op">%</span> <span class="va">self</span>.name
+...
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(Student(<span class="st">&#39;Michael&#39;</span>))
+Student <span class="bu">object</span> (name: Michael)</code></pre></div>
+<p>&#36825;&#26679;&#25171;&#21360;&#20986;&#26469;&#30340;&#23454;&#20363;&#65292;&#19981;&#20294;&#22909;&#30475;&#65292;&#32780;&#19988;&#23481;&#26131;&#30475;&#20986;&#23454;&#20363;&#20869;&#37096;&#37325;&#35201;&#30340;&#25968;&#25454;&#12290;</p>
+<p>&#20294;&#26159;&#32454;&#24515;&#30340;&#26379;&#21451;&#20250;&#21457;&#29616;&#30452;&#25509;&#25970;&#21464;&#37327;&#19981;&#29992;<code>print</code>&#65292;&#25171;&#21360;&#20986;&#26469;&#30340;&#23454;&#20363;&#36824;&#26159;&#19981;&#22909;&#30475;&#65306;</p>
+<pre><code>&gt;&gt;&gt; s = Student(&#39;Michael&#39;)
+&gt;&gt;&gt; s
+&lt;__main__.Student object at 0x109afb310&gt;</code></pre>
+<p>&#36825;&#26159;&#22240;&#20026;&#30452;&#25509;&#26174;&#31034;&#21464;&#37327;&#35843;&#29992;&#30340;&#19981;&#26159;<code>__str__()</code>&#65292;&#32780;&#26159;<code>__repr__()</code>&#65292;&#20004;&#32773;&#30340;&#21306;&#21035;&#26159;<code>__str__()</code>&#36820;&#22238;&#29992;&#25143;&#30475;&#21040;&#30340;&#23383;&#31526;&#20018;&#65292;&#32780;<code>__repr__()</code>&#36820;&#22238;&#31243;&#24207;&#24320;&#21457;&#32773;&#30475;&#21040;&#30340;&#23383;&#31526;&#20018;&#65292;&#20063;&#23601;&#26159;&#35828;&#65292;<code>__repr__()</code>&#26159;&#20026;&#35843;&#35797;&#26381;&#21153;&#30340;&#12290;</p>
+<p>&#35299;&#20915;&#21150;&#27861;&#26159;&#20877;&#23450;&#20041;&#19968;&#20010;<code>__repr__()</code>&#12290;&#20294;&#26159;&#36890;&#24120;<code>__str__()</code>&#21644;<code>__repr__()</code>&#20195;&#30721;&#37117;&#26159;&#19968;&#26679;&#30340;&#65292;&#25152;&#20197;&#65292;&#26377;&#20010;&#20599;&#25042;&#30340;&#20889;&#27861;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Student(<span class="bu">object</span>):
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):
+        <span class="va">self</span>.name <span class="op">=</span> name
+    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):
+        <span class="cf">return</span> <span class="st">&#39;Student object (name=</span><span class="sc">%s</span><span class="st">)&#39;</span> <span class="op">%</span> <span class="va">self</span>.name
+    <span class="fu">__repr__</span> <span class="op">=</span> <span class="fu">__str__</span>
+
+<span class="fu">__iter__</span></code></pre></div>
+<p>&#22914;&#26524;&#19968;&#20010;&#31867;&#24819;&#34987;&#29992;&#20110;<code>for ... in</code>&#24490;&#29615;&#65292;&#31867;&#20284;<code>list</code>&#25110;<code>tuple</code>&#37027;&#26679;&#65292;&#23601;&#24517;&#39035;&#23454;&#29616;&#19968;&#20010;<code>__iter__()</code>&#26041;&#27861;&#65292;&#35813;&#26041;&#27861;&#36820;&#22238;&#19968;&#20010;&#36845;&#20195;&#23545;&#35937;&#65292;&#28982;&#21518;&#65292;Python&#30340;<code>for&#24490;&#29615;</code>&#23601;&#20250;&#19981;&#26029;&#35843;&#29992;&#35813;&#36845;&#20195;&#23545;&#35937;&#30340;<code>__next__()</code>&#26041;&#27861;&#25343;&#21040;&#24490;&#29615;&#30340;&#19979;&#19968;&#20010;&#20540;&#65292;&#30452;&#21040;&#36935;&#21040;<code>StopIteration</code>&#38169;&#35823;&#26102;&#36864;&#20986;&#24490;&#29615;&#12290;</p>
+<p>&#25105;&#20204;&#20197;&#26000;&#27874;&#37027;&#22865;&#25968;&#21015;&#20026;&#20363;&#65292;&#20889;&#19968;&#20010;<code>Fib&#31867;</code>&#65292;&#21487;&#20197;&#20316;&#29992;&#20110;<code>for&#24490;&#29615;</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Fib(<span class="bu">object</span>):
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):
+        <span class="va">self</span>.a, <span class="va">self</span>.b <span class="op">=</span> <span class="dv">0</span>, <span class="dv">1</span> <span class="co"># &#21021;&#22987;&#21270;&#20004;&#20010;&#35745;&#25968;&#22120;a&#65292;b</span>
+
+    <span class="kw">def</span> <span class="fu">__iter__</span>(<span class="va">self</span>):
+        <span class="cf">return</span> <span class="va">self</span> <span class="co"># &#23454;&#20363;&#26412;&#36523;&#23601;&#26159;&#36845;&#20195;&#23545;&#35937;&#65292;&#25925;&#36820;&#22238;&#33258;&#24049;</span>
+
+    <span class="kw">def</span> <span class="fu">__next__</span>(<span class="va">self</span>):
+        <span class="va">self</span>.a, <span class="va">self</span>.b <span class="op">=</span> <span class="va">self</span>.b, <span class="va">self</span>.a <span class="op">+</span> <span class="va">self</span>.b <span class="co"># &#35745;&#31639;&#19979;&#19968;&#20010;&#20540;</span>
+        <span class="cf">if</span> <span class="va">self</span>.a <span class="op">&gt;</span> <span class="dv">100000</span>: <span class="co"># &#36864;&#20986;&#24490;&#29615;&#30340;&#26465;&#20214;</span>
+            <span class="cf">raise</span> <span class="pp">StopIteration</span>()<span class="op">;</span>
+        <span class="cf">return</span> <span class="va">self</span>.a <span class="co"># &#36820;&#22238;&#19979;&#19968;&#20010;&#20540;</span></code></pre></div>
+<p>&#29616;&#22312;&#65292;&#35797;&#35797;&#25226;<code>Fib&#23454;&#20363;</code>&#20316;&#29992;&#20110;<code>for&#24490;&#29615;</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> n <span class="op">in</span> Fib():
+...     <span class="bu">print</span>(n)
+...
+<span class="dv">1</span>
+<span class="dv">1</span>
+<span class="dv">2</span>
+<span class="dv">3</span>
+<span class="dv">5</span>
+...
+<span class="dv">46368</span>
+<span class="dv">75025</span>
+
+<span class="fu">__getitem__</span></code></pre></div>
+<p><code>Fib</code>&#23454;&#20363;&#34429;&#28982;&#33021;&#20316;&#29992;&#20110;<code>for&#24490;&#29615;</code>&#65292;&#30475;&#36215;&#26469;&#21644;<code>list</code>&#26377;&#28857;&#20687;&#65292;&#20294;&#26159;&#65292;&#25226;&#23427;&#24403;&#25104;<code>list</code>&#26469;&#20351;&#29992;&#36824;&#26159;&#19981;&#34892;&#65292;&#27604;&#22914;&#65292;&#21462;&#31532;5&#20010;&#20803;&#32032;&#65306;</p>
+<pre><code>&gt;&gt;&gt; Fib()[5]
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: &#39;Fib&#39; object does not support indexing</code></pre>
+<p>&#35201;&#34920;&#29616;&#24471;&#20687;<code>list</code>&#37027;&#26679;&#25353;&#29031;&#19979;&#26631;&#21462;&#20986;&#20803;&#32032;&#65292;&#38656;&#35201;&#23454;&#29616;<code>__getitem__()</code>&#26041;&#27861;&#65306;</p>
+<pre><code>class Fib(object):
+    def __getitem__(self, n):
+        a, b = 1, 1
+        for x in range(n):
+            a, b = b, a + b
+        return a</code></pre>
+<p>&#29616;&#22312;&#65292;&#23601;&#21487;&#20197;&#25353;&#19979;&#26631;&#35775;&#38382;&#25968;&#21015;&#30340;&#20219;&#24847;&#19968;&#39033;&#20102;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> f <span class="op">=</span> Fib()
+<span class="op">&gt;&gt;&gt;</span> f[<span class="dv">0</span>]
+<span class="dv">1</span>
+<span class="op">&gt;&gt;&gt;</span> f[<span class="dv">1</span>]
+<span class="dv">1</span>
+<span class="op">&gt;&gt;&gt;</span> f[<span class="dv">2</span>]
+<span class="dv">2</span>
+<span class="op">&gt;&gt;&gt;</span> f[<span class="dv">3</span>]
+<span class="dv">3</span>
+<span class="op">&gt;&gt;&gt;</span> f[<span class="dv">10</span>]
+<span class="dv">89</span>
+<span class="op">&gt;&gt;&gt;</span> f[<span class="dv">100</span>]
+<span class="dv">573147844013817084101</span></code></pre></div>
+<p>&#20294;&#26159;<code>list</code>&#26377;&#20010;&#31070;&#22855;&#30340;&#20999;&#29255;&#26041;&#27861;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">100</span>))[<span class="dv">5</span>:<span class="dv">10</span>]
+[<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]</code></pre></div>
+<p>&#23545;&#20110;<code>Fib</code>&#21364;&#25253;&#38169;&#12290;&#21407;&#22240;&#26159;<code>__getitem__()</code>&#20256;&#20837;&#30340;&#21442;&#25968;&#21487;&#33021;&#26159;&#19968;&#20010;<code>int</code>&#65292;&#20063;&#21487;&#33021;&#26159;&#19968;&#20010;&#20999;&#29255;&#23545;&#35937;<code>slice</code>&#65292;&#25152;&#20197;&#35201;&#20570;&#21028;&#26029;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Fib(<span class="bu">object</span>):
+    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, n):
+        <span class="cf">if</span> <span class="bu">isinstance</span>(n, <span class="bu">int</span>): <span class="co"># n&#26159;&#32034;&#24341;</span>
+            a, b <span class="op">=</span> <span class="dv">1</span>, <span class="dv">1</span>
+            <span class="cf">for</span> x <span class="op">in</span> <span class="bu">range</span>(n):
+                a, b <span class="op">=</span> b, a <span class="op">+</span> b
+            <span class="cf">return</span> a
+        <span class="cf">if</span> <span class="bu">isinstance</span>(n, <span class="bu">slice</span>): <span class="co"># n&#26159;&#20999;&#29255;</span>
+            start <span class="op">=</span> n.start
+            stop <span class="op">=</span> n.stop
+            <span class="cf">if</span> start <span class="op">is</span> <span class="va">None</span>:
+                start <span class="op">=</span> <span class="dv">0</span>
+            a, b <span class="op">=</span> <span class="dv">1</span>, <span class="dv">1</span>
+            L <span class="op">=</span> []
+            <span class="cf">for</span> x <span class="op">in</span> <span class="bu">range</span>(stop):
+                <span class="cf">if</span> x <span class="op">&gt;=</span> start:
+                    L.append(a)
+                a, b <span class="op">=</span> b, a <span class="op">+</span> b
+            <span class="cf">return</span> L</code></pre></div>
+<p>&#29616;&#22312;&#35797;&#35797;Fib&#30340;&#20999;&#29255;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> f <span class="op">=</span> Fib()
+<span class="op">&gt;&gt;&gt;</span> f[<span class="dv">0</span>:<span class="dv">5</span>]
+[<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>]
+<span class="op">&gt;&gt;&gt;</span> f[:<span class="dv">10</span>]
+[<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">13</span>, <span class="dv">21</span>, <span class="dv">34</span>, <span class="dv">55</span>]</code></pre></div>
+<p>&#20294;&#26159;&#27809;&#26377;&#23545;<code>step</code>&#21442;&#25968;&#20316;&#22788;&#29702;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> f[:<span class="dv">10</span>:<span class="dv">2</span>]
+[<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">13</span>, <span class="dv">21</span>, <span class="dv">34</span>, <span class="dv">55</span>, <span class="dv">89</span>]</code></pre></div>
+<p>&#20063;&#27809;&#26377;&#23545;&#36127;&#25968;&#20316;&#22788;&#29702;&#65292;&#25152;&#20197;&#65292;&#35201;&#27491;&#30830;&#23454;&#29616;&#19968;&#20010;<code>__getitem__()</code>&#36824;&#26159;&#26377;&#24456;&#22810;&#24037;&#20316;&#35201;&#20570;&#30340;&#12290;</p>
+<p>&#27492;&#22806;&#65292;&#22914;&#26524;&#25226;&#23545;&#35937;&#30475;&#25104;<code>dict</code>&#65292;<code>__getitem__()</code>&#30340;&#21442;&#25968;&#20063;&#21487;&#33021;&#26159;&#19968;&#20010;&#21487;&#20197;&#20316;<code>key</code>&#30340;<code>object</code>&#65292;&#20363;&#22914;<code>str</code>&#12290;</p>
+<p>&#19982;&#20043;&#23545;&#24212;&#30340;&#26159;<code>__setitem__()</code>&#26041;&#27861;&#65292;&#25226;&#23545;&#35937;&#35270;&#20316;<code>list</code>&#25110;<code>dict</code>&#26469;&#23545;&#38598;&#21512;&#36171;&#20540;&#12290;&#26368;&#21518;&#65292;&#36824;&#26377;&#19968;&#20010;<code>__delitem__()</code>&#26041;&#27861;&#65292;&#29992;&#20110;&#21024;&#38500;&#26576;&#20010;&#20803;&#32032;&#12290;</p>
+<p>&#24635;&#20043;&#65292;&#36890;&#36807;&#19978;&#38754;&#30340;&#26041;&#27861;&#65292;&#25105;&#20204;&#33258;&#24049;&#23450;&#20041;&#30340;&#31867;&#34920;&#29616;&#24471;&#21644;Python&#33258;&#24102;&#30340;list&#12289;tuple&#12289;dict&#27809;&#20160;&#20040;&#21306;&#21035;&#65292;&#36825;&#23436;&#20840;&#24402;&#21151;&#20110;&#21160;&#24577;&#35821;&#35328;&#30340;&#8220;&#40493;&#23376;&#31867;&#22411;&#8221;&#65292;&#19981;&#38656;&#35201;&#24378;&#21046;&#32487;&#25215;&#26576;&#20010;&#25509;&#21475;&#12290;</p>
+<h4 id="getattr"><strong>getattr</strong></h4>
+<p>&#27491;&#24120;&#24773;&#20917;&#19979;&#65292;&#24403;&#25105;&#20204;&#35843;&#29992;&#31867;&#30340;&#26041;&#27861;&#25110;&#23646;&#24615;&#26102;&#65292;&#22914;&#26524;&#19981;&#23384;&#22312;&#65292;&#23601;&#20250;&#25253;&#38169;&#12290;&#27604;&#22914;&#23450;&#20041;<code>Student</code>&#31867;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Student(<span class="bu">object</span>):
+
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):
+        <span class="va">self</span>.name <span class="op">=</span> <span class="st">&#39;Michael&#39;</span></code></pre></div>
+<p>&#35843;&#29992;<code>name</code>&#23646;&#24615;&#65292;&#27809;&#38382;&#39064;&#65292;&#20294;&#26159;&#65292;&#35843;&#29992;&#19981;&#23384;&#22312;&#30340;<code>score</code>&#23646;&#24615;&#65292;&#23601;&#26377;&#38382;&#39064;&#20102;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> Student()
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(s.name)
+Michael
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(s.score)
+Traceback (most recent call last):
+  ...
+<span class="pp">AttributeError</span>: <span class="st">&#39;Student&#39;</span> <span class="bu">object</span> has no attribute <span class="st">&#39;score&#39;</span></code></pre></div>
+<p>&#38169;&#35823;&#20449;&#24687;&#24456;&#28165;&#26970;&#22320;&#21578;&#35785;&#25105;&#20204;&#65292;&#27809;&#26377;&#25214;&#21040;<code>score</code>&#36825;&#20010;<code>attribute</code>&#12290;</p>
+<p>&#35201;&#36991;&#20813;&#36825;&#20010;&#38169;&#35823;&#65292;&#38500;&#20102;&#21487;&#20197;&#21152;&#19978;&#19968;&#20010;<code>score</code>&#23646;&#24615;&#22806;&#65292;Python&#36824;&#26377;&#21478;&#19968;&#20010;&#26426;&#21046;&#65292;&#37027;&#23601;&#26159;&#20889;&#19968;&#20010;<code>__getattr__()</code>&#26041;&#27861;&#65292;&#21160;&#24577;&#36820;&#22238;&#19968;&#20010;&#23646;&#24615;&#12290;&#20462;&#25913;&#22914;&#19979;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Student(<span class="bu">object</span>):
+
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):
+        <span class="va">self</span>.name <span class="op">=</span> <span class="st">&#39;Michael&#39;</span>
+
+    <span class="kw">def</span> <span class="fu">__getattr__</span>(<span class="va">self</span>, attr):
+        <span class="cf">if</span> attr<span class="op">==</span><span class="st">&#39;score&#39;</span>:
+            <span class="cf">return</span> <span class="dv">99</span></code></pre></div>
+<p>&#24403;&#35843;&#29992;&#19981;&#23384;&#22312;&#30340;&#23646;&#24615;&#26102;&#65292;&#27604;&#22914;<code>score</code>&#65292;Python&#35299;&#37322;&#22120;&#20250;&#35797;&#22270;&#35843;&#29992;<code>__getattr__(self, 'score')</code>&#26469;&#23581;&#35797;&#33719;&#24471;&#23646;&#24615;&#65292;&#36825;&#26679;&#65292;&#25105;&#20204;&#23601;&#26377;&#26426;&#20250;&#36820;&#22238;<code>score</code>&#30340;&#20540;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> Student()
+<span class="op">&gt;&gt;&gt;</span> s.name
+<span class="co">&#39;Michael&#39;</span>
+<span class="op">&gt;&gt;&gt;</span> s.score
+<span class="dv">99</span></code></pre></div>
+<p>&#36820;&#22238;&#20989;&#25968;&#20063;&#26159;&#23436;&#20840;&#21487;&#20197;&#30340;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Student(<span class="bu">object</span>):
+
+    <span class="kw">def</span> <span class="fu">__getattr__</span>(<span class="va">self</span>, attr):
+        <span class="cf">if</span> attr<span class="op">==</span><span class="st">&#39;age&#39;</span>:
+            <span class="cf">return</span> <span class="kw">lambda</span>: <span class="dv">25</span></code></pre></div>
+<p>&#21482;&#26159;&#35843;&#29992;&#26041;&#24335;&#35201;&#21464;&#20026;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> s.age()
+<span class="dv">25</span></code></pre></div>
+<p>&#27880;&#24847;&#65292;&#21482;&#26377;&#22312;&#27809;&#26377;&#25214;&#21040;&#23646;&#24615;&#30340;&#24773;&#20917;&#19979;&#65292;&#25165;&#35843;&#29992;<code>__getattr__</code>&#65292;&#24050;&#26377;&#30340;&#23646;&#24615;&#65292;&#27604;&#22914;<code>name</code>&#65292;&#19981;&#20250;&#22312;<code>__getattr__</code>&#20013;&#26597;&#25214;&#12290;</p>
+<p>&#27492;&#22806;&#65292;&#27880;&#24847;&#21040;&#20219;&#24847;&#35843;&#29992;&#22914;<code>s.abc</code>&#37117;&#20250;&#36820;&#22238;<code>None</code>&#65292;&#36825;&#26159;&#22240;&#20026;&#25105;&#20204;&#23450;&#20041;&#30340;<code>__getattr__</code>&#40664;&#35748;&#36820;&#22238;&#23601;&#26159;<code>None</code>&#12290;&#35201;&#35753;<code>class</code>&#21482;&#21709;&#24212;&#29305;&#23450;&#30340;&#20960;&#20010;&#23646;&#24615;&#65292;&#25105;&#20204;&#23601;&#35201;&#25353;&#29031;&#32422;&#23450;&#65292;&#25243;&#20986;<code>AttributeError</code>&#30340;&#38169;&#35823;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Student(<span class="bu">object</span>):
+
+    <span class="kw">def</span> <span class="fu">__getattr__</span>(<span class="va">self</span>, attr):
+        <span class="cf">if</span> attr<span class="op">==</span><span class="st">&#39;age&#39;</span>:
+            <span class="cf">return</span> <span class="kw">lambda</span>: <span class="dv">25</span>
+        <span class="cf">raise</span> <span class="pp">AttributeError</span>(<span class="st">&#39;</span><span class="ch">\&#39;</span><span class="st">Student</span><span class="ch">\&#39;</span><span class="st"> object has no attribute </span><span class="ch">\&#39;</span><span class="sc">%s</span><span class="ch">\&#39;</span><span class="st">&#39;</span> <span class="op">%</span> attr)</code></pre></div>
+<p>&#36825;&#23454;&#38469;&#19978;&#21487;&#20197;&#25226;&#19968;&#20010;&#31867;&#30340;&#25152;&#26377;&#23646;&#24615;&#21644;&#26041;&#27861;&#35843;&#29992;&#20840;&#37096;&#21160;&#24577;&#21270;&#22788;&#29702;&#20102;&#65292;&#19981;&#38656;&#35201;&#20219;&#20309;&#29305;&#27530;&#25163;&#27573;&#12290;</p>
+<p>&#36825;&#31181;&#23436;&#20840;&#21160;&#24577;&#35843;&#29992;&#30340;&#29305;&#24615;&#26377;&#20160;&#20040;&#23454;&#38469;&#20316;&#29992;&#21602;&#65311;&#20316;&#29992;&#23601;&#26159;&#65292;&#21487;&#20197;&#38024;&#23545;&#23436;&#20840;&#21160;&#24577;&#30340;&#24773;&#20917;&#20316;&#35843;&#29992;&#12290;</p>
+<p>&#20030;&#20010;&#20363;&#23376;&#65306;</p>
+<p>&#29616;&#22312;&#24456;&#22810;&#32593;&#31449;&#37117;&#25630;<code>REST API</code>&#65292;&#27604;&#22914;&#26032;&#28010;&#24494;&#21338;&#12289;&#35910;&#29923;&#21861;&#30340;&#65292;&#35843;&#29992;<code>API</code>&#30340;<code>URL</code>&#31867;&#20284;&#65306;</p>
+<pre><code>    http://api.server/user/friends
+    http://api.server/user/timeline/list</code></pre>
+<p>&#22914;&#26524;&#35201;&#20889;<code>SDK</code>&#65292;&#32473;&#27599;&#20010;<code>URL</code>&#23545;&#24212;&#30340;<code>API</code>&#37117;&#20889;&#19968;&#20010;&#26041;&#27861;&#65292;&#37027;&#24471;&#32047;&#27515;&#65292;&#32780;&#19988;&#65292;<code>API</code>&#19968;&#26086;&#25913;&#21160;&#65292;<code>SDK</code>&#20063;&#35201;&#25913;&#12290;</p>
+<p>&#21033;&#29992;&#23436;&#20840;&#21160;&#24577;&#30340;<code>__getattr__</code>&#65292;&#25105;&#20204;&#21487;&#20197;&#20889;&#20986;&#19968;&#20010;&#38142;&#24335;&#35843;&#29992;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Chain(<span class="bu">object</span>):
+
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, path<span class="op">=</span><span class="st">&#39;&#39;</span>):
+        <span class="va">self</span>._path <span class="op">=</span> path
+
+    <span class="kw">def</span> <span class="fu">__getattr__</span>(<span class="va">self</span>, path):
+        <span class="cf">return</span> Chain(<span class="st">&#39;</span><span class="sc">%s</span><span class="st">/</span><span class="sc">%s</span><span class="st">&#39;</span> <span class="op">%</span> (<span class="va">self</span>._path, path))
+
+    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):
+        <span class="cf">return</span> <span class="va">self</span>._path
+
+    <span class="fu">__repr__</span> <span class="op">=</span> <span class="fu">__str__</span></code></pre></div>
+<p>&#35797;&#35797;&#65306;</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Chain().status.user.timeline.list '/status/user/timeline/list'</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>&#36825;&#26679;&#65292;&#26080;&#35770;API&#24590;&#20040;&#21464;&#65292;SDK&#37117;&#21487;&#20197;&#26681;&#25454;URL&#23454;&#29616;&#23436;&#20840;&#21160;&#24577;&#30340;&#35843;&#29992;&#65292;&#32780;&#19988;&#65292;&#19981;&#38543;API&#30340;&#22686;&#21152;&#32780;&#25913;&#21464;&#65281;</p>
+<p>&#36824;&#26377;&#20123;<code>REST API</code>&#20250;&#25226;&#21442;&#25968;&#25918;&#21040;<code>URL</code>&#20013;&#65292;&#27604;&#22914;<code>GitHub</code>&#30340;<code>API</code>&#65306;</p>
+<pre><code>GET /users/:user/repos</code></pre>
+<p>&#35843;&#29992;&#26102;&#65292;&#38656;&#35201;&#25226;<code>:user</code>&#26367;&#25442;&#20026;&#23454;&#38469;&#29992;&#25143;&#21517;&#12290;&#22914;&#26524;&#25105;&#20204;&#33021;&#20889;&#20986;&#36825;&#26679;&#30340;&#38142;&#24335;&#35843;&#29992;&#65306;</p>
+<pre><code>Chain().users(&#39;michael&#39;).repos</code></pre>
+<p>&#23601;&#21487;&#20197;&#38750;&#24120;&#26041;&#20415;&#22320;&#35843;&#29992;<code>API</code>&#20102;&#12290;&#26377;&#20852;&#36259;&#30340;&#31461;&#38795;&#21487;&#20197;&#35797;&#35797;&#20889;&#20986;&#26469;&#12290;</p>
+<h4 id="call"><strong>call</strong></h4>
+<p>&#19968;&#20010;&#23545;&#35937;&#23454;&#20363;&#21487;&#20197;&#26377;&#33258;&#24049;&#30340;&#23646;&#24615;&#21644;&#26041;&#27861;&#65292;&#24403;&#25105;&#20204;&#35843;&#29992;&#23454;&#20363;&#26041;&#27861;&#26102;&#65292;&#25105;&#20204;&#29992;<code>instance.method()</code>&#26469;&#35843;&#29992;&#12290;&#33021;&#19981;&#33021;&#30452;&#25509;&#22312;&#23454;&#20363;&#26412;&#36523;&#19978;&#35843;&#29992;&#21602;&#65311;&#22312;Python&#20013;&#65292;&#31572;&#26696;&#26159;&#32943;&#23450;&#30340;&#12290;</p>
+<p>&#20219;&#20309;&#31867;&#65292;&#21482;&#38656;&#35201;&#23450;&#20041;&#19968;&#20010;<code>__call__()</code>&#26041;&#27861;&#65292;&#23601;&#21487;&#20197;&#30452;&#25509;&#23545;&#23454;&#20363;&#36827;&#34892;&#35843;&#29992;&#12290;&#35831;&#30475;&#31034;&#20363;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Student(<span class="bu">object</span>):
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):
+        <span class="va">self</span>.name <span class="op">=</span> name
+
+    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>):
+        <span class="bu">print</span>(<span class="st">&#39;My name is </span><span class="sc">%s</span><span class="st">.&#39;</span> <span class="op">%</span> <span class="va">self</span>.name)</code></pre></div>
+<p>&#35843;&#29992;&#26041;&#24335;&#22914;&#19979;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> Student(<span class="st">&#39;Michael&#39;</span>)
+<span class="op">&gt;&gt;&gt;</span> s() <span class="co"># self&#21442;&#25968;&#19981;&#35201;&#20256;&#20837;</span>
+My name <span class="op">is</span> Michael.</code></pre></div>
+<p><code>__call__()</code>&#36824;&#21487;&#20197;&#23450;&#20041;&#21442;&#25968;&#12290;&#23545;&#23454;&#20363;&#36827;&#34892;&#30452;&#25509;&#35843;&#29992;&#23601;&#22909;&#27604;&#23545;&#19968;&#20010;&#20989;&#25968;&#36827;&#34892;&#35843;&#29992;&#19968;&#26679;&#65292;&#25152;&#20197;&#20320;&#23436;&#20840;&#21487;&#20197;&#25226;&#23545;&#35937;&#30475;&#25104;&#20989;&#25968;&#65292;&#25226;&#20989;&#25968;&#30475;&#25104;&#23545;&#35937;&#65292;&#22240;&#20026;&#36825;&#20004;&#32773;&#20043;&#38388;&#26412;&#26469;&#23601;&#27809;&#21861;&#26681;&#26412;&#30340;&#21306;&#21035;&#12290;</p>
+<p>&#22914;&#26524;&#20320;&#25226;&#23545;&#35937;&#30475;&#25104;&#20989;&#25968;&#65292;&#37027;&#20040;&#20989;&#25968;&#26412;&#36523;&#20854;&#23454;&#20063;&#21487;&#20197;&#22312;&#36816;&#34892;&#26399;&#21160;&#24577;&#21019;&#24314;&#20986;&#26469;&#65292;&#22240;&#20026;&#31867;&#30340;&#23454;&#20363;&#37117;&#26159;&#36816;&#34892;&#26399;&#21019;&#24314;&#20986;&#26469;&#30340;&#65292;&#36825;&#20040;&#19968;&#26469;&#65292;&#25105;&#20204;&#23601;&#27169;&#31946;&#20102;&#23545;&#35937;&#21644;&#20989;&#25968;&#30340;&#30028;&#38480;&#12290;</p>
+<p>&#37027;&#20040;&#65292;&#24590;&#20040;&#21028;&#26029;&#19968;&#20010;&#21464;&#37327;&#26159;&#23545;&#35937;&#36824;&#26159;&#20989;&#25968;&#21602;&#65311;&#20854;&#23454;&#65292;&#26356;&#22810;&#30340;&#26102;&#20505;&#65292;&#25105;&#20204;&#38656;&#35201;&#21028;&#26029;&#19968;&#20010;&#23545;&#35937;&#26159;&#21542;&#33021;&#34987;&#35843;&#29992;&#65292;&#33021;&#34987;&#35843;&#29992;&#30340;&#23545;&#35937;&#23601;&#26159;&#19968;&#20010;<code>Callable</code>&#23545;&#35937;&#65292;&#27604;&#22914;&#20989;&#25968;&#21644;&#25105;&#20204;&#19978;&#38754;&#23450;&#20041;&#30340;&#24102;&#26377;<code>__call__()</code>&#30340;&#31867;&#23454;&#20363;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="bu">callable</span>(Student())
+<span class="va">True</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">callable</span>(<span class="bu">max</span>)
+<span class="va">True</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">callable</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])
+<span class="va">False</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">callable</span>(<span class="va">None</span>)
+<span class="va">False</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">callable</span>(<span class="st">&#39;str&#39;</span>)
+<span class="va">False</span></code></pre></div>
+<p>&#36890;&#36807;<code>callable()</code>&#20989;&#25968;&#65292;&#25105;&#20204;&#23601;&#21487;&#20197;&#21028;&#26029;&#19968;&#20010;&#23545;&#35937;&#26159;&#21542;&#26159;&#8220;&#21487;&#35843;&#29992;&#8221;&#23545;&#35937;&#12290;</p>
+<h4 id="&#23567;&#32467;-2">&#23567;&#32467;</h4>
+<p>Python&#30340;<code>class</code>&#20801;&#35768;&#23450;&#20041;&#35768;&#22810;&#23450;&#21046;&#26041;&#27861;&#65292;&#21487;&#20197;&#35753;&#25105;&#20204;&#38750;&#24120;&#26041;&#20415;&#22320;&#29983;&#25104;&#29305;&#23450;&#30340;&#31867;&#12290;</p>
+<p>&#26412;&#33410;&#20171;&#32461;&#30340;&#26159;&#26368;&#24120;&#29992;&#30340;&#20960;&#20010;&#23450;&#21046;&#26041;&#27861;&#65292;&#36824;&#26377;&#24456;&#22810;&#21487;&#23450;&#21046;&#30340;&#26041;&#27861;&#65292;&#35831;&#21442;&#32771;Python&#30340;&#23448;&#26041;&#25991;&#26723;&#12290;</p>
+<h3 id="&#20351;&#29992;&#26522;&#20030;&#31867;">10.5 &#20351;&#29992;&#26522;&#20030;&#31867;</h3>
+<p>&#24403;&#25105;&#20204;&#38656;&#35201;&#23450;&#20041;&#24120;&#37327;&#26102;&#65292;&#19968;&#20010;&#21150;&#27861;&#26159;&#29992;&#22823;&#20889;&#21464;&#37327;&#36890;&#36807;&#25972;&#25968;&#26469;&#23450;&#20041;&#65292;&#20363;&#22914;&#26376;&#20221;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">JAN <span class="op">=</span> <span class="dv">1</span>
+FEB <span class="op">=</span> <span class="dv">2</span>
+MAR <span class="op">=</span> <span class="dv">3</span>
+...
+NOV <span class="op">=</span> <span class="dv">11</span>
+DEC <span class="op">=</span> <span class="dv">12</span></code></pre></div>
+<p>&#22909;&#22788;&#26159;&#31616;&#21333;&#65292;&#32570;&#28857;&#26159;&#31867;&#22411;&#26159;<code>int</code>&#65292;&#24182;&#19988;&#20173;&#28982;&#26159;&#21464;&#37327;&#12290;</p>
+<p>&#26356;&#22909;&#30340;&#26041;&#27861;&#26159;&#20026;&#36825;&#26679;&#30340;&#26522;&#20030;&#31867;&#22411;&#23450;&#20041;&#19968;&#20010;<code>class</code>&#31867;&#22411;&#65292;&#28982;&#21518;&#65292;&#27599;&#20010;&#24120;&#37327;&#37117;&#26159;<code>class</code>&#30340;&#19968;&#20010;&#21807;&#19968;&#23454;&#20363;&#12290;Python&#25552;&#20379;&#20102;<code>Enum&#31867;</code>&#26469;&#23454;&#29616;&#36825;&#20010;&#21151;&#33021;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> enum <span class="im">import</span> Enum
+
+Month <span class="op">=</span> Enum(<span class="st">&#39;Month&#39;</span>, (<span class="st">&#39;Jan&#39;</span>, <span class="st">&#39;Feb&#39;</span>, <span class="st">&#39;Mar&#39;</span>, <span class="st">&#39;Apr&#39;</span>, <span class="st">&#39;May&#39;</span>, <span class="st">&#39;Jun&#39;</span>, <span class="st">&#39;Jul&#39;</span>, <span class="st">&#39;Aug&#39;</span>, <span class="st">&#39;Sep&#39;</span>, <span class="st">&#39;Oct&#39;</span>, <span class="st">&#39;Nov&#39;</span>, <span class="st">&#39;Dec&#39;</span>))</code></pre></div>
+<p>&#36825;&#26679;&#25105;&#20204;&#23601;&#33719;&#24471;&#20102;<code>Month</code>&#31867;&#22411;&#30340;&#26522;&#20030;&#31867;&#65292;&#21487;&#20197;&#30452;&#25509;&#20351;&#29992;<code>Month.Jan</code>&#26469;&#24341;&#29992;&#19968;&#20010;&#24120;&#37327;&#65292;&#25110;&#32773;&#26522;&#20030;&#23427;&#30340;&#25152;&#26377;&#25104;&#21592;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">for</span> name, member <span class="op">in</span> Month.__members__.items():
+    <span class="bu">print</span>(name, <span class="st">&#39;=&gt;&#39;</span>, member, <span class="st">&#39;,&#39;</span>, member.value)</code></pre></div>
+<p><code>value</code>&#23646;&#24615;&#21017;&#26159;&#33258;&#21160;&#36171;&#32473;&#25104;&#21592;&#30340;<code>int</code>&#24120;&#37327;&#65292;&#40664;&#35748;&#20174;1&#24320;&#22987;&#35745;&#25968;&#12290;</p>
+<p>&#22914;&#26524;&#38656;&#35201;&#26356;&#31934;&#30830;&#22320;&#25511;&#21046;&#26522;&#20030;&#31867;&#22411;&#65292;&#21487;&#20197;&#20174;<code>Enum</code>&#27966;&#29983;&#20986;&#33258;&#23450;&#20041;&#31867;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> enum <span class="im">import</span> Enum, unique
+
+<span class="at">@unique</span>
+<span class="kw">class</span> Weekday(Enum):
+    Sun <span class="op">=</span> <span class="dv">0</span> <span class="co"># Sun&#30340;value&#34987;&#35774;&#23450;&#20026;0</span>
+    Mon <span class="op">=</span> <span class="dv">1</span>
+    Tue <span class="op">=</span> <span class="dv">2</span>
+    Wed <span class="op">=</span> <span class="dv">3</span>
+    Thu <span class="op">=</span> <span class="dv">4</span>
+    Fri <span class="op">=</span> <span class="dv">5</span>
+    Sat <span class="op">=</span> <span class="dv">6</span></code></pre></div>
+<p><code>@unique</code>&#35013;&#39280;&#22120;&#21487;&#20197;&#24110;&#21161;&#25105;&#20204;&#26816;&#26597;&#20445;&#35777;&#27809;&#26377;&#37325;&#22797;&#20540;&#12290;</p>
+<p>&#35775;&#38382;&#36825;&#20123;&#26522;&#20030;&#31867;&#22411;&#21487;&#20197;&#26377;&#33509;&#24178;&#31181;&#26041;&#27861;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> day1 <span class="op">=</span> Weekday.Mon
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(day1)
+Weekday.Mon
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(Weekday.Tue)
+Weekday.Tue
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(Weekday[<span class="st">&#39;Tue&#39;</span>])
+Weekday.Tue
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(Weekday.Tue.value)
+<span class="dv">2</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(day1 <span class="op">==</span> Weekday.Mon)
+<span class="va">True</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(day1 <span class="op">==</span> Weekday.Tue)
+<span class="va">False</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(Weekday(<span class="dv">1</span>))
+Weekday.Mon
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(day1 <span class="op">==</span> Weekday(<span class="dv">1</span>))
+<span class="va">True</span>
+<span class="op">&gt;&gt;&gt;</span> Weekday(<span class="dv">7</span>)
+Traceback (most recent call last):
+  ...
+<span class="pp">ValueError</span>: <span class="dv">7</span> <span class="op">is</span> <span class="op">not</span> a valid Weekday
+<span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> name, member <span class="op">in</span> Weekday.__members__.items():
+...     <span class="bu">print</span>(name, <span class="st">&#39;=&gt;&#39;</span>, member)
+...
+Sun <span class="op">=&gt;</span> Weekday.Sun
+Mon <span class="op">=&gt;</span> Weekday.Mon
+Tue <span class="op">=&gt;</span> Weekday.Tue
+Wed <span class="op">=&gt;</span> Weekday.Wed
+Thu <span class="op">=&gt;</span> Weekday.Thu
+Fri <span class="op">=&gt;</span> Weekday.Fri
+Sat <span class="op">=&gt;</span> Weekday.Sat</code></pre></div>
+<p>&#21487;&#35265;&#65292;&#26082;&#21487;&#20197;&#29992;&#25104;&#21592;&#21517;&#31216;&#24341;&#29992;&#26522;&#20030;&#24120;&#37327;&#65292;&#21448;&#21487;&#20197;&#30452;&#25509;&#26681;&#25454;<code>value</code>&#30340;&#20540;&#33719;&#24471;&#26522;&#20030;&#24120;&#37327;&#12290;</p>
+<h4 id="&#23567;&#32467;-3">&#23567;&#32467;</h4>
+<p><code>Enum</code>&#21487;&#20197;&#25226;&#19968;&#32452;&#30456;&#20851;&#24120;&#37327;&#23450;&#20041;&#22312;&#19968;&#20010;<code>class</code>&#20013;&#65292;&#19988;<code>class</code>&#19981;&#21487;&#21464;&#65292;&#32780;&#19988;&#25104;&#21592;&#21487;&#20197;&#30452;&#25509;&#27604;&#36739;&#12290;</p>
+<h3 id="&#20351;&#29992;&#20803;&#31867;">10.6 &#20351;&#29992;&#20803;&#31867;</h3>
+<h4 id="type">type()</h4>
+<p>&#21160;&#24577;&#35821;&#35328;&#21644;&#38745;&#24577;&#35821;&#35328;&#26368;&#22823;&#30340;&#19981;&#21516;&#65292;&#23601;&#26159;&#20989;&#25968;&#21644;&#31867;&#30340;&#23450;&#20041;&#65292;&#19981;&#26159;&#32534;&#35793;&#26102;&#23450;&#20041;&#30340;&#65292;&#32780;&#26159;&#36816;&#34892;&#26102;&#21160;&#24577;&#21019;&#24314;&#30340;&#12290;</p>
+<p>&#27604;&#26041;&#35828;&#25105;&#20204;&#35201;&#23450;&#20041;&#19968;&#20010;<code>Hello</code>&#30340;<code>class</code>&#65292;&#23601;&#20889;&#19968;&#20010;<code>hello.py</code>&#27169;&#22359;&#65306;</p>
+<pre><code>class Hello(object):
+    def hello(self, name=&#39;world&#39;):
+        print(&#39;Hello, %s.&#39; % name)</code></pre>
+<p>&#24403;Python&#35299;&#37322;&#22120;&#36733;&#20837;<code>hello</code>&#27169;&#22359;&#26102;&#65292;&#23601;&#20250;&#20381;&#27425;&#25191;&#34892;&#35813;&#27169;&#22359;&#30340;&#25152;&#26377;&#35821;&#21477;&#65292;&#25191;&#34892;&#32467;&#26524;&#23601;&#26159;&#21160;&#24577;&#21019;&#24314;&#20986;&#19968;&#20010;<code>Hello</code>&#30340;<code>class</code>&#23545;&#35937;&#65292;&#27979;&#35797;&#22914;&#19979;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> hello <span class="im">import</span> Hello
+<span class="op">&gt;&gt;&gt;</span> h <span class="op">=</span> Hello()
+<span class="op">&gt;&gt;&gt;</span> h.hello()
+Hello, world.
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="bu">type</span>(Hello))
+<span class="op">&lt;</span><span class="kw">class</span> <span class="st">&#39;type&#39;</span><span class="op">&gt;</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="bu">type</span>(h))
+<span class="op">&lt;</span><span class="kw">class</span> <span class="st">&#39;hello.Hello&#39;</span><span class="op">&gt;</span></code></pre></div>
+<p><code>type()</code>&#20989;&#25968;&#21487;&#20197;&#26597;&#30475;&#19968;&#20010;&#31867;&#22411;&#25110;&#21464;&#37327;&#30340;&#31867;&#22411;&#65292;<code>Hello</code>&#26159;&#19968;&#20010;<code>class</code>&#65292;&#23427;&#30340;&#31867;&#22411;&#23601;&#26159;<code>type</code>&#65292;&#32780;<code>h</code>&#26159;&#19968;&#20010;&#23454;&#20363;&#65292;&#23427;&#30340;&#31867;&#22411;&#23601;&#26159;<code>class Hello</code>&#12290;</p>
+<p>&#25105;&#20204;&#35828;<code>class</code>&#30340;&#23450;&#20041;&#26159;&#36816;&#34892;&#26102;&#21160;&#24577;&#21019;&#24314;&#30340;&#65292;&#32780;&#21019;&#24314;<code>class</code>&#30340;&#26041;&#27861;&#23601;&#26159;&#20351;&#29992;<code>type()</code>&#20989;&#25968;&#12290;</p>
+<p><code>type()</code>&#20989;&#25968;&#26082;&#21487;&#20197;&#36820;&#22238;&#19968;&#20010;&#23545;&#35937;&#30340;&#31867;&#22411;&#65292;&#21448;&#21487;&#20197;&#21019;&#24314;&#20986;&#26032;&#30340;&#31867;&#22411;&#65292;&#27604;&#22914;&#65292;&#25105;&#20204;&#21487;&#20197;&#36890;&#36807;<code>type()</code>&#20989;&#25968;&#21019;&#24314;&#20986;<code>Hello</code>&#31867;&#65292;&#32780;&#26080;&#38656;&#36890;&#36807;<code>class Hello(object)...</code>&#30340;&#23450;&#20041;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> fn(<span class="va">self</span>, name<span class="op">=</span><span class="st">&#39;world&#39;</span>): <span class="co"># &#20808;&#23450;&#20041;&#20989;&#25968;</span>
+...     <span class="bu">print</span>(<span class="st">&#39;Hello, </span><span class="sc">%s</span><span class="st">.&#39;</span> <span class="op">%</span> name)
+...
+<span class="op">&gt;&gt;&gt;</span> Hello <span class="op">=</span> <span class="bu">type</span>(<span class="st">&#39;Hello&#39;</span>, (<span class="bu">object</span>,), <span class="bu">dict</span>(hello<span class="op">=</span>fn)) <span class="co"># &#21019;&#24314;Hello class</span>
+<span class="op">&gt;&gt;&gt;</span> h <span class="op">=</span> Hello()
+<span class="op">&gt;&gt;&gt;</span> h.hello()
+Hello, world.
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="bu">type</span>(Hello))
+<span class="op">&lt;</span><span class="kw">class</span> <span class="st">&#39;type&#39;</span><span class="op">&gt;</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="bu">type</span>(h))
+<span class="op">&lt;</span><span class="kw">class</span> <span class="st">&#39;__main__.Hello&#39;</span><span class="op">&gt;</span></code></pre></div>
+<p>&#35201;&#21019;&#24314;&#19968;&#20010;<code>class</code>&#23545;&#35937;&#65292;<code>type()</code>&#20989;&#25968;&#20381;&#27425;&#20256;&#20837;3&#20010;&#21442;&#25968;&#65306;</p>
+<ul>
+<li>class&#30340;&#21517;&#31216;&#65307;</li>
+<li>&#32487;&#25215;&#30340;&#29238;&#31867;&#38598;&#21512;&#65292;&#27880;&#24847;Python&#25903;&#25345;&#22810;&#37325;&#32487;&#25215;&#65292;&#22914;&#26524;&#21482;&#26377;&#19968;&#20010;&#29238;&#31867;&#65292;&#21035;&#24536;&#20102;<code>tuple</code>&#30340;&#21333;&#20803;&#32032;&#20889;&#27861;&#65307;</li>
+<li>class&#30340;&#26041;&#27861;&#21517;&#31216;&#19982;&#20989;&#25968;&#32465;&#23450;&#65292;&#36825;&#37324;&#25105;&#20204;&#25226;&#20989;&#25968;<code>fn</code>&#32465;&#23450;&#21040;&#26041;&#27861;&#21517;<code>hello</code>&#19978;&#12290;</li>
+</ul>
+<p>&#36890;&#36807;<code>type()</code>&#20989;&#25968;&#21019;&#24314;&#30340;&#31867;&#21644;&#30452;&#25509;&#20889;<code>class</code>&#26159;&#23436;&#20840;&#19968;&#26679;&#30340;&#65292;&#22240;&#20026;Python&#35299;&#37322;&#22120;&#36935;&#21040;<code>class</code>&#23450;&#20041;&#26102;&#65292;&#20165;&#20165;&#26159;&#25195;&#25551;&#19968;&#19979;<code>class</code>&#23450;&#20041;&#30340;&#35821;&#27861;&#65292;&#28982;&#21518;&#35843;&#29992;<code>type()</code>&#20989;&#25968;&#21019;&#24314;&#20986;<code>class</code>&#12290;</p>
+<p>&#27491;&#24120;&#24773;&#20917;&#19979;&#65292;&#25105;&#20204;&#37117;&#29992;<code>class Xxx...</code>&#26469;&#23450;&#20041;&#31867;&#65292;&#20294;&#26159;&#65292;<code>type()</code>&#20989;&#25968;&#20063;&#20801;&#35768;&#25105;&#20204;&#21160;&#24577;&#21019;&#24314;&#20986;&#31867;&#26469;&#65292;&#20063;&#23601;&#26159;&#35828;&#65292;&#21160;&#24577;&#35821;&#35328;&#26412;&#36523;&#25903;&#25345;&#36816;&#34892;&#26399;&#21160;&#24577;&#21019;&#24314;&#31867;&#65292;&#36825;&#21644;&#38745;&#24577;&#35821;&#35328;&#26377;&#38750;&#24120;&#22823;&#30340;&#19981;&#21516;&#65292;&#35201;&#22312;&#38745;&#24577;&#35821;&#35328;&#36816;&#34892;&#26399;&#21019;&#24314;&#31867;&#65292;&#24517;&#39035;&#26500;&#36896;&#28304;&#20195;&#30721;&#23383;&#31526;&#20018;&#20877;&#35843;&#29992;&#32534;&#35793;&#22120;&#65292;&#25110;&#32773;&#20511;&#21161;&#19968;&#20123;&#24037;&#20855;&#29983;&#25104;&#23383;&#33410;&#30721;&#23454;&#29616;&#65292;&#26412;&#36136;&#19978;&#37117;&#26159;&#21160;&#24577;&#32534;&#35793;&#65292;&#20250;&#38750;&#24120;&#22797;&#26434;&#12290;</p>
+<h4 id="metaclass">metaclass</h4>
+<p>&#38500;&#20102;&#20351;&#29992;<code>type()</code>&#21160;&#24577;&#21019;&#24314;&#31867;&#20197;&#22806;&#65292;&#35201;&#25511;&#21046;&#31867;&#30340;&#21019;&#24314;&#34892;&#20026;&#65292;&#36824;&#21487;&#20197;&#20351;&#29992;<code>metaclass</code>&#12290;</p>
+<p><code>metaclass</code>&#65292;&#30452;&#35793;&#20026;&#20803;&#31867;&#65292;&#31616;&#21333;&#30340;&#35299;&#37322;&#23601;&#26159;&#65306;</p>
+<p>&#24403;&#25105;&#20204;&#23450;&#20041;&#20102;&#31867;&#20197;&#21518;&#65292;&#23601;&#21487;&#20197;&#26681;&#25454;&#36825;&#20010;&#31867;&#21019;&#24314;&#20986;&#23454;&#20363;&#65292;&#25152;&#20197;&#65306;&#20808;&#23450;&#20041;&#31867;&#65292;&#28982;&#21518;&#21019;&#24314;&#23454;&#20363;&#12290;</p>
+<p>&#20294;&#26159;&#22914;&#26524;&#25105;&#20204;&#24819;&#21019;&#24314;&#20986;&#31867;&#21602;&#65311;&#37027;&#23601;&#24517;&#39035;&#26681;&#25454;<code>metaclass</code>&#21019;&#24314;&#20986;&#31867;&#65292;&#25152;&#20197;&#65306;&#20808;&#23450;&#20041;<code>metaclass</code>&#65292;&#28982;&#21518;&#21019;&#24314;&#31867;&#12290;</p>
+<p>&#36830;&#25509;&#36215;&#26469;&#23601;&#26159;&#65306;<strong>&#20808;&#23450;&#20041;metaclass&#65292;&#23601;&#21487;&#20197;&#21019;&#24314;&#31867;&#65292;&#26368;&#21518;&#21019;&#24314;&#23454;&#20363;</strong>&#12290;</p>
+<p>&#25152;&#20197;&#65292;<code>metaclass</code>&#20801;&#35768;&#20320;&#21019;&#24314;&#31867;&#25110;&#32773;&#20462;&#25913;&#31867;&#12290;&#25442;&#21477;&#35805;&#35828;&#65292;&#20320;&#21487;&#20197;&#25226;&#31867;&#30475;&#25104;&#26159;<code>metaclass</code>&#21019;&#24314;&#20986;&#26469;&#30340;&#8220;&#23454;&#20363;&#8221;&#12290;</p>
+<p><code>metaclass</code>&#26159;Python&#38754;&#21521;&#23545;&#35937;&#37324;&#26368;&#38590;&#29702;&#35299;&#65292;&#20063;&#26159;&#26368;&#38590;&#20351;&#29992;&#30340;&#39764;&#26415;&#20195;&#30721;&#12290;&#27491;&#24120;&#24773;&#20917;&#19979;&#65292;&#20320;&#19981;&#20250;&#30896;&#21040;&#38656;&#35201;&#20351;&#29992;<code>metaclass</code>&#30340;&#24773;&#20917;&#65292;&#25152;&#20197;&#65292;&#20197;&#19979;&#20869;&#23481;&#30475;&#19981;&#25026;&#20063;&#27809;&#20851;&#31995;&#65292;&#22240;&#20026;&#22522;&#26412;&#19978;&#20320;&#19981;&#20250;&#29992;&#21040;&#12290;</p>
+<p>&#25105;&#20204;&#20808;&#30475;&#19968;&#20010;&#31616;&#21333;&#30340;&#20363;&#23376;&#65292;&#36825;&#20010;<code>metaclass</code>&#21487;&#20197;&#32473;&#25105;&#20204;&#33258;&#23450;&#20041;&#30340;<code>MyList</code>&#22686;&#21152;&#19968;&#20010;<code>add</code>&#26041;&#27861;&#65306;</p>
+<p>&#23450;&#20041;<code>ListMetaclass</code>&#65292;&#25353;&#29031;&#40664;&#35748;&#20064;&#24815;&#65292;<code>metaclass</code>&#30340;&#31867;&#21517;&#24635;&#26159;&#20197;<code>Metaclass</code>&#32467;&#23614;&#65292;&#20197;&#20415;&#28165;&#26970;&#22320;&#34920;&#31034;&#36825;&#26159;&#19968;&#20010;<code>metaclass</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># metaclass&#26159;&#31867;&#30340;&#27169;&#26495;&#65292;&#25152;&#20197;&#24517;&#39035;&#20174;`type`&#31867;&#22411;&#27966;&#29983;&#65306;</span>
+<span class="kw">class</span> ListMetaclass(<span class="bu">type</span>):
+    <span class="kw">def</span> <span class="fu">__new__</span>(cls, name, bases, attrs):
+        attrs[<span class="st">&#39;add&#39;</span>] <span class="op">=</span> <span class="kw">lambda</span> <span class="va">self</span>, value: <span class="va">self</span>.append(value)
+        <span class="cf">return</span> <span class="bu">type</span>.<span class="fu">__new__</span>(cls, name, bases, attrs)</code></pre></div>
+<p>&#26377;&#20102;<code>ListMetaclass</code>&#65292;&#25105;&#20204;&#22312;&#23450;&#20041;&#31867;&#30340;&#26102;&#20505;&#36824;&#35201;&#25351;&#31034;&#20351;&#29992;<code>ListMetaclass</code>&#26469;&#23450;&#21046;&#31867;&#65292;&#20256;&#20837;&#20851;&#38190;&#23383;&#21442;&#25968;<code>metaclass</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> MyList(<span class="bu">list</span>, metaclass<span class="op">=</span>ListMetaclass):
+    <span class="cf">pass</span></code></pre></div>
+<p>&#24403;&#25105;&#20204;&#20256;&#20837;&#20851;&#38190;&#23383;&#21442;&#25968;<code>metaclass</code>&#26102;&#65292;&#39764;&#26415;&#23601;&#29983;&#25928;&#20102;&#65292;&#23427;&#25351;&#31034;Python&#35299;&#37322;&#22120;&#22312;&#21019;&#24314;<code>MyList</code>&#26102;&#65292;&#35201;&#36890;&#36807;<code>ListMetaclass.__new__()</code>&#26469;&#21019;&#24314;&#65292;&#22312;&#27492;&#65292;&#25105;&#20204;&#21487;&#20197;&#20462;&#25913;&#31867;&#30340;&#23450;&#20041;&#65292;&#27604;&#22914;&#65292;&#21152;&#19978;&#26032;&#30340;&#26041;&#27861;&#65292;&#28982;&#21518;&#65292;&#36820;&#22238;&#20462;&#25913;&#21518;&#30340;&#23450;&#20041;&#12290;</p>
+<p><code>__new__()</code>&#26041;&#27861;&#25509;&#25910;&#21040;&#30340;&#21442;&#25968;&#20381;&#27425;&#26159;&#65306;</p>
+<ul>
+<li><p>&#24403;&#21069;&#20934;&#22791;&#21019;&#24314;&#30340;&#31867;&#30340;&#23545;&#35937;&#65307;</p></li>
+<li><p>&#31867;&#30340;&#21517;&#23383;&#65307;</p></li>
+<li><p>&#31867;&#32487;&#25215;&#30340;&#29238;&#31867;&#38598;&#21512;&#65307;</p></li>
+<li><p>&#31867;&#30340;&#26041;&#27861;&#38598;&#21512;&#12290;</p></li>
+</ul>
+<p>&#27979;&#35797;&#19968;&#19979;<code>MyList</code>&#26159;&#21542;&#21487;&#20197;&#35843;&#29992;<code>add()</code>&#26041;&#27861;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> L <span class="op">=</span> MyList()
+<span class="op">&gt;&gt;&gt;</span> L.add(<span class="dv">1</span>)
+<span class="op">&gt;&gt;</span> L
+[<span class="dv">1</span>]</code></pre></div>
+<p>&#32780;&#26222;&#36890;&#30340;<code>list</code>&#27809;&#26377;<code>add()</code>&#26041;&#27861;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> L2 <span class="op">=</span> <span class="bu">list</span>()
+<span class="op">&gt;&gt;&gt;</span> L2.add(<span class="dv">1</span>)
+Traceback (most recent call last):
+  File <span class="st">&quot;&lt;stdin&gt;&quot;</span>, line <span class="dv">1</span>, <span class="op">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span>
+<span class="pp">AttributeError</span>: <span class="st">&#39;list&#39;</span> <span class="bu">object</span> has no attribute <span class="st">&#39;add&#39;</span></code></pre></div>
+<p>&#21160;&#24577;&#20462;&#25913;&#26377;&#20160;&#20040;&#24847;&#20041;&#65311;&#30452;&#25509;&#22312;<code>MyList</code>&#23450;&#20041;&#20013;&#20889;&#19978;<code>add()</code>&#26041;&#27861;&#19981;&#26159;&#26356;&#31616;&#21333;&#21527;&#65311;&#27491;&#24120;&#24773;&#20917;&#19979;&#65292;&#30830;&#23454;&#24212;&#35813;&#30452;&#25509;&#20889;&#65292;&#36890;&#36807;<code>metaclass</code>&#20462;&#25913;&#32431;&#23646;&#21464;&#24577;&#12290;</p>
+<p>&#20294;&#26159;&#65292;&#24635;&#20250;&#36935;&#21040;&#38656;&#35201;&#36890;&#36807;<code>metaclass</code>&#20462;&#25913;&#31867;&#23450;&#20041;&#30340;&#12290;<code>ORM</code>&#23601;&#26159;&#19968;&#20010;&#20856;&#22411;&#30340;&#20363;&#23376;&#12290;</p>
+<p><code>ORM</code>&#20840;&#31216;&#8220;<code>Object Relational Mapping</code>&#8221;&#65292;&#21363;&#23545;&#35937;-&#20851;&#31995;&#26144;&#23556;&#65292;&#23601;&#26159;&#25226;&#20851;&#31995;&#25968;&#25454;&#24211;&#30340;&#19968;&#34892;&#26144;&#23556;&#20026;&#19968;&#20010;&#23545;&#35937;&#65292;&#20063;&#23601;&#26159;&#19968;&#20010;&#31867;&#23545;&#24212;&#19968;&#20010;&#34920;&#65292;&#36825;&#26679;&#65292;&#20889;&#20195;&#30721;&#26356;&#31616;&#21333;&#65292;&#19981;&#29992;&#30452;&#25509;&#25805;&#20316;SQL&#35821;&#21477;&#12290;</p>
+<p>&#35201;&#32534;&#20889;&#19968;&#20010;<code>ORM</code>&#26694;&#26550;&#65292;&#25152;&#26377;&#30340;&#31867;&#37117;&#21482;&#33021;&#21160;&#24577;&#23450;&#20041;&#65292;&#22240;&#20026;&#21482;&#26377;&#20351;&#29992;&#32773;&#25165;&#33021;&#26681;&#25454;&#34920;&#30340;&#32467;&#26500;&#23450;&#20041;&#20986;&#23545;&#24212;&#30340;&#31867;&#26469;&#12290;</p>
+<p>&#35753;&#25105;&#20204;&#26469;&#23581;&#35797;&#32534;&#20889;&#19968;&#20010;<code>ORM</code>&#26694;&#26550;&#12290;</p>
+<p>&#32534;&#20889;&#24213;&#23618;&#27169;&#22359;&#30340;&#31532;&#19968;&#27493;&#65292;&#23601;&#26159;&#20808;&#25226;&#35843;&#29992;&#25509;&#21475;&#20889;&#20986;&#26469;&#12290;&#27604;&#22914;&#65292;&#20351;&#29992;&#32773;&#22914;&#26524;&#20351;&#29992;&#36825;&#20010;<code>ORM</code>&#26694;&#26550;&#65292;&#24819;&#23450;&#20041;&#19968;&#20010;<code>User</code>&#31867;&#26469;&#25805;&#20316;&#23545;&#24212;&#30340;&#25968;&#25454;&#24211;&#34920;<code>User</code>&#65292;&#25105;&#20204;&#26399;&#24453;&#20182;&#20889;&#20986;&#36825;&#26679;&#30340;&#20195;&#30721;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> User(Model):
+    <span class="co"># &#23450;&#20041;&#31867;&#30340;&#23646;&#24615;&#21040;&#21015;&#30340;&#26144;&#23556;&#65306;</span>
+    <span class="bu">id</span> <span class="op">=</span> IntegerField(<span class="st">&#39;id&#39;</span>)
+    name <span class="op">=</span> StringField(<span class="st">&#39;username&#39;</span>)
+    email <span class="op">=</span> StringField(<span class="st">&#39;email&#39;</span>)
+    password <span class="op">=</span> StringField(<span class="st">&#39;password&#39;</span>)
+
+<span class="co"># &#21019;&#24314;&#19968;&#20010;&#23454;&#20363;&#65306;</span>
+u <span class="op">=</span> User(<span class="bu">id</span><span class="op">=</span><span class="dv">12345</span>, name<span class="op">=</span><span class="st">&#39;Michael&#39;</span>, email<span class="op">=</span><span class="st">&#39;test@orm.org&#39;</span>, password<span class="op">=</span><span class="st">&#39;my-pwd&#39;</span>)
+<span class="co"># &#20445;&#23384;&#21040;&#25968;&#25454;&#24211;&#65306;</span>
+u.save()</code></pre></div>
+<p>&#20854;&#20013;&#65292;&#29238;&#31867;<code>Model</code>&#21644;&#23646;&#24615;&#31867;&#22411;<code>StringField&#12289;IntegerField</code>&#26159;&#30001;<code>ORM</code>&#26694;&#26550;&#25552;&#20379;&#30340;&#65292;&#21097;&#19979;&#30340;&#39764;&#26415;&#26041;&#27861;&#27604;&#22914;<code>save()</code>&#20840;&#37096;&#30001;<code>metaclass</code>&#33258;&#21160;&#23436;&#25104;&#12290;&#34429;&#28982;<code>metaclass</code>&#30340;&#32534;&#20889;&#20250;&#27604;&#36739;&#22797;&#26434;&#65292;&#20294;<code>ORM</code>&#30340;&#20351;&#29992;&#32773;&#29992;&#36215;&#26469;&#21364;&#24322;&#24120;&#31616;&#21333;&#12290;</p>
+<p>&#29616;&#22312;&#65292;&#25105;&#20204;&#23601;&#25353;&#19978;&#38754;&#30340;&#25509;&#21475;&#26469;&#23454;&#29616;&#35813;<code>ORM</code>&#12290;</p>
+<p>&#39318;&#20808;&#26469;&#23450;&#20041;<code>Field</code>&#31867;&#65292;&#23427;&#36127;&#36131;&#20445;&#23384;&#25968;&#25454;&#24211;&#34920;&#30340;&#23383;&#27573;&#21517;&#21644;&#23383;&#27573;&#31867;&#22411;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Field(<span class="bu">object</span>):
+
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, column_type):
+        <span class="va">self</span>.name <span class="op">=</span> name
+        <span class="va">self</span>.column_type <span class="op">=</span> column_type
+
+    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):
+        <span class="cf">return</span> <span class="st">&#39;&lt;</span><span class="sc">%s</span><span class="st">:</span><span class="sc">%s</span><span class="st">&gt;&#39;</span> <span class="op">%</span> (<span class="va">self</span>.__class__.<span class="va">__name__</span>, <span class="va">self</span>.name)</code></pre></div>
+<p>&#22312;<code>Field</code>&#30340;&#22522;&#30784;&#19978;&#65292;&#36827;&#19968;&#27493;&#23450;&#20041;&#21508;&#31181;&#31867;&#22411;&#30340;<code>Field</code>&#65292;&#27604;&#22914;<code>StringField&#65292;IntegerField</code>&#31561;&#31561;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> StringField(Field):
+
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):
+        <span class="bu">super</span>(StringField, <span class="va">self</span>).<span class="fu">__init__</span>(name, <span class="st">&#39;varchar(100)&#39;</span>)
+
+<span class="kw">class</span> IntegerField(Field):
+
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):
+        <span class="bu">super</span>(IntegerField, <span class="va">self</span>).<span class="fu">__init__</span>(name, <span class="st">&#39;bigint&#39;</span>)</code></pre></div>
+<p>&#19979;&#19968;&#27493;&#65292;&#23601;&#26159;&#32534;&#20889;&#26368;&#22797;&#26434;&#30340;<code>ModelMetaclass</code>&#20102;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> ModelMetaclass(<span class="bu">type</span>):
+
+    <span class="kw">def</span> <span class="fu">__new__</span>(cls, name, bases, attrs):
+        <span class="cf">if</span> name<span class="op">==</span><span class="st">&#39;Model&#39;</span>:
+            <span class="cf">return</span> <span class="bu">type</span>.<span class="fu">__new__</span>(cls, name, bases, attrs)
+        <span class="bu">print</span>(<span class="st">&#39;Found model: </span><span class="sc">%s</span><span class="st">&#39;</span> <span class="op">%</span> name)
+        mappings <span class="op">=</span> <span class="bu">dict</span>()
+        <span class="cf">for</span> k, v <span class="op">in</span> attrs.items():
+            <span class="cf">if</span> <span class="bu">isinstance</span>(v, Field):
+                <span class="bu">print</span>(<span class="st">&#39;Found mapping: </span><span class="sc">%s</span><span class="st"> ==&gt; </span><span class="sc">%s</span><span class="st">&#39;</span> <span class="op">%</span> (k, v))
+                mappings[k] <span class="op">=</span> v
+        <span class="cf">for</span> k <span class="op">in</span> mappings.keys():
+            attrs.pop(k)
+        attrs[<span class="st">&#39;__mappings__&#39;</span>] <span class="op">=</span> mappings <span class="co"># &#20445;&#23384;&#23646;&#24615;&#21644;&#21015;&#30340;&#26144;&#23556;&#20851;&#31995;</span>
+        attrs[<span class="st">&#39;__table__&#39;</span>] <span class="op">=</span> name <span class="co"># &#20551;&#35774;&#34920;&#21517;&#21644;&#31867;&#21517;&#19968;&#33268;</span>
+        <span class="cf">return</span> <span class="bu">type</span>.<span class="fu">__new__</span>(cls, name, bases, attrs)</code></pre></div>
+<p>&#20197;&#21450;&#22522;&#31867;<code>Model</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Model(<span class="bu">dict</span>, metaclass<span class="op">=</span>ModelMetaclass):
+
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, <span class="op">**</span>kw):
+        <span class="bu">super</span>(Model, <span class="va">self</span>).<span class="fu">__init__</span>(<span class="op">**</span>kw)
+
+    <span class="kw">def</span> <span class="fu">__getattr__</span>(<span class="va">self</span>, key):
+        <span class="cf">try</span>:
+            <span class="cf">return</span> <span class="va">self</span>[key]
+        <span class="cf">except</span> <span class="pp">KeyError</span>:
+            <span class="cf">raise</span> <span class="pp">AttributeError</span>(<span class="vs">r&quot;&#39;Model&#39; object has no attribute &#39;</span><span class="sc">%s</span><span class="vs">&#39;&quot;</span> <span class="op">%</span> key)
+
+    <span class="kw">def</span> <span class="fu">__setattr__</span>(<span class="va">self</span>, key, value):
+        <span class="va">self</span>[key] <span class="op">=</span> value
+
+    <span class="kw">def</span> save(<span class="va">self</span>):
+        fields <span class="op">=</span> []
+        params <span class="op">=</span> []
+        args <span class="op">=</span> []
+        <span class="cf">for</span> k, v <span class="op">in</span> <span class="va">self</span>.__mappings__.items():
+            fields.append(v.name)
+            params.append(<span class="st">&#39;?&#39;</span>)
+            args.append(<span class="bu">getattr</span>(<span class="va">self</span>, k, <span class="va">None</span>))
+        sql <span class="op">=</span> <span class="st">&#39;insert into </span><span class="sc">%s</span><span class="st"> (</span><span class="sc">%s</span><span class="st">) values (</span><span class="sc">%s</span><span class="st">)&#39;</span> <span class="op">%</span> (<span class="va">self</span>.__table__, <span class="st">&#39;,&#39;</span>.join(fields), <span class="st">&#39;,&#39;</span>.join(params))
+        <span class="bu">print</span>(<span class="st">&#39;SQL: </span><span class="sc">%s</span><span class="st">&#39;</span> <span class="op">%</span> sql)
+        <span class="bu">print</span>(<span class="st">&#39;ARGS: </span><span class="sc">%s</span><span class="st">&#39;</span> <span class="op">%</span> <span class="bu">str</span>(args))</code></pre></div>
+<p>&#24403;&#29992;&#25143;&#23450;&#20041;&#19968;&#20010;<code>class User(Model)</code>&#26102;&#65292;Python&#35299;&#37322;&#22120;&#39318;&#20808;&#22312;&#24403;&#21069;&#31867;<code>User</code>&#30340;&#23450;&#20041;&#20013;&#26597;&#25214;<code>metaclass</code>&#65292;&#22914;&#26524;&#27809;&#26377;&#25214;&#21040;&#65292;&#23601;&#32487;&#32493;&#22312;&#29238;&#31867;<code>Model</code>&#20013;&#26597;&#25214;<code>metaclass</code>&#65292;&#25214;&#21040;&#20102;&#65292;&#23601;&#20351;&#29992;<code>Model</code>&#20013;&#23450;&#20041;&#30340;<code>metaclass</code>&#30340;<code>ModelMetaclass</code>&#26469;&#21019;&#24314;<code>User</code>&#31867;&#65292;&#20063;&#23601;&#26159;&#35828;&#65292;<code>metaclass</code>&#21487;&#20197;&#38544;&#24335;&#22320;&#32487;&#25215;&#21040;&#23376;&#31867;&#65292;&#20294;&#23376;&#31867;&#33258;&#24049;&#21364;&#24863;&#35273;&#19981;&#21040;&#12290;</p>
+<p>&#22312;<code>ModelMetaclass</code>&#20013;&#65292;&#19968;&#20849;&#20570;&#20102;&#20960;&#20214;&#20107;&#24773;&#65306;</p>
+<ul>
+<li><p>&#25490;&#38500;&#25481;&#23545;<code>Model</code>&#31867;&#30340;&#20462;&#25913;&#65307;</p></li>
+<li><p>&#22312;&#24403;&#21069;&#31867;&#65288;&#27604;&#22914;<code>User</code>&#65289;&#20013;&#26597;&#25214;&#23450;&#20041;&#30340;&#31867;&#30340;&#25152;&#26377;&#23646;&#24615;&#65292;&#22914;&#26524;&#25214;&#21040;&#19968;&#20010;<code>Field</code>&#23646;&#24615;&#65292;&#23601;&#25226;&#23427;&#20445;&#23384;&#21040;&#19968;&#20010;<code>__mappings__</code>&#30340;<code>dict</code>&#20013;&#65292;&#21516;&#26102;&#20174;&#31867;&#23646;&#24615;&#20013;&#21024;&#38500;&#35813;<code>Field</code>&#23646;&#24615;&#65292;&#21542;&#21017;&#65292;&#23481;&#26131;&#36896;&#25104;&#36816;&#34892;&#26102;&#38169;&#35823;&#65288;&#23454;&#20363;&#30340;&#23646;&#24615;&#20250;&#36974;&#30422;&#31867;&#30340;&#21516;&#21517;&#23646;&#24615;&#65289;&#65307;</p></li>
+<li><p>&#25226;&#34920;&#21517;&#20445;&#23384;&#21040;<code>__table__</code>&#20013;&#65292;&#36825;&#37324;&#31616;&#21270;&#20026;&#34920;&#21517;&#40664;&#35748;&#20026;&#31867;&#21517;&#12290;</p></li>
+</ul>
+<p>&#22312;<code>Model</code>&#31867;&#20013;&#65292;&#23601;&#21487;&#20197;&#23450;&#20041;&#21508;&#31181;&#25805;&#20316;&#25968;&#25454;&#24211;&#30340;&#26041;&#27861;&#65292;&#27604;&#22914;<code>save()&#65292;delete()&#65292;find()&#65292;update</code>&#31561;&#31561;&#12290;</p>
+<p>&#25105;&#20204;&#23454;&#29616;&#20102;<code>save()</code>&#26041;&#27861;&#65292;&#25226;&#19968;&#20010;&#23454;&#20363;&#20445;&#23384;&#21040;&#25968;&#25454;&#24211;&#20013;&#12290;&#22240;&#20026;&#26377;&#34920;&#21517;&#65292;&#23646;&#24615;&#21040;&#23383;&#27573;&#30340;&#26144;&#23556;&#21644;&#23646;&#24615;&#20540;&#30340;&#38598;&#21512;&#65292;&#23601;&#21487;&#20197;&#26500;&#36896;&#20986;<code>INSERT</code>&#35821;&#21477;&#12290;</p>
+<p>&#32534;&#20889;&#20195;&#30721;&#35797;&#35797;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">u <span class="op">=</span> User(<span class="bu">id</span><span class="op">=</span><span class="dv">12345</span>, name<span class="op">=</span><span class="st">&#39;Michael&#39;</span>, email<span class="op">=</span><span class="st">&#39;test@orm.org&#39;</span>, password<span class="op">=</span><span class="st">&#39;my-pwd&#39;</span>)
+u.save()</code></pre></div>
+<p>&#36755;&#20986;&#22914;&#19979;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">Found model: User
+Found mapping: email <span class="op">==&gt;</span> <span class="op">&lt;</span>StringField:email<span class="op">&gt;</span>
+Found mapping: password <span class="op">==&gt;</span> <span class="op">&lt;</span>StringField:password<span class="op">&gt;</span>
+Found mapping: <span class="bu">id</span> <span class="op">==&gt;</span> <span class="op">&lt;</span>IntegerField:uid<span class="op">&gt;</span>
+Found mapping: name <span class="op">==&gt;</span> <span class="op">&lt;</span>StringField:username<span class="op">&gt;</span>
+SQL: insert into User (password,email,username,<span class="bu">id</span>) values (?,?,?,?)
+ARGS: [<span class="st">&#39;my-pwd&#39;</span>, <span class="st">&#39;test@orm.org&#39;</span>, <span class="st">&#39;Michael&#39;</span>, <span class="dv">12345</span>]</code></pre></div>
+<p>&#21487;&#20197;&#30475;&#21040;&#65292;<code>save()</code>&#26041;&#27861;&#24050;&#32463;&#25171;&#21360;&#20986;&#20102;&#21487;&#25191;&#34892;&#30340;<code>SQL</code>&#35821;&#21477;&#65292;&#20197;&#21450;&#21442;&#25968;&#21015;&#34920;&#65292;&#21482;&#38656;&#35201;&#30495;&#27491;&#36830;&#25509;&#21040;&#25968;&#25454;&#24211;&#65292;&#25191;&#34892;&#35813;<code>SQL</code>&#35821;&#21477;&#65292;&#23601;&#21487;&#20197;&#23436;&#25104;&#30495;&#27491;&#30340;&#21151;&#33021;&#12290;</p>
+<p>&#19981;&#21040;100&#34892;&#20195;&#30721;&#65292;&#25105;&#20204;&#23601;&#36890;&#36807;<code>metaclass</code>&#23454;&#29616;&#20102;&#19968;&#20010;&#31934;&#31616;&#30340;<code>ORM</code>&#26694;&#26550;&#12290;</p>
+<h4 id="&#23567;&#32467;-4">&#23567;&#32467;</h4>
+<p><code>metaclass</code>&#26159;<code>Python</code>&#20013;&#38750;&#24120;&#20855;&#26377;&#39764;&#26415;&#24615;&#30340;&#23545;&#35937;&#65292;&#23427;&#21487;&#20197;&#25913;&#21464;&#31867;&#21019;&#24314;&#26102;&#30340;&#34892;&#20026;&#12290;&#36825;&#31181;&#24378;&#22823;&#30340;&#21151;&#33021;&#20351;&#29992;&#36215;&#26469;&#21153;&#24517;&#23567;&#24515;&#12290;</p>
+</body>
+</html>
