@@ -1,0 +1,109 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+EXEC	.\learning.py	/^EXEC = sys.executable$/;"	v
+HOST	.\learning.py	/^HOST = 'local.liaoxuefeng.com:%d' % PORT$/;"	v
+INDEX	.\learning.py	/^INDEX = 0$/;"	v
+Iterable	.\06.AdvancedFeatures.py	/^from collections import Iterable$/;"	i
+L	.\06.AdvancedFeatures.py	/^L = (0, 1, 2, 3, 4, 5)$/;"	v
+L	.\06.AdvancedFeatures.py	/^L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']$/;"	v
+L	.\06.AdvancedFeatures.py	/^L = [1, 2, 3, 4, 5]$/;"	v
+L	.\06.AdvancedFeatures.py	/^L = [x * x for x in range(10)]$/;"	v
+L	.\06.AdvancedFeatures.py	/^L = list(range(100))  #0-99$/;"	v
+L	.\06.AdvancedFeatures.py	/^L= ['Hello', 'World', 18, 'IBM', 'Apple']$/;"	v
+PI	.\04.python.basis.py	/^PI=3.141592653$/;"	v
+PORT	.\learning.py	/^PORT = 39093$/;"	v
+TEMP	.\learning.py	/^TEMP = tempfile.mkdtemp(suffix='_py', prefix='learn_python_')$/;"	v
+a	.\04.python.basis.py	/^a = 'ABC'$/;"	v
+a	.\04.python.basis.py	/^a = 'abc'$/;"	v
+a	.\04.python.basis.py	/^a = 100$/;"	v
+a	.\04.python.basis.py	/^a = 123$/;"	v
+a	.\04.python.basis.py	/^a = r'I\\'m "OK"'$/;"	v
+a	.\05.function.py	/^a = abs$/;"	v
+a	.\07.FunctionalProgramming.py	/^a = f(-10)$/;"	v
+add	.\07.FunctionalProgramming.py	/^def add(x, y, f):$/;"	f
+age	.\04.python.basis.py	/^age = 20$/;"	v
+age	.\04.python.basis.py	/^age=25$/;"	v
+application	.\learning.py	/^def application(environ, start_response):$/;"	f
+args	.\05.function.py	/^args = (1, 2, 3, 4, 5)$/;"	v
+b	.\04.python.basis.py	/^b = 'XYZ'$/;"	v
+b	.\04.python.basis.py	/^b = a.replace('a', 'A')$/;"	v
+birth	.\04.python.basis.py	/^birth = input('birth: ')  ##input的返回数据类型为str$/;"	v
+birth	.\04.python.basis.py	/^birth = int(birth)$/;"	v
+calc	.\05.function.py	/^def calc(*numbers):$/;"	f
+calc	.\05.function.py	/^def calc(numbers):  #需要先组装出list或tuple$/;"	f
+check_version	.\learning.py	/^def check_version():$/;"	f
+classmates	.\04.python.basis.py	/^classmates = ['Michael', 'Bob', 'Tracy']$/;"	v
+d	.\04.python.basis.py	/^d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}$/;"	v
+d	.\06.AdvancedFeatures.py	/^d = {'a': 'A', 'b': 'B', 'c': 'C'}$/;"	v
+d	.\06.AdvancedFeatures.py	/^d = {'a': 1, 'b': 2, 'c': 3}$/;"	v
+decode	.\learning.py	/^def decode(s):$/;"	f
+del_ele	.\04.python.basis.py	/^del_ele = classmates.pop() #删除末尾元素$/;"	v
+enroll	.\05.function.py	/^def enroll(name, gender, age=6, city='Beijing'):$/;"	f
+extra	.\05.function.py	/^extra = {'city': 'Beijing', 'job': 'Engineer'}$/;"	v
+f	.\04.python.basis.py	/^f = 456.789$/;"	v
+f	.\06.AdvancedFeatures.py	/^f = fib(6)$/;"	v
+f	.\07.FunctionalProgramming.py	/^f = abs$/;"	v
+f1	.\05.function.py	/^def f1(a, b, c=0, *args, **kw):$/;"	f
+fact	.\05.function.py	/^def fact(n):$/;"	f
+fib	.\06.AdvancedFeatures.py	/^def fib(max):$/;"	f
+g	.\06.AdvancedFeatures.py	/^g = (x * x for x in range(10))$/;"	v
+get_name	.\learning.py	/^def get_name():$/;"	f
+io	.\learning.py	/^import os, io, json, subprocess, tempfile$/;"	i
+json	.\learning.py	/^import os, io, json, subprocess, tempfile$/;"	i
+kw	.\05.function.py	/^kw = {'d': 99, 'x': '#'}$/;"	v
+main	.\learning.py	/^def main():$/;"	f
+make_server	.\learning.py	/^from wsgiref.simple_server import make_server$/;"	i
+math	.\05.function.py	/^import math$/;"	i
+max	.\07.FunctionalProgramming.py	/^max = 11  #max函数功能失效$/;"	v
+move	.\05.function.py	/^def move(n, a, b, c):$/;"	f
+move	.\05.function.py	/^def move(x,y,step,angle=0):$/;"	f
+my_abs	.\05.function.py	/^def my_abs(x):$/;"	f
+n	.\04.python.basis.py	/^	n = n - 2$/;"	v
+n	.\04.python.basis.py	/^n = 123$/;"	v
+n	.\04.python.basis.py	/^n = 99$/;"	v
+n	.\06.AdvancedFeatures.py	/^    n = n + 1$/;"	v
+n	.\06.AdvancedFeatures.py	/^n = 0$/;"	v
+n1	.\05.function.py	/^n1 = 255$/;"	v
+n2	.\05.function.py	/^n2 = 1000$/;"	v
+name	.\03.1st.python.py	/^name = input("please input your name:")$/;"	v
+nop	.\05.function.py	/^def nop():$/;"	f
+num	.\05.function.py	/^num = [1, 2, 3]$/;"	v
+os	.\06.AdvancedFeatures.py	/^import os$/;"	i
+os	.\learning.py	/^import os, io, json, subprocess, tempfile$/;"	i
+parse	.\learning.py	/^from urllib import parse$/;"	i
+person	.\05.function.py	/^def person(name, age, **kw):$/;"	f
+person	.\05.function.py	/^def person(name, age, *, city='Beijing', job):$/;"	f
+power	.\05.function.py	/^def power(x, n):$/;"	f
+power	.\05.function.py	/^def power(x, n=2):$/;"	f
+project_opened	.\.ropeproject\config.py	/^def project_opened(project):$/;"	f
+quadratic	.\05.function.py	/^def quadratic(a, b, c):$/;"	f
+r	.\04.python.basis.py	/^r=(85-72)*100\/72$/;"	v
+s	.\04.python.basis.py	/^s = set([1, 2, 1, 2, 3]) # 以list作为输入$/;"	v
+s	.\07.FunctionalProgramming.py	/^s = 'abc'$/;"	v
+s1	.\04.python.basis.py	/^s1 = 'Hello, world'$/;"	v
+s1	.\04.python.basis.py	/^s1 = 72$/;"	v
+s1	.\04.python.basis.py	/^s1 = ['Python', 'java', 123] #不同类型元素$/;"	v
+s1	.\04.python.basis.py	/^s1 = set([1,2,3])$/;"	v
+s2	.\04.python.basis.py	/^s2 = 'Hello, \\'Adam\\''$/;"	v
+s2	.\04.python.basis.py	/^s2 = 85$/;"	v
+s2	.\04.python.basis.py	/^s2 = ['python', 'java', ['asp', 'php'], 'perl'] #元素可以是列表（嵌套）$/;"	v
+s2	.\04.python.basis.py	/^s2 = set([2,3,4])$/;"	v
+s3	.\04.python.basis.py	/^s3 = ('python', 'perl', 'java') #元组，不可更改$/;"	v
+s3	.\04.python.basis.py	/^s3 = r'Hello, "Bart"'$/;"	v
+set_prefs	.\.ropeproject\config.py	/^def set_prefs(prefs):$/;"	f
+share	.\04.python.basis.py	/^share = s1 & s2$/;"	v
+str	.\04.python.basis.py	/^str = 'I\\'m \\"OK\\"!'$/;"	v
+subprocess	.\learning.py	/^import os, io, json, subprocess, tempfile$/;"	i
+sum	.\04.python.basis.py	/^	sum = sum + n$/;"	v
+sum	.\04.python.basis.py	/^	sum = sum + x$/;"	v
+sum	.\04.python.basis.py	/^sum = 0$/;"	v
+sys	.\learning.py	/^import sys$/;"	i
+tempfile	.\learning.py	/^import os, io, json, subprocess, tempfile$/;"	i
+triangles	.\06.AdvancedFeatures.py	/^def triangles():$/;"	f
+write_py	.\learning.py	/^def write_py(name, code):$/;"	f
+x	.\04.python.basis.py	/^x = b'ABC'$/;"	v
+x	.\06.AdvancedFeatures.py	/^        x = next(f)$/;"	v
