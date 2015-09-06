@@ -1,0 +1,582 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="book.css" type="text/css" />
+</head>
+<body>
+<h2 id="pyhon&#20043;tkinter&#23454;&#20363;&#21270;&#23398;&#20064;">pyhon&#20043;Tkinter&#23454;&#20363;&#21270;&#23398;&#20064;</h2>
+<p>===========================</p>
+<h3 id="&#38405;&#35835;&#30446;&#24405;">&#38405;&#35835;&#30446;&#24405;</h3>
+<ol style="list-style-type: decimal">
+<li>&#20135;&#21697;&#20171;&#32461;</li>
+<li>&#35774;&#35745;&#35268;&#21010;</li>
+<li>&#30456;&#20851;&#30693;&#35782;</li>
+<li>&#28304;&#30721;&#38468;&#20214;</li>
+</ol>
+<p><code>Tkinter</code>&#27169;&#22359;(&quot;Tk &#25509;&#21475;&quot;)&#26159;Python&#30340;&#26631;&#20934;Tk GUI&#24037;&#20855;&#21253;&#30340;&#25509;&#21475;&#65292;&#20301;Python&#30340;&#20869;&#32622;&#27169;&#22359;&#65292;&#30452;&#25509;<code>import tkinter</code>&#21363;&#21487;&#20351;&#29992;&#12290;</p>
+<p>&#20316;&#20026;&#23454;&#36341;, &#29992;Tkinter&#20570;&#20102;&#20010;<code>ascii</code>&#30721;&#36716;&#21270;&#26597;&#35810;&#34920;</p>
+<h3 id="&#20135;&#21697;&#20171;&#32461;">1. &#20135;&#21697;&#20171;&#32461;</h3>
+<ul>
+<li><strong>&#30028;&#38754;</strong></li>
+</ul>
+<p><img src="http://images.cnitblog.com/blog/408927/201308/28155813-dfc1f09092be4fcbb04f864347fa80fc.png" alt="" /> &#12288;&#12288; + <strong>&#21151;&#33021;</strong></p>
+<ul>
+<li><p>&#36890;&#36807;&#36755;&#20837;&#23383;&#31526;&#25110;&#25968;&#23383;&#26597;&#35810;&#23545;&#24212;&#30340;&#20449;&#24687;</p></li>
+<li><p>&#36890;&#36807;&#36873;&#25321;&#21015;&#34920;&#20013;&#30340;&#20449;&#24687;&#26597;&#35810;&#23545;&#24212;&#30340;&#20449;&#24687;</p></li>
+</ul>
+<h3 id="&#35774;&#35745;&#35268;&#21010;">2. &#35774;&#35745;&#35268;&#21010;</h3>
+<ul>
+<li><strong>&#35268;&#21010;&#22270;</strong></li>
+</ul>
+<div class="figure">
+<img src="http://images.cnitblog.com/blog/408927/201308/28162108-fbda7aa06e5649ec9db13f0d25fb6c1b.png" alt="" />
+
+</div>
+<h3 id="&#30456;&#20851;&#30693;&#35782;">3. &#30456;&#20851;&#30693;&#35782;</h3>
+<p>&#39318;&#20808;&#30475;&#24590;&#20040;&#20135;&#29983;&#31532;&#19968;&#20010;&#31383;&#21475;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> Tkinter <span class="im">import</span> <span class="op">*</span>   <span class="co">#&#24341;&#29992;Tk&#27169;&#22359;</span>
+root <span class="op">=</span> Tk()             <span class="co">#&#21021;&#22987;&#21270;Tk()</span>
+root.mainloop()         <span class="co">#&#36827;&#20837;&#28040;&#24687;&#24490;&#29615;</span></code></pre></div>
+<p>&#20960;&#20010;&#24120;&#29992;&#23646;&#24615;:</p>
+<ul>
+<li>title: &#35774;&#32622;&#31383;&#21475;&#26631;&#39064;</li>
+<li>geometry: &#35774;&#32622;&#31383;&#21475;&#22823;&#23567;</li>
+<li>resizable():&#35774;&#32622;&#31383;&#21475;&#26159;&#21542;&#21487;&#20197;&#21464;&#21270;&#38271;/&#23485;</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># -*- coding: cp936 -*-</span>
+<span class="im">from</span> Tkinter <span class="im">import</span> <span class="op">*</span>
+root <span class="op">=</span> Tk()
+root.title(<span class="st">&quot;hello world&quot;</span>)
+root.geometry(<span class="st">&#39;200x100&#39;</span>)                 <span class="co">#&#26159;x &#19981;&#26159;*</span>
+root.resizable(width<span class="op">=</span><span class="va">False</span>, height<span class="op">=</span><span class="va">True</span>) <span class="co">#&#23485;&#19981;&#21487;&#21464;, &#39640;&#21487;&#21464;,&#40664;&#35748;&#20026;True</span>
+root.mainloop()</code></pre></div>
+<p>&#20171;&#32461;&#20197;&#19979;&#20960;&#20010;&#25511;&#20214;&#30340;&#29992;&#27861;</p>
+<ul>
+<li>Label</li>
+<li>Frame</li>
+<li>Entry</li>
+<li>Text</li>
+<li>Button</li>
+<li>Listbox</li>
+<li>Scrollbar</li>
+</ul>
+<blockquote>
+<p>&#35828;&#26126;: &#27599;&#20010;&#25511;&#20214;&#26368;&#21518;&#35201;&#21152;&#19978;<code>pack()</code>, &#21542;&#21017;&#25511;&#20214;&#26159;&#26080;&#27861;&#26174;&#31034;&#30340;.</p>
+</blockquote>
+<h4 id="label">3.1 Label</h4>
+<p>&#35828;&#26126;: &#26631;&#31614;</p>
+<p>&#29992;&#27861;: <code>Label(&#26681;&#23545;&#35937;, [&#23646;&#24615;&#21015;&#34920;])</code></p>
+<p>&#23646;&#24615;:</p>
+<ul>
+<li>text&#12288; &#35201;&#26174;&#31034;&#30340;&#25991;&#26412;</li>
+<li>bg&#12288;&#12288; &#32972;&#26223;&#39068;&#33394;</li>
+<li>fg &#21069;&#26223;&#33394;</li>
+<li>font&#12288; &#23383;&#20307;(&#39068;&#33394;, &#22823;&#23567;)</li>
+<li>width&#12288; &#25511;&#20214;&#23485;&#24230;</li>
+<li>height &#12288;&#25511;&#20214;&#39640;&#24230;</li>
+</ul>
+<p>&#20197;&#19979;&#20171;&#32461;&#30340;&#25511;&#20214;&#24046;&#19981;&#22810;&#37117;&#26377;&#36825;&#20960;&#20010;&#23646;&#24615;, &#26356;&#35814;&#32454;&#30340;&#23646;&#24615;&#26597;&#30475;&#21442;&#32771;&#32593;&#39029;</p>
+<p>&#20030;&#20363;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># -*- coding: cp936 -*-</span>
+<span class="im">from</span> Tkinter <span class="im">import</span> <span class="op">*</span>
+root <span class="op">=</span> Tk()
+root.title(<span class="st">&quot;hello world&quot;</span>)
+root.geometry(<span class="st">&#39;300x200&#39;</span>)
+l <span class="op">=</span> Label(root, text<span class="op">=</span><span class="st">&quot;show&quot;</span>, bg<span class="op">=</span><span class="st">&quot;green&quot;</span>, font<span class="op">=</span>(<span class="st">&quot;Arial&quot;</span>, <span class="dv">12</span>), width<span class="op">=</span><span class="dv">5</span>, height<span class="op">=</span><span class="dv">2</span>)
+l.pack(side<span class="op">=</span><span class="st">&#39;left&#39;</span>)  <span class="co">#&#36825;&#37324;&#30340;side&#21487;&#20197;&#36171;&#20540;&#20026;LEFT  RTGHT TOP  BOTTOM</span>
+root.mainloop()</code></pre></div>
+<p>&#25928;&#26524;</p>
+<div class="figure">
+<img src="http://images.cnitblog.com/blog/408927/201308/28175804-7df467061718406ab5c9ff179d4098be.png" alt="" />
+
+</div>
+<h4 id="frame">3.2 Frame</h4>
+<p>&#35828;&#26126;: &#22312;&#23631;&#24149;&#19978;&#21019;&#24314;&#19968;&#22359;&#30697;&#24418;&#21306;&#22495;,&#22810;&#20316;&#20026;&#23481;&#22120;&#26469;&#24067;&#23616;&#31383;&#20307;</p>
+<p>&#29992;&#27861;: <code>Frame(&#26681;&#23545;&#35937;, [&#23646;&#24615;&#21015;&#34920;])</code></p>
+<p>&#20030;&#20363;: &#35201;&#22312;&#25511;&#20214;&#20013;&#20986;&#29616;&#36825;&#26679;&#30340;&#22235;&#20010;&#35789;&#35821;</p>
+<pre><code>                 &#26657;&#35757;
+
+          &#35802;&#26420;        &#21169;&#23398;
+
+          &#38596;&#20255;        &#25958;&#34892;     </code></pre>
+<p>&#21487;&#20197;&#35268;&#21010;&#20026;</p>
+<div class="figure">
+<img src="http://images.cnitblog.com/blog/408927/201308/28182931-d23087ea673b402b967a99cc600f145e.png" alt="" />
+
+</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># -*- coding: cp936 -*-</span>
+<span class="im">from</span> Tkinter <span class="im">import</span> <span class="op">*</span>
+root <span class="op">=</span> Tk()
+root.title(<span class="st">&quot;hello world&quot;</span>)
+root.geometry(<span class="st">&#39;300x200&#39;</span>)
+
+Label(root, text<span class="op">=</span><span class="st">&#39;&#26657;&#35757;&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>), font<span class="op">=</span>(<span class="st">&#39;Arial&#39;</span>, <span class="dv">20</span>)).pack()
+
+frm <span class="op">=</span> Frame(root)
+<span class="co">#left</span>
+frm_L <span class="op">=</span> Frame(frm)
+Label(frm_L, text<span class="op">=</span><span class="st">&#39;&#21402;&#24503;&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>), font<span class="op">=</span>(<span class="st">&#39;Arial&#39;</span>, <span class="dv">15</span>)).pack(side<span class="op">=</span>TOP)
+Label(frm_L, text<span class="op">=</span><span class="st">&#39;&#21338;&#23398;&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>), font<span class="op">=</span>(<span class="st">&#39;Arial&#39;</span>, <span class="dv">15</span>)).pack(side<span class="op">=</span>TOP)
+frm_L.pack(side<span class="op">=</span>LEFT)
+
+<span class="co">#right</span>
+frm_R <span class="op">=</span> Frame(frm)
+Label(frm_R, text<span class="op">=</span><span class="st">&#39;&#25964;&#19994;&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>), font<span class="op">=</span>(<span class="st">&#39;Arial&#39;</span>, <span class="dv">15</span>)).pack(side<span class="op">=</span>TOP)
+Label(frm_R, text<span class="op">=</span><span class="st">&#39;&#20048;&#32676;&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>), font<span class="op">=</span>(<span class="st">&#39;Arial&#39;</span>, <span class="dv">15</span>)).pack(side<span class="op">=</span>TOP)
+frm_R.pack(side<span class="op">=</span>RIGHT)
+
+frm.pack()
+
+root.mainloop()</code></pre></div>
+<p>&#25928;&#26524;</p>
+<p><img src="http://images.cnitblog.com/blog/408927/201308/28183736-9308242d4b9f42909b67aad55b652568.png" alt="" />&#12288;&#12288;</p>
+<h4 id="entry">3.3 Entry</h4>
+<p>&#35828;&#26126;: &#21019;&#24314;&#21333;&#34892;&#25991;&#26412;&#26694;</p>
+<p>&#29992;&#27861;:</p>
+<p>-&#12288;&#21019;&#24314;:<code>lb =Entry(&#26681;&#23545;&#35937;, [&#23646;&#24615;&#21015;&#34920;])</code> -&#12288;&#32465;&#23450;&#21464;&#37327; <code>var=StringVar()    lb=Entry(&#26681;&#23545;&#35937;, textvariable = var)</code> -&#12288;&#33719;&#21462;&#25991;&#26412;&#26694;&#20013;&#30340;&#20540; <code>var.get()</code> - &#35774;&#32622;&#25991;&#26412;&#26694;&#20013;&#30340;&#20540; <code>var.set(item1)</code></p>
+<p>&#20030;&#20363;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># -*- coding: cp936 -*-</span>
+<span class="im">from</span> Tkinter <span class="im">import</span> <span class="op">*</span>
+root <span class="op">=</span> Tk()
+root.title(<span class="st">&quot;hello world&quot;</span>)
+root.geometry()
+var <span class="op">=</span> StringVar()
+e <span class="op">=</span> Entry(root, textvariable <span class="op">=</span> var)
+var.<span class="bu">set</span>(<span class="st">&quot;hello&quot;</span>)
+e.pack()
+    
+root.mainloop()</code></pre></div>
+<p>&#25928;&#26524;</p>
+<div class="figure">
+<img src="http://images.cnitblog.com/blog/408927/201308/28211641-cfef9b03278544bbbb7845ecd4b9a528.png" alt="" />
+
+</div>
+<h4 id="text">3.4 Text</h4>
+<p>&#35828;&#26126;: &#21521;&#35813;&#31354;&#38388;&#20869;&#36755;&#20837;&#25991;&#26412;</p>
+<p>&#29992;&#27861;: <code>t = Text(&#26681;&#23545;&#35937;)</code></p>
+<p>&#12288;- &#25554;&#20837;: <code>t.insert(mark, &#20869;&#23481;)</code></p>
+<p>&#12288;- &#21024;&#38500;: <code>t.delete(mark1, mark2)</code></p>
+<p>&#20854;&#20013;,<code>mark</code>&#21487;&#20197;&#26159;&#34892;&#21495;,&#25110;&#32773;&#29305;&#27530;&#26631;&#35782;,&#20363;&#22914;:</p>
+<ul>
+<li>INSERT:&#20809;&#26631;&#30340;&#25554;&#20837;&#28857;CURRENT:&#40736;&#26631;&#30340;&#24403;&#21069;&#20301;&#32622;&#25152;&#23545;&#24212;&#30340;&#23383;&#31526;&#20301;&#32622;</li>
+<li>END:&#36825;&#20010;Textbuffer&#30340;&#26368;&#21518;&#19968;&#20010;&#23383;&#31526;</li>
+<li>SEL_FIRST:&#36873;&#20013;&#25991;&#26412;&#22495;&#30340;&#31532;&#19968;&#20010;&#23383;&#31526;&#65292;&#22914;&#26524;&#27809;&#26377;&#36873;&#20013;&#21306;&#22495;&#21017;&#20250;&#24341;&#21457;&#24322;&#24120;</li>
+<li>SEL_LAST&#65306;&#36873;&#20013;&#25991;&#26412;&#22495;&#30340;&#26368;&#21518;&#19968;&#20010;&#23383;&#31526;&#65292;&#22914;&#26524;&#27809;&#26377;&#36873;&#20013;&#21306;&#22495;&#21017;&#20250;&#24341;&#21457;&#24322;&#24120;</li>
+</ul>
+<p>&#20030;&#20363;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># -*- coding: cp936 -*-</span>
+<span class="im">from</span> Tkinter <span class="im">import</span> <span class="op">*</span>
+root <span class="op">=</span> Tk()
+root.title(<span class="st">&quot;hello world&quot;</span>)
+root.geometry(<span class="st">&#39;300x200&#39;</span>)
+
+t <span class="op">=</span> Text(root)
+t.insert(<span class="fl">1.0</span>, <span class="st">&#39;hello</span><span class="ch">\n</span><span class="st">&#39;</span>)
+t.insert(END, <span class="st">&#39;hello000000</span><span class="ch">\n</span><span class="st">&#39;</span>)
+t.insert(END, <span class="st">&#39;nono&#39;</span>)
+t.pack()
+
+root.mainloop()</code></pre></div>
+<p>&#25928;&#26524;</p>
+<p><img src="http://images.cnitblog.com/blog/408927/201308/28190908-adee67d9e41f4003ab9dc3dd88dd8423.png" alt="" />&#12288;</p>
+<h4 id="button">3.5 Button</h4>
+<p>&#35828;&#26126;: &#21019;&#24314;&#25353;&#38062;</p>
+<p>&#29992;&#27861;: <code>Button(&#26681;&#23545;&#35937;, [&#23646;&#24615;&#21015;&#34920;])</code></p>
+<p>&#20030;&#20363;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># -*- coding: cp936 -*-</span>
+<span class="im">from</span> Tkinter <span class="im">import</span> <span class="op">*</span>
+root <span class="op">=</span> Tk()
+root.title(<span class="st">&quot;hello world&quot;</span>)
+root.geometry()
+
+<span class="kw">def</span> printhello():
+    t.insert(<span class="st">&#39;1.0&#39;</span>, <span class="st">&quot;hello</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    
+t <span class="op">=</span> Text()
+t.pack()
+Button(root, text<span class="op">=</span><span class="st">&quot;press&quot;</span>, command <span class="op">=</span> printhello).pack()
+root.mainloop()</code></pre></div>
+<p>&#25928;&#26524;</p>
+<div class="figure">
+<img src="http://images.cnitblog.com/blog/408927/201308/28192415-736cd17816a84f13ba66d9170a1e8288.png" alt="" />
+
+</div>
+<h4 id="listbox">3.6 Listbox</h4>
+<p>&#35828;&#26126;: &#21015;&#34920;&#25511;&#20214;,&#21487;&#20197;&#21547;&#26377;&#19968;&#20010;&#25110;&#22810;&#20010;&#25991;&#26412;&#26694;, &#21487;&#21333;&#36873;&#20063;&#21487;&#22810;&#36873;</p>
+<p>&#29992;&#27861;: - &#21019;&#24314;: <code>lb = ListBox(&#26681;&#23545;&#35937;, [&#23646;&#24615;&#21015;&#34920;])</code> - &#32465;&#23450;&#21464;&#37327; <code>var=StringVar()    lb=ListBox(&#26681;&#23545;&#35937;, listvariable = var)</code> - &#24471;&#21040;&#21015;&#34920;&#20013;&#30340;&#25152;&#26377;&#20540; <code>var.get()</code> - &#35774;&#32622;&#21015;&#34920;&#20013;&#30340;&#25152;&#26377;&#20540; <code>var.set((item1, item2, .....))</code> - &#28155;&#21152;: <code>lb.insert(item)</code> - &#21024;&#38500;: <code>lb.delete(item,...)</code> - &#32465;&#23450;&#20107;&#20214; <code>lb.bind('&lt;ButtonRelease-1&gt;', &#20989;&#25968;)</code> - &#33719;&#24471;&#25152;&#36873;&#20013;&#30340;&#36873;&#39033; <code>lbl.get(lb.curselection())</code></p>
+<p>&#23646;&#24615;: <code>selectmode</code>&#21487;&#20197;&#20026;<code>BROWSE</code> <code>MULTIPL</code> <code>SINGLE</code></p>
+<p>&#20030;&#20363;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># -*- coding: cp936 -*-</span>
+<span class="im">from</span> Tkinter <span class="im">import</span> <span class="op">*</span>
+root <span class="op">=</span> Tk()
+root.title(<span class="st">&quot;hello world&quot;</span>)
+root.geometry()
+
+<span class="kw">def</span> print_item(event):
+    <span class="bu">print</span> lb.get(lb.curselection())
+    
+var <span class="op">=</span> StringVar()
+lb <span class="op">=</span> Listbox(root,  listvariable <span class="op">=</span> var)
+list_item <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]         <span class="co">#&#25511;&#20214;&#30340;&#20869;&#23481;&#20026;1 2 3 4</span>
+<span class="cf">for</span> item <span class="op">in</span> list_item:
+    lb.insert(END, item)
+lb.delete(<span class="dv">2</span>, <span class="dv">4</span>)                  <span class="co">#&#27492;&#26102;&#25511;&#20214;&#30340;&#20869;&#23481;&#20026;1 3</span>
+
+var.<span class="bu">set</span>((<span class="st">&#39;a&#39;</span>, <span class="st">&#39;ab&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>))   <span class="co">#&#37325;&#26032;&#35774;&#32622;&#20102;&#65292;&#36825;&#26102;&#25511;&#20214;&#30340;&#20869;&#23481;&#23601;&#32534;&#31243;var&#30340;&#20869;&#23481;&#20102;</span>
+<span class="bu">print</span> var.get()
+lb.bind(<span class="st">&#39;&lt;ButtonRelease-1&gt;&#39;</span>, print_item)
+lb.pack()
+    
+root.mainloop()</code></pre></div>
+<p>&#25928;&#26524;</p>
+<div class="figure">
+<img src="http://images.cnitblog.com/blog/408927/201308/28200035-65a6d2ba71cf42ff88e7d97ab7f256f0.png" alt="" />
+
+</div>
+<h4 id="scrollbar">3.7 Scrollbar</h4>
+<p>&#35828;&#26126;: &#22312;&#23631;&#24149;&#19978;&#21019;&#24314;&#19968;&#22359;&#30697;&#24418;&#21306;&#22495;,&#22810;&#20316;&#20026;&#23481;&#22120;&#26469;&#24067;&#23616;&#31383;&#20307;</p>
+<p>&#29992;&#27861;: <code>Frame(&#26681;&#23545;&#35937;, [&#23646;&#24615;&#21015;&#34920;]), &#26368;&#38271;&#29992;&#30340;&#29992;&#27861;&#26159;&#21644;&#21035;&#30340;&#25511;&#20214;&#19968;&#36215;&#20351;&#29992;.</code></p>
+<p>&#20030;&#20363;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> Tkinter <span class="im">import</span> <span class="op">*</span>
+root <span class="op">=</span> Tk()
+root.title(<span class="st">&quot;hello world&quot;</span>)
+root.geometry()
+
+<span class="kw">def</span> print_item(event):
+    <span class="bu">print</span> lb.get(lb.curselection())
+    
+var <span class="op">=</span> StringVar()
+lb <span class="op">=</span> Listbox(root, height<span class="op">=</span><span class="dv">5</span>, selectmode<span class="op">=</span>BROWSE, listvariable <span class="op">=</span> var)
+lb.bind(<span class="st">&#39;&lt;ButtonRelease-1&gt;&#39;</span>, print_item)
+list_item <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">0</span>]
+<span class="cf">for</span> item <span class="op">in</span> list_item:
+    lb.insert(END, item)
+    
+scrl <span class="op">=</span> Scrollbar(root)
+scrl.pack(side<span class="op">=</span>RIGHT, fill<span class="op">=</span>Y)
+lb.configure(yscrollcommand <span class="op">=</span> scrl.<span class="bu">set</span>)
+lb.pack(side<span class="op">=</span>LEFT, fill<span class="op">=</span>BOTH)
+scrl[<span class="st">&#39;command&#39;</span>] <span class="op">=</span> lb.yview
+
+root.mainloop()</code></pre></div>
+<p>&#25928;&#26524;</p>
+<div class="figure">
+<img src="http://images.cnitblog.com/blog/408927/201308/28212750-5281c0e8c9d24fb093af8b35baf782e4.png" alt="" />
+
+</div>
+<p>&#22238;&#21040;&#39030;&#37096;</p>
+<h3 id="&#28304;&#30721;&#38468;&#20214;">4. &#28304;&#30721;&#38468;&#20214;</h3>
+<p>&#20195;&#30721;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># -*- coding:cp936 -*-</span>
+<span class="im">from</span> Tkinter <span class="im">import</span> <span class="op">*</span>
+
+<span class="kw">class</span> show:
+    num_info_hash <span class="op">=</span> {}
+    char_info_hash <span class="op">=</span> {}
+    num_char <span class="op">=</span> {}
+    char_num <span class="op">=</span> {}
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):
+        
+        <span class="va">self</span>.root <span class="op">=</span> Tk()
+        <span class="va">self</span>.root.title(<span class="st">&quot;ASCII&#30721;&#26597;&#35810;&quot;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>))
+        <span class="co">#self.root.geometry(&#39;470x320&#39;)</span>
+        <span class="co">########</span>
+        <span class="va">self</span>.frm <span class="op">=</span> Frame(<span class="va">self</span>.root)
+        <span class="co">#Top</span>
+        Label(<span class="va">self</span>.root, text<span class="op">=</span><span class="st">&quot;ASCII&#30721;&#26597;&#35810;&quot;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>), font<span class="op">=</span>(<span class="st">&#39;Arial&#39;</span>, <span class="dv">15</span>)).pack()
+        <span class="va">self</span>.load_sys()
+        <span class="va">self</span>.frm <span class="op">=</span> Frame(<span class="va">self</span>.root)
+        <span class="co">#Left</span>
+        <span class="va">self</span>.frm_L <span class="op">=</span> Frame(<span class="va">self</span>.frm)
+        <span class="va">self</span>.frm_LT <span class="op">=</span> Frame(<span class="va">self</span>.frm_L)
+        <span class="va">self</span>.var_char <span class="op">=</span> StringVar()
+        Entry(<span class="va">self</span>.frm_LT, textvariable<span class="op">=</span><span class="va">self</span>.var_char, width <span class="op">=</span> <span class="dv">5</span>, font <span class="op">=</span>(<span class="st">&#39;Verdana&#39;</span>,<span class="dv">15</span>)).pack(side<span class="op">=</span>RIGHT)
+        Label(<span class="va">self</span>.frm_LT, text <span class="op">=</span> <span class="st">&#39;&#23383;&#31526;&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>), font <span class="op">=</span>(<span class="st">&#39;Arial&#39;</span>,<span class="dv">12</span>)).pack(side<span class="op">=</span>LEFT)
+        <span class="va">self</span>.frm_LT.pack()
+
+        <span class="va">self</span>.var_L_char <span class="op">=</span> StringVar()
+        <span class="va">self</span>.lb_char <span class="op">=</span> Listbox(<span class="va">self</span>.frm_L, selectmode<span class="op">=</span>BROWSE, listvariable<span class="op">=</span><span class="va">self</span>.var_L_char, font <span class="op">=</span>(<span class="st">&#39;Verdana&#39;</span>,<span class="dv">12</span>), width<span class="op">=</span><span class="dv">10</span>, height<span class="op">=</span><span class="dv">13</span>)
+        <span class="va">self</span>.lb_char.bind(<span class="st">&#39;&lt;ButtonRelease-1&gt;&#39;</span>, <span class="va">self</span>.get_char)
+        <span class="cf">for</span> key <span class="op">in</span> <span class="va">self</span>.char_num:
+            <span class="va">self</span>.lb_char.insert(END, key[<span class="dv">0</span>])
+        <span class="va">self</span>.scrl_char <span class="op">=</span> Scrollbar(<span class="va">self</span>.frm_L)
+        <span class="va">self</span>.scrl_char.pack(side<span class="op">=</span>RIGHT, fill<span class="op">=</span>Y)
+        <span class="va">self</span>.lb_char.configure(yscrollcommand <span class="op">=</span> <span class="va">self</span>.scrl_char.<span class="bu">set</span>)
+        <span class="va">self</span>.lb_char.pack(side<span class="op">=</span>LEFT, fill<span class="op">=</span>BOTH)
+        <span class="va">self</span>.scrl_char[<span class="st">&#39;command&#39;</span>] <span class="op">=</span> <span class="va">self</span>.lb_char.yview
+
+        <span class="va">self</span>.frm_L.pack(side <span class="op">=</span> LEFT)
+
+        <span class="co">#Mid</span>
+        <span class="va">self</span>.frm_M <span class="op">=</span> Frame(<span class="va">self</span>.frm)
+        <span class="va">self</span>.t_show <span class="op">=</span> Text(<span class="va">self</span>.frm_M, width<span class="op">=</span><span class="dv">20</span>, height<span class="op">=</span><span class="dv">5</span>, font <span class="op">=</span>(<span class="st">&#39;Verdana&#39;</span>,<span class="dv">15</span>))
+        <span class="va">self</span>.t_show.insert(<span class="st">&#39;1.0&#39;</span>, <span class="st">&#39;&#39;</span>)
+        <span class="va">self</span>.t_show.pack()
+
+        <span class="va">self</span>.frm_MB <span class="op">=</span> Frame(<span class="va">self</span>.frm_M)
+        Button(<span class="va">self</span>.frm_MB, text<span class="op">=</span><span class="st">&quot;&#28165;&#38500;&quot;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf-8&#39;</span>), command<span class="op">=</span><span class="va">self</span>.clear, width<span class="op">=</span><span class="dv">6</span>, height<span class="op">=</span><span class="dv">1</span>, font<span class="op">=</span>(<span class="st">&#39;Arial&#39;</span>, <span class="dv">10</span>)).pack(side<span class="op">=</span>LEFT)
+        Button(<span class="va">self</span>.frm_MB, text<span class="op">=</span><span class="st">&quot;&#26597;&#35810;&quot;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf-8&#39;</span>), command<span class="op">=</span><span class="va">self</span>.search, width<span class="op">=</span><span class="dv">6</span>, height<span class="op">=</span><span class="dv">1</span>, font<span class="op">=</span>(<span class="st">&#39;Arial&#39;</span>, <span class="dv">10</span>)).pack(side<span class="op">=</span>RIGHT)
+        <span class="va">self</span>.frm_MB.pack(side<span class="op">=</span>BOTTOM)
+
+        <span class="va">self</span>.frm_M.pack(side<span class="op">=</span>LEFT)
+        
+        <span class="co">#Right</span>
+        <span class="va">self</span>.frm_R <span class="op">=</span> Frame(<span class="va">self</span>.frm)
+        <span class="va">self</span>.frm_RT <span class="op">=</span> Frame(<span class="va">self</span>.frm_R)
+        <span class="va">self</span>.var_int <span class="op">=</span> StringVar()
+        Entry(<span class="va">self</span>.frm_RT, textvariable<span class="op">=</span><span class="va">self</span>.var_int, width<span class="op">=</span><span class="dv">5</span>, font <span class="op">=</span>(<span class="st">&#39;Verdana&#39;</span>,<span class="dv">15</span>)).pack(side<span class="op">=</span>LEFT)
+        Label(<span class="va">self</span>.frm_RT, text<span class="op">=</span><span class="st">&#39;&#21313;&#36827;&#21046;&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf-8&#39;</span>), font <span class="op">=</span>(<span class="st">&#39;Arial&#39;</span>,<span class="dv">12</span>)).pack(side<span class="op">=</span>RIGHT)
+        <span class="va">self</span>.frm_RT.pack()
+        <span class="va">self</span>.var_R_int <span class="op">=</span> StringVar()
+        <span class="va">self</span>.lb_int <span class="op">=</span> Listbox(<span class="va">self</span>.frm_R, selectmode<span class="op">=</span>BROWSE, listvariable<span class="op">=</span><span class="va">self</span>.var_R_int, font <span class="op">=</span>(<span class="st">&#39;Verdana&#39;</span>,<span class="dv">12</span>), width<span class="op">=</span><span class="dv">10</span>, height<span class="op">=</span><span class="dv">13</span>)
+        <span class="va">self</span>.lb_int.bind(<span class="st">&#39;&lt;ButtonRelease-1&gt;&#39;</span>, <span class="va">self</span>.get_int,)
+        <span class="cf">for</span> key <span class="op">in</span> <span class="va">self</span>.num_char:
+            <span class="va">self</span>.lb_int.insert(END, key[<span class="dv">0</span>])
+        <span class="va">self</span>.scrl_int <span class="op">=</span> Scrollbar(<span class="va">self</span>.frm_R)
+        <span class="va">self</span>.scrl_int.pack(side<span class="op">=</span>RIGHT, fill<span class="op">=</span>Y)
+        <span class="va">self</span>.lb_int.configure(yscrollcommand <span class="op">=</span> <span class="va">self</span>.scrl_int.<span class="bu">set</span>)
+        <span class="va">self</span>.lb_int.pack(side<span class="op">=</span>LEFT, fill<span class="op">=</span>BOTH)
+        <span class="va">self</span>.scrl_int[<span class="st">&#39;command&#39;</span>] <span class="op">=</span> <span class="va">self</span>.lb_int.yview
+
+        <span class="va">self</span>.frm_R.pack(side <span class="op">=</span> LEFT)
+
+        <span class="va">self</span>.frm.pack()
+        <span class="co">########</span>
+
+        
+    <span class="kw">def</span> get_char(<span class="va">self</span>, event):
+        <span class="va">self</span>.var_char.<span class="bu">set</span>(<span class="st">&#39;&#39;</span>)
+        <span class="va">self</span>.var_int.<span class="bu">set</span>(<span class="st">&#39;&#39;</span>)
+        tmp <span class="op">=</span> <span class="va">self</span>.lb_char.get(<span class="va">self</span>.lb_char.curselection())
+        <span class="va">self</span>.var_char.<span class="bu">set</span>(tmp)
+    <span class="kw">def</span> get_int(<span class="va">self</span>, event):
+        <span class="va">self</span>.var_int.<span class="bu">set</span>(<span class="st">&#39;&#39;</span>)
+        <span class="va">self</span>.var_char.<span class="bu">set</span>(<span class="st">&#39;&#39;</span>)
+        tmp <span class="op">=</span> <span class="va">self</span>.lb_int.get(<span class="va">self</span>.lb_int.curselection())
+        <span class="va">self</span>.var_int.<span class="bu">set</span>(tmp)
+    <span class="kw">def</span> clear(<span class="va">self</span>):
+        <span class="va">self</span>.var_char.<span class="bu">set</span>(<span class="st">&#39;&#39;</span>)
+        <span class="va">self</span>.var_int.<span class="bu">set</span>(<span class="st">&#39;&#39;</span>)
+        <span class="va">self</span>.t_show.delete(<span class="st">&#39;1.0&#39;</span>, <span class="st">&#39;10.0&#39;</span>)
+    <span class="kw">def</span> search(<span class="va">self</span>):
+        <span class="va">self</span>.t_show.delete(<span class="st">&#39;1.0&#39;</span>, <span class="st">&#39;100.0&#39;</span>)
+        tmp_char <span class="op">=</span> <span class="va">self</span>.var_char.get()
+        tmp_int <span class="op">=</span> <span class="va">self</span>.var_int.get()
+        <span class="cf">if</span> tmp_char <span class="op">!=</span> <span class="st">&#39;&#39;</span>:
+            <span class="cf">if</span> <span class="op">not</span> <span class="va">self</span>.char_info_hash.has_key(tmp_char):
+                <span class="va">self</span>.t_show.insert(<span class="st">&#39;1.0&#39;</span>, <span class="st">&quot;&#24744;&#36755;&#20837;&#30340;&#23383;&#31526;&#19981;&#22312;128&#20010;&#23383;&#31526;&#20043;&#20869;&quot;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>))
+            <span class="cf">else</span>:
+                <span class="va">self</span>.t_show.insert(<span class="st">&#39;1.0&#39;</span>, <span class="st">&#39;&#21313;&#20845;&#36827;&#21046;:&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>) <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span> <span class="op">+</span> <span class="va">self</span>.char_info_hash[tmp_char][<span class="dv">2</span>] <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)
+                <span class="va">self</span>.t_show.insert(<span class="st">&#39;1.0&#39;</span>, <span class="st">&#39;&#21313;&#36827;&#21046;:&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>) <span class="op">+</span><span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span> <span class="op">+</span> <span class="va">self</span>.char_info_hash[tmp_char][<span class="dv">1</span>] <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)
+                <span class="va">self</span>.t_show.insert(<span class="st">&#39;1.0&#39;</span>, <span class="st">&#39;&#20843;&#36827;&#21046;:&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>) <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span> <span class="op">+</span> <span class="va">self</span>.char_info_hash[tmp_char][<span class="dv">0</span>] <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)
+                <span class="va">self</span>.t_show.insert(<span class="st">&#39;1.0&#39;</span>, <span class="st">&#39;&#23383;&#31526;:&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>) <span class="op">+</span><span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span> <span class="op">+</span> tmp_char <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n\n</span><span class="st">&#39;</span>)
+            <span class="va">self</span>.var_char.<span class="bu">set</span>(<span class="st">&#39;&#39;</span>)
+            <span class="va">self</span>.var_int.<span class="bu">set</span>(<span class="st">&#39;&#39;</span>)
+        <span class="cf">elif</span> tmp_int <span class="op">!=</span><span class="st">&#39;&#39;</span>:
+            <span class="cf">if</span> <span class="op">not</span> <span class="va">self</span>.num_info_hash.has_key(tmp_int):
+                <span class="va">self</span>.t_show.insert(<span class="st">&#39;1.0&#39;</span>, <span class="st">&quot;&#35831;&#36755;&#20837;&#20171;&#20110;0~127&#20043;&#38388;&#30340;&#25972;&#25968;&quot;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>))
+            <span class="cf">else</span>:
+                <span class="va">self</span>.t_show.insert(<span class="st">&#39;1.0&#39;</span>, <span class="st">&#39;&#23383;&#31526;:&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>) <span class="op">+</span><span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span> <span class="op">+</span> <span class="va">self</span>.num_info_hash[tmp_int][<span class="dv">2</span>] <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)
+                <span class="va">self</span>.t_show.insert(<span class="st">&#39;1.0&#39;</span>, <span class="st">&#39;&#21313;&#20845;&#36827;&#21046;:&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>) <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span> <span class="op">+</span> <span class="va">self</span>.num_info_hash[tmp_int][<span class="dv">1</span>] <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)
+                <span class="va">self</span>.t_show.insert(<span class="st">&#39;1.0&#39;</span>, <span class="st">&#39;&#20843;&#36827;&#21046;:&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>) <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span> <span class="op">+</span> <span class="va">self</span>.num_info_hash[tmp_int][<span class="dv">0</span>] <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)
+                <span class="va">self</span>.t_show.insert(<span class="st">&#39;1.0&#39;</span>, <span class="st">&#39;&#21313;&#36827;&#21046;:&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>) <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span> <span class="op">+</span> tmp_int <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n\n</span><span class="st">&#39;</span>)
+            <span class="va">self</span>.var_char.<span class="bu">set</span>(<span class="st">&#39;&#39;</span>)
+            <span class="va">self</span>.var_int.<span class="bu">set</span>(<span class="st">&#39;&#39;</span>)
+        <span class="cf">else</span>:
+            <span class="va">self</span>.t_show.insert(<span class="st">&#39;1.0&#39;</span>, <span class="st">&#39;&#35831;&#36873;&#25321;&#25110;&#36755;&#20837;&#39;</span>.decode(<span class="st">&#39;gbk&#39;</span>).encode(<span class="st">&#39;utf8&#39;</span>))
+        
+    <span class="kw">def</span> load_sys(<span class="va">self</span>):
+        f <span class="op">=</span> <span class="bu">file</span>(<span class="st">&#39;asc&#39;</span>)
+        <span class="cf">for</span> line <span class="op">in</span> f:
+            chunk <span class="op">=</span> line.strip().split(<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)
+            <span class="va">self</span>.num_char[<span class="bu">int</span>(chunk[<span class="dv">1</span>])] <span class="op">=</span> chunk[<span class="dv">3</span>]
+            <span class="va">self</span>.char_num[chunk[<span class="dv">3</span>]] <span class="op">=</span> <span class="bu">int</span>(chunk[<span class="dv">1</span>])
+            <span class="va">self</span>.num_info_hash[chunk[<span class="dv">1</span>]] <span class="op">=</span> [chunk[<span class="dv">0</span>], chunk[<span class="dv">2</span>], chunk[<span class="dv">3</span>]]
+            <span class="va">self</span>.char_info_hash[chunk[<span class="dv">3</span>]] <span class="op">=</span> [chunk[<span class="dv">0</span>], chunk[<span class="dv">1</span>], chunk[<span class="dv">2</span>]]
+
+        <span class="va">self</span>.num_char <span class="op">=</span><span class="bu">sorted</span>(<span class="va">self</span>.num_char.iteritems(), key <span class="op">=</span> <span class="kw">lambda</span> asd:asd[<span class="dv">0</span>])
+        <span class="va">self</span>.char_num <span class="op">=</span><span class="bu">sorted</span>(<span class="va">self</span>.char_num.iteritems(), key <span class="op">=</span> <span class="kw">lambda</span> asd:asd[<span class="dv">1</span>])
+
+
+
+
+<span class="kw">def</span> main():
+    d <span class="op">=</span> show()
+    mainloop()
+<span class="cf">if</span> <span class="va">__name__</span><span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:
+    main()</code></pre></div>
+<p>&#25991;&#26412;</p>
+<pre><code>00    0    00    nul
+01    1    01    soh
+02    2    02    stx
+03    3    03    etx
+04    4    04    eot
+05    5    05    enq
+06    6    06    ack
+07    7    07    bel
+10    8    08    bs
+11    9    09    ht
+12    10    0a    nl
+13    11    0b    vt
+14    12    0c    ff
+15    13    0d    er
+16    14    0e    so
+17    15    0f    si
+20    16    10    dle
+21    17    11    dc1
+22    18    12    dc2
+23    19    13    dc3
+24    20    14    dc4
+25    21    15    nak
+26    22    16    syn
+27    23    17    etb
+30    24    18    can
+31    25    19    em
+32    26    1a    sub
+33    27    1b    esc
+34    28    1c    fs
+35    29    1d    gs
+36    30    1e    re
+37    31    1f    us
+40    32    20    sp
+41    33    21    !
+42    34    22    &quot;
+43    35    23    #
+44    36    24    $
+45    37    25    %
+46    38    26    &amp;amp;
+47    39    27    `
+50    40    28    (
+51    41    29    )
+52    42    2a    *
+53    43    2b    +
+54    44    2c    ,
+55    45    2d    -
+56    46    2e    .
+57    47    2f    /
+60    48    30    0
+61    49    31    1
+62    50    32    2
+63    51    33    3
+64    52    34    4
+65    53    35    5
+66    54    36    6
+67    55    37    7
+70    56    38    8
+71    57    39    9
+72    58    3a    :
+73    59    3b    ;
+74    60    3c    &amp;lt;
+75    61    3d    =
+76    62    3e    &amp;gt;
+77    63    3f    ?
+100    64    40    @
+101    65    41    A
+102    66    42    B
+103    67    43    C
+104    68    44    D
+105    69    45    E
+106    70    46    F
+107    71    47    G
+110    72    48    H
+111    73    49    I
+112    74    4a    J
+113    75    4b    K
+114    76    4c    L
+115    77    4d    M
+116    78    4e    N
+117    79    4f    O
+120    80    50    P
+121    81    51    Q
+122    82    52    R
+123    83    53    S
+124    84    54    T
+125    85    55    U
+126    86    56    V
+127    87    57    W
+130    88    58    X
+131    89    59    Y
+132    90    5a    Z
+133    91    5b    [
+134    92    5c    \
+135    93    5d    ]
+136    94    5e    ^
+137    95    5f    _
+140    96    60    &#39;
+141    97    61    a
+142    98    62    b
+143    99    63    c
+144    100    64    d
+145    101    65    e
+146    102    66    f
+147    103    67    g
+150    104    68    h
+151    105    69    i
+152    106    6a    j
+153    107    6b    k
+154    108    6c    l
+155    109    6d    m
+156    110    6e    n
+157    111    6f    o
+160    112    70    p
+161    113    71    q
+162    114    72    r
+163    115    73    s
+164    116    74    t
+165    117    75    u
+166    118    76    v
+167    119    77    w
+170    120    78    x
+171    121    79    y
+172    122    7a    z
+173    123    7b    {
+174    124    7c    |
+175    125    7d    }
+176    126    7e    ~
+177    127    7f    del</code></pre>
+<h3 id="&#21442;&#32771;&#36164;&#26009;">&#21442;&#32771;&#36164;&#26009;</h3>
+<p>&#36890;&#29992;&#25511;&#20214;&#23646;&#24615;: http://my.oschina.net/TyLucifer/blog/112961</p>
+</body>
+</html>
