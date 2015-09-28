@@ -1,0 +1,1286 @@
+LOCUS       JQ182207                1509 bp    DNA     linear   PLN 26-JUN-2012
+DEFINITION  Cypripedium irapeanum tRNA-Lys (trnK) gene, partial sequence; and
+            maturase K (matK) gene, partial cds; chloroplast.
+ACCESSION   JQ182207
+VERSION     JQ182207.1  GI:392507301
+KEYWORDS    .
+SOURCE      chloroplast Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1  (bases 1 to 1509)
+  AUTHORS   Guo,Y.Y., Luo,Y.B., Liu,Z.J. and Wang,X.Q.
+  TITLE     Evolution and biogeography of the slipper orchids: eocene
+            vicariance of the conduplicate genera in the old and new world
+            tropics
+  JOURNAL   PLoS ONE 7 (6), E38788 (2012)
+   PUBMED   22685605
+  REMARK    Publication Status: Online-Only
+REFERENCE   2  (bases 1 to 1509)
+  AUTHORS   Guo,Y.-Y., Luo,Y.-B., Liu,Z.-J. and Wang,X.-Q.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (30-NOV-2011) State Key Laboratory of Systematic and
+            Evolutionary Botany, Institute of Botany, Chinese Academy of
+            Sciences, 20 Nanxincun, Xiangshan, Beijing 100093, China
+FEATURES             Location/Qualifiers
+     source          1..1509
+                     /organism="Cypripedium irapeanum"
+                     /organelle="plastid:chloroplast"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:49711"
+     gene            <1..>1509
+                     /gene="trnK"
+                     /note="tRNA-Lys"
+     intron          <1..>1509
+                     /gene="trnK"
+     gene            148..1488
+                     /gene="matK"
+     CDS             148..1488
+                     /gene="matK"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="maturase K"
+                     /protein_id="AFM76995.1"
+                     /db_xref="GI:392507302"
+                     /translation="MYQQNYLISSVNDSNQKGFWGHRNFFSSHFSSQMVSEGFGVILE
+                     IPFSSQLVSSLEEKKIPKSHNLRSIHSIFPFLEDKFLHLNYVSDLLIPHPIHLEILVQ
+                     ILQCWIKDVPSLHLLRLLFHEYHNLNSLITSNKLIYAFSKIKKRFLWFLYNSYVYECE
+                     YLFQFLRKQSSYLRSTSSGVFLERTHFYVKIEHLIVVCCNSFHRILCFLKDPFMHYVR
+                     YQGKAILASKGTPILMKKWKFHLVNFWQSYFHFWSQPYRIHIKQLSNYSFSFMGYFSS
+                     VLENPLVVRNQMLENSFLINIMTKKLDTIAPVISLIVSLSKAQFCTVLGHPISKPIWT
+                     DLSDSDILDRFCRICRNLCRYHSGSSKKQVLYRIKYILRLSCARTLARKHKSTVRTFM
+                     RRLGSGLLEEFFMEEEQVLSLIFLQEIPFPLHGSHRDRIWYLDIIHINDLVDHS"
+ORIGIN      
+        1 ttcctatatc cgctactcct tcaggagtat atttactcac ttgctcatga tcataacttc
+       61 aatagtttga ttttttacga acctgtggaa atttttggtt atgacaataa atctagttta
+      121 gtacttgtga aacgtttaat tactcgaatg tatcaacaga attatttgat ttcttcggtt
+      181 aatgattcta accaaaaagg attttggggg cacaggaatt ttttttcttc tcatttttct
+      241 tctcaaatgg tatcagaagg ttttggagtc attctggaaa ttccattctc gtcgcaatta
+      301 gtatcttctc ttgaagaaaa aaaaatacca aaatctcata atttacgatc tattcattca
+      361 atatttccct ttttagagga caaattttta catttgaatt atgtgtcaga tctactaata
+      421 ccccatccca tccatctgga aatcttggtt caaatccttc aatgctggat caaggatgtt
+      481 ccttctttgc atttattgcg attgcttttc cacgaatatc ataatttgaa tagtctcatt
+      541 acttcaaata aattaattta cgccttttca aaaataaaga aaagattcct ttggttccta
+      601 tataattctt atgtatatga atgcgaatat ctattccagt ttcttcgtaa acagtcttct
+      661 tatttacgat caacatcttc tggagtcttt cttgagcgaa cacatttcta tgtgaaaata
+      721 gaacatctta tagtagtgtg ttgtaattct tttcatagga tcctatgctt tctcaaggat
+      781 cctttcatgc attatgttcg atatcaagga aaagcaattc tggcttcaaa gggaactcct
+      841 attctgatga agaaatggaa atttcatctt gtgaattttt ggcaatctta ttttcacttt
+      901 tggtctcaac cgtataggat ccatataaag caattatcca actattcctt ctcttttatg
+      961 gggtattttt caagtgtact agaaaatcct ttggtagtaa gaaatcaaat gctagagaat
+     1021 tcatttctaa taaatattat gactaagaaa ttagatacca tagcccctgt tatttctctt
+     1081 attgtatcat tgtcgaaagc tcaattttgt actgtattgg gtcatcctat tagtaaacca
+     1141 atctggaccg atttatcgga ttctgatatt cttgatcgat tttgccggat atgtagaaat
+     1201 ctttgtcgtt atcacagcgg atcctcaaaa aaacaggttt tgtatcgtat aaagtatata
+     1261 cttcgacttt cgtgtgctag aactttggcg cggaaacata aaagtacagt acgcactttt
+     1321 atgcgaagat taggttcggg attattagaa gaattcttta tggaagaaga acaagttctt
+     1381 tctttaatct tcctccaaga aattcctttt cccttacacg gatcacatag agaccgtatt
+     1441 tggtatttgg acattatcca tatcaatgat ctggtggatc attcatgatt gttcatgata
+     1501 ccttttcat
+//
+
+LOCUS       JQ182169                1734 bp    DNA     linear   PLN 20-JUN-2012
+DEFINITION  Cypripedium irapeanum clone 4 1-aminocyclopropane-1-carboxylate
+            oxidase (ACO) gene, exons 2 through 4 and partial cds.
+ACCESSION   JQ182169
+VERSION     JQ182169.1  GI:387569821
+KEYWORDS    .
+SOURCE      Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1  (bases 1 to 1734)
+  AUTHORS   Guo,Y.Y., Luo,Y.B., Liu,Z.J. and Wang,X.Q.
+  TITLE     Evolution and biogeography of the slipper orchids: eocene
+            vicariance of the conduplicate genera in the old and new world
+            tropics
+  JOURNAL   PLoS ONE 7 (6), E38788 (2012)
+   PUBMED   22685605
+  REMARK    Publication Status: Online-Only
+REFERENCE   2  (bases 1 to 1734)
+  AUTHORS   Guo,Y.-Y., Luo,Y.-B., Liu,Z.-J. and Wang,X.-Q.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (30-NOV-2011) State Key Laboratory of Systematic and
+            Evolutionary Botany, Institute of Botany, Chinese Academy of
+            Sciences, 20 Nanxincun, Xiangshan, Beijing 100093, China
+FEATURES             Location/Qualifiers
+     source          1..1734
+                     /organism="Cypripedium irapeanum"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:49711"
+                     /clone="4"
+     gene            <1..>1734
+                     /gene="ACO"
+     mRNA            join(<228..454,566..902,1507..>1734)
+                     /gene="ACO"
+                     /product="1-aminocyclopropane-1-carboxylate oxidase"
+     CDS             join(<228..454,566..902,1507..>1734)
+                     /gene="ACO"
+                     /codon_start=1
+                     /product="1-aminocyclopropane-1-carboxylate oxidase"
+                     /protein_id="AFJ80117.1"
+                     /db_xref="GI:387569822"
+                     /translation="LLNHGISHELMDRVEAETEVHYRRFREQQFKEFAAKTLEAGEKV
+                     DGDNLDWESTFYLRHLPVSNIAEVPDLDDDYRKTMKEFAVELEKLAERLLDLLCEDLG
+                     LEKGYLKRAFQGSDGRPTFGTKVSNYPPCPKPELIKGLRAHADAGGIILLFQDDQVSG
+                     LQLLKDGSWIDVPPLRHSIVVNIGDQLEVITNGRYKSVMHRVVAQSNGNRMSIASFYN
+                     PGSDAVIFPASALVEEAEEKEEAYPKFVFEDYMKLYLQQKFQAKEP"
+     exon            228..454
+                     /gene="ACO"
+                     /number=2
+     exon            566..902
+                     /gene="ACO"
+                     /number=3
+     exon            1507..>1734
+                     /gene="ACO"
+                     /number=4
+ORIGIN      
+        1 gtgaacgctt gctcctttct tccaacagaa ttatttcata actggaaatt gcatatcacg
+       61 aggaaagaag catcatgcac ctagttacgt cgtatcatct gcaagaatct caaggtgtaa
+      121 tgtgcaatga tgcagccttc ctcatgacag gaattatctt atgctaattt tatgctttgt
+      181 cattggttat ccattgttaa gtaactcatg tggtggctgg aatgcagctt ctgaaccacg
+      241 ggatctcgca cgaactcatg gatagggtgg aggccgagac cgaggtgcac taccgtcggt
+      301 tccgtgagca gcagttcaag gagttcgctg caaagaccct tgaggccggc gagaaggtcg
+      361 acggtgacaa cctcgactgg gagagcacct tctacctccg ccaccttccc gtctccaaca
+      421 tcgccgaggt ccccgacctc gatgacgact accggtacca ctgcaaacat atatatctca
+      481 atctaagaag cctacgaagt cttaatccac cactgagcat atctgatcta tctgtctctc
+      541 atgtgtgcgt tcatatgtat tacaggaaga cgatgaagga gtttgctgtg gagctagaga
+      601 agctggcgga gaggctgctt gatctgctgt gtgaggactt ggggctggag aaggggtacc
+      661 tgaagagggc cttccaaggg tcggacgggc ggccgacctt cgggacaaag gtgagcaact
+      721 acccaccgtg cccgaagccc gagctcatca aggggttgcg agctcacgcc gacgccggcg
+      781 gcatcatctt gctctttcag gatgaccagg tcagcggcct ccagctcctc aaggacggca
+      841 gctggatcga cgtccccccg ctccgccact ccatcgtcgt caacatcggc gaccagcttg
+      901 aggtatatgc tgcttcttgc ccttctctat cccatttgat gcttggtttc ttattccatt
+      961 tagagcatgg tacgagttat gttattctaa cctttccttg ttttaatttt ctcatggagg
+     1021 agaaatttcc gaaggaataa gctccatgaa attttaaacc tccaattgtt agacagttag
+     1081 aatagtcttt ccaagacaat agctgccttt caccgattca tgccatataa gacaaattag
+     1141 cagagtgttg attgcttcga taaaaaaaaa ttaaaaaaat ttgagcttta agagataaaa
+     1201 gagcgtgcct caaagcaact tattgtctat ttctcctctg tttttctatc ttcttctcct
+     1261 catctcactt tttttcctcc cttgctgtca gactgcatgg actgaaacaa attttccatt
+     1321 actactgtca tgctccaatt aaataataca tctcagaaaa tgccactctt tactatatct
+     1381 tgaaaaaaac ttgattgcaa tcagctttct gctttcagtc acttgtccgc atcttactgt
+     1441 aagaaataaa cacaaacagc atagaacaaa ttaagcctta atgaccatgg gcacatatta
+     1501 tggcaggtta tcacaaacgg gaggtacaag agtgtgatgc acagagtggt ggcgcagagc
+     1561 aatggcaacc ggatgtcgat cgcctcgttc tacaacccag ggagcgatgc tgtgatcttc
+     1621 ccggcgtcgg cgcttgtgga ggaggcagag gagaaggagg aggcctaccc caagtttgtc
+     1681 ttcgaggact acatgaagct gtaccttcag caaaagtttc aggccaagga gcca
+//
+
+LOCUS       JQ182297                1479 bp    DNA     linear   PLN 20-JUN-2012
+DEFINITION  Cypripedium irapeanum hypothetical protein RF2 (ycf2) gene, partial
+            cds; chloroplast.
+ACCESSION   JQ182297
+VERSION     JQ182297.1  GI:387569783
+KEYWORDS    .
+SOURCE      chloroplast Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1  (bases 1 to 1479)
+  AUTHORS   Guo,Y.Y., Luo,Y.B., Liu,Z.J. and Wang,X.Q.
+  TITLE     Evolution and biogeography of the slipper orchids: eocene
+            vicariance of the conduplicate genera in the old and new world
+            tropics
+  JOURNAL   PLoS ONE 7 (6), E38788 (2012)
+   PUBMED   22685605
+  REMARK    Publication Status: Online-Only
+REFERENCE   2  (bases 1 to 1479)
+  AUTHORS   Guo,Y.-Y., Luo,Y.-B., Liu,Z.-J. and Wang,X.-Q.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (30-NOV-2011) State Key Laboratory of Systematic and
+            Evolutionary Botany, Institute of Botany, Chinese Academy of
+            Sciences, 20 Nanxincun, Xiangshan, Beijing 100093, China
+FEATURES             Location/Qualifiers
+     source          1..1479
+                     /organism="Cypripedium irapeanum"
+                     /organelle="plastid:chloroplast"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:49711"
+     gene            <1..>1479
+                     /gene="ycf2"
+     CDS             <1..>1479
+                     /gene="ycf2"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="hypothetical protein RF2"
+                     /protein_id="AFJ80098.1"
+                     /db_xref="GI:387569784"
+                     /translation="DRYPTSELNSFWLKNLFLVVLEQLGDSLEEIRGSASGGNMLLGG
+                     GPAYGVKSIRSKNKYWKINLIDLVSIIPNPINRIIFSRNTRHLSRTSKEIYSLIRKRK
+                     NVNGDWIDEKIEFWVANSDSIDDEEREFLVQFSTLTTEKGIDQILLSLTHSDHLSKND
+                     SGYQMIEQPGSISLRYLVDIHQKDLMNYEFNRSCLAERRIFLAHYQTITYSQTSCGAN
+                     SFHSPSPHGKPFSLRLALSPSRGILVIGSIGTGRSCLVKYLATNSYVPFITVFPNKFL
+                     DDKPKGYLIDDIDIDDSDDIDIDDSDDIDDDLDIDTELLTMTNVLTMYMTPKIDRFDI
+                     TLQFELAKAMSPCIIWIPNIHDLHVNESNYLSLGLLENYLSRDCERCSTGKILVIAST
+                     HIPQKVDPALIAPNKLNTCIKIRRLLLPQQRKHFFILSYTRGFHLEKKMFHTNGFGSI
+                     TMGSNARDLVALINEALSISITQKKSIIETNTIRSALHRKTWH"
+ORIGIN      
+        1 gataggtatc ctacatctga actgaattct ttctggttaa agaatctctt tctagttgtt
+       61 ctggaacaat taggagattc tctggaagaa atacggggtt ctgcttctgg tggcaacatg
+      121 ctattgggtg gtggtcccgc ttatggggtc aaatcaatac gttctaagaa taaatattgg
+      181 aagatcaatc tcatcgatct tgtaagtatc ataccaaatc ccatcaatcg aatcattttt
+      241 tcgagaaata cgagacatct aagtcgtaca agtaaagaga tctattcatt gataagaaaa
+      301 agaaaaaacg tgaacggtga ttggattgat gagaaaatag aattctgggt cgcgaacagt
+      361 gattcgattg atgatgaaga aagagaattc ttggttcagt tctccacctt aacgacagaa
+      421 aaagggattg atcaaattct attgagtctg actcatagtg atcatttatc aaagaatgac
+      481 tctggttatc aaatgattga acaaccggga tcaatttcct tacgatactt agttgacatt
+      541 catcaaaagg atctaatgaa ttatgagttc aatagatcct gtttagcaga aagacggata
+      601 ttccttgctc attatcagac aatcacttat tcacaaacct cgtgtggggc taatagtttt
+      661 cattccccat ctcctcatgg aaaacccttt tcgctccgct tagccctatc cccttctaga
+      721 ggtattttag tgataggttc tataggaact ggacgatcct gtttggtcaa atacctagcg
+      781 acaaactcct atgttccttt cattacggta tttccgaaca agttcctgga tgacaagcct
+      841 aaaggttatc ttattgatga tatcgatatt gatgatagtg acgatatcga tattgatgat
+      901 agtgacgata ttgatgatga ccttgatatt gatacggagc tgctaactat gacgaatgtg
+      961 ctaactatgt atatgacgcc gaaaatagac cgatttgata tcacccttca attcgaatta
+     1021 gcaaaagcaa tgtctccttg cataatatgg attccaaaca ttcatgatct gcatgtgaat
+     1081 gagtcgaatt acttatccct cggtctatta gagaactatc tctccaggga ttgtgaaaga
+     1141 tgttccactg gaaagattct tgttattgct tcgactcata ttccccaaaa agtggatccc
+     1201 gctctaatag ctccgaataa attaaataca tgcattaaga tacgaaggct tcttcttcca
+     1261 caacaacgaa agcacttttt cattctttca tatactaggg gatttcactt ggaaaagaag
+     1321 atgttccata ctaatggatt cgggtccata accatgggtt ccaatgcacg agatcttgta
+     1381 gcacttatca atgaggccct atcaattagt attacacaga agaaatccat tatagaaact
+     1441 aatacaatta gatcagctct tcatagaaaa acttggcat
+//
+
+LOCUS       JQ182279                1621 bp    DNA     linear   PLN 20-JUN-2012
+DEFINITION  Cypripedium irapeanum hypothetical protein Ycf1 (ycf1) gene,
+            partial cds; chloroplast.
+ACCESSION   JQ182279
+VERSION     JQ182279.1  GI:387569747
+KEYWORDS    .
+SOURCE      chloroplast Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1  (bases 1 to 1621)
+  AUTHORS   Guo,Y.Y., Luo,Y.B., Liu,Z.J. and Wang,X.Q.
+  TITLE     Evolution and biogeography of the slipper orchids: eocene
+            vicariance of the conduplicate genera in the old and new world
+            tropics
+  JOURNAL   PLoS ONE 7 (6), E38788 (2012)
+   PUBMED   22685605
+  REMARK    Publication Status: Online-Only
+REFERENCE   2  (bases 1 to 1621)
+  AUTHORS   Guo,Y.-Y., Luo,Y.-B., Liu,Z.-J. and Wang,X.-Q.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (30-NOV-2011) State Key Laboratory of Systematic and
+            Evolutionary Botany, Institute of Botany, Chinese Academy of
+            Sciences, 20 Nanxincun, Xiangshan, Beijing 100093, China
+FEATURES             Location/Qualifiers
+     source          1..1621
+                     /organism="Cypripedium irapeanum"
+                     /organelle="plastid:chloroplast"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:49711"
+     gene            <1..>1621
+                     /gene="ycf1"
+     CDS             <1..>1621
+                     /gene="ycf1"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="hypothetical protein Ycf1"
+                     /protein_id="AFJ80080.1"
+                     /db_xref="GI:387569748"
+                     /translation="EWRNRINQRCMIQNQNKESIQLDLYKKYQFIHSMKKNDYAADSF
+                     MSQKEKWKKHYRYDLLSYKYISPPNSYIYGSTLEFEINGDREIPYHFNTSKPESFYVL
+                     VSIPSNNYLEKGYIIDKNKNLDRKYFNCRILPFFFRKNIDIEIWTNAHIGMKIQKNTK
+                     TEINNLKKMEKKDLFYTTIHQEQEIKPCNQKRNFFDCMGMNQEGFSDTASNHNTISNL
+                     EPWFFPEFVLLFDVYKIQPWIIPIKSLFFNFNKNEKINLNPNKNPHRSSNKKKDLELG
+                     NYKQEQQGQGNLVSNLRKQKNKKAVEEDYARLEIEIKKGIKKKQYQYKYKNKKQMELD
+                     SFLKKYLLFQLRWTDPLNQRIMNNIRVYCLLLRLINPKEIAISSIQRGEINLDQMLIQ
+                     RDLVLTELIRKGILIIEPIRLSIRSDGKSIVYQTMDISLVDKKKHQTNRKYKKKRHIE
+                     KEGFEKSIPRHSHLFLSEDKNHYDFLVPENILSPRRRREFRIRICFNSQNWNVLDRNP
+                     RFFNENKIINWGQFLNQDKHINTDAKNFIKLK"
+ORIGIN      
+        1 gaatggagaa atagaatcaa tcaacgctgt atgattcaaa accaaaacaa ggaatcaatc
+       61 caattggatt tatataaaaa ataccaattc attcactcca tgaaaaaaaa tgactatgca
+      121 gcggattctt ttatgagtca aaaagagaaa tggaaaaaac attacagata tgatctttta
+      181 tcatataaat acataagtcc tcctaattca tatatttatg gatcaacatt agaatttgaa
+      241 ataaacgggg accgagaaat tccatatcat ttcaatacat cgaaacccga atcattttat
+      301 gtattggtaa gtatacctag taataattat ctagaaaaag gatatattat tgataagaat
+      361 aaaaatttgg atagaaaata ttttaattgt agaattcttc cttttttttt tagaaagaat
+      421 attgatattg agatctggac caatgcacat attggcatga agattcagaa aaatactaag
+      481 actgaaatta ataatttaaa aaaaatggaa aaaaaggatc ttttttatac tacgattcat
+      541 caagagcaag agatcaaacc atgcaatcaa aaaagaaact tttttgattg catgggaatg
+      601 aatcaagagg ggttctccga taccgcatca aatcataata ctatatccaa tctggaacct
+      661 tggttctttc cagaatttgt gctacttttt gacgtatata agattcaacc ttggatcatt
+      721 ccaatcaaat cactcttttt taattttaat aaaaatgaaa aaataaatct aaatccaaat
+      781 aaaaatcctc atagatcatc taataaaaaa aaagatcttg aattaggaaa ttacaagcag
+      841 gaacaacagg gtcaaggaaa tcttgtatcg aatctacgaa aacaaaagaa taaaaaagct
+      901 gttgaagaag attacgcaag attagaaata gaaattaaaa agggtataaa aaaaaaacaa
+      961 tatcaatata aatataagaa caaaaaacaa atggaactag attccttttt gaaaaaatat
+     1021 ttactttttc aattaagatg gactgatccc ttgaatcaaa gaataatgaa caatatcagg
+     1081 gtatattgtc tcctacttag actgataaat ccaaaagaaa ttgccatatc ctcgattcaa
+     1141 agaggtgaaa taaatctaga ccaaatgcta attcaaaggg acctagttct tacagaattg
+     1201 ataagaaagg gaatattgat tattgaacca attcgtctat ctataagaag cgacggaaaa
+     1261 tctattgtat atcaaactat ggatatttca ttggtcgata agaagaagca ccaaacgaat
+     1321 aggaaataca aaaaaaaaag acatattgag aaagaggggt ttgaaaaatc cattccacgc
+     1381 cacagccact tatttttgag tgaagacaaa aatcattatg atttccttgt tcctgaaaat
+     1441 attctatctc ctagacgtcg gagagaattt agaattagaa tttgtttcaa ttcgcagaat
+     1501 tggaatgttt tggatagaaa tccaagattt ttcaatgaaa acaaaataat aaactgggga
+     1561 caatttttga atcaggacaa gcatattaac accgatgcaa aaaatttcat taaattaaaa
+     1621 t
+//
+
+LOCUS       JQ182261                2646 bp    DNA     linear   PLN 20-JUN-2012
+DEFINITION  Cypripedium irapeanum RNA polymerase beta subunit (rpoC2) gene,
+            partial cds; chloroplast.
+ACCESSION   JQ182261
+VERSION     JQ182261.1  GI:387569711
+KEYWORDS    .
+SOURCE      chloroplast Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1  (bases 1 to 2646)
+  AUTHORS   Guo,Y.Y., Luo,Y.B., Liu,Z.J. and Wang,X.Q.
+  TITLE     Evolution and biogeography of the slipper orchids: eocene
+            vicariance of the conduplicate genera in the old and new world
+            tropics
+  JOURNAL   PLoS ONE 7 (6), E38788 (2012)
+   PUBMED   22685605
+  REMARK    Publication Status: Online-Only
+REFERENCE   2  (bases 1 to 2646)
+  AUTHORS   Guo,Y.-Y., Luo,Y.-B., Liu,Z.-J. and Wang,X.-Q.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (30-NOV-2011) State Key Laboratory of Systematic and
+            Evolutionary Botany, Institute of Botany, Chinese Academy of
+            Sciences, 20 Nanxincun, Xiangshan, Beijing 100093, China
+FEATURES             Location/Qualifiers
+     source          1..2646
+                     /organism="Cypripedium irapeanum"
+                     /organelle="plastid:chloroplast"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:49711"
+     gene            <1..>2646
+                     /gene="rpoC2"
+     CDS             <1..>2646
+                     /gene="rpoC2"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="RNA polymerase beta subunit"
+                     /protein_id="AFJ80062.1"
+                     /db_xref="GI:387569712"
+                     /translation="HVRAPSNGKIKFDEDLVHPTRTRHGHPAFLCFIDLYVTIESRDI
+                     IHNVNIPTKSLILVQNDQYVESEQVIAEIRAGTSTFRFKERVQKHIYSESEGEMHWST
+                     DVHHAPEYPYSNVHLLPKTSHLWILAVGLCRSSIVSFSLHKDQDQMNSNSFSVEERYI
+                     FDFSLTNDQVRHKLLDTFSKSKKDRKILEYSKPYRIISNGHWNLIDPSIRQENSDDSL
+                     AKKRRNRFVIPLQYDQEREKKLIPSFGISIKIPINGILRRNSILAYFDDPRYRRNSSG
+                     ITKYGIVEVDSIVKKEDLIEYRGAKEFNPKYQMQMRVDRFFFIPEEVHIFPGSSPIMV
+                     RNNSIVGVDTRLALNINTRSRVGGLVRVERKKKSIELKIFSGDIHFPGETDKISRHSG
+                     ILIPPGMEKKNSKGSKKFKNWIYVQRITPIKKKYFVLVRPVVTYEISDGINLATLFPQ
+                     DLLQEKDNVQLRIVNYILYGNGKSIRGISHTSIQLVRACLVLNWDQEKRGSIEEEIHA
+                     SFVEIRANDMLRDFIRIELVKSTISYTVKRYDTPGSALISNIGLDRTNINPFDSKAKT
+                     QSFPQHQGTLGTLLNRNKECQSFRILSSSNCSRIGPFNTSRYNNATKESYPMNPIRDL
+                     LGPLGTIVPKIANPCSSYYLITYNQIFLKKYLLLDNFQQTFQVLQFQYCFLDENRRIY
+                     NPDPFSNIIWNSFHLNWCFLHHDYCEEAWTIISLGLFLCENVCLLKYGSRIKKSGQIF
+                     IVHVDSLVIRSAKPYLVTPGATVHGHYGETFYEGDTLITFIYEKSRSGDITQGLPKVE
+                     QILEVRSIDSISMNLERRVEGWDERIRRILGIPWGFLIGAELTIAQSRISLVNKIQKV
+                     YRSQGVQIHNRHIEIIVRQVTSKVLV"
+ORIGIN      
+        1 catgtacgag ctccctctaa cggaaaaata aaatttgatg aggatttggt tcatcccaca
+       61 cgtacccgtc atgggcatcc tgcttttcta tgttttatag acttgtatgt aactattgag
+      121 agtcgagata ttatacataa tgttaatatt ccaacaaaaa gtttgatttt agttcaaaat
+      181 gatcaatatg tagaatcgga acaagtgatt gccgagattc gtgccggaac gtccactttt
+      241 cgttttaagg agagggttca aaaacatatt tattctgagt cagaaggaga aatgcactgg
+      301 agtactgatg tgcatcatgc gcccgaatat ccatatagta atgttcatct attaccaaaa
+      361 acaagtcatt tatggatatt agcagtaggt ctatgcagat ccagtatagt gtctttttca
+      421 ctccacaaag atcaagatca aatgaattct aattcttttt ctgtcgaaga aagatatatc
+      481 tttgatttct cactgactaa tgatcaagta agacataaat tgttggatac ttttagtaaa
+      541 agtaaaaagg ataggaaaat tcttgagtat tcaaaacctt atcgaatcat atccaatggt
+      601 cattggaatc tcatagatcc ctctattcgt caagagaatt ccgatgattc cttggcgaaa
+      661 aagcgaagaa atagattcgt gattccctta caatatgatc aagaacgaga aaagaaacta
+      721 ataccctctt ttggtatttc tattaaaata cctataaatg gtattttacg tagaaatagt
+      781 attcttgctt attttgatga tccgcgatac agaagaaaca gttcgggaat tactaaatat
+      841 gggattgtcg aagtagattc aatcgtaaaa aaagaggatt tgattgagta tcgaggagca
+      901 aaagaattta atccaaaata ccaaatgcaa atgagagtag atcgattttt tttcattccc
+      961 gaggaagtgc atatcttccc cggatcttcg cccataatgg tccggaacaa tagtatcgtt
+     1021 ggagtagata cacgacttgc tttaaatata aatacaagaa gccgagtagg tggattagtc
+     1081 cgagtggaga gaaaaaaaaa gagtattgaa ctgaaaattt tttctggaga tattcatttt
+     1141 cctggagaga cggataaaat atctaggcac agcggcattt tgataccacc aggaatggaa
+     1201 aaaaaaaatt ctaagggatc aaaaaaattt aaaaattgga tctatgtcca acggatcaca
+     1261 cctattaaaa aaaagtattt tgttttggtt cggcccgtag tcacatatga aatatccgat
+     1321 gggataaatt tagcaacact tttccctcag gatctattgc aggaaaagga taatgtacaa
+     1381 cttcgaattg tcaattatat actttatgga aatggcaagt caattcgagg aatttctcac
+     1441 acaagtattc aattagttcg ggcttgctta gtattgaatt gggaccaaga aaaaaggggt
+     1501 tctatagaag aagagattca tgcttccttt gttgaaataa gggcaaatga tatgcttcgt
+     1561 gatttcatca gaattgagtt agtaaagtcc actatttcgt ataccgtaaa aaggtatgat
+     1621 acgccaggtt cggcattgat ttccaatatt ggattagatc gtaccaatat caatcctttt
+     1681 gattccaagg cgaagactca atcatttccc caacatcagg gaactcttgg tacgttgttg
+     1741 aatcgaaata aggaatgcca atctttccga attttgtcat catccaattg ttctcgaatt
+     1801 ggccccttca atacttcgag atataataat gcgacaaaag aatcgtatcc catgaatcca
+     1861 attagggatt tgttgggtcc cttagggact attgtaccta aaatagcgaa tccttgttca
+     1921 tcttactatt taataactta taatcaaatc tttttaaaga aatatttgtt acttgacaat
+     1981 tttcaacaga ctttccaagt acttcaattt caatactgtt tcctagatga aaataggagg
+     2041 atttataatc ccgatccatt tagtaacatc atttggaatt cattccattt gaattggtgt
+     2101 tttctccatc acgattattg tgaagaggca tggacaataa ttagccttgg cctatttctt
+     2161 tgtgaaaatg tatgtctatt gaaatacgga tcacgcataa aaaaatctgg tcaaattttc
+     2221 attgttcatg ttgactcttt agttataaga tcagctaagc cctatttggt cactccggga
+     2281 gcaactgttc atggccatta tggggaaacc ttttatgaag gagatacatt aattacattt
+     2341 atatatgaaa aatcgagatc cggcgatatc acgcaaggtc ttccaaaagt ggaacaaatc
+     2401 ttagaagttc gttcaattga ttcaatatcg atgaacctcg aaaggagagt tgaaggttgg
+     2461 gacgaacgta tccgaaggat tcttgggatc ccctggggat tcttgattgg agctgaacta
+     2521 accatagccc aaagtcgtat ctctttggtt aataagatcc aaaaggttta tcgatcccag
+     2581 ggggtacaga tccataatag acatatagag attattgtac gtcaagtaac atcaaaagtg
+     2641 ttggtt
+//
+
+LOCUS       JQ182243                2049 bp    DNA     linear   PLN 20-JUN-2012
+DEFINITION  Cypripedium irapeanum RNA polymerase beta' chain subunit-1 (rpoC1)
+            gene, partial cds; chloroplast.
+ACCESSION   JQ182243
+VERSION     JQ182243.1  GI:387569675
+KEYWORDS    .
+SOURCE      chloroplast Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1  (bases 1 to 2049)
+  AUTHORS   Guo,Y.Y., Luo,Y.B., Liu,Z.J. and Wang,X.Q.
+  TITLE     Evolution and biogeography of the slipper orchids: eocene
+            vicariance of the conduplicate genera in the old and new world
+            tropics
+  JOURNAL   PLoS ONE 7 (6), E38788 (2012)
+   PUBMED   22685605
+  REMARK    Publication Status: Online-Only
+REFERENCE   2  (bases 1 to 2049)
+  AUTHORS   Guo,Y.-Y., Luo,Y.-B., Liu,Z.-J. and Wang,X.-Q.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (30-NOV-2011) State Key Laboratory of Systematic and
+            Evolutionary Botany, Institute of Botany, Chinese Academy of
+            Sciences, 20 Nanxincun, Xiangshan, Beijing 100093, China
+FEATURES             Location/Qualifiers
+     source          1..2049
+                     /organism="Cypripedium irapeanum"
+                     /organelle="plastid:chloroplast"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:49711"
+     gene            <1..>2049
+                     /gene="rpoC1"
+     CDS             join(<1..273,1051..>2049)
+                     /gene="rpoC1"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="RNA polymerase beta' chain subunit-1"
+                     /protein_id="AFJ80044.1"
+                     /db_xref="GI:387569676"
+                     /translation="DGLFCERISGPIKSGICACGNYRVIGAEKEDPKSCEECGVEFVD
+                     SRIRRYQMGYIKLACPVTHVWYLKRLPSYIANLLDKPLRELEGLVYCNFSFARSIAKK
+                     PTFLRLRGSFEYEIQSWKYSIPLFFTTQGFETFRNREISTGAGAIREQLADSDLRIIT
+                     DNSLVEWKELGDEESAGNEWEDKKIRRRKDFLVRRIELAKHFIRTNVDPEWMVLCLLP
+                     VLPPELRPIIQIDGGKLMSSDINELYRRVIYRNNTLTDLLATSRSTPGELVMCQEKLV
+                     QEAVDTLLDNGVRGQPMRDGHNKVYKSFSDVIEGKEGRFRETLLGKRVDYSGRSVIVV
+                     GPLLSLHQCGLPREIAIELFQTFVIRGLIRQHVASNTGIAKSKIREKEPIVWEILQEV
+                     MRGHPILLNRAPTLHRLGIQAFQPILVEGRAI"
+ORIGIN      
+        1 gatggattgt tttgtgaaag aatttctgga cccataaaaa gtggtatttg tgcttgtgga
+       61 aattaccgag ttattggggc tgaaaaagaa gacccgaaat cttgtgaaga atgcggggtg
+      121 gaatttgttg attctcggat acgaaggtac caaatgggat acatcaaact cgcatgtcca
+      181 gtgactcatg tgtggtattt gaaacgcctt cctagttata ttgcgaatct tttagataaa
+      241 ccccttaggg aattagaggg cctagtatat tgcgatgtgt gatttgatcg aaattttcat
+      301 ttgacagatt cggactgaga aactgtcatc ctattcaatc tgattgggat gcccccggct
+      361 ctgacgtgtg tcttgggagg aggaacatga agctcagaat tttgggtgca ttcaagactt
+      421 caaaatggaa gtaaggggga attgatccat ggtcgattac gtaacagata atataggaat
+      481 agctagttat acctcgtgaa aaaaaaaaaa aacttttttt tgggaaattt ttttgttgga
+      541 attaaacttt ccttttcttt taaagaaaaa tcctgtccag gcaagcgaat atggcatggt
+      601 tacaggagcc tatctatcgc atatatgctt caaggtacat catggcataa ccatcgaggt
+      661 gagtagggac ctaaaaaaga tcgaatggaa caataaaata tatagacaaa taaatccttt
+      721 aagagtcaaa aaatattctt ttcatttcag ggaattcatc atttgagggg aagtagacta
+      781 ctcaagaatt tcacatttag ttttttcgta aacataaaag aaagtaaaaa agttagagtg
+      841 aaaataaaat aagataagaa tgaatcaatg aaaggctggt cctcactggg aacttgagta
+      901 aagagtagct ttttgtagga ttttttcgaa caaagtttaa aaagaagaag aacccctttc
+      961 tttatttggt gtaactactc gagccggatg agaggaaacc ttcacgtccg attgtgaggg
+     1021 ggggaatcca atcctatagg aacctatctc aatttttctt ttgctaggtc catagctaaa
+     1081 aaacctactt tcttacgatt acgaggttca ttcgaatatg aaatccaatc ctggaaatac
+     1141 agcatcccac ttttttttac tactcaaggt ttcgagacat ttcgaaatcg agaaatctct
+     1201 acgggggcag gtgctattag agaacaatta gccgattcgg atttgcgaat tattacagat
+     1261 aattctttgg tagaatggaa ggaattagga gacgaagagt ccgcaggaaa tgaatgggaa
+     1321 gataaaaaaa ttagaagaag aaaagatttt ttggttaggc gcatagaatt agctaaacat
+     1381 tttattcgaa caaatgtaga cccagaatgg atggttttgt gcctattacc agttcttcct
+     1441 cctgagttga gaccaatcat tcagatagac gggggtaaac taatgagttc ggatattaat
+     1501 gaactctata gaagagtcat ctatcggaac aatactctta ccgatctatt agcaacaagt
+     1561 agatctacac caggggaatt agtaatgtgt caggagaaat tggtacaaga ggccgtggat
+     1621 acacttcttg ataatggggt ccgtggacaa cccatgagag atggtcataa taaagtttat
+     1681 aagtcatttt ccgatgtaat tgaaggcaaa gaaggaagat ttcgtgagac tctgcttggt
+     1741 aaacgggtcg attattcggg gcgttccgtc attgtcgtgg gtcctttgct ttcattacat
+     1801 caatgtggat tacctcgaga aatagcaata gagctcttcc aaacatttgt aattcgtggt
+     1861 ctaatcagac aacatgttgc ttctaacaca gggattgcta aaagcaaaat tagggaaaaa
+     1921 gagcccattg tatgggaaat acttcaagaa gttatgcggg gacatcctat attgttgaat
+     1981 agagcgccta ccctacatag attaggcata caggcgttcc aacccatttt agtggagggg
+     2041 cgcgctatt
+//
+
+LOCUS       JQ182225                1266 bp    DNA     linear   PLN 20-JUN-2012
+DEFINITION  Cypripedium irapeanum ribulose-1,5-bisphosphate
+            carboxylase/oxygenase large subunit (rbcL) gene, partial cds;
+            chloroplast.
+ACCESSION   JQ182225
+VERSION     JQ182225.1  GI:387569639
+KEYWORDS    .
+SOURCE      chloroplast Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1  (bases 1 to 1266)
+  AUTHORS   Guo,Y.Y., Luo,Y.B., Liu,Z.J. and Wang,X.Q.
+  TITLE     Evolution and biogeography of the slipper orchids: eocene
+            vicariance of the conduplicate genera in the old and new world
+            tropics
+  JOURNAL   PLoS ONE 7 (6), E38788 (2012)
+   PUBMED   22685605
+  REMARK    Publication Status: Online-Only
+REFERENCE   2  (bases 1 to 1266)
+  AUTHORS   Guo,Y.-Y., Luo,Y.-B., Liu,Z.-J. and Wang,X.-Q.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (30-NOV-2011) State Key Laboratory of Systematic and
+            Evolutionary Botany, Institute of Botany, Chinese Academy of
+            Sciences, 20 Nanxincun, Xiangshan, Beijing 100093, China
+FEATURES             Location/Qualifiers
+     source          1..1266
+                     /organism="Cypripedium irapeanum"
+                     /organelle="plastid:chloroplast"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:49711"
+     gene            <1..>1266
+                     /gene="rbcL"
+     CDS             <1..>1266
+                     /gene="rbcL"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="ribulose-1,5-bisphosphate carboxylase/oxygenase
+                     large subunit"
+                     /protein_id="AFJ80026.1"
+                     /db_xref="GI:387569640"
+                     /translation="AGVKDYKLTYYTPDYETKDTDILAAFRVTPQPGVPPEEAGAAVA
+                     AESSTGTWTTVWTDGLTSLDRYKGRCYHIEAVVGEENQYIAYVAYPLDLFEEGSVTNM
+                     FTSIVGNVFGFKALRALRLEDLRIPPSYSKTFQGPPHGIQVERDKLNKYGRPLLGCTI
+                     KPKLGLSAKNYGRAVYECLRGGLDFTKDDENVNSQPFMRWRDRFLFCAEAIYKAQAET
+                     GEIKGHYLNATAGTCEEMIKRAVFARELGVPIVMHDYLTGGFTANTSLAHYCRDNGLL
+                     LHIHRAMHAVIDRQKNHGMHFRVLAKALRMSGGDHIHSGTVVGKLEGEREMTLGFVDL
+                     LRDDFIEKDRSRGIFFTQDWVSMPGVLPVASGGIHVWHMPALTEIFGDDSVLQFGGGT
+                     LGHPWGNAPGAVANRVALEACVQARNEGRD"
+ORIGIN      
+        1 gctggtgtta aagattacaa attgacttat tatactcctg actatgaaac caaagatact
+       61 gatatcttgg cagcattccg agtaactcct caaccgggag ttccgcctga agaagcaggg
+      121 gctgcggtag ctgccgaatc ttctactggt acatggacaa ctgtgtggac tgatggactt
+      181 accagtcttg atcgttacaa aggacgatgc taccacatcg aggccgttgt tggggaggaa
+      241 aatcaatata ttgcttatgt agcttatcct ttagaccttt ttgaagaagg ttctgttact
+      301 aacatgttta cttccattgt gggtaatgta tttggtttca aagccctgcg agctctacgt
+      361 ctggaagatc tgcgaattcc cccttcttat tccaaaactt tccaaggccc gcctcatggc
+      421 atccaagttg aaagagataa attgaacaag tacggtcgtc ccctattggg atgtactatt
+      481 aaaccaaaat tgggattatc cgcaaaaaac tacggtagag cggtttatga atgtctacgg
+      541 ggtggacttg attttactaa ggatgatgaa aacgtgaact cacaaccatt tatgcgttgg
+      601 agagatcgtt tcttattttg tgccgaagca atttataaag cgcaagccga aacgggtgaa
+      661 atcaaaggac attacttgaa tgcaactgcg ggtacatgtg aagaaatgat aaaaagggcg
+      721 gtatttgcca gagaattggg agttcctatc gtaatgcatg actacttaac tggggggttc
+      781 accgcaaata ctagcttggc tcattattgc cgcgacaacg gtctacttct tcacatccat
+      841 cgcgcaatgc atgcagttat tgatagacag aaaaatcatg gtatgcattt tcgtgtacta
+      901 gctaaagcat tacgtatgtc tggtggagat catattcact ctggtacagt agtaggtaaa
+      961 ctggaggggg aacgtgagat gactctgggt tttgttgatt tgttacgtga tgattttatt
+     1021 gaaaaagatc gaagtcgtgg tatttttttc actcaagact gggtctctat gccaggtgtt
+     1081 ctgcccgtgg cttcgggggg tattcatgtt tggcatatgc ctgccctaac cgaaatcttt
+     1141 ggggatgatt ccgtactaca gttcggtgga ggaactttag ggcacccttg gggaaatgcg
+     1201 cccggtgcag tagctaatcg agtggcttta gaagcatgtg tacaagctcg taatgaggga
+     1261 cgtgat
+//
+
+LOCUS       JQ182184                3703 bp    DNA     linear   PLN 20-JUN-2012
+DEFINITION  Cypripedium irapeanum clone 2 LEAFY (LFY) gene, exons 1 through 3
+            and partial cds.
+ACCESSION   JQ182184
+VERSION     JQ182184.1  GI:387569593
+KEYWORDS    .
+SOURCE      Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1  (bases 1 to 3703)
+  AUTHORS   Guo,Y.Y., Luo,Y.B., Liu,Z.J. and Wang,X.Q.
+  TITLE     Evolution and biogeography of the slipper orchids: eocene
+            vicariance of the conduplicate genera in the old and new world
+            tropics
+  JOURNAL   PLoS ONE 7 (6), E38788 (2012)
+   PUBMED   22685605
+  REMARK    Publication Status: Online-Only
+REFERENCE   2  (bases 1 to 3703)
+  AUTHORS   Guo,Y.-Y., Luo,Y.-B., Liu,Z.-J. and Wang,X.-Q.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (30-NOV-2011) State Key Laboratory of Systematic and
+            Evolutionary Botany, Institute of Botany, Chinese Academy of
+            Sciences, 20 Nanxincun, Xiangshan, Beijing 100093, China
+FEATURES             Location/Qualifiers
+     source          1..3703
+                     /organism="Cypripedium irapeanum"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:49711"
+                     /clone="2"
+     gene            <1..>3703
+                     /gene="LFY"
+     mRNA            join(<1..268,1182..1606,3470..>3703)
+                     /gene="LFY"
+                     /product="LEAFY"
+     CDS             join(<1..268,1182..1606,3470..>3703)
+                     /gene="LFY"
+                     /codon_start=1
+                     /product="LEAFY"
+                     /protein_id="AFJ80003.1"
+                     /db_xref="GI:387569594"
+                     /translation="ATLSHLFRWDLLVGERYGIKAAIRAERRRIETLLFQSAGAHRLH
+                     HHQQHAHFLSAAVVGHHHLSHDDPGRRLLLLSPDHPNALDALSQEGLSEEPVQLEREA
+                     AGSGGEVAGRREGKGKNPQRRTSGKKKDSAAAKKSKKKKGMEEDEEEEEAWGRDAGDD
+                     NDDDDVDSESERSGAGERQREHPFIVTEPGEVARAKKNGLDYLFHLYEQCHEFLLQVQ
+                     AVAKERGDKCPTKVTNLVFRYAKKVGASYINKPKMRHYVHCYALHVLDEEASNALRRA
+                     FKERGENVGAWRLACYKPLVAISARHAFDIDAV"
+     exon            <1..268
+                     /gene="LFY"
+                     /number=1
+     exon            1182..1606
+                     /gene="LFY"
+                     /number=2
+     exon            3470..>3703
+                     /gene="LFY"
+                     /number=3
+ORIGIN      
+        1 gccacgctct cccatctctt ccgctgggat ctccttgtcg gcgagcgcta tggcatcaag
+       61 gccgctatcc gtgccgagcg ccgccgaatc gagaccctcc tgtttcagtc cgccggcgcc
+      121 caccgcctcc accaccacca gcaacatgcc cacttcctct ccgccgctgt agttggccat
+      181 caccaccttt cccatgatga cccgggccgc cgcctgctcc tcctctcccc agaccacccc
+      241 aacgcccttg acgccctttc acaggagggt acatgcctct ctctctctct ctcccctcgc
+      301 acacatacac acacatactt tttctttttt tagtcaagga aaaatatcaa aattactcac
+      361 aggtatcaga attgttcacc gtcttcttca agattttcta tatgattagt atacatctac
+      421 agaatttttg tgctggctaa agatcaaaat ttggtactac aagggttaaa gtgtgatatc
+      481 catctaattt tctgtgttga cgtgtaagaa ttcaatcttt ttgttgaaga ttataccgac
+      541 tcctccatat aatttttttc tttccttgtt cctctgctaa tatatgcaag cgtctcaatg
+      601 gaacaggatt aaattttaat gatctaaagg acttcaatgt agtttgtttt ctttaatatt
+      661 tgcagtgaac aactgaaaca tttaagcttt accaagattt tgcaagttaa acaacattac
+      721 atggggatat catccttgag caagctgtgc tgttaggaac tcggtataca cacaatttct
+      781 gagcccctcg tagtattttt ttgacactat tttctaatca tcttataatt ttctagaaaa
+      841 cttcagatta gtgaaagaag ataatgaaaa ttcttcaacc atgtgtaatt aaaaccaccc
+      901 aagaaattac aatcatgata tttaatgtag tgaagaatat atcttcttta caaaatcctc
+      961 cgcttcgctg gatttagttc attgtttctt atggaaacaa ttattggcag aaagagtacc
+     1021 gcatattttc gaaatatagt ggaagtacat gttacaaaat atgtgcaaca atcacggaat
+     1081 aattaaattg ctggtcttct atatttttaa tcatgtaaat tctgtttgtt tcttgacgct
+     1141 agttttcaat cctttgatct tcttcattaa ttggggcgca ggactgtcag aggagccggt
+     1201 gcagctggag agggaggccg ccgggagcgg cggcgaagtg gcggggagga gagaaggaaa
+     1261 ggggaagaac ccgcagcggc ggacctccgg aaagaagaag gattctgctg ctgcaaagaa
+     1321 gagcaagaag aagaaaggga tggaagagga tgaggaggag gaggaagcat ggggtcgcga
+     1381 tgccggggac gataacgacg acgacgacgt ggactcggag tcggagcgga gcggcgcggg
+     1441 ggagcggcaa agggagcacc cgttcattgt gacggaaccg ggcgaggtgg cacgggcgaa
+     1501 gaagaacggg ctcgactacc tcttccatct ctacgagcag tgccatgagt tcctcctcca
+     1561 agttcaggcc gtcgccaagg agcgcggtga caagtgcccc actaaggtaa ccgctcaaat
+     1621 tctcaaccac tttggcccaa taaccatcac ttgacatctg gaggaacttg gaatggggcc
+     1681 acacgcaaag cgattctgcc atccgctcat gttgcttaca gatcgacatg tgggtccctg
+     1741 tttatccgta atgttggtca aactgtctat ttcgaaaaac tatttatgct tctaatcaaa
+     1801 tttgactaga ctataagact tacttttttt atataagata tataagattt attttatatt
+     1861 ttttaaagca aaaagtaata ttttatatat tctatataac tatcttataa tttatgaagt
+     1921 ttggtttatg ctttttgcgt tctatctcat actctagatc aaatttttat tagtagttta
+     1981 taaggctttt tttgcttaat ttggaggtag attatttatc caaaaatcag aaaatctgaa
+     2041 agaagccttg acatctaata cgctgcatat tctagagaaa atttaagcaa cttatttgga
+     2101 tgaagaactt gattataggt ttacacttgc taaattcctt gctcctggtt aaagattatt
+     2161 aagtgacgga tgtccgttag tttttcttta ttccagtaat attttctatt gttattgcta
+     2221 tcagcataat aagtccagcc aaaacaccta tggcatgttc ataaaatttt gtgagcgtaa
+     2281 aatctctttc ttaagcaaat atacaaatca tccaaagaat tccctgaccc attgttttct
+     2341 gcaattatga tcgttagtcg attttttctt caatgagaac ggatcatcca aagctaaacg
+     2401 agttcagttt ccttaaagac taattagcgg aatgaccata atttgcatga ttaattggtc
+     2461 gtccacaact ctgaatatct atctcacgtg tttaaatttc aatggatata tatattgttg
+     2521 tcctttctga ctgttcagtc actgtcaatg gtaaggaaac gtaaaggagg taatttctat
+     2581 tttgtttgca taaaatggtc atttctactt actagtaata gaatttgcta aatttgttga
+     2641 tcacaacaga caaatatatt atgaaatttc aattcaatta agcattataa ttaactagct
+     2701 cctaacactc tatcgaacct cttttttttc ccatgctctg tgttcagatt tcagatatta
+     2761 ataaaactgt tcgctcttta tggtttctta gtttacattt ttagccgatt tgttattgct
+     2821 gtttagtgct caagccagtt cagagacttc aggttctatt ccgagctttg gctcggcggg
+     2881 ttaagtatga cacaactact ttcaagttct tagtcctgct aaaaagtaac aattcgattg
+     2941 tcagtattct cttagtatat gaagaaaatt atttacctat ttacgaggaa atgtaataga
+     3001 cattatatat cgcatgagct gtattatgta taaaaatttt ctgcacaaca tctcacatgt
+     3061 cggttcactt atctctccca aatagaagac ccttccacac atgtatataa tatacatata
+     3121 tatatttata taactttttt tattaaacaa gaaaaattag tacgaaaacg aggaaagaga
+     3181 ataggctaag gagtaagaga atgtgtcctt tgtcatgact tttttttcat atataagaca
+     3241 atcattcttg aattattaca atccatttct ataatagatc ttttttcagg acaattgttc
+     3301 ttatctttaa tgtgcaatat ttaggctatt ttacaatccg gtaaaatgta aaggattctt
+     3361 gtattcggat atgattttgt caaagggaag ggcagaggtt tggaatatag aggatgagat
+     3421 catttctatg tagcattatt tgagagagga aaactatcga tggatgcagg taacgaacct
+     3481 ggtgttccgg tacgcgaaga aggtgggggc gagctacatc aacaagccca agatgcggca
+     3541 ctacgtccac tgctacgcgc tgcacgtcct tgacgaggag gcctccaacg ccctccgccg
+     3601 ggcgttcaaa gagcgtggcg agaacgttgg cgcctggcgc ctggcgtgct acaagcccct
+     3661 cgtcgccatc tccgcccgcc acgccttcga catcgacgcc gtc
+//
+
+LOCUS       JN589979                 611 bp    DNA     linear   PLN 26-MAR-2012
+DEFINITION  UNVERIFIED: Cypripedium irapeanum ribulose-1,5-bisphosphate
+            carboxylase/oxygenase large subunit-like (rbcL) gene, partial
+            sequence; chloroplast.
+ACCESSION   JN589979
+VERSION     JN589979.1  GI:380749768
+KEYWORDS    UNVERIFIED.
+SOURCE      chloroplast Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1  (bases 1 to 611)
+  AUTHORS   Sosa,V., Mejia-Saules,T., Cuellar,M.A. and Vovides,A.P.
+  TITLE     DNA barcoding in endangered Mesoamerican groups of plants
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 611)
+  AUTHORS   Sosa,V., Mejia-Saules,T., Cuellar,M.A. and Vovides,A.P.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (16-AUG-2011) Biologia Evolutiva, Instituto de Ecologia,
+            A.C., Carretera antigua a Coatepec 351, El Haya, Xalapa, Veracruz
+            91070, Mexico
+COMMENT     GenBank staff is unable to verify sequence and/or annotation
+            provided by the submitter.
+FEATURES             Location/Qualifiers
+     source          1..611
+                     /organism="Cypripedium irapeanum"
+                     /organelle="plastid:chloroplast"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="M. Cuellar 14 (XAL)"
+                     /db_xref="taxon:49711"
+                     /note="Mpio. Emiliano Zapata, Veracruz"
+     gene            <1..>611
+                     /gene="rbcL"
+     misc_feature    <1..>611
+                     /gene="rbcL"
+                     /note="similar to ribulose-1,5-bisphosphate
+                     carboxylase/oxygenase large subunit"
+ORIGIN      
+        1 agcgtcggat ttaaagctgg tgttaaagat tacaaattga cttattatac tcctgactat
+       61 gaaaccaaag atactgatat cttggcagca ttccgagtaa ctcctcaacc gggagttccg
+      121 cctgaagaag caggggctgc ggtagctgcc gaatcttcta ctggtacatg gacaactgtg
+      181 tggactgatg gacttaccag tcttgatcgt tacaaaggac gatgctacca catcgaggcc
+      241 gttgttgggg aggaaaatca atatattgct tatgtagctt atcctttaga cctttttgaa
+      301 gaaggttctg ttactaacat gtttacttcc attgtgggta atgtatttgg tttcaaagcc
+      361 ctgcgagctc tacgtctgga agatctgcga attccccctt cttattccaa aactttccaa
+      421 ggcccgcctc atggcatcca agttgaaaga gataaattga acaagtacgg tcgtccccta
+      481 ttgggatgta ctattaaacc aaaattggga ttatccgcaa aaaactacgg tagagcggtt
+      541 tatgaatgtc tacggggtgg acttgatttt actaaggatg atgaaaacgt gaactcacac
+      601 catttatgct g
+//
+
+LOCUS       FR851222                 732 bp    DNA     linear   PLN 22-SEP-2011
+DEFINITION  Cypripedium irapeanum atpI gene (partial), atpI-atpH IGS and atpH
+            gene (partial), specimen voucher MEXU:Salazar 7234.
+ACCESSION   FR851222
+VERSION     FR851222.1  GI:347626788
+KEYWORDS    .
+SOURCE      Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1
+  AUTHORS   Li,J.H., Liu,Z.J., Salazar,G.A., Bernhardt,P., Perner,H.,
+            Tomohisa,Y., Jin,X.H., Chung,S.W. and Luo,Y.B.
+  TITLE     Molecular phylogeny of Cypripedium (Orchidaceae: Cypripedioideae)
+            inferred from multiple nuclear and chloroplast regions
+  JOURNAL   Mol. Phylogenet. Evol. 61 (2), 308-320 (2011)
+   PUBMED   21718793
+REFERENCE   2  (bases 1 to 732)
+  AUTHORS   Salazar,G.A.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (06-APR-2011) to the INSDC. Salazar G.A., Instituto de
+            Biologia, Universidad Nacional Autonoma de Mexico, Apartado Postal
+            70-367, 04510 Mexico City, Distrito Federal, MEXICO
+FEATURES             Location/Qualifiers
+     source          1..732
+                     /organism="Cypripedium irapeanum"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="MEXU:Salazar 7234"
+                     /db_xref="taxon:49711"
+                     /country="Mexico:Puebla"
+                     /identified_by="G.A. Salazar"
+     gene            <1..46
+                     /gene="atpI"
+     CDS             <1..46
+                     /gene="atpI"
+                     /codon_start=2
+                     /product="ATPase subunit a"
+                     /protein_id="CCA64199.1"
+                     /db_xref="GI:347626789"
+                     /translation="LAAAYIGESMEGHH"
+     misc_feature    21..722
+                     /note="atpI-atpH IGS"
+     gene            723..>732
+                     /gene="atpH"
+     CDS             723..>732
+                     /gene="atpH"
+                     /codon_start=1
+                     /product="ATPase subunit c"
+                     /protein_id="CCA64200.1"
+                     /db_xref="GI:347626790"
+                     /translation="MNP"
+ORIGIN      
+        1 tttggctgcg gcttatatag gtgaatccat ggagggtcat cattgactaa ctttcgaaat
+       61 agttttttta agcttattcc aattcaagca atgcggggtt caatataatc cacaggttgt
+      121 agaagaaaat gcaaatagct acaaatatgt atgtattgta tatatgaaga aagatagatg
+      181 atattgcaga gtttgtaaga gaaagaaggg ttggggggtc ctactagata tatgtaatgt
+      241 ctatgagtat cagtccttgt gtatgtttcg aagaatggtt ccagaatgcg atttaataga
+      301 ataaaaagtg caggtggttt acgttatgta ggaaacaaaa gtatatgtta tttactagtt
+      361 agataggaat tatccctatc tcattttttc tagcccactt catttatatg gattccaata
+      421 tcagtccttt ttctattttt tatgtgattg ttaattgaat gaaagaatag aagagtttat
+      481 aaacaagaaa acacaatgac taaaaccgta tatatctatt tacataaaac tccatcatgg
+      541 gtagaaagaa ataaaaaaat aagtaagtaa aataagttta agtaaagtaa aaaagtagtg
+      601 tagtaaagta aatagtcaaa gtaaaagtag aagtagaaaa agaagtagat aaagattaag
+      661 tagtaattca ttggttggtt gtatcattaa ccatttcttt tttttggtgc gaggaaatta
+      721 ccatgaatcc ac
+//
+
+LOCUS       FR851227                 955 bp    DNA     linear   PLN 22-SEP-2011
+DEFINITION  Cypripedium irapeanum partial tRNA-Ser gene and partial trnS-trnfM
+            IGS, specimen voucher MEXU:Salazar 7234.
+ACCESSION   FR851227
+VERSION     FR851227.1  GI:347626796
+KEYWORDS    .
+SOURCE      Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1
+  AUTHORS   Li,J.H., Liu,Z.J., Salazar,G.A., Bernhardt,P., Perner,H.,
+            Tomohisa,Y., Jin,X.H., Chung,S.W. and Luo,Y.B.
+  TITLE     Molecular phylogeny of Cypripedium (Orchidaceae: Cypripedioideae)
+            inferred from multiple nuclear and chloroplast regions
+  JOURNAL   Mol. Phylogenet. Evol. 61 (2), 308-320 (2011)
+   PUBMED   21718793
+REFERENCE   2  (bases 1 to 955)
+  AUTHORS   Salazar,G.A.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (06-APR-2011) to the INSDC. Salazar G.A., Instituto de
+            Biologia, Universidad Nacional Autonoma de Mexico, Apartado Postal
+            70-367, 04510 Mexico City, Distrito Federal, MEXICO
+FEATURES             Location/Qualifiers
+     source          1..955
+                     /organism="Cypripedium irapeanum"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="MEXU:Salazar 7234"
+                     /db_xref="taxon:49711"
+                     /country="Mexico:Puebla"
+                     /identified_by="G.A. Salazar"
+     gene            <1..52
+                     /gene="tRNA-Ser"
+     tRNA            <1..52
+                     /gene="tRNA-Ser"
+                     /product="tRNA-Ser"
+     misc_feature    53..>955
+                     /note="trnS-trnfM IGS"
+ORIGIN      
+        1 tagactatac cggttttcag accggggcta tcaaccactc agccatctct ccctgataga
+       61 atccctattt tcttactaca aatagaacat gaccatatga gatgatacat taactatctg
+      121 ctcgactccg tgtccgaata aaaagaaagt ggtaataagt tctaatgaat caattcattc
+      181 atgtcaaatc ccttcatgat gcatttttta caatttttac taagcgaggg atccaatggt
+      241 atattggtag tttggaggat tacaaacatg actattgctt tccaattagc tgtttttgca
+      301 ttaattgcaa cttcattaat cttactgatt agtgtacccg ttgtatttgc ttcttctgat
+      361 ggttggtcaa gtaacaaaaa tgttgtattt tctggtacat cattatggat tggattagtc
+      421 tttctggtag ctatcctgaa ttctctcatc tcttgaactt ctttggtatt tccccgatcc
+      481 aaaaatgcca atccttataa ttgtaagaca cactaaaatt ccatccgagt tccggacaaa
+      541 aatgacaatt cattattatg aattagatat agataattaa gaatctgacc ttacttacta
+      601 tagtctttgt atctgccctg cgcaaatatg atccagacgc atatatgata tatcatatat
+      661 gtcatatatg tgtggacata tgcgtacgta tcaggaacga agaaaatgcg gatatggtcg
+      721 aatggtaaaa tttctctttg ccaaggagaa gatgcgggtt cgattcccgt tatccgccca
+      781 tggtgaagta atgtactatg aaaagattcg gtcgttatag ttcactacta tgataactag
+      841 tatgttaaag tttagtagtg aatatagtaa ttctatcttc cccttcacct ttcttttcct
+      901 cccaccgcca aaaatagtca ttaatgacta gaaaggaaaa ggggattcgc aaaaa
+//
+
+LOCUS       JN589959                 790 bp    DNA     linear   PLN 26-MAR-2012
+DEFINITION  UNVERIFIED: Cypripedium irapeanum maturase K-like (matK) gene,
+            partial sequence; chloroplast.
+ACCESSION   JN589959
+VERSION     JN589959.1  GI:380749748
+KEYWORDS    UNVERIFIED.
+SOURCE      chloroplast Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1  (bases 1 to 790)
+  AUTHORS   Sosa,V., Mejia-Saules,T., Cuellar,M.A. and Vovides,A.P.
+  TITLE     DNA barcoding in endangered Mesoamerican groups of plants
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 790)
+  AUTHORS   Sosa,V., Mejia-Saules,T., Cuellar,M.A. and Vovides,A.P.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (16-AUG-2011) Biologia Evolutiva, Instituto de Ecologia,
+            A.C., Carretera antigua a Coatepec 351, El Haya, Xalapa, Veracruz
+            91070, Mexico
+COMMENT     GenBank staff is unable to verify sequence and/or annotation
+            provided by the submitter.
+FEATURES             Location/Qualifiers
+     source          1..790
+                     /organism="Cypripedium irapeanum"
+                     /organelle="plastid:chloroplast"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="M. Cuellar 14 (XAL)"
+                     /db_xref="taxon:49711"
+                     /note="Mpio. Emiliano Zapata, Veracruz"
+     gene            <1..>790
+                     /gene="matK"
+     misc_feature    <1..>790
+                     /gene="matK"
+                     /note="similar to maturase K"
+ORIGIN      
+        1 taggtcacga atgttccttc tttgcattta ttgcgattgc ttttccacga atatcataat
+       61 ttgaatagtc tcattacttc aaataaatta atttacgcct tttcaaaaat aaagaaaaga
+      121 ttcctttggt tcctatataa ttcttatgta tatgaatgcg aatatctatt ccagtttctt
+      181 cgtaaacagt cttcttattt acgatcaaca tcttctggag tctttcttga gcgaacacat
+      241 ttctatgtga aaatagaaca tcttatagta gtgtgttgta attcttttca taggatccta
+      301 tgctttctca aggatccttt catgcattat gttcgatatc aaggaaaagc aattctggct
+      361 tcaaagggaa ctcctattct gatgaagaaa tggaaatttc atcttgtgaa tttttggcaa
+      421 tcttattttc acttttggtc tcaaccgtat aggatccata taaagcaatt atccaactat
+      481 tccttctctt ttatggggta tttttcaagt gtactagaaa atcctttggt agtaagaaat
+      541 caaatgctag agaattcatt tctaataaat attatgacta agaaattaga taccatagcc
+      601 cctgttattt ctcttattgt atcattgtcg aaagctcaat tttgtactgt attgggtcat
+      661 cctattagta aaccaatctg gaccgattta tcggattctg atattcttga tcgatttgcc
+      721 ggatatgtag aaatctttgt cgtatcacag cggatcctca aagaaacagg tttcgcatcg
+      781 agaaaagtta
+//
+
+LOCUS       FR851217                1477 bp    DNA     linear   PLN 22-SEP-2011
+DEFINITION  Cypripedium irapeanum tRNA-Leu gene (partial), trnL-trnF IGS and
+            tRNA-Phe (partial), specimen voucher MEXU:Salazar 7234.
+ACCESSION   FR851217
+VERSION     FR851217.1  GI:347626775
+KEYWORDS    .
+SOURCE      Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1
+  AUTHORS   Li,J.H., Liu,Z.J., Salazar,G.A., Bernhardt,P., Perner,H.,
+            Tomohisa,Y., Jin,X.H., Chung,S.W. and Luo,Y.B.
+  TITLE     Molecular phylogeny of Cypripedium (Orchidaceae: Cypripedioideae)
+            inferred from multiple nuclear and chloroplast regions
+  JOURNAL   Mol. Phylogenet. Evol. 61 (2), 308-320 (2011)
+   PUBMED   21718793
+REFERENCE   2  (bases 1 to 1477)
+  AUTHORS   Salazar,G.A.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (06-APR-2011) to the INSDC. Salazar G.A., Instituto de
+            Biologia, Universidad Nacional Autonoma de Mexico, Apartado Postal
+            70-367, 04510 Mexico City, Distrito Federal, MEXICO
+FEATURES             Location/Qualifiers
+     source          1..1477
+                     /organism="Cypripedium irapeanum"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="MEXU:Salazar 7234"
+                     /db_xref="taxon:49711"
+                     /country="Mexico:Puebla"
+                     /identified_by="G.A. Salazar"
+     gene            <1..1044
+                     /gene="tRNA-Leu"
+     intron          <1..994
+                     /gene="tRNA-Leu"
+                     /number=1
+     tRNA            <995..1044
+                     /gene="tRNA-Leu"
+                     /product="tRNA-Leu"
+     exon            995..1044
+                     /gene="tRNA-Leu"
+                     /product="transfer RNA-Leu"
+                     /number=2
+     misc_feature    1045..1437
+                     /note="trnL-trnF IGS"
+     gene            1438..>1477
+                     /gene="tRNA-Phe"
+     tRNA            1438..>1477
+                     /gene="tRNA-Phe"
+                     /product="tRNA-Phe"
+ORIGIN      
+        1 tgagccttag tatggaaacc tgctaagtga taacttccaa attcagagaa accctggaac
+       61 taaaaatggg caatcctgag ccaaatcttt gttttgttaa aaaaatggaa aatgagaata
+      121 aaaagggata ggtgcagaga ctcaatggaa gctgttctaa cgaatgaaat tgactacgtt
+      181 acgttagtag caaaaatcat ttctatcgaa atgatagaaa tgacagtaaa ggaaaaggat
+      241 aagcttatat aactaataca tactgacata ggaaacgatt aatcacaacc cgaaccctat
+      301 atctctaata atatatagaa tacaaattaa aattaaattc gaataaaaat cctaaatatg
+      361 aatatgaaaa tataaatata tgaatatgaa aatataaatc ttccactaaa ttttcatttt
+      421 ctttattata ttttatatat tctttattat tatttatatt tttttatatt tttgtattta
+      481 ttttctttgt ttattttatt attatttatt ttatatattc atatattgta ttgtattgtt
+      541 atatttatta ttttttatat ttctttatta tttatcttta tatttaatat ttaaatttaa
+      601 tctttattta tatttattat ttatttttat ttattaatat tataatttat taatattaat
+      661 taatattata atttattaat attataatac tattcataat aatgatatga gtattaggat
+      721 aaagatatat aaaaaacctc tatttcgatc tatattaatt agaatgatag agatcaaata
+      781 atcattctaa agataaaaaa atctatgaaa aatggaagag ttattctgaa tccattccaa
+      841 ttgaagttga aaaaggaatg gaattcgaat attcagtgat caaatgattc attccagatt
+      901 ttcatagatc ttttgaaaat taatcggacg agaataaaga gagagtccca ttttacatgt
+      961 caataccgac aacaatgaaa tttatagtaa gaggaaaatc cgtcgacttt aaaaatcgtg
+     1021 agggttcaag tccctctatc cccaagaaaa gcccatttta cctcctctta tttattttat
+     1081 cctctttttt tttttcatca gtggttcagt tcaaccaaaa ttaaatattt ttatctttct
+     1141 catttcattc actctgttct ttcacaaatg gatccgaata taaatcctcg tttcttcttc
+     1201 caatccaatt atagatacga tacctgtaca aatgaacata tatgtataga ttcaaggaat
+     1261 ctccattatt gaatcattca cagtccatat cattatcctt acatttacaa agaaagtctt
+     1321 ccttttgttt ttaagatcta agaaattgag gggctaggtc caatttgtta agactttttt
+     1381 tggttctttt cattgacata gatacaagta ctccgctagg atgatgcaca ggaaatggtc
+     1441 gggatagctc agttggtaga gcagaggact gaaaatc
+//
+
+LOCUS       FR851212                 881 bp    DNA     linear   PLN 22-SEP-2011
+DEFINITION  Cypripedium irapeanum tRNA-His gene (partial), trnH-psbA IGS and
+            psbA gene (partial), specimen voucher MEXU:Salazar 7234.
+ACCESSION   FR851212
+VERSION     FR851212.1  GI:347626769
+KEYWORDS    .
+SOURCE      Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1
+  AUTHORS   Li,J.H., Liu,Z.J., Salazar,G.A., Bernhardt,P., Perner,H.,
+            Tomohisa,Y., Jin,X.H., Chung,S.W. and Luo,Y.B.
+  TITLE     Molecular phylogeny of Cypripedium (Orchidaceae: Cypripedioideae)
+            inferred from multiple nuclear and chloroplast regions
+  JOURNAL   Mol. Phylogenet. Evol. 61 (2), 308-320 (2011)
+   PUBMED   21718793
+REFERENCE   2  (bases 1 to 881)
+  AUTHORS   Salazar,G.A.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (06-APR-2011) to the INSDC. Salazar G.A., Instituto de
+            Biologia, Universidad Nacional Autonoma de Mexico, Apartado Postal
+            70-367, 04510 Mexico City, Distrito Federal, MEXICO
+FEATURES             Location/Qualifiers
+     source          1..881
+                     /organism="Cypripedium irapeanum"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="MEXU:Salazar 7234"
+                     /db_xref="taxon:49711"
+                     /country="Mexico:Puebla"
+                     /identified_by="G.A. Salazar"
+     gene            <1..29
+                     /gene="tRNA-His"
+     tRNA            <1..29
+                     /gene="tRNA-His"
+                     /product="tRNA-His"
+     misc_feature    30..828
+                     /note="trnH-psbA IGS"
+     gene            complement(829..>881)
+                     /gene="psbA"
+     CDS             complement(829..>881)
+                     /gene="psbA"
+                     /codon_start=3
+                     /product="photosystem II protein"
+                     /protein_id="CCA64190.1"
+                     /db_xref="GI:347626770"
+                     /translation="NFPLDLASVEAPSTNG"
+ORIGIN      
+        1 actgccttga tccacttggc tacatccgcc ccttccctta tctagctaaa ggattttctc
+       61 ttttttccat tcatcattat tgtattgatt cttaccttca tacttcagat taagatcgag
+      121 atattggaca tagaatgcca atttttaaaa tgtaaaaaaa aaggagtaat cagccgtgac
+      181 acgttcacta aaaaaaaatc cttttgtagc taatcattta tcgggaaaaa ttgaaaaact
+      241 caacatgagg gaggagaaag aaataatagt gacttggtct cgggcatcta ccattatacc
+      301 cacaatgatt ggccatacaa tcgctattca taatggaaag gaacatttac ctatttatat
+      361 aacagatcgt atggtcggtc acaaattggg agaattcgca cctactctaa ctttcgtgag
+      421 acatgcaaga aacgataata aatctcgtcg ttagtcgttc tactaagtat tcatgttaaa
+      481 agtcttatct taatagtatt tataattact atttagactt aagagtcttt atcttatagt
+      541 aagagtatag gtatagtatt ttattttttt tttatagtat actaagactt agacttttct
+      601 tacttacttt tatgacttat cttatactat acttcaccta ggcacttatc attcattggc
+      661 gggggagaac tttcttttat gataaagaac gaaaattcgg atagagaagc aaaattgaat
+      721 ccaacaaaac aagaacaagg taaaggtagc aatcccccca tatcttacaa gatatggggg
+      781 gattgctacc ttcaaaaatt catatacata taaatgtata caaaagtatt atccatttgt
+      841 agatggagct tctacagaag ctagatctag agggaagttg t
+//
+
+LOCUS       FR720328                 723 bp    DNA     linear   PLN 22-SEP-2011
+DEFINITION  Cypripedium irapeanum ITS1, 5.8S rRNA gene, ITS2 and 26S rRNA gene
+            (partial), specimen voucher MEXU Salazar 7234.
+ACCESSION   FR720328
+VERSION     FR720328.1  GI:347626748
+KEYWORDS    .
+SOURCE      Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1
+  AUTHORS   Li,J.H., Liu,Z.J., Salazar,G.A., Bernhardt,P., Perner,H.,
+            Tomohisa,Y., Jin,X.H., Chung,S.W. and Luo,Y.B.
+  TITLE     Molecular phylogeny of Cypripedium (Orchidaceae: Cypripedioideae)
+            inferred from multiple nuclear and chloroplast regions
+  JOURNAL   Mol. Phylogenet. Evol. 61 (2), 308-320 (2011)
+   PUBMED   21718793
+REFERENCE   2  (bases 1 to 723)
+  AUTHORS   Salazar,G.A.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (11-NOV-2010) to the INSDC. Salazar G.A., Instituto de
+            Biologia, Universidad Nacional Autonoma de Mexico, Apartado Postal
+            70-367, 04510 Mexico City, Distrito Federal, MEXICO
+FEATURES             Location/Qualifiers
+     source          1..723
+                     /organism="Cypripedium irapeanum"
+                     /mol_type="genomic DNA"
+                     /specimen_voucher="MEXU:Salazar 7234"
+                     /db_xref="taxon:49711"
+                     /country="Mexico:Puebla"
+                     /collected_by="G.A. Salazar et al."
+                     /identified_by="G.A. Salazar"
+     misc_feature    1..272
+                     /note="internal transcribed spacer 1, ITS1"
+     gene            273..436
+                     /gene="5.8S rRNA"
+     rRNA            273..436
+                     /gene="5.8S rRNA"
+                     /product="5.8S ribosomal RNA"
+     misc_feature    437..686
+                     /note="internal transcribed spacer 2, ITS2"
+     gene            687..>723
+                     /gene="26S rRNA"
+     rRNA            687..>723
+                     /gene="26S rRNA"
+                     /product="26S ribosomal RNA"
+ORIGIN      
+        1 tttccgtagg tgaacctgcg gaaggatcat tgttgagacc gtggaatata cgatcgagtg
+       61 aatccggagg accggtgtac tcagctcgcc gggggcattg ctcccgtggt gaccctgatt
+      121 tgatgccggg ccgcctcggg agcgtccatg gcgggtttga acctctagcc cggcgcagtt
+      181 tgggcgccaa gccatatgaa agcatcaccg gcgaatggca ttgtcttcca aaaagccgga
+      241 gcggcggcgt gctgtcgcgt gccaatgaat ttttgatgac tctcggcaac ggatatcttg
+      301 gctcttgcat cgatgaagaa cgcagcgaaa tgcgataagt ggtgtgaatt gcagaatccc
+      361 gtgaaccatc gagtctttga acgcaagttg cgcccgaggc catcaggcta agggcacgcc
+      421 tgcttgggcg tcgcgcttcg tctctctcct gccaatgctt gcccggcata cagccaggcc
+      481 ggcgtggtgc ggatgtgaaa gattggcccc ttgtgcctag gtgcggcggg tccaagagct
+      541 ggtgttttga tggcccggaa cccggcaaga ggtggacgga tgctggcagc agctgccgtg
+      601 cgaatccccc atgttgtcgt gcttgtcgga caggcaggag aacccttccg aaccccaatg
+      661 gagggcggtt gaccgccatt cggatgtgac cccaggtcag gcggggccac ccgctgagtt
+      721 taa
+//
+
+LOCUS       Z78533                   740 bp    DNA     linear   PLN 30-NOV-2006
+DEFINITION  C.irapeanum 5.8S rRNA gene and ITS1 and ITS2 DNA.
+ACCESSION   Z78533
+VERSION     Z78533.1  GI:2765658
+KEYWORDS    5.8S ribosomal RNA; 5.8S rRNA gene; internal transcribed spacer;
+            ITS1; ITS2.
+SOURCE      Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1
+  AUTHORS   Cox,A.V., Pridgeon,A.M., Albert,V.A. and Chase,M.W.
+  TITLE     Phylogenetics of the slipper orchids (Cypripedioideae:
+            Orchidaceae): nuclear rDNA ITS sequences
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 740)
+  AUTHORS   Cox,A.V.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (19-AUG-1996) Cox A.V., Royal Botanic Gardens, Kew,
+            Richmond, Surrey TW9 3AB, UK
+FEATURES             Location/Qualifiers
+     source          1..740
+                     /organism="Cypripedium irapeanum"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:49711"
+     misc_feature    1..380
+                     /note="internal transcribed spacer 1"
+     gene            381..550
+                     /gene="5.8S rRNA"
+     rRNA            381..550
+                     /gene="5.8S rRNA"
+                     /product="5.8S ribosomal RNA"
+     misc_feature    551..740
+                     /note="internal transcribed spacer 2"
+ORIGIN      
+        1 cgtaacaagg tttccgtagg tgaacctgcg gaaggatcat tgatgagacc gtggaataaa
+       61 cgatcgagtg aatccggagg accggtgtac tcagctcacc gggggcattg ctcccgtggt
+      121 gaccctgatt tgttgttggg ccgcctcggg agcgtccatg gcgggtttga acctctagcc
+      181 cggcgcagtt tgggcgccaa gccatatgaa agcatcaccg gcgaatggca ttgtcttccc
+      241 caaaacccgg agcggcggcg tgctgtcgcg tgcccaatga attttgatga ctctcgcaaa
+      301 cgggaatctt ggctctttgc atcggatgga aggacgcagc gaaatgcgat aagtggtgtg
+      361 aattgcaaga tcccgtgaac catcgagtct tttgaacgca agttgcgccc gaggccatca
+      421 ggctaagggc acgcctgctt gggcgtcgcg cttcgtctct ctcctgccaa tgcttgcccg
+      481 gcatacagcc aggccggcgt ggtgcggatg tgaaagattg gccccttgtg cctaggtgcg
+      541 gcgggtccaa gagctggtgt tttgatggcc cggaacccgg caagaggtgg acggatgctg
+      601 gcagcagctg ccgtgcgaat cccccatgtt gtcgtgcttg tcggacaggc aggagaaccc
+      661 ttccgaaccc caatggaggg cggttgaccg ccattcggat gtgaccccag gtcaggcggg
+      721 ggcacccgct gagtttacgc
+//
+
+LOCUS       Z73706                  1303 bp    DNA     linear   PLN 29-MAR-2001
+DEFINITION  C.irapeanum chloroplast rbcL gene.
+ACCESSION   Z73706
+VERSION     Z73706.1  GI:1332454
+KEYWORDS    rbcL gene; ribulose-biphosphate carboxylase; ribulose-biphosphate
+            carboxylase large subunit; Rubisco.
+SOURCE      chloroplast Cypripedium irapeanum
+  ORGANISM  Cypripedium irapeanum
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae;
+            Cypripedioideae; Cypripedium.
+REFERENCE   1  (bases 1 to 1303)
+  AUTHORS   de Bruijn,A.Y., Cox,A.V., Johnson,M.A.T., Eguiarte,L.E. and
+            Chase,M.W.
+  TITLE     Phylogenetics of Alooideae and Asphodeloideae (Asphodelaceae,
+            Asparagales): DNA sequence and karyotype analysis
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 1303)
+  AUTHORS   de Bruin,A.Y.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (16-MAY-1996) de Bruin A.Y., Jodrell Laboratory, Royal
+            Botanic Gardens, Kew, Richmond, Surrey, TW9 3DS, UK
+FEATURES             Location/Qualifiers
+     source          1..1303
+                     /organism="Cypripedium irapeanum"
+                     /organelle="plastid:chloroplast"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:49711"
+                     /tissue_type="leaf"
+                     /dev_stage="adult"
+     gene            <1..>1303
+                     /gene="rbcL"
+     CDS             <1..>1303
+                     /gene="rbcL"
+                     /EC_number="4.1.1.39"
+                     /standard_name="RuBisCo, large subunit"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="ribulose-biphosphate carboxylase large subunit"
+                     /protein_id="CAA98050.1"
+                     /db_xref="GI:1332455"
+                     /db_xref="GOA:Q37299"
+                     /db_xref="InterPro:IPR000685"
+                     /db_xref="InterPro:IPR017443"
+                     /db_xref="InterPro:IPR017444"
+                     /db_xref="InterPro:IPR020878"
+                     /db_xref="InterPro:IPR020888"
+                     /db_xref="UniProtKB/TrEMBL:Q37299"
+                     /translation="VKDYKLTYYTPDYETKDTDILAAFRVTPQPGVPPEEAGAAVAAE
+                     SSTGTWTTVWTDGLTSLDRYKGRCYHIEAVVGEENQYIAYVAYPLDLFEEGSVTNMFT
+                     SIVGNVFGFKALRALRLEDLRIPPSYSKTFQGPPHGIQVERDKLNKYGRPLLGCTIKP
+                     KLGLSAKNYGRAVYECLRGGLDFTKDDENVNSQPFMRWRDRFLFCAEAIYKAQAETGE
+                     IKGHYLNATAGTCEEMIKRAVFARELGVPIVMHDYLTGGFTANTSLAHYCRDNGLLLH
+                     IHRAMHAVIDRQKNHGMHFRVLAKALRMSGGDHIHSGTVVGKLEGEREMTLGFVDLLR
+                     DDFIEKDRSRGIFFTQDWVSIPGVLPVASGGIHVWHMPALTEIFGDDSVLQFGGGTLG
+                     HPWGNAPGAVANRVALEACVQARNEGRDLAREGNDIIREASK"
+ORIGIN      
+        1 gttaaagatt acaaattgac ttattatact cctgactatg aaaccaaaga tactgatatc
+       61 ttggcagcat tccgagtaac tcctcaaccg ggagttccgc ctgaagaagc aggggctgcg
+      121 gtagctgccg aatcttctac tggtacatgg acaactgtgt ggactgatgg acttaccagt
+      181 cttgatcgtt acaaaggacg atgctaccac atcgaggccg ttgttgggga ggaaaatcaa
+      241 tatattgctt atgtagctta tcctttagac ctttttgaag aaggttctgt tactaacatg
+      301 tttacttcca ttgtgggtaa tgtatttggt ttcaaagccc tgcgagctct acgtctggaa
+      361 gatctgcgaa ttcccccttc ttattccaaa actttccaag gcccgcctca tggcatccaa
+      421 gttgaaagag ataaattgaa caagtacggt cgtcccctat tgggatgtac tattaaacca
+      481 aaattgggat tatccgcaaa aaactacggt agagcggttt atgaatgtct acggggtgga
+      541 cttgatttta ctaaggatga tgaaaacgtg aactcacaac catttatgcg ttggagagat
+      601 cgtttcttat tttgtgccga agcaatttat aaagcgcaag ccgaaacggg tgaaatcaaa
+      661 ggacattact tgaatgcaac tgcgggtaca tgtgaagaaa tgataaaaag ggcggtattt
+      721 gccagagaat tgggagttcc tatcgtaatg catgactact taactggggg gttcaccgca
+      781 aatactagct tggctcatta ttgccgcgac aacggtctac ttcttcacat ccatcgcgca
+      841 atgcatgcag ttattgatag acagaaaaat catggtatgc attttcgtgt actagctaaa
+      901 gcattacgta tgtctggtgg agatcatatt cactctggta cagtagtagg taaactggag
+      961 ggggaacgtg agatgactct gggttttgtt gatttgttac gtgatgattt tattgaaaaa
+     1021 gatcgaagtc gtggtatttt tttcactcaa gattgggtct ctattccagg tgttctgccc
+     1081 gtggcttcgg ggggtattca tgtttggcat atgcctgccc taaccgaaat ctttggggat
+     1141 gattccgtac tacagttcgg tggaggaact ttagggcacc cttggggaaa tgcacccggt
+     1201 gcagtagcta atcgagtggc tttagaagca tgtgtacaag ctcgtaatga gggacgtgat
+     1261 cttgctcgtg aaggtaatga tattattcgt gaagctagca aat
+//
+
