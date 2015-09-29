@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="book.css" type="text/css" />
+</head>
+<body>
+<h2 id="&#31532;4&#31456;-&#24207;&#21015;&#27880;&#37322;&#23545;&#35937;">&#31532;4&#31456; &#24207;&#21015;&#27880;&#37322;&#23545;&#35937;</h2>
+<p><code>Bio.SeqRecord</code>&#27169;&#22359;&#20013;&#30340;<code>SeqRecord</code>&#31867;&#12290;&#22914;&#26524;&#20165;&#20165;&#20351;&#29992;fasta&#26684;&#24335;&#30340;&#25991;&#20214;&#65292;&#21487;&#20197;&#36339;&#36807;&#35813;&#31456;&#12290;&#32780;&#20351;&#29992;&#22914;GenBank&#25110;EMBL&#31561;&#23500;&#27880;&#37322;&#31867;&#30340;&#25991;&#20214;&#65292;&#21017;&#38656;&#35201;&#35813;&#31456;&#30340;&#30693;&#35782;&#12290;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.SeqRecord <span class="im">import</span> SeqRecord
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">help</span>(SeqRecord)
+...</code></pre></div>
+<h3 id="&#24207;&#21015;&#35760;&#24405;&#23545;&#35937;">4.1 &#24207;&#21015;&#35760;&#24405;&#23545;&#35937;</h3>
+<p><code>SeqRecord</code>&#31867;&#20801;&#35768;&#23558;&#26356;&#22810;&#30340;&#29305;&#24615;&#32465;&#23450;&#21040;&#19968;&#20010;&#24207;&#21015;&#19978;&#12290;SeqRecord&#31867;&#26412;&#36523;&#21313;&#20998;&#31616;&#21333;&#65292;&#25552;&#20379;&#20102;&#19968;&#19979;&#20449;&#24687;&#20316;&#20026;&#23646;&#24615;&#65306;</p>
+<ul>
+<li>.seq - &#24207;&#21015;&#26412;&#36523;&#65307;</li>
+<li>.id - &#35782;&#21035;&#24207;&#21015;&#30340;&#20027;&#35201;id&#65292;&#26159;&#19968;&#20010;&#23383;&#31526;&#20018;&#65292;&#36890;&#24120;&#19982;accession number&#30456;&#20284;&#65307;</li>
+<li>.name - &#24207;&#21015;&#30340;&#36890;&#29992;&#21517;&#23383;&#65292;&#20026;&#19968;&#20010;&#23383;&#31526;&#20018;&#65292;&#26377;&#26102;&#20063;&#19982;accession number&#30456;&#21516;&#65292;&#20294;&#23427;&#20063;&#21487;&#20197;&#26159;&#19968;&#20010;&#20811;&#38534;&#30340;&#21517;&#23383;&#65292;&#19982;GenBank&#20013;&#30340;LOCUS id&#30456;&#20284;&#65307;</li>
+<li>.description - &#24207;&#21015;&#30340;&#20154;&#31867;&#21487;&#35835;&#30340;&#25551;&#36848;&#25110;&#32773;&#23500;&#26377;&#34920;&#36798;&#21147;&#30340;&#21517;&#23383;&#65292;&#26159;&#19968;&#20010;&#23383;&#31526;&#20018;&#65307;</li>
+<li>.letter_annotations - &#20351;&#29992;&#23383;&#20856;&#26631;&#27880;&#27599;&#20010;&#23383;&#27597;&#30340;&#20195;&#34920;&#21547;&#20041;&#12290;&#38190;&#26159;&#20449;&#24687;&#30340;&#21517;&#23383;&#65292;&#24120;&#24120;&#24481;&#29992;&#36136;&#37327;&#20540;&#25110;&#20108;&#32423;&#32467;&#26500;&#20449;&#24687;&#65307;</li>
+<li>.annotations - &#24207;&#21015;&#39069;&#22806;&#20449;&#24687;&#30340;&#23383;&#20856;&#12290;&#38190;&#26159;&#20449;&#24687;&#30340;&#21517;&#23383;&#65307;</li>
+<li>.features - &#24102;&#26377;&#26356;&#23545;&#32467;&#26500;&#20449;&#24687;&#30340;<code>SeqFeature</code>&#23545;&#35937;&#30340;&#21015;&#34920;&#65307;</li>
+<li>.dbxref - &#25968;&#25454;&#24211;&#20132;&#21449;&#24341;&#29992;&#23383;&#31526;&#20018;&#21015;&#34920;</li>
+</ul>
+<h3 id="&#21019;&#24314;seqrecord">4.2 &#21019;&#24314;SeqRecord</h3>
+<p>&#20854;&#23454;&#65292;&#19981;&#38656;&#35201;&#25163;&#21160;&#21019;&#24314;SeqRecord&#65292;&#21487;&#20197;&#22312;&#31532;&#20116;&#31456;&#20013;&#20351;&#29992;Bio.SeqIO&#27169;&#22359;&#35835;&#20837;&#19968;&#20010;&#24207;&#21015;&#32780;&#21019;&#24314;&#12290;</p>
+<h4 id="&#20174;&#22836;&#21019;&#24314;seqrecord">4.2.1 &#20174;&#22836;&#21019;&#24314;SeqRecord</h4>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> simple_seq <span class="op">=</span> Seq(<span class="st">&quot;GATC&quot;</span>)
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.SeqRecord <span class="im">import</span> SeqRecord
+<span class="op">&gt;&gt;&gt;</span> simple_seq_r <span class="op">=</span> SeqRecord(simple_seq)
+
+<span class="op">&gt;&gt;&gt;</span> simple_seq_r.<span class="bu">id</span>
+&#8217;<span class="op">&lt;</span>unknown <span class="bu">id</span><span class="op">&gt;</span>&#8217;
+<span class="op">&gt;&gt;&gt;</span> simple_seq_r.<span class="bu">id</span> <span class="op">=</span> <span class="st">&quot;AC12345&quot;</span>
+<span class="op">&gt;&gt;&gt;</span> simple_seq_r.description <span class="op">=</span> <span class="st">&quot;Made up sequence I wish I could write a paper about&quot;</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(simple_seq_r.description)
+Made up sequence I wish I could write a paper about
+<span class="op">&gt;&gt;&gt;</span> simple_seq_r.seq
+Seq(&#8217;GATC&#8217;, Alphabet())
+
+simple_seq_r <span class="op">=</span> SeqRecord(simple_seq, <span class="bu">id</span><span class="op">=</span><span class="st">&quot;AC12345&quot;</span>)
+<span class="op">&gt;&gt;&gt;</span> simple_seq_r.annotations[<span class="st">&quot;evidence&quot;</span>] <span class="op">=</span> <span class="st">&quot;None. I just made it up.&quot;</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(simple_seq_r.annotations)
+{&#8217;evidence&#8217;: &#8217;None. I just made it up.&#8217;}
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(simple_seq_r.annotations[<span class="st">&quot;evidence&quot;</span>])
+<span class="va">None</span>. I just made it up.
+
+<span class="op">&gt;&gt;&gt;</span> simple_seq_r.letter_annotations[<span class="st">&quot;phred_quality&quot;</span>] <span class="op">=</span> [<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">38</span>, <span class="dv">30</span>]
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(simple_seq_r.letter_annotations)
+{&#8217;phred_quality&#8217;: [<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">38</span>, <span class="dv">30</span>]}
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(simple_seq_r.letter_annotations[<span class="st">&quot;phred_quality&quot;</span>])
+[<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">38</span>, <span class="dv">30</span>]</code></pre></div>
+<h4 id="&#20174;fasta&#25991;&#20214;&#21019;&#24314;seqrecord">4.2.2 &#20174;FASTA&#25991;&#20214;&#21019;&#24314;SeqRecord</h4>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio <span class="im">import</span> SeqIO
+<span class="op">&gt;&gt;&gt;</span> record <span class="op">=</span> SeqIO.read(<span class="st">&quot;NC_005816.fna&quot;</span>, <span class="st">&quot;fasta&quot;</span>)
+<span class="op">&gt;&gt;&gt;</span> record
+SeqRecord(seq<span class="op">=</span>Seq(&#8217;TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG&#8217;,
+SingleLetterAlphabet()), <span class="bu">id</span><span class="op">=</span>&#8217;gi<span class="op">|</span><span class="dv">45478711</span><span class="op">|</span>ref<span class="op">|</span>NC_005816<span class="fl">.1</span><span class="op">|</span>&#8217;, name<span class="op">=</span>&#8217;gi<span class="op">|</span><span class="dv">45478711</span><span class="op">|</span>ref<span class="op">|</span>NC_005816<span class="fl">.1</span><span class="op">|</span>&#8217;,
+description<span class="op">=</span>&#8217;gi<span class="op">|</span><span class="dv">45478711</span><span class="op">|</span>ref<span class="op">|</span>NC_005816<span class="fl">.1</span><span class="op">|</span> Yersinia pestis biovar Microtus ... sequence&#8217;,
+dbxrefs<span class="op">=</span>[])
+
+<span class="op">&gt;&gt;&gt;</span> record.seq
+Seq(&#8217;TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG&#8217;, SingleLetterAlphabet())
+<span class="op">&gt;&gt;&gt;</span> record.<span class="bu">id</span>
+&#8217;gi<span class="op">|</span><span class="dv">45478711</span><span class="op">|</span>ref<span class="op">|</span>NC_005816<span class="fl">.1</span><span class="op">|</span>&#8217;
+<span class="op">&gt;&gt;&gt;</span> record.name
+&#8217;gi<span class="op">|</span><span class="dv">45478711</span><span class="op">|</span>ref<span class="op">|</span>NC_005816<span class="fl">.1</span><span class="op">|</span>&#8217;
+<span class="op">&gt;&gt;&gt;</span> record.description
+&#8217;gi<span class="op">|</span><span class="dv">45478711</span><span class="op">|</span>ref<span class="op">|</span>NC_005816<span class="fl">.1</span><span class="op">|</span> Yersinia pestis biovar Microtus ... pPCP1, complete sequence&#8217;
+
+<span class="op">&gt;&gt;&gt;</span> record.dbxrefs
+[]
+<span class="op">&gt;&gt;&gt;</span> record.annotations
+{}
+<span class="op">&gt;&gt;&gt;</span> record.letter_annotations
+{}
+<span class="op">&gt;&gt;&gt;</span> record.features
+[]</code></pre></div>
+<h4 id="&#20174;genbank&#25991;&#20214;&#21019;&#24314;seqrecord">4.2.3 &#20174;GenBank&#25991;&#20214;&#21019;&#24314;SeqRecord</h4>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio <span class="im">import</span> SeqIO
+<span class="op">&gt;&gt;&gt;</span> record <span class="op">=</span> SeqIO.read(<span class="st">&quot;NC_005816.gb&quot;</span>, <span class="st">&quot;genbank&quot;</span>)
+<span class="op">&gt;&gt;&gt;</span> record
+SeqRecord(seq<span class="op">=</span>Seq(&#8217;TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG&#8217;,
+IUPACAmbiguousDNA()), <span class="bu">id</span><span class="op">=</span>&#8217;NC_005816<span class="fl">.1</span>&#8217;, name<span class="op">=</span>&#8217;NC_005816&#8217;,
+description<span class="op">=</span>&#8217;Yersinia pestis biovar Microtus <span class="bu">str</span>. <span class="dv">91001</span> plasmid pPCP1, complete sequence.&#8217;,
+dbxrefs<span class="op">=</span>[&#8217;Project:<span class="dv">10638</span>&#8217;])
+
+<span class="op">&gt;&gt;&gt;</span> record.seq
+Seq(&#8217;TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG&#8217;, IUPACAmbiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> record.<span class="bu">id</span>
+&#8217;NC_005816<span class="fl">.1</span>&#8217;
+<span class="op">&gt;&gt;&gt;</span> record.name
+&#8217;NC_005816&#8217;
+<span class="op">&gt;&gt;&gt;</span> record.description
+&#8217;Yersinia pestis biovar Microtus <span class="bu">str</span>. <span class="dv">91001</span> plasmid pPCP1, complete sequence.&#8217;
+<span class="op">&gt;&gt;&gt;</span> record.letter_annotations
+{}
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(record.annotations)
+<span class="dv">11</span>
+<span class="op">&gt;&gt;&gt;</span> record.annotations[<span class="st">&quot;source&quot;</span>]
+&#8217;Yersinia pestis biovar Microtus <span class="bu">str</span>. <span class="dv">91001</span>&#8217;
+<span class="op">&gt;&gt;&gt;</span> record.dbxrefs
+[&#8217;Project:<span class="dv">10638</span>&#8217;]
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(record.features)
+<span class="dv">29</span></code></pre></div>
+<h3 id="&#29305;&#28857;&#20301;&#32622;&#23545;&#35937;">4.3 &#29305;&#28857;&#12289;&#20301;&#32622;&#23545;&#35937;</h3>
+<h4 id="seqfeature&#23545;&#35937;">4.3.1 SeqFeature&#23545;&#35937;</h4>
+<p>Biopython&#30340;SeqFeature&#31867;&#26088;&#22312;&#25552;&#20379;&#19968;&#20010;&#24207;&#21015;&#30340;&#23613;&#21487;&#33021;&#35814;&#32454;&#30340;&#20449;&#24687;&#12290;&#19968;&#33324;&#26469;&#35828;&#65292;&#35813;&#31867;&#20027;&#35201;&#29992;&#20110;&#35299;&#37322;&#24207;&#21015;&#30340;&#26576;&#19968;&#21306;&#22495;&#12290;SeqFeature&#20855;&#26377;&#22810;&#31181;&#23646;&#24615;&#65306;</p>
+<ul>
+<li>.type - &#24207;&#21015;&#29305;&#24615;&#31867;&#22411;&#30340;&#25991;&#26412;&#34920;&#36848;&#65288;&#22914;CDS&#65292;gene&#31561;&#65289;</li>
+<li>.location - &#25152;&#22788;&#29702;&#24207;&#21015;&#30340;SeqFeature&#30340;&#20301;&#32622;</li>
+</ul>
+<p>&#65288;&#30053;&#65289;</p>
+<h3 id="&#21442;&#32771;&#25991;&#29486;">4.4 &#21442;&#32771;&#25991;&#29486;</h3>
+<p>&#65288;&#30053;&#65289;</p>
+<h3 id="format">4.5 format()</h3>
+<p><code>SeqRecord</code>&#31867;&#20013;&#30340;<code>format()</code>&#26041;&#27861;&#21487;&#35797;&#35762;&#35760;&#24405;&#30340;&#24207;&#21015;&#26684;&#24335;&#21270;&#20026;&#25351;&#23450;&#26684;&#24335;&#65292;&#20363;&#22914;fasta&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="im">from</span> Bio.SeqRecord <span class="im">import</span> SeqRecord
+<span class="im">from</span> Bio.Alphabet <span class="im">import</span> generic_protein
+record <span class="op">=</span> SeqRecord(Seq(<span class="st">&quot;MMYQQGCFAGGTVLRLAKDLAENNRGARVLVVCSEITAVTFRGPSETHLDSMVGQALFGD&quot;</span> <span class="op">\</span>
+<span class="op">+</span><span class="st">&quot;GAGAVIVGSDPDLSVERPLYELVWTGATLLPDSEGAIDGHLREVGLTFHLLKDVPGLISK&quot;</span> <span class="op">\</span>
+<span class="op">+</span><span class="st">&quot;NIEKSLKEAFTPLGISDWNSTFWIAHPGGPAILDQVEAKLGLKEEKMRATREVLSEYGNM&quot;</span> <span class="op">\</span>
+<span class="op">+</span><span class="st">&quot;SSAC&quot;</span>, generic_protein),
+<span class="bu">id</span><span class="op">=</span><span class="st">&quot;gi|14150838|gb|AAK54648.1|AF376133_1&quot;</span>,
+description<span class="op">=</span><span class="st">&quot;chalcone synthase [Cucumis sativus]&quot;</span>)
+<span class="bu">print</span>(record.<span class="bu">format</span>(<span class="st">&quot;fasta&quot;</span>))
+<span class="co">##which should give:</span>
+<span class="op">&gt;</span>gi<span class="op">|</span><span class="dv">14150838</span><span class="op">|</span>gb<span class="op">|</span>AAK54648<span class="fl">.1</span><span class="op">|</span>AF376133_1 chalcone synthase [Cucumis sativus]
+MMYQQGCFAGGTVLRLAKDLAENNRGARVLVVCSEITAVTFRGPSETHLDSMVGQALFGD
+GAGAVIVGSDPDLSVERPLYELVWTGATLLPDSEGAIDGHLREVGLTFHLLKDVPGLISK
+NIEKSLKEAFTPLGISDWNSTFWIAHPGGPAILDQVEAKLGLKEEKMRATREVLSEYGNM
+SSAC</code></pre></div>
+<h3 id="&#20998;&#21106;seqrecord">4.6 &#20998;&#21106;SeqRecord</h3>
+<p>&#65288;&#30053;&#65289;</p>
+<h3 id="&#22686;&#21152;seqrecord&#23545;&#35937;">4.7 &#22686;&#21152;SeqRecord&#23545;&#35937;</h3>
+<p>&#65288;&#30053;&#65289;</p>
+<h3 id="&#21453;&#36716;-&#20114;&#34917;seqrecord&#23545;&#35937;">4.8 &#21453;&#36716;-&#20114;&#34917;SeqRecord&#23545;&#35937;</h3>
+<p>&#65288;&#30053;&#65289;</p>
+</body>
+</html>

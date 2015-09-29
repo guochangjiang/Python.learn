@@ -1,0 +1,395 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="book.css" type="text/css" />
+</head>
+<body>
+<h2 id="&#31532;3&#31456;-&#24207;&#21015;&#23545;&#35937;">&#31532;3&#31456; &#24207;&#21015;&#23545;&#35937;</h2>
+<p>&#22312; Seq &#23545;&#35937;&#21644;python &#24207;&#21015;&#38388;&#26377;&#20004;&#20010;&#37325;&#35201;&#30340;&#19981;&#21516;&#28857;&#12290;</p>
+<p>&#39318;&#20808;&#65292;Seq &#23545;&#35937;&#21253;&#21547;&#26377;&#19968;&#20123;&#30456;&#23545;&#20110; python &#24207;&#21015;&#30340;&#19981;&#21516;&#30340;&#26041;&#27861;&#65288;&#20363;&#22914;&#65292; reverse_complement&#65288;&#65289;&#26041;&#27861;&#22312;&#26680;&#37240;&#24207;&#21015;&#20013;&#20351;&#29992;&#65289;&#12290;</p>
+<p>&#31532;&#20108;&#65292;Seq &#23545;&#35937;&#26377;&#19968;&#20010;&#37325;&#35201;&#30340;&#23646;&#24615;--&#23383;&#27597;&#34920;&#65292;&#23427;&#34987;&#29992;&#26469;&#25551;&#36848;&#24207;&#21015;&#23383;&#31526;&#20018;&#30340;&#24847; &#24605;&#65292;&#21450;&#22914;&#20309;&#35299;&#37322;&#12290;&#20363;&#22914;&#65292;AGTACACTGGT &#26159;&#19968;&#20010; DNA &#24207;&#21015;&#65292;&#36824;&#26159;&#19968;&#20010;&#21253;&#21547;&#26377; &#24456;&#22810; AGCT &#30340;&#34507;&#30333;&#36136;&#24207;&#21015;&#65311;</p>
+<h3 id="&#24207;&#21015;&#21644;&#23383;&#27597;&#34920;">3.1 &#24207;&#21015;&#21644;&#23383;&#27597;&#34920;</h3>
+<p>&#23383;&#27597;&#34920;&#23545;&#35937;&#20063;&#35768;&#26159;&#20351; Seq &#23545;&#35937;&#19981;&#20165;&#20165;&#26159;&#19968;&#20010;&#24207;&#21015;&#30340;&#26368;&#37325;&#35201;&#30340;&#19996;&#35199;&#12290;Biopython &#20013;&#29616;&#22312;&#21487;&#29992;&#30340;&#23383;&#27597;&#34920;&#22312; <code>Bio.Alphabet</code>&#27169;&#22359;&#20013;&#23450;&#20041;&#12290;&#25105;&#20204;&#23558;&#20351;&#29992; IUPAC &#23383;&#27597;&#34920; &#65288;http://www.chem.qmw.ac.uk/iupac/&#65289;&#26469;&#22788;&#29702;&#25105;&#20204;&#21916;&#27426;&#30340;&#23545;&#35937;&#65306; DNA&#65292; RNA &#20197; &#21450; Proteins&#12290;</p>
+<p><code>Bio.Alphabet.IUPAC</code>&#20026;&#34507;&#30333;&#12289;DNA&#21644;RNA&#25552;&#20379;&#20102;&#22522;&#26412;&#30340;&#23450;&#20041;&#12290;&#20363;&#22914;&#65292;&#23545;&#34507;&#30333;&#36136;&#26469;&#35828;&#65292;&#26377;&#19968;&#20010;&#22522;&#26412;&#30340;<code>IUPACProtein</code>&#31867;&#65292;&#19988;&#20855;&#26377;&#19968;&#20010;&#38468;&#21152;&#30340;<code>ExtendedIUPACProtein</code>&#31867;&#25552;&#20379;&#20102;&#38468;&#21152;&#20803;&#32032;&#8220;U&#8221;&#65288;&#25110;&#8220;Sec&#8221;&#30802;&#20195;&#21322;&#33009;&#27688;&#37240;&#65289;&#21644;&#8220;O&#8221;&#65288;&#25110;&#8220;Pyl&#8221;&#21537;&#21679;&#36182;&#27688;&#37240;&#65289;&#65292;&#20197;&#21450;&#31616;&#24182;&#31526;&#21495;&#8220;B&#8221;&#65288;&#25110;&#8220;Asx&#8221;&#20195;&#34920;&#22825;&#20908;&#37232;&#33018;&#21644;&#22825;&#20908;&#27688;&#37240;&#65289;&#65292;&#8220;Z&#8221;&#65288;&#25110;&#8220;Glx&#8221;&#65292;&#20195;&#34920;&#35895;&#27688;&#37232;&#33018;&#21644;&#35895;&#27688;&#37240;&#65289;&#65292;&#8220;J&#8221;&#65288;&#25110;&#8220;Xle&#8221;&#65292;&#20195;&#34920;&#20142;&#27688;&#37240;&#21644;&#24322;&#20142;&#27688;&#37240;&#65289;&#21644;&#8220;X&#8221;&#65288;&#25110;&#8220;Xxx&#8221;&#65292;&#20195;&#34920;&#26410;&#30693;&#27688;&#22522;&#37240;&#65289;&#12290;&#23545;DNA&#26469;&#35828;&#65292;&#21487;&#36873;&#25321;<code>IUPACUnambiguousDNA</code>&#20165;&#25552;&#20379;&#22522;&#26412;&#23383;&#27597;&#34920;&#31034;&#65292;&#32780;<code>IUPACAmbiguousDNA</code>&#21017;&#25552;&#20379;&#20102;&#31616;&#24182;&#23383;&#27597;&#34920;&#31034;&#65292;&#32780;<code>ExtendedIUPACDNA</code>&#21017;&#20801;&#35768;&#23383;&#27597;&#26159;&#20462;&#39280;&#30897;&#22522;&#12290;&#30456;&#20284;&#22320;&#65292;RNA&#21487;&#20197;&#30001;<code>IUPACAmbiguousRNA</code>&#25110;<code>IUPACUnambiguousRNA</code>&#34920;&#31034;&#12290;</p>
+<p>&#31034;&#20363;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> my_seq <span class="op">=</span> Seq(<span class="st">&quot;AGTACACTGGT&quot;</span>)
+<span class="op">&gt;&gt;&gt;</span> my_seq
+Seq(&#8217;AGTACACTGGT&#8217;, Alphabet())
+<span class="op">&gt;&gt;&gt;</span> my_seq.alphabet
+Alphabet()
+
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> IUPAC
+<span class="op">&gt;&gt;&gt;</span> my_seq <span class="op">=</span> Seq(<span class="st">&quot;AGTACACTGGT&quot;</span>, IUPAC.unambiguous_dna)
+<span class="op">&gt;&gt;&gt;</span> my_seq
+Seq(&#8217;AGTACACTGGT&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> my_seq.alphabet
+IUPACUnambiguousDNA()
+
+<span class="op">&gt;&gt;&gt;</span> my_prot <span class="op">=</span> Seq(<span class="st">&quot;AGTACACTGGT&quot;</span>, IUPAC.protein)
+<span class="op">&gt;&gt;&gt;</span> my_prot
+Seq(&#8217;AGTACACTGGT&#8217;, IUPACProtein())
+<span class="op">&gt;&gt;&gt;</span> my_prot.alphabet
+IUPACProtein()</code></pre></div>
+<h3 id="&#20351;&#24207;&#21015;&#20687;&#23383;&#31526;&#20018;&#19968;&#26679;">3.2 &#20351;&#24207;&#21015;&#20687;&#23383;&#31526;&#20018;&#19968;&#26679;</h3>
+<ul>
+<li>&#20363;&#22914;<code>enumerate(my_seq)</code>&#65306;</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> IUPAC
+<span class="op">&gt;&gt;&gt;</span> my_seq <span class="op">=</span> Seq(<span class="st">&quot;GATCG&quot;</span>, IUPAC.unambiguous_dna)
+<span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> index, letter <span class="op">in</span> <span class="bu">enumerate</span>(my_seq):
+... <span class="bu">print</span>(<span class="st">&quot;</span><span class="sc">%i</span><span class="st"> </span><span class="sc">%s</span><span class="st">&quot;</span> <span class="op">%</span> (index, letter))
+<span class="dv">0</span> G
+<span class="dv">1</span> A
+<span class="dv">2</span> T
+<span class="dv">3</span> C
+<span class="dv">4</span> G
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="bu">len</span>(my_seq))
+<span class="dv">5</span></code></pre></div>
+<ul>
+<li>&#24207;&#21015;&#23545;&#35937;&#21487;&#30452;&#25509;&#36827;&#34892;&#23383;&#31526;&#20018;&#20999;&#29255;&#65306;</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(my_seq[<span class="dv">0</span>]) <span class="co">#first letter</span>
+G
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(my_seq[<span class="dv">2</span>]) <span class="co">#third letter</span>
+T
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(my_seq[<span class="op">-</span><span class="dv">1</span>]) <span class="co">#last letter</span>
+G</code></pre></div>
+<ul>
+<li>&#19982;python&#23383;&#31526;&#20018;&#19968;&#26679;&#65292;&#24207;&#21015;&#23545;&#35937;&#20855;&#26377;&#19968;&#20010;count()&#26041;&#27861;&#65288;&#38750;&#37325;&#21472;&#65289;&#65306;</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="st">&quot;AAAA&quot;</span>.count(<span class="st">&quot;AA&quot;</span>)
+<span class="dv">2</span>
+<span class="op">&gt;&gt;&gt;</span> Seq(<span class="st">&quot;AAAA&quot;</span>).count(<span class="st">&quot;AA&quot;</span>)
+<span class="dv">2</span></code></pre></div>
+<ul>
+<li><p>&#35745;&#31639;GC&#21547;&#37327;&#65306;</p></li>
+<li><p>&#26041;&#27861;&#19968;&#65306;</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> IUPAC
+<span class="op">&gt;&gt;&gt;</span> my_seq <span class="op">=</span> Seq(&#8217;GATCGATGGGCCTATATAGGATCGAAAATCGC&#8217;, IUPAC.unambiguous_dna)
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(my_seq)
+<span class="dv">32</span>
+<span class="op">&gt;&gt;&gt;</span> my_seq.count(<span class="st">&quot;G&quot;</span>)
+<span class="dv">9</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="dv">100</span> <span class="op">*</span> <span class="bu">float</span>(my_seq.count(<span class="st">&quot;G&quot;</span>) <span class="op">+</span> my_seq.count(<span class="st">&quot;C&quot;</span>)) <span class="op">/</span> <span class="bu">len</span>(my_seq)
+<span class="fl">46.875</span></code></pre></div>
+<ul>
+<li>&#26041;&#27861;&#20108;&#65306;</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> IUPAC
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.SeqUtils <span class="im">import</span> GC
+<span class="op">&gt;&gt;&gt;</span> my_seq <span class="op">=</span> Seq(&#8217;GATCGATGGGCCTATATAGGATCGAAAATCGC&#8217;, IUPAC.unambiguous_dna)
+<span class="op">&gt;&gt;&gt;</span> GC(my_seq)
+<span class="fl">46.875</span></code></pre></div>
+<h3 id="&#20999;&#21106;&#24207;&#21015;">3.3 &#20999;&#21106;&#24207;&#21015;</h3>
+<p>&#31034;&#20363;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> IUPAC
+<span class="op">&gt;&gt;&gt;</span> my_seq <span class="op">=</span> Seq(<span class="st">&quot;GATCGATGGGCCTATATAGGATCGAAAATCGC&quot;</span>, IUPAC.unambiguous_dna)
+<span class="op">&gt;&gt;&gt;</span> my_seq[<span class="dv">4</span>:<span class="dv">12</span>]
+Seq(&#8217;GATGGGCC&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> my_seq[<span class="dv">0</span>::<span class="dv">3</span>]
+Seq(&#8217;GCTGTAGTAAG&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> my_seq[<span class="dv">1</span>::<span class="dv">3</span>]
+Seq(&#8217;AGGCATGCATC&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> my_seq[<span class="dv">2</span>::<span class="dv">3</span>]
+Seq(&#8217;TAGCTAAGAC&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> my_seq[::<span class="op">-</span><span class="dv">1</span>]
+Seq(&#8217;CGCTAAAAGCTAGGATATATCCGGGTAGCTAG&#8217;, IUPACUnambiguousDNA())</code></pre></div>
+<h3 id="&#23558;&#24207;&#21015;&#23545;&#35937;&#36716;&#25442;&#20026;&#23383;&#31526;&#20018;">3.4 &#23558;&#24207;&#21015;&#23545;&#35937;&#36716;&#25442;&#20026;&#23383;&#31526;&#20018;</h3>
+<p>&#20351;&#29992;&#20989;&#25968;<code>str()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="bu">str</span>(my_seq)
+&#8217;GATCGATGGGCCTATATAGGATCGAAAATCGC&#8217;</code></pre></div>
+<blockquote>
+<p>&#20854;&#23454;&#65292;&#22312;&#35843;&#29992;print()&#20989;&#25968;&#26102;&#65292;python&#22238;&#33258;&#21160;&#36827;&#34892;&#35813;&#36716;&#25442;&#12290;</p>
+</blockquote>
+<p>&#26684;&#24335;&#21270;&#36755;&#20986;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> fasta_format_string <span class="op">=</span> <span class="st">&quot;&gt;Name</span><span class="ch">\n</span><span class="sc">%s</span><span class="ch">\n</span><span class="st">&quot;</span> <span class="op">%</span> my_seq
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(fasta_format_string)
+<span class="op">&gt;</span>Name
+GATCGATGGGCCTATATAGGATCGAAAATCGC
+<span class="op">&lt;</span>BLANKLINE<span class="op">&gt;</span></code></pre></div>
+<h3 id="&#36830;&#25509;&#25110;&#28155;&#21152;&#24207;&#21015;">3.5 &#36830;&#25509;&#25110;&#28155;&#21152;&#24207;&#21015;</h3>
+<p>Biopython&#24207;&#21015;&#23545;&#35937;&#19981;&#20855;&#26377;python&#23383;&#31526;&#20018;&#30340;.join()&#26041;&#27861;&#12290;</p>
+<p>&#19981;&#33021;&#25226;&#20004;&#20010;&#19981;&#20860;&#23481;&#30340;&#23383;&#27597;&#34920;&#36830;&#25509;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> IUPAC
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> protein_seq <span class="op">=</span> Seq(<span class="st">&quot;EVRNAK&quot;</span>, IUPAC.protein)
+<span class="op">&gt;&gt;&gt;</span> dna_seq <span class="op">=</span> Seq(<span class="st">&quot;ACGT&quot;</span>, IUPAC.unambiguous_dna)
+<span class="op">&gt;&gt;&gt;</span> protein_seq <span class="op">+</span> dna_seq
+Traceback (most recent call last):
+...
+<span class="pp">TypeError</span>: Incompatible alphabets IUPACProtein() <span class="op">and</span> IUPACUnambiguousDNA()</code></pre></div>
+<p>&#22914;&#35201;&#20570;&#27492;&#25805;&#20316;&#65292;&#21487;&#20808;&#23558;&#20004;&#20010;&#24207;&#21015;&#23545;&#35937;&#35774;&#32622;&#20026;&#36890;&#29992;&#23383;&#27597;&#34920;<code>generic_alphabet</code>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> generic_alphabet
+<span class="op">&gt;&gt;&gt;</span> protein_seq.alphabet <span class="op">=</span> generic_alphabet
+<span class="op">&gt;&gt;&gt;</span> dna_seq.alphabet <span class="op">=</span> generic_alphabet
+<span class="op">&gt;&gt;&gt;</span> protein_seq <span class="op">+</span> dna_seq
+Seq(&#8217;EVRNAKACGT&#8217;, Alphabet())</code></pre></div>
+<p>&#27492;&#22806;&#65292;&#26377;&#20123;&#23383;&#27597;&#34920;&#26159;&#20860;&#23481;&#30340;&#65292;&#22914;&#38750;&#31616;&#24182;DNA&#23383;&#27597;&#34920;&#19982;&#36890;&#29992;&#26680;&#33527;&#37240;&#34920;&#36830;&#25509;&#21518;&#20026;&#31616;&#24182;&#26680;&#33527;&#37240;&#34920;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> generic_nucleotide
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> IUPAC
+<span class="op">&gt;&gt;&gt;</span> nuc_seq <span class="op">=</span> Seq(<span class="st">&quot;GATCGATGC&quot;</span>, generic_nucleotide)
+<span class="op">&gt;&gt;&gt;</span> dna_seq <span class="op">=</span> Seq(<span class="st">&quot;ACGT&quot;</span>, IUPAC.unambiguous_dna)
+<span class="op">&gt;&gt;&gt;</span> nuc_seq
+Seq(&#8217;GATCGATGC&#8217;, NucleotideAlphabet())
+<span class="op">&gt;&gt;&gt;</span> dna_seq
+Seq(&#8217;ACGT&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> nuc_seq <span class="op">+</span> dna_seq
+Seq(&#8217;GATCGATGCACGT&#8217;, NucleotideAlphabet())</code></pre></div>
+<p>&#20351;&#29992;&#24490;&#29615;&#26041;&#24335;&#36830;&#25509;&#22810;&#26465;&#24207;&#21015;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> generic_dna
+<span class="op">&gt;&gt;&gt;</span> list_of_seqs <span class="op">=</span> [Seq(<span class="st">&quot;ACGT&quot;</span>, generic_dna), Seq(<span class="st">&quot;AACC&quot;</span>, generic_dna), Seq(<span class="st">&quot;GGTT&quot;</span>, generic_dna)]
+<span class="op">&gt;&gt;&gt;</span> concatenated <span class="op">=</span> Seq(<span class="st">&quot;&quot;</span>, generic_dna)
+<span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> s <span class="op">in</span> list_of_seqs:
+... concatenated <span class="op">+=</span> s
+...
+<span class="op">&gt;&gt;&gt;</span> concatenated
+Seq(&#8217;ACGTAACCGGTT&#8217;, DNAAlphabet())</code></pre></div>
+<p>&#21478;&#22806;&#19968;&#31181;&#26041;&#24335;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> generic_dna
+<span class="op">&gt;&gt;&gt;</span> list_of_seqs <span class="op">=</span> [Seq(<span class="st">&quot;ACGT&quot;</span>, generic_dna), Seq(<span class="st">&quot;AACC&quot;</span>, generic_dna), Seq(<span class="st">&quot;GGTT&quot;</span>, generic_dna)]
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">sum</span>(list_of_seqs, Seq(<span class="st">&quot;&quot;</span>, generic_dna))
+Seq(&#8217;ACGTAACCGGTT&#8217;, DNAAlphabet())</code></pre></div>
+<h3 id="&#21487;&#21464;&#23481;&#22120;">3.6 &#21487;&#21464;&#23481;&#22120;</h3>
+<p>&#24207;&#21015;&#23545;&#35937;&#20855;&#26377;&#19982;python&#23383;&#31526;&#20018;&#31867;&#20284;&#30340;&#25913;&#21464;&#22823;&#23567;&#20889;&#30340;&#26041;&#27861;&#65306;upper()&#19982;lower():</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> generic_dna
+<span class="op">&gt;&gt;&gt;</span> dna_seq <span class="op">=</span> Seq(<span class="st">&quot;acgtACGT&quot;</span>, generic_dna)
+<span class="op">&gt;&gt;&gt;</span> dna_seq
+Seq(&#8217;acgtACGT&#8217;, DNAAlphabet())
+<span class="op">&gt;&gt;&gt;</span> dna_seq.upper()
+Seq(&#8217;ACGTACGT&#8217;, DNAAlphabet())
+<span class="op">&gt;&gt;&gt;</span> dna_seq.lower()
+Seq(&#8217;acgtacgt&#8217;, DNAAlphabet())
+<span class="op">&gt;</span> <span class="op">&gt;</span> <span class="op">&gt;</span> <span class="st">&quot;GTAC&quot;</span> <span class="op">in</span> dna<span class="op">\</span>_seq
+<span class="va">False</span> 
+<span class="co">&quot;GTAC&quot;</span> <span class="op">in</span> dna<span class="op">\</span>_seq.upper() 
+<span class="va">True</span></code></pre></div>
+<h3 id="&#26680;&#33527;&#37240;&#21644;&#21453;&#21521;&#20114;&#34917;&#24207;&#21015;">3.7 &#26680;&#33527;&#37240;&#21644;&#65288;&#21453;&#21521;&#65289;&#20114;&#34917;&#24207;&#21015;</h3>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> IUPAC
+<span class="op">&gt;&gt;&gt;</span> my_seq <span class="op">=</span> Seq(<span class="st">&quot;GATCGATGGGCCTATATAGGATCGAAAATCGC&quot;</span>, IUPAC.unambiguous_dna)
+<span class="op">&gt;&gt;&gt;</span> my_seq
+Seq(&#8217;GATCGATGGGCCTATATAGGATCGAAAATCGC&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> my_seq.complement()
+Seq(&#8217;CTAGCTACCCGGATATATCCTAGCTTTTAGCG&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> my_seq.reverse_complement()
+Seq(&#8217;GCGATTTTCGATCCTATATAGGCCCATCGATC&#8217;, IUPACUnambiguousDNA())</code></pre></div>
+<h3 id="&#36716;&#24405;">3.8 &#36716;&#24405;</h3>
+<p><code>transcribe()</code>&#26041;&#27861;&#65292;&#23558;T&#36716;&#25442;&#20026;U&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> IUPAC
+<span class="op">&gt;&gt;&gt;</span> coding_dna <span class="op">=</span> Seq(<span class="st">&quot;ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG&quot;</span>, IUPAC.unambiguous_dna)
+<span class="op">&gt;&gt;&gt;</span> coding_dna
+Seq(&#8217;ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> template_dna <span class="op">=</span> coding_dna.reverse_complement()
+<span class="op">&gt;&gt;&gt;</span> template_dna
+Seq(&#8217;CTATCGGGCACCCTTTCAGCGGCCCATTACAATGGCCAT&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> messenger_rna <span class="op">=</span> coding_dna.transcribe()
+<span class="op">&gt;&gt;&gt;</span> messenger_rna
+Seq(&#8217;AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG&#8217;, IUPACUnambiguousRNA())
+<span class="op">&gt;&gt;&gt;</span> template_dna.reverse_complement().transcribe()
+Seq(&#8217;AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG&#8217;, IUPACUnambiguousRNA())</code></pre></div>
+<p>&#21453;&#36716;&#24405;&#65306;<code>back_transcribe()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> IUPAC
+<span class="op">&gt;&gt;&gt;</span> messenger_rna <span class="op">=</span> Seq(<span class="st">&quot;AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG&quot;</span>, IUPAC.unambiguous_rna)
+<span class="op">&gt;&gt;&gt;</span> messenger_rna
+Seq(&#8217;AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG&#8217;, IUPACUnambiguousRNA())
+<span class="op">&gt;&gt;&gt;</span> messenger_rna.back_transcribe()
+Seq(&#8217;ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG&#8217;, IUPACUnambiguousDNA())</code></pre></div>
+<h3 id="&#32763;&#35793;">3.9 &#32763;&#35793;</h3>
+<p><code>translate()</code>&#26041;&#27861;&#21487;&#23558;DNA&#25110;mRNA&#32763;&#35793;&#20026;&#34507;&#30333;&#24207;&#21015;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> IUPAC
+<span class="op">&gt;&gt;&gt;</span> messenger_rna <span class="op">=</span> Seq(<span class="st">&quot;AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG&quot;</span>, IUPAC.unambiguous_rna)
+<span class="op">&gt;&gt;&gt;</span> messenger_rna
+Seq(&#8217;AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG&#8217;, IUPACUnambiguousRNA())
+<span class="op">&gt;&gt;&gt;</span> messenger_rna.translate()
+Seq(&#8217;MAIVMGR<span class="op">*</span>KGAR<span class="op">*</span>&#8217;, HasStopCodon(IUPACProtein(), &#8217;<span class="op">*</span>&#8217;))
+<span class="op">&gt;&gt;&gt;</span> coding_dna <span class="op">=</span> Seq(<span class="st">&quot;ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG&quot;</span>, IUPAC.unambiguous_dna)
+<span class="op">&gt;&gt;&gt;</span> coding_dna
+Seq(&#8217;ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> coding_dna.translate()
+Seq(&#8217;MAIVMGR<span class="op">*</span>KGAR<span class="op">*</span>&#8217;, HasStopCodon(IUPACProtein(), &#8217;<span class="op">*</span>&#8217;))</code></pre></div>
+<p>&#32763;&#35793;&#26102;&#40664;&#35748;&#20351;&#29992;&#26631;&#20934;&#23494;&#30721;&#23376;&#34920;&#65292;&#20063;&#21487;&#25351;&#23450;&#23494;&#30721;&#23376;&#34920;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> coding_dna.translate(table<span class="op">=</span><span class="st">&quot;Vertebrate Mitochondrial&quot;</span>)
+Seq(&#8217;MAIVMGRWKGAR<span class="op">*</span>&#8217;, HasStopCodon(IUPACProtein(), &#8217;<span class="op">*</span>&#8217;))
+<span class="op">&gt;&gt;&gt;</span> coding_dna.translate(table<span class="op">=</span><span class="dv">2</span>)
+Seq(&#8217;MAIVMGRWKGAR<span class="op">*</span>&#8217;, HasStopCodon(IUPACProtein(), &#8217;<span class="op">*</span>&#8217;))</code></pre></div>
+<p>&#25351;&#23450;&#22312;&#31532;&#19968;&#20010;&#32456;&#27490;&#23494;&#30721;&#23376;&#22788;&#32456;&#27490;&#32763;&#35793;<code>.translate(to_stop = True)</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> coding_dna.translate()
+Seq(&#8217;MAIVMGR<span class="op">*</span>KGAR<span class="op">*</span>&#8217;, HasStopCodon(IUPACProtein(), &#8217;<span class="op">*</span>&#8217;))
+<span class="op">&gt;&gt;&gt;</span> coding_dna.translate(to_stop<span class="op">=</span><span class="va">True</span>)
+Seq(&#8217;MAIVMGR&#8217;, IUPACProtein())
+<span class="op">&gt;&gt;&gt;</span> coding_dna.translate(table<span class="op">=</span><span class="dv">2</span>)
+Seq(&#8217;MAIVMGRWKGAR<span class="op">*</span>&#8217;, HasStopCodon(IUPACProtein(), &#8217;<span class="op">*</span>&#8217;))
+<span class="op">&gt;&gt;&gt;</span> coding_dna.translate(table<span class="op">=</span><span class="dv">2</span>, to_stop<span class="op">=</span><span class="va">True</span>)
+Seq(&#8217;MAIVMGRWKGAR&#8217;, IUPACProtein())</code></pre></div>
+<p>&#25351;&#23450;&#32456;&#27490;&#23494;&#30721;&#23376;&#31526;&#21495;&#65306;<code>stop_symbol = &quot;@&quot;</code>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> coding_dna.translate(table<span class="op">=</span><span class="dv">2</span>, stop_symbol<span class="op">=</span><span class="st">&quot;@&quot;</span>)
+Seq(&#8217;MAIVMGRWKGAR@&#8217;, HasStopCodon(IUPACProtein(), &#8217;@&#8217;))</code></pre></div>
+<p>&#23454;&#20363;&#65306;&#32763;&#35793;E. coli K12&#30340;yaaX&#22522;&#22240;&#30340;CDS&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> generic_dna
+<span class="op">&gt;&gt;&gt;</span> gene <span class="op">=</span> Seq(<span class="st">&quot;GTGAAAAAGATGCAATCTATCGTACTCGCACTTTCCCTGGTTCTGGTCGCTCCCATGGCA&quot;</span> <span class="op">+</span> <span class="op">\</span>
+... <span class="st">&quot;GCACAGGCTGCGGAAATTACGTTAGTCCCGTCAGTAAAATTACAGATAGGCGATCGTGAT&quot;</span> <span class="op">+</span> <span class="op">\</span>
+... <span class="st">&quot;AATCGTGGCTATTACTGGGATGGAGGTCACTGGCGCGACCACGGCTGGTGGAAACAACAT&quot;</span> <span class="op">+</span> <span class="op">\</span>
+... <span class="st">&quot;TATGAATGGCGAGGCAATCGCTGGCACCTACACGGACCGCCGCCACCGCCGCGCCACCAT&quot;</span> <span class="op">+</span> <span class="op">\</span>
+... <span class="st">&quot;AAGAAAGCTCCTCATGATCATCACGGCGGTCATGGTCCAGGCAAACATCACCGCTAA&quot;</span>,
+... generic_dna)
+<span class="op">&gt;&gt;&gt;</span> gene.translate(table<span class="op">=</span><span class="st">&quot;Bacterial&quot;</span>)
+Seq(&#8217;VKKMQSIVLALSLVLVAPMAAQAAEITLVPSVKLQIGDRDNRGYYWDGGHWRDH...HR<span class="op">*</span>&#8217;,
+HasStopCodon(ExtendedIUPACProtein(), &#8217;<span class="op">*</span>&#8217;)
+<span class="op">&gt;&gt;&gt;</span> gene.translate(table<span class="op">=</span><span class="st">&quot;Bacterial&quot;</span>, to_stop<span class="op">=</span><span class="va">True</span>)
+Seq(&#8217;VKKMQSIVLALSLVLVAPMAAQAAEITLVPSVKLQIGDRDNRGYYWDGGHWRDH...HHR&#8217;,
+ExtendedIUPACProtein())
+<span class="op">&gt;&gt;&gt;</span> gene.translate(table<span class="op">=</span><span class="st">&quot;Bacterial&quot;</span>, cds<span class="op">=</span><span class="va">True</span>)
+Seq(&#8217;MKKMQSIVLALSLVLVAPMAAQAAEITLVPSVKLQIGDRDNRGYYWDGGHWRDH...HHR&#8217;,
+ExtendedIUPACProtein())</code></pre></div>
+<h3 id="&#32763;&#35793;&#23494;&#30721;&#23376;&#34920;">3.10 &#32763;&#35793;&#23494;&#30721;&#23376;&#34920;</h3>
+<p>&#35814;&#35265;&#65306;</p>
+<ul>
+<li>ftp://ftp.ncbi.nlm.nih.gov/entrez/misc/data/gc.prt</li>
+<li>http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi</li>
+</ul>
+<p>&#25171;&#21360;&#23494;&#30721;&#23376;&#34920;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Data <span class="im">import</span> CodonTable
+<span class="op">&gt;&gt;&gt;</span> standard_table <span class="op">=</span> CodonTable.unambiguous_dna_by_name[<span class="st">&quot;Standard&quot;</span>]
+<span class="op">&gt;&gt;&gt;</span> standard_table <span class="op">=</span> CodonTable.unambiguous_dna_by_id[<span class="dv">1</span>]
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(standard_table)
+
+<span class="op">&gt;&gt;&gt;</span> mito_table <span class="op">=</span> CodonTable.unambiguous_dna_by_name[<span class="st">&quot;Vertebrate Mitochondrial&quot;</span>]
+<span class="op">&gt;&gt;&gt;</span> mito_table <span class="op">=</span> CodonTable.unambiguous_dna_by_id[<span class="dv">2</span>]
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(mito_table)
+<span class="op">&gt;&gt;&gt;</span> mito_table.stop_codons
+[&#8217;TAA&#8217;, &#8217;TAG&#8217;, &#8217;AGA&#8217;, &#8217;AGG&#8217;]
+<span class="op">&gt;&gt;&gt;</span> mito_table.start_codons
+[&#8217;ATT&#8217;, &#8217;ATC&#8217;, &#8217;ATA&#8217;, &#8217;ATG&#8217;, &#8217;GTG&#8217;]
+<span class="op">&gt;&gt;&gt;</span> mito_table.forward_table[<span class="st">&quot;ACG&quot;</span>]
+&#8217;T&#8217;</code></pre></div>
+<h3 id="&#27604;&#36739;&#24207;&#21015;&#23545;&#35937;">3.11 &#27604;&#36739;&#24207;&#21015;&#23545;&#35937;</h3>
+<p>&#21482;&#26377;&#20860;&#23481;&#30340;&#23383;&#27597;&#34920;&#20043;&#38388;&#25165;&#21487;&#20197;&#27604;&#36739;&#65292;&#27604;&#36739;&#26041;&#24335;&#19982;python&#23383;&#31526;&#20018;&#31867;&#20284;&#65306;<code>Seq_obj1 == Seq_obj2</code>&#36820;&#22238;&#24067;&#23572;&#20540;&#12290;</p>
+<h3 id="&#21487;&#21464;&#24207;&#21015;&#23545;&#35937;">3.12 &#21487;&#21464;&#24207;&#21015;&#23545;&#35937;</h3>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> Seq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> IUPAC
+<span class="op">&gt;&gt;&gt;</span> my_seq <span class="op">=</span> Seq(<span class="st">&quot;GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA&quot;</span>, IUPAC.unambiguous_dna)
+<span class="op">&gt;&gt;&gt;</span> mutable_seq <span class="op">=</span> my_seq.tomutable()
+<span class="op">&gt;&gt;&gt;</span> mutable_seq
+MutableSeq(&#8217;GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA&#8217;, IUPACUnambiguousDNA())</code></pre></div>
+<p>&#20063;&#21487;&#20197;&#30452;&#25509;&#21019;&#24314;&#19968;&#20010;&#21487;&#21464;&#30340;&#24207;&#21015;&#23545;&#35937;<code>MutableSeq</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> MutableSeq
+<span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Alphabet <span class="im">import</span> IUPAC
+<span class="op">&gt;&gt;&gt;</span> mutable_seq <span class="op">=</span> MutableSeq(<span class="st">&quot;GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA&quot;</span>, IUPAC.unambiguous_dna)
+<span class="op">&gt;&gt;&gt;</span> mutable_seq
+MutableSeq(&#8217;GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> mutable_seq[<span class="dv">5</span>] <span class="op">=</span> <span class="st">&quot;C&quot;</span>
+<span class="op">&gt;&gt;&gt;</span> mutable_seq
+MutableSeq(&#8217;GCCATCGTAATGGGCCGCTGAAAGGGTGCCCGA&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> mutable_seq.remove(<span class="st">&quot;T&quot;</span>)
+<span class="op">&gt;&gt;&gt;</span> mutable_seq
+MutableSeq(&#8217;GCCACGTAATGGGCCGCTGAAAGGGTGCCCGA&#8217;, IUPACUnambiguousDNA())
+<span class="op">&gt;&gt;&gt;</span> mutable_seq.reverse()
+<span class="op">&gt;&gt;&gt;</span> mutable_seq
+MutableSeq(&#8217;AGCCCGTGGGAAAGTCGCCGGGTAATGCACCG&#8217;, IUPACUnambiguousDNA())</code></pre></div>
+<p>&#23558;&#21487;&#21464;&#24207;&#21015;&#23545;&#35937;&#21464;&#25104;&#19968;&#33324;&#24207;&#21015;&#23545;&#35937;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> new_seq <span class="op">=</span> mutable_seq.toseq()
+<span class="op">&gt;&gt;&gt;</span> new_seq
+Seq(&#8217;AGCCCGTGGGAAAGTCGCCGGGTAATGCACCG&#8217;, IUPACUnambiguousDNA())</code></pre></div>
+<h3 id="&#26410;&#30693;&#24207;&#21015;&#23545;&#35937;">3.13 &#26410;&#30693;&#24207;&#21015;&#23545;&#35937;</h3>
+<p><code>UnknownSeq</code>&#23545;&#35937;&#26159;&#22522;&#26412;&#30340;&#24207;&#21015;&#23545;&#35937;&#30340;&#19968;&#20010;&#20122;&#31867;&#65292;&#29992;&#20110;&#20195;&#34920;&#24050;&#30693;&#38271;&#24230;&#32780;&#26410;&#30693;&#23383;&#27597;&#30340;&#24207;&#21015;&#12290;&#20351;&#29992;&#35813;&#23545;&#35937;&#21487;&#20197;&#33410;&#30465;&#22823;&#37327;&#20869;&#23384;&#65288;&#35832;&#22914;&#35832;&#22810;N&#65289;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> UnknownSeq
+<span class="op">&gt;&gt;&gt;</span> unk <span class="op">=</span> UnknownSeq(<span class="dv">20</span>)
+<span class="op">&gt;&gt;&gt;</span> unk
+UnknownSeq(<span class="dv">20</span>, alphabet <span class="op">=</span> Alphabet(), character <span class="op">=</span> &#8217;?&#8217;)
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(unk)
+????????????????????
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(unk)
+<span class="dv">20</span>
+
+<span class="op">&gt;&gt;&gt;</span> unk_dna <span class="op">=</span> UnknownSeq(<span class="dv">20</span>, alphabet<span class="op">=</span>IUPAC.ambiguous_dna)
+<span class="op">&gt;&gt;&gt;</span> unk_dna
+UnknownSeq(<span class="dv">20</span>, alphabet <span class="op">=</span> IUPACAmbiguousDNA(), character <span class="op">=</span> &#8217;N&#8217;)
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(unk_dna)
+NNNNNNNNNNNNNNNNNNNN
+
+<span class="op">&gt;&gt;&gt;</span> unk_dna
+UnknownSeq(<span class="dv">20</span>, alphabet <span class="op">=</span> IUPACAmbiguousDNA(), character <span class="op">=</span> &#8217;N&#8217;)
+<span class="op">&gt;&gt;&gt;</span> unk_dna.complement()
+UnknownSeq(<span class="dv">20</span>, alphabet <span class="op">=</span> IUPACAmbiguousDNA(), character <span class="op">=</span> &#8217;N&#8217;)
+<span class="op">&gt;&gt;&gt;</span> unk_dna.reverse_complement()
+UnknownSeq(<span class="dv">20</span>, alphabet <span class="op">=</span> IUPACAmbiguousDNA(), character <span class="op">=</span> &#8217;N&#8217;)
+<span class="op">&gt;&gt;&gt;</span> unk_dna.transcribe()
+UnknownSeq(<span class="dv">20</span>, alphabet <span class="op">=</span> IUPACAmbiguousRNA(), character <span class="op">=</span> &#8217;N&#8217;)
+<span class="op">&gt;&gt;&gt;</span> unk_protein <span class="op">=</span> unk_dna.translate()
+<span class="op">&gt;&gt;&gt;</span> unk_protein
+UnknownSeq(<span class="dv">6</span>, alphabet <span class="op">=</span> ProteinAlphabet(), character <span class="op">=</span> &#8217;X&#8217;)
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(unk_protein)
+XXXXXX
+<span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(unk_protein)
+<span class="dv">6</span></code></pre></div>
+<h3 id="&#30452;&#25509;&#22788;&#29702;&#23383;&#31526;&#20018;">3.14 &#30452;&#25509;&#22788;&#29702;&#23383;&#31526;&#20018;</h3>
+<p>&#36890;&#36807;&#30452;&#25509;&#23548;&#20837;<code>Bio.Seq</code>&#27169;&#22359;&#20013;&#30340;&#19968;&#20123;&#20989;&#25968;&#23601;&#21487;&#20197;&#30452;&#25509;&#22788;&#29702;python&#23383;&#31526;&#20018;&#20102;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> Bio.Seq <span class="im">import</span> reverse_complement, transcribe, back_transcribe, translate
+<span class="op">&gt;&gt;&gt;</span> my_string <span class="op">=</span> <span class="st">&quot;GCTGTTATGGGTCGTTGGAAGGGTGGTCGTGCTGCTGGTTAG&quot;</span>
+<span class="op">&gt;&gt;&gt;</span> reverse_complement(my_string)
+&#8217;CTAACCAGCAGCACGACCACCCTTCCAACGACCCATAACAGC&#8217;
+<span class="op">&gt;&gt;&gt;</span> transcribe(my_string)
+&#8217;GCUGUUAUGGGUCGUUGGAAGGGUGGUCGUGCUGCUGGUUAG&#8217;
+<span class="op">&gt;&gt;&gt;</span> back_transcribe(my_string)
+&#8217;GCTGTTATGGGTCGTTGGAAGGGTGGTCGTGCTGCTGGTTAG&#8217;
+<span class="op">&gt;&gt;&gt;</span> translate(my_string)
+&#8217;AVMGRWKGGRAAG<span class="op">*</span>&#8217;</code></pre></div>
+</body>
+</html>
