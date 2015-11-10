@@ -1,0 +1,13 @@
+Avialable tags are:
+CDS
+STS
+domain
+exon
+gene
+intron
+locus
+marker
+source
+start_codon
+stop_codon
+utr
