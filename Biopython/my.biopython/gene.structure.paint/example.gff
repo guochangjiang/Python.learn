@@ -14,6 +14,9 @@ Chr1	TAIR10	exon	5174	5326	.	+	.	Parent=AT1G01010.1
 Chr1	TAIR10	CDS	5174	5326	.	+	0	Parent=AT1G01010.1,AT1G01010.1-Protein;
 Chr1	TAIR10	exon	5439	5899	.	+	.	Parent=AT1G01010.1
 Chr1	TAIR10	CDS	5439	5630	.	+	0	Parent=AT1G01010.1,AT1G01010.1-Protein;
+Chr1	TAIR10	domain	200	340	.	+	0	Parent=AT1G01010.1,domain=NB_ARC;
+Chr1	TAIR10	marker	5539	5569	.	+	0	Parent=AT1G01010.1,marker=AbC;
+Chr1	TAIR10	marker	4050	4055	.	+	0	Parent=AT1G01010.1,marker=AbCd;
 Chr1	TAIR10	three_prime_UTR	5631	5899	.	+	.	Parent=AT1G01010.1
 Chr1	TAIR10	gene	5928	8737	.	-	.	ID=AT1G01020;Note=protein_coding_gene;Name=AT1G01020
 Chr1	TAIR10	mRNA	5928	8737	.	-	.	ID=AT1G01020.1;Parent=AT1G01020;Name=AT1G01020.1;Index=1

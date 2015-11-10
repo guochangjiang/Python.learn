@@ -3,28 +3,30 @@
 #
 #===============================================================================
 #
-#		 FILE: PaintGeneStructure.py
+#		  FILE: PaintGeneStructure.py
 #
-#		USAGE: usage
+#		 USAGE: usage
 #
-#  DESCRIPTION: 使用svgwrite绘制基因结构图
+#  DESCRIPTION: 使用svgwrite绘制基因结构图，目前仅支持两种格式（gff和simple，见example）
 #
-#	  OPTIONS: ---
+#	   OPTIONS: 必须的参数只有输入文件 -in gene.info.file
 # REQUIREMENTS: 需要python3以及模块svgwrite, argparse
-#		 BUGS: ---
-#		NOTES: ---
-#	   AUTHOR: Guo Changjiang (polaris), guochangjiang1989@gmail.com
+#		  BUGS: ---
+#		 NOTES: ---
+#	    AUTHOR: Guo Changjiang (polaris), guochangjiang1989@gmail.com
 # ORGANIZATION: Nanjing University, China
-#	  VERSION: 1.1
-#	  CREATED: 2015/11/09 10:58:04
-#	   UPDATE: 2015/11/10 10:58:04
+#	   VERSION: 1.1
+#	   CREATED: 2015/11/09 10:58:04
+#	    UPDATE: 2015/11/10 10:58:04
 #===============================================================================
 #   Change logs:
 #   Version 1.0: 2015/11/09	初始版本
-#   Version 1.1: 2015/11/10	增加对gff文件的支持
+#   Version 1.1: 2015/11/10	增加对gff文件的支持, intron折线支持, 自定义颜色等
+#                           其中domain的颜色需要分别指定
 
 
-__version__ = '1.0'
+
+__version__ = '1.1'
 
 import re
 import os
@@ -40,9 +42,16 @@ def Gff2Simple(info):
 			continue
 		columns = line.split("\t")
 		tag = columns[2]
+		tag = tag.lower()
+		if tag == "domain":
+			mat= re.search("domain=([a-zA-Z0-9_\-\.]+)", columns[8])
+			tag2 = mat.group(1)
+		if tag == "marker":
+			mat= re.search("marker=([a-zA-Z0-9_\-\.]+)", columns[8])
+			tag2 = mat.group(1)
 		if "utr" in tag.lower():
 			tag = 'utr'
-		if tag.lower() not in tags:
+		if tag not in tags:
 			continue
 		start = columns[3]
 		end = columns[4]
@@ -50,22 +59,28 @@ def Gff2Simple(info):
 		annotation = columns[8]
 		match = re.search("^\w+=([a-zA-Z0-9_\.]+)", annotation)
 		genelocus = match.group(1)
-		#print(genelocus)
-		simpledata.append(genelocus + "\t" + tag + "\t" + start + "\t" + end + "\t" + chain)
+		if tag =="domain" or tag == "marker":
+			simpledata.append(genelocus + "\t" + tag + "\t" + start + "\t" + end + "\t" + tag2)
+		else:
+			simpledata.append(genelocus + "\t" + tag + "\t" + start + "\t" + end + "\t" + chain)
 		if genelocus not in GeneList:
 			AllExonDic[genelocus] = ''
 			GeneList.append(genelocus)
+
 		if tag == 'exon':
 			AllExonDic[genelocus] += (start + "\t" + end + "\t")
 	for key in sorted(AllExonDic.keys()):
-		#print(AllExonDic[key])
 		ExonPosInfo = AllExonDic[key]
 		ExonPosInfo = ExonPosInfo.strip("\t")
 		AllExonNum = ExonPosInfo.split("\t")
+		i = 0
+		while i < len(AllExonNum):
+			AllExonNum[i] = int(AllExonNum[i])
+			i += 1
 		AllExonNum.sort()
 		i = 1
 		while i + 2 < len(AllExonNum):
-			simpledata.append(key + "\t" + "intron" + "\t" + AllExonNum[i] + "\t" + AllExonNum[i+1] + "\t" + "x")
+			simpledata.append(key + "\t" + "intron" + "\t" + str(AllExonNum[i]) + "\t" + str(AllExonNum[i+1]) + "\t" + "x")
 			i += 2
 	return simpledata
 
@@ -91,7 +106,7 @@ def GetMinMax(locus, info):
 			continue
 		if locus in line:
 			columns = line.split("\t")
-			if columns[1] not in tags:
+			if columns[1] not in tags or columns[1] == "domain":
 				continue
 			num1 = int(columns[2])
 			num2 = int(columns[3])
@@ -119,7 +134,7 @@ def GetTagInfo(locus, tag, info):
 		if locus in line:
 			columns = line.split("\t")
 			if tag in columns[1].lower():
-				posdata.append(columns[2] + "-" + columns[3])
+				posdata.append(columns[2] + "--" + columns[3])
 	return posdata
 
 def GetChainOrientation(locus, info):
@@ -143,7 +158,7 @@ def GetDomainInfo(locus, tag, info):
 		if locus in line:
 			columns = line.split("\t")
 			if tag in columns[1].lower():
-				posdata.append(columns[4] + "-" + columns[2] + "-" + columns[3])
+				posdata.append(columns[4] + "--" + columns[2] + "--" + columns[3])
 	return posdata
 
 def SortCDSInfo(locus, tag, info):
@@ -174,7 +189,7 @@ def Domain2CDS(start, length, info):
 		numinfo2 = GetNumRange(numinfo[index1:index2+1])
 		i = 0
 		while i < len(numinfo2):
-			data2return.append(str(numinfo2[i]) + "-" + str(numinfo2[i+1]))
+			data2return.append(str(numinfo2[i]) + "--" + str(numinfo2[i+1]))
 			i += 2
 		
 	else:
@@ -185,7 +200,7 @@ def Domain2CDS(start, length, info):
 		numinfo2 = GetNumRange(numinfo[index1:index2+1])
 		i = 0
 		while i < len(numinfo2):
-			data2return.append(str(numinfo2[i]) + "-" + str(numinfo2[i+1]))
+			data2return.append(str(numinfo2[i]) + "--" + str(numinfo2[i+1]))
 			i += 2
 
 	return data2return
@@ -244,63 +259,83 @@ parser.add_argument(
 		help="format of input file, e.g. auto, gff, simple. [default: auto]")
 
 parser.add_argument(
+		"-intronline", "--intronline",
+		metavar="intron_line_type",
+		dest="intronline",
+		default = "straight",
+		type=str,
+		help="style of intron line, e.g. straight, broken. [default: straight]")
+
+parser.add_argument(
+    "-C", "--color",
+    metavar="colors",
+    dest="colors", type=str,
+    help="specify colors for certain types, in the format:\n\t\"type1:color1;type2:color2;...\"")
+
+parser.add_argument(
 		"-v", "--version",
 		action='version',
 		help="The version of this program.",
 		version = "Version: " + __version__)
 args = parser.parse_args()
 
+##颜色处理
 tagcolors = {
 	'cds': "green",
 	'sts': "orange",
 	'domain': "blue",
 	'exon': "gold",
 	'intron': "darkgrey",
-	'marker': "black",
+	'marker': "red",
 	'start_codon': "lime",
 	'stop_codon': "magenta",
 	'utr': "hotpink",
 }
+for pair in args.colors.split(";"):
+    cpair = pair.split(":")
+    tagcolors[cpair[0]] = cpair[1]
 
-domaincolors = ["blue", "aqua", "brown", "chartreuse", "deeppink", "royalblue", "springgreen", "teal"]
+domaincolors = ["royalblue", "chartreuse", "deeppink", "springgreen", "teal", "blue", "yellow", "brown", "aqua"]
 
-tags = ['utr', 'intron', 'exon', 'cds', 'sts', 'domain' 'start_codon', 'stop_codon', 'marker']
+tags = ['utr', 'intron', 'exon', 'cds', 'sts', 'domain', 'start_codon', 'stop_codon', 'marker']
 
 fileform = ""
 infofile=open(args.input, 'r')
 data = infofile.readlines()
 domain_ref = "cds"
 infofile.close()
+
 #文件格式判断
 if args.format == "simple":
 	fileform = "simple"
 elif args.format == "gff":
 	fileform = "gff"
 elif args.format == "auto" or args.format not in dir():
-	if re.search("\.gff$", args.format):
+	if re.search("\.gff$", args.input):
 		fileform = "gff"
 	else:
 		fileform = 'simple'
 else:
-	print("ERROR file formate!!!")
+	print("ERROR file format!!!")
 	os._exit(0)
 
 if fileform == "gff":
 	data = Gff2Simple(data)
 
+locuslist = GetLocusList(data)
+
 ##绘画准备
 import svgwrite
 svgout = re.sub("\.svg$", "", args.output)
-gspaint = svgwrite.Drawing(svgout + ".svg", (1200, 3600), debug = True)
+gspaint = svgwrite.Drawing(svgout + ".svg", (1200, 320*len(locuslist)), debug = True)
 x0 = 5
 y0 = 25
 paintx0=10
 legendx0 = 900
 legendboxx0 = legendx0 - 5
-
-locuslist = GetLocusList(data)
 for locus in locuslist:
 	print("Processing gene:" , locus, "..........")
+	#print(y0)
 	#获取链向
 	chain = GetChainOrientation(locus, data)
 	#获取位置最小值、最大值
@@ -326,27 +361,21 @@ for locus in locuslist:
 	if chain == '+':
 		lines = gspaint.add(gspaint.g(stroke_width=2, stroke='gray', fill='none'))
 		lines.add(gspaint.polyline(
-		[(paintx0, y0 - 25), (paintx0 + 40, y0 - 25), (paintx0 + 40, y0 - 27.5), (paintx0 + 45, y0 - 22.5), (paintx0 + 40, y0 - 17.5), (paintx0 + 40, y0 - 20), (paintx0, y0 - 20),(paintx0, y0 - 25)]))
+		[(paintx0, y0 - 25.5), (paintx0 + 40, y0 - 25.5), (paintx0 + 40, y0 - 30.5), (paintx0 + 50, y0 - 23), (paintx0 + 40, y0 - 15.5), (paintx0 + 40, y0 - 20.5), (paintx0, y0 - 20.5),(paintx0, y0 - 26.5)]))
 	else:
 		lines = gspaint.add(gspaint.g(stroke_width=2, stroke='gray', fill='none'))
 		lines.add(gspaint.polyline(
-		[(paintx0, y0 - 22.5), (paintx0 + 5, y0 - 17.5), (paintx0 + 5, y0 - 20), (paintx0 + 45, y0 - 20), (paintx0 + 45, y0 - 25), (paintx0 + 5, y0 - 25), (paintx0 + 5, y0 - 27.5),(paintx0, y0 - 22.5)]))
+		[(paintx0 + 2 + 10, y0 - 25), (paintx0 + 2 + 50, y0 - 25), (paintx0 + 2 + 50, y0 - 20), (paintx0 + 2 + 10, y0 - 20), (paintx0 + 2 + 10, y0 - 15),(paintx0 + 2, y0 - 22.5), (paintx0 + 2 + 10, y0 - 30), (paintx0 + 2 + 10, y0 - 24)]))
 
 		
 	#绘制比例尺
-	scalelen = 1000.0/Grange*1000
-	gspaint.add(gspaint.line(
-	((MinPos - MinPos)/times + paintx0, y0-50),
-	((MaxPos - MinPos)/times + paintx0, y0-50),
-	stroke_width=2,
-	stroke="black"))
 	i = 1
 	scalex = MinPos + unit
 	while i <= segments:
 		gspaint.add(gspaint.line(
 			((scalex - MinPos)/times + paintx0, y0-50),
 			((scalex - MinPos)/times + paintx0, y0-45),
-			stroke_width=1,
+			stroke_width=2,
 			stroke="gray"))
 		gspaint.add(gspaint.text(
 			str(i) + "k",
@@ -355,7 +384,14 @@ for locus in locuslist:
 			fill = 'black'))
 		scalex += unit
 		i += 1
+		scalelen = 1000.0/Grange*1000
+	gspaint.add(gspaint.line(
+	((MinPos - MinPos)/times + paintx0, y0-50),
+	((MaxPos - MinPos)/times + paintx0, y0-50),
+	stroke_width=3,
+	stroke="black"))
 
+	#utrinfo
 	utrinfo = GetTagInfo(locus, 'utr', data)
 	if len(utrinfo) > 0:
 		gspaint.add(gspaint.rect(
@@ -374,14 +410,29 @@ for locus in locuslist:
 	#paint intron
 	introninfo = GetTagInfo(locus, 'intron', data)
 	for info in introninfo:
-		(start, end) = info.split("-")
+		(start, end) = info.split("--")
 		start = int(start)
 		end = int(end)
-		gspaint.add(gspaint.line(
-			((start - MinPos)/times + paintx0, y0 + 7.5),
-			((end - MinPos)/times + paintx0, y0 + 7.5),
-			stroke_width = 2,
-			stroke = tagcolors["intron"]))
+		if start > end:
+			start, end = end, start
+		length = end - start + 1
+		if args.intronline == "straight":
+			gspaint.add(gspaint.line(
+				((start - MinPos)/times + paintx0, y0 + 7.5),
+				((end - MinPos)/times + paintx0, y0 + 7.5),
+				stroke_width = 2,
+				stroke = tagcolors["intron"]))
+		if args.intronline== "broken":
+			gspaint.add(gspaint.line(
+				((start - MinPos)/times + paintx0, y0 + 7.5),
+				((end - length / 2.0 - MinPos)/times + paintx0, y0 + 20),
+				stroke_width = 2,
+				stroke = tagcolors["intron"]))
+			gspaint.add(gspaint.line(
+				((end - length / 2.0 - MinPos)/times + paintx0, y0 + 20),
+				((end - MinPos)/times + paintx0, y0 + 7.5),
+				stroke_width = 2,
+				stroke = tagcolors["intron"]))
 
 	if len(introninfo) > 0:
 		gspaint.add(gspaint.line(
@@ -402,7 +453,7 @@ for locus in locuslist:
 	if fileform != "gff":
 		exoninfo = GetTagInfo(locus, 'exon', data)
 		for info in exoninfo:
-			(start, end) = info.split("-")
+			(start, end) = info.split("--")
 			start = int(start)
 			end = int(end)
 			if start < end:
@@ -434,9 +485,8 @@ for locus in locuslist:
 			legendy0 += 35
 
 	#paint utr
-
 	for info in utrinfo:
-		(start, end) = info.split("-")
+		(start, end) = info.split("--")
 		start = int(start)
 		end = int(end)
 		if start < end:
@@ -456,7 +506,7 @@ for locus in locuslist:
 	#paint cds
 	cdsinfo = GetTagInfo(locus, 'cds', data)
 	for info in cdsinfo:
-		(start, end) = info.split("-")
+		(start, end) = info.split("--")
 		start = int(start)
 		end = int(end)
 		if start < end:
@@ -491,7 +541,7 @@ for locus in locuslist:
 	#paint sts
 	stsinfo = GetTagInfo(locus, 'sts', data)
 	for info in stsinfo:
-		(start, end) = info.split("-")
+		(start, end) = info.split("--")
 		start = int(start)
 		end = int(end)
 		if start < end:
@@ -529,20 +579,26 @@ for locus in locuslist:
 		cdsposdata = SortCDSInfo(locus, "exon", data)
 
 	domaininfo = GetDomainInfo(locus, 'domain', data)
+	#print(domaininfo)
 	domainlist = []
 	for line in domaininfo:
-		domainlist.append(line.split("-")[0])
+		domainlist.append(line.split("--")[0])
 
 	domainset= list(set(domainlist))
 	domainset.sort()
 	domainsetcolors={}
 	index = 0
+	indexcolor = 0
 	while index < len(domainset):
-		domainsetcolors[domainset[index]] = domaincolors[index]
+		if domainset[index] in tagcolors.keys():
+			domainsetcolors[domainset[index]] = tagcolors[domainset[index]]
+		else:
+			domainsetcolors[domainset[index]] = domaincolors[index]
+			i += 1
 		index += 1
 
 	for line in domaininfo:
-		(domain, aa1, aa2) = line.split("-")
+		(domain, aa1, aa2) = line.split("--")
 		aa1 = int(aa1)
 		aa2 = int(aa2)
 		nucl0 = aa1 * 3 - 2
@@ -550,7 +606,7 @@ for locus in locuslist:
 		domain2cdsinfo = Domain2CDS(nucl0, length, cdsposdata)
 		domainsave=[];
 		for info in domain2cdsinfo:
-			(start, end) = info.split("-")
+			(start, end) = info.split("--")
 			start = int(start)
 			end = int(end)
 			if start < end:
@@ -589,7 +645,7 @@ for locus in locuslist:
 	#paint start codon
 	stcodoninfo = GetTagInfo(locus, 'start_codon', data)
 	for info in stcodoninfo:
-		(start, end) = info.split("-")
+		(start, end) = info.split("--")
 		start = int(start)
 		end = int(end)
 		if start < end:
@@ -616,7 +672,7 @@ for locus in locuslist:
 	#paint end codon
 	endcodoninfo = GetTagInfo(locus, 'stop_codon', data)
 	for info in endcodoninfo:
-		(start, end) = info.split("-")
+		(start, end) = info.split("--")
 		start = int(start)
 		end = int(end)
 		if start < end:
@@ -643,7 +699,7 @@ for locus in locuslist:
 	#paint marker
 	markerinfo = GetDomainInfo(locus, 'marker', data)
 	for info in markerinfo:
-		(marker, start, end) = info.split("-")
+		(marker, start, end) = info.split("--")
 		start = int(start)
 		end = int(end)
 		if start < end:
@@ -661,9 +717,11 @@ for locus in locuslist:
 			stroke_width = 0.001,
 			stroke = tagcolors["marker"],
 			fill = tagcolors["marker"]))
+		marker2 = marker.strip('\"')
+		charnum = len(marker2) + 0.5
 		gspaint.add(gspaint.text(
-			marker,
-			insert = ((begin - MinPos) / times - 10 + paintx0, y0 -20),
+			marker2,
+			insert = ((begin - MinPos) / times + paintx0 + (length - 7 * charnum) / 2, y0 -20),
 			font_size = 10,
 			fill = 'red'))
 
@@ -678,5 +736,3 @@ Success!!!
 Congratulations to you!!!
 -------------------------"""
 )
-
-
