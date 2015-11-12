@@ -804,7 +804,6 @@ for locus in locuslist:
 
 ######################
 ##保存图像
-
 gspaint.save()
 
 print()
