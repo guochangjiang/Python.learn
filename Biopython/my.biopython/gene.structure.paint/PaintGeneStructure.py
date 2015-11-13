@@ -132,7 +132,7 @@ def Domain2CDS(start, length, info):
         while i < len(numinfo2):
             data2return.append(str(numinfo2[i]) + "-" + str(numinfo2[i+1]))
             i += 2
-        
+
     else:
         numinfo = GetConNum(info)
         numinfo.sort(reverse = True)
@@ -261,7 +261,7 @@ for locus in locuslist:
         lines.add(gspaint.polyline(
         [(paintx0/times, y0 - 22.5), (paintx0/times + 5, y0 - 17.5), (paintx0/times + 5, y0 - 20), (paintx0/times + 45, y0 - 20), (paintx0/times + 45, y0 - 25), (paintx0/times + 5, y0 - 25), (paintx0/times + 5, y0 - 27.5),(paintx0/times, y0 - 22.5)]))
 
-        
+
     #绘制比例尺
     scalelen = 1000.0/Grange*1000
     gspaint.add(gspaint.line(
@@ -285,8 +285,8 @@ for locus in locuslist:
         scalex += unit
         i += 1
 
-    
-    
+
+
     #paint utr
     utrinfo = GetTagInfo(locus, 'utr', data)
     for info in utrinfo:

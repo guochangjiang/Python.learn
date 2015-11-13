@@ -14,6 +14,7 @@ Chr1	TAIR10	exon	5174	5326	.	+	.	Parent=AT1G01010.1
 Chr1	TAIR10	CDS	5174	5326	.	+	0	Parent=AT1G01010.1,AT1G01010.1-Protein;
 Chr1	TAIR10	exon	5439	5899	.	+	.	Parent=AT1G01010.1
 Chr1	TAIR10	CDS	5439	5630	.	+	0	Parent=AT1G01010.1,AT1G01010.1-Protein;
+Chr1	TAIR10	domain	30	80	.	+	0	Parent=AT1G01010.1,domain=CC;
 Chr1	TAIR10	domain	200	340	.	+	0	Parent=AT1G01010.1,domain=NB_ARC;
 Chr1	TAIR10	marker	5539	5569	.	+	0	Parent=AT1G01010.1,marker=AbC;
 Chr1	TAIR10	marker	4050	4055	.	+	0	Parent=AT1G01010.1,marker=AbCd;

@@ -3,9 +3,9 @@
 #
 #===============================================================================
 #
-#		  FILE: PaintGeneStructure.v1.1.py
+#		  FILE: PaintGeneStructure.v1.2.py
 #
-#		 USAGE: python PaintGeneStructure.v1.1.py -in geneinfo.file
+#		 USAGE: python PaintGeneStructure.v1.2.py -in geneinfo.file
 #
 #  DESCRIPTION: 使用svgwrite绘制基因结构图，目前仅支持两种格式
 #              （gff和simple，见example）
@@ -16,17 +16,18 @@
 #		 NOTES: ---
 #	    AUTHOR: Guo Changjiang (polaris), guochangjiang1989@gmail.com
 # ORGANIZATION: Nanjing University, China
-#	   VERSION: 1.1
+#	   VERSION: 1.2
 #	   CREATED: 2015/11/09 10:58:04
-#	    UPDATE: 2015/11/10 10:58:04
+#	    UPDATE: 2015/11/13 10:58:04
 #===============================================================================
 #   Change logs:
 #   Version 1.0: 2015/11/09	初始版本，每个基因图一行，统一长度为1000px
 #   Version 1.1: 2015/11/10	增加对gff文件的支持, intron折线支持, 空格分隔支持；
 #                           增加自定义颜色支持，其中domain的颜色需要分别指定;
 #                           增加渐变色支持；
+#   Version 1.2: 2015/11/13	将比例尺统一，增加1kb长度指定
 
-__version__ = '1.1'
+__version__ = '1.2'
 
 import re
 import os
@@ -298,13 +299,19 @@ parser.add_argument(
 		help = "style of intron line, e.g. straight, broken. [default: straight]")
 
 parser.add_argument(
-    "-C", "--color",
-    metavar = "colors",
-    dest = "colors", type=str,
-    default = '',
-    help = "specify colors for certain types, in the format:"
-           + "\n\ttype1:color1;type2:color2;...")
+		"-C", "--color",
+		metavar = "colors",
+			dest = "colors", type=str,
+		default = '',
+		help = "specify colors for certain types, in the format:"
+             + "\n\ttype1:color1;type2:color2;...")
 
+parser.add_argument(
+		"-kl", "--kblength",
+		metavar = "length per kb",
+		dest = "kblength", type=int,
+		default = 250,
+		help = "specify the length(px) of 1kb sequence, [default: 250]")
 parser.add_argument(
 		"-v", "--version",
 		action = 'version',
@@ -366,13 +373,32 @@ if fileform == "gff":
 	data = Gff2Simple(data)
 locuslist = GetLocusList(data)
 
+# 获取每个基因的长度
+LocusLenDic = {}
+for locus in locuslist:
+	(MinPos, MaxPos) = GetMinMax(locus, data)
+	LocusLenDic[locus] = MaxPos - MinPos + 1
+
+# 获取最短基因
+minlength = LocusLenDic[locuslist[0]]
+minlocus = ''
+for key in sorted(LocusLenDic.keys()):
+	if minlength > LocusLenDic[key]:
+		minlength = LocusLenDic[key]
+		minlocus = key
+
+# 获取最长基因
+maxlength = LocusLenDic[locuslist[0]]
+maxlocus = ''
+for key in sorted(LocusLenDic.keys()):
+	if maxlength < LocusLenDic[key]:
+		maxlength = LocusLenDic[key]
+		maxlocus = key
+
 ######################
 ##绘画准备
 ######################
 import svgwrite
-svgout = re.sub("\.svg$", "", args.output)
-gspaint = svgwrite.Drawing(svgout + ".svg", (1200, 320*len(locuslist)),
-                           debug = True)
 painty0 = 25                             #起始y轴位置
 paintx0=10                               #起始x轴位置
 legendx0 = 900                           #图例x轴位置
@@ -380,6 +406,11 @@ legendboxx0 = legendx0 - 5               #图例框x轴位置
 piclength = 1000.0                       #基因图长度
 geneinterval = 50.0                      #相邻基因间隔
 
+
+kblength = args.kblength
+svgout = re.sub("\.svg$", "", args.output)
+gspaint = svgwrite.Drawing(svgout + ".svg", (maxlength / 1000.0 * kblength + paintx0, 320 * len(locuslist)),
+                           debug = True)
 # create a new linearGradient element
 vertical_gradient_utr = gspaint.linearGradient((0, 0), (0, 1))
 gspaint.defs.add(vertical_gradient_utr)
@@ -393,18 +424,15 @@ gspaint.defs.add(vertical_gradient_sts)
 ######################
 #按照基因列表进行绘画
 ######################
-
 print("\n开始绘制基因结构图：\n")
 for locus in locuslist:
 	print("Processing gene:" , locus, "..........")
 	charnummax = 1
 	#获取链向
 	chain = GetChainOrientation(locus, data)
-	#获取位置最小值、最大值
-	(MinPos, MaxPos) = GetMinMax(locus, data)
-	Grange = MaxPos - MinPos + 1
-	times = Grange / piclength
-
+	times = 1000.0 / kblength
+	legendx0 = LocusLenDic[locus] / 1000.0 * kblength - 100
+	legendboxx0 = legendx0 - 5
 	#显示基因名
 	gspaint.add(gspaint.text(
 		locus,
@@ -414,46 +442,67 @@ for locus in locuslist:
 	painty0 = painty0 +60
 	legendy0 = painty0 + 60
 	legendboxy0 = legendy0 - 5
-	unit = piclength
-	segments = Grange // unit
-
+	unit = 1000.0
+	segments = int(LocusLenDic[locus] / unit)
+	halfsegments = int(LocusLenDic[locus] / 500.0)
+	print("\t\t locus length:", LocusLenDic[locus])
+	if halfsegments % 2 == 0:
+		halfsegments = halfsegments // 2
+	else:
+		halfsegments = (halfsegments + 1) // 2
 	#绘制链向
 	if chain == '+':
-		lines = gspaint.add(gspaint.g(stroke_width=2, stroke='gray', fill='none'))
-		lines.add(gspaint.polyline(
+		gspaint.add(gspaint.polygon(
 			[(paintx0, painty0 - 25.5), (paintx0 + 40, painty0 - 25.5),
 			 (paintx0 + 40, painty0 - 30.5), (paintx0 + 50, painty0 - 23),
 			 (paintx0 + 40, painty0 - 15.5), (paintx0 + 40, painty0 - 20.5),
-			 (paintx0, painty0 - 20.5),(paintx0, painty0 - 26.5)]
+			 (paintx0, painty0 - 20.5)],
+			 stroke='none', fill='gray'
 		))
 	else:
-		lines = gspaint.add(gspaint.g(stroke_width=2, stroke='gray', fill='none'))
-		lines.add(gspaint.polyline(
+		gspaint.add(gspaint.polygon(
 			[(paintx0 + 2 + 10, painty0 - 25), (paintx0 + 2 + 50, painty0 - 25),
 			 (paintx0 + 2 + 50, painty0 - 20), (paintx0 + 2 + 10, painty0 - 20),
 			 (paintx0 + 2 + 10, painty0 - 15),(paintx0 + 2, painty0 - 22.5),
-			 (paintx0 + 2 + 10, painty0 - 30), (paintx0 + 2 + 10, painty0 - 24)]
+			 (paintx0 + 2 + 10, painty0 - 30)],
+			 stroke='none', fill='gray'
 		))
 
 	#绘制比例尺
-	i = 1
-	scalex = MinPos + unit
+	i = 0
+	j = 1
+	(MinPos, MaxPos) = GetMinMax(locus, data)
+	scalex = MinPos
 	while i <= segments:
 		gspaint.add(gspaint.line(
-			((scalex - MinPos)/times + paintx0, painty0-50),
-			((scalex - MinPos)/times + paintx0, painty0-45),
+			(kblength * i + paintx0, painty0-50),
+			(kblength * i + paintx0, painty0-45),
 			stroke_width=2,
 			stroke="gray"))
 		gspaint.add(gspaint.text(
 			str(i) + "k",
-			insert=((scalex - MinPos)/times + paintx0 - 6, painty0-35),
+			insert=(kblength * i + paintx0 - 6, painty0-35),
 			font_size = 10,
 			fill = 'black'))
+		if j <= halfsegments:
+			gspaint.add(gspaint.line(
+				(kblength * (i + 0.5) + paintx0, painty0-50),
+				(kblength * (i + 0.5) + paintx0, painty0-45),
+				stroke_width=1.5,
+				stroke="gray"))
+			gspaint.add(gspaint.text(
+				str(i) + ".5k",
+				insert=(kblength * (i + 0.5) + paintx0 - 6, painty0-35),
+				font_size = 10,
+				fill = 'black'))
+			j += 1
+		
 		scalex += unit
 		i += 1
-		scalelen = 1000.0 / Grange * piclength
+		scalelen = 1000.0 / LocusLenDic[locus] * piclength
+		
 	gspaint.add(gspaint.line(
-	((MinPos - MinPos)/times + paintx0, painty0-50),
+	((MinPos - MinPos)/times + paintx0 - 1, painty0-50),
 	((MaxPos - MinPos)/times + paintx0, painty0-50),
 	stroke_width=3,
 	stroke="black"))
