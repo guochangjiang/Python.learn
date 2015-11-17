@@ -62,7 +62,6 @@ def StartPainting():
     color = colorEn.get()
     kblength = kbEn.get()
     introntype = intronvar.get()
-
     if not os.path.exists(infile):
         warninfo = tk.Label(PGS, text = "请输入正确的文件名", fg = "red",
                             bitmap = 'error', compound = 'left')
@@ -72,10 +71,16 @@ def StartPainting():
         options += " -intronline " + introntype + " -format " + infileformat
         if color != "":
             options += " -C " + color
+        if os.path.exists(outfile):
+            os.remove(outfile)
         subprocess.call("pythonw PaintGeneStructure.v1.2.py " + options
-                 + " 1>PaintGeneStructure.log 2>&1", shell = True)
-        warninfo = tk.Label(PGS, text = "恭喜，绘制完成。输出文件为：源文件夹/" + outfile, fg = "red")
-        warninfo.grid(row = 8, column = 1, columnspan = 5, sticky = "WE", padx = 10)
+                      + " 1>PaintGeneStructure.log 2>&1", shell = True)
+        if os.path.exists(outfile):
+            warninfo = tk.Label(PGS, text = "恭喜，绘制完成。输出文件为：源文件夹/" + outfile, fg = "red")
+            warninfo.grid(row = 8, column = 1, columnspan = 5, sticky = "WE", padx = 10)
+        else:
+            warninfo = tk.Label(PGS, text = "抱歉！程序运行失败，请查看程序目录下的PaintGeneStructure.log", fg = "red")
+            warninfo.grid(row = 8, column = 1, columnspan = 5, sticky = "WE", padx = 10)
 
 PGS = tk.Tk()
 PGS.title("基因结构svg图像绘制程序")  #设置窗口标题
