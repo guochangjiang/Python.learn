@@ -56,7 +56,7 @@ def StartPainting():
     infile = filevariable1.get()
     fmatch = re.search("([a-zA-Z0-9\.\-_]+)$", infile)
     filename = fmatch.group(1)
-    tk.Label(PGS, text = "源文件:" + filename).grid(row = 7, column = 6, columnspan = 10, sticky = "W")
+    tk.Label(PGS, text = "源文件:" + filename, fg = "blue").grid(row = 7, column = 6, columnspan = 10, sticky = "W")
     infileformat = fileformat.get()
     outfile = OutEn.get()
     color = colorEn.get()
@@ -79,7 +79,7 @@ def StartPainting():
 
 PGS = tk.Tk()
 PGS.title("基因结构svg图像绘制程序")  #设置窗口标题
-PGS.geometry('820x250')              #设置窗口大小
+#PGS.geometry('820x250')              #设置窗口大小
 rowflag = 0
 
 #输入文件信息
@@ -170,6 +170,14 @@ rowflag += 2
 #运行程序
 tk.Button(PGS, text = "开始绘制", command = StartPainting, padx = 10
           ).grid(row = rowflag, column = 1, columnspan = 5, sticky = "WE")
+
+#添加demo图
+photo = tk.PhotoImage(file='example.gif')
+label = tk.Label(PGS, image=photo)
+label.image = photo
+label.grid(row=8, column=6, columnspan=4, rowspan=9, sticky="WE", padx=5, pady=5)
+tk.Label(PGS,text= "推荐使用开源免费软件Inkscape对图像进行后续处理\nhttps://inkscape.org"
+         ).grid(row = 11, column = 1, columnspan = 5, rowspan = 3, sticky = "E")
 
 PGS.mainloop()
 
