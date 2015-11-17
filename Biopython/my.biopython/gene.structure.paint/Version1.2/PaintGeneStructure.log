@@ -1,0 +1,26 @@
+#####################################
+##example.gff
+
+开始绘制基因结构图：
+
+Processing gene: AT1G01010.1 ..........
+		 locus length: 2269
+Processing gene: AT1G01020.1 ..........
+		 locus length: 2810
+Processing gene: AT1G01020.2 ..........
+		 locus length: 1948
+Processing gene: AT1G01030.1 ..........
+		 locus length: 2066
+Processing gene: LOC_Os01g01010.1 ..........
+		 locus length: 7915
+Processing gene: LOC_Os01g01010.2 ..........
+		 locus length: 7579
+
+-------------------------
+The outfile:
+example.gff.svg
+
+-------------------------
+Success!!!
+Congratulations to you!!!
+-------------------------

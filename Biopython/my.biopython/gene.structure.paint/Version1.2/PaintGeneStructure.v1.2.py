@@ -258,7 +258,10 @@ def GetNumRange(connumlist):
 ######################
 ##命令参数处理
 ######################
-import argparse
+try:
+	import argparse
+except ImportError:
+	print("无法载入模块argparse，可使用pip install argparse安装")
 from argparse import RawTextHelpFormatter
 
 parser = argparse.ArgumentParser(
@@ -398,7 +401,10 @@ for key in sorted(LocusLenDic.keys()):
 ######################
 ##绘画准备
 ######################
-import svgwrite
+try:
+	import svgwrite
+except ImportError:
+	print("无法载入模块svgwrite，可使用pip install svgwrite安装")
 painty0 = 25                             #起始y轴位置
 paintx0=10                               #起始x轴位置
 legendx0 = 900                           #图例x轴位置
@@ -424,6 +430,8 @@ gspaint.defs.add(vertical_gradient_sts)
 ######################
 #按照基因列表进行绘画
 ######################
+print("#####################################")
+print("##" + os.path.basename(args.input))
 print("\n开始绘制基因结构图：\n")
 for locus in locuslist:
 	print("Processing gene:" , locus, "..........")
