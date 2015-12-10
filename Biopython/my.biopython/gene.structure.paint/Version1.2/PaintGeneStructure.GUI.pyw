@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# --*-- utf-8 --*--
+# -*-coding:utf-8-*-
 #
 #===============================================================================
 #
@@ -55,12 +55,10 @@ def StartPainting():
     fmatch = re.search("([a-zA-Z0-9\.\-_]+)$", infile)
     filename = fmatch.group(1)
     tk.Label(PGS, text = "源文件:" + filename, fg = "blue").grid(row = 8, column = 6, columnspan = 10, sticky = "W")
-    outfilename = filevariable1.get()
-    outfilename = os.path.basename(outfilename) + ".svg"
-    infileformat = fileformat.get()
     outfile = OutEn.get()
     if outfile == '':
-        outfile = outfilename
+        outfile = infile + ".svg"
+    #outfile = "tmp.svg"
     color = colorEn.get()
     kblength = kbEn.get()
     intronref = intronrefvar.get()
@@ -70,16 +68,17 @@ def StartPainting():
                             bitmap = 'error', compound = 'left')
         warninfo.grid(row = 8, column = 1, columnspan = 4, sticky = "WE", padx = 10)
     else:
-        options = "-i " + infile + " -o " + outfile + " -kl " + kblength + " --intronref " + intronref
-        options += " -intronline " + introntype + " -format " + infileformat
+        options = "-i " + infile + " -o " + outfile + " -kl " + kblength + " -intronref " + intronref
+        options += " -intronline " + introntype + " -format " + fileformat.get()
         if color != "":
             options += " -C " + color
         if os.path.exists(outfile):
             os.remove(outfile)
-        subprocess.call("pythonw PaintGeneStructure.v1.2.py " + options
+        print("pythonw PaintGeneStructure.v1.2.py " + options)
+        subprocess.call("pythonw PaintGeneStructure.v1.2.pyw " + options
                       + " 1>PaintGeneStructure.log 2>&1", shell = True)
         if os.path.exists(outfile):
-            warninfo = tk.Label(PGS, text = "恭喜，绘制完成。输出文件为：程序文件夹/" + outfile, fg = "red")
+            warninfo = tk.Label(PGS, text = "恭喜，绘制完成。输出文件为：" + outfile, fg = "red")
             warninfo.grid(row = 9, column = 1, columnspan = 5, sticky = "WE", padx = 10)
         else:
             warninfo = tk.Label(PGS, text = "抱歉！程序运行失败，请查看程序目录下的PaintGeneStructure.log", fg = "red")
@@ -125,13 +124,6 @@ rowflag += 1
 
 #输出文件信息
 outfilename = ''
-inputfname = filevariable1.get()
-if '/' in inputfname:
-    indir = os.path.dirname(inputfname)
-    inname = os.path.basename(inputfname)
-    outfilename = indir + inname + ".svg"
-else:
-    outfilename = inputfname + ".svg"
 outfileLabel = tk.Label(PGS, text = "输出文件名:")
 outfileLabel.grid(row = rowflag, column = 0, sticky = "E", padx = 10)
 OutEn = tk.StringVar()
@@ -194,9 +186,9 @@ tk.Button(PGS, text = "开始绘制", command = StartPainting, padx = 10
 photo = tk.PhotoImage(file='example.gif')
 label = tk.Label(PGS, image=photo)
 label.image = photo
-label.grid(row=8, column=8, columnspan=4, rowspan=9, sticky="WE", padx=5, pady=5)
+label.grid(row=8, column=8, columnspan=5, rowspan=10, sticky="WE", padx=5, pady=5)
 tk.Label(PGS,text= "推荐使用开源免费软件Inkscape对图像进行后续处理\nhttps://inkscape.org"
-         ).grid(row = 11, column = 1, columnspan = 5, rowspan = 3, sticky = "E")
+         ).grid(row = 11, column = 3, columnspan = 5, rowspan = 5, sticky = "E")
 
 PGS.mainloop()
 
