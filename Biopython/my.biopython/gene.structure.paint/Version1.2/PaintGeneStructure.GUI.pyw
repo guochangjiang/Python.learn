@@ -46,28 +46,31 @@ def LoadFile():
         filevariable1.set(fname)
         Combobox(PGS, textvariable=filevariable1, values=gfflist1, width = 50
          ).grid(row = 1, column = 1, sticky = "WE", columnspan = 5)
-        outfilename = filevariable1.get()
-        OutEn.set(os.path.basename(outfilename) + ".svg")
-        outfileEntry = tk.Entry(PGS, textvariable = OutEn, width = 50)
-        outfileEntry.grid(row = 2, column = 1, sticky = "WE", columnspan = 5)
+        #outfileEntry = tk.Entry(PGS, textvariable = OutEn, width = 50)
+        #outfileEntry.grid(row = 2, column = 1, sticky = "WE", columnspan = 5)
 
 
 def StartPainting():
     infile = filevariable1.get()
     fmatch = re.search("([a-zA-Z0-9\.\-_]+)$", infile)
     filename = fmatch.group(1)
-    tk.Label(PGS, text = "源文件:" + filename, fg = "blue").grid(row = 7, column = 6, columnspan = 10, sticky = "W")
+    tk.Label(PGS, text = "源文件:" + filename, fg = "blue").grid(row = 8, column = 6, columnspan = 10, sticky = "W")
+    outfilename = filevariable1.get()
+    outfilename = os.path.basename(outfilename) + ".svg"
     infileformat = fileformat.get()
     outfile = OutEn.get()
+    if outfile == '':
+        outfile = outfilename
     color = colorEn.get()
     kblength = kbEn.get()
+    intronref = intronrefvar.get()
     introntype = intronvar.get()
     if not os.path.exists(infile):
         warninfo = tk.Label(PGS, text = "请输入正确的文件名", fg = "red",
                             bitmap = 'error', compound = 'left')
         warninfo.grid(row = 8, column = 1, columnspan = 4, sticky = "WE", padx = 10)
     else:
-        options = "-i " + infile + " -o " + outfile + " -kl " + kblength
+        options = "-i " + infile + " -o " + outfile + " -kl " + kblength + " --intronref " + intronref
         options += " -intronline " + introntype + " -format " + infileformat
         if color != "":
             options += " -C " + color
@@ -76,11 +79,11 @@ def StartPainting():
         subprocess.call("pythonw PaintGeneStructure.v1.2.py " + options
                       + " 1>PaintGeneStructure.log 2>&1", shell = True)
         if os.path.exists(outfile):
-            warninfo = tk.Label(PGS, text = "恭喜，绘制完成。输出文件为：源文件夹/" + outfile, fg = "red")
-            warninfo.grid(row = 8, column = 1, columnspan = 5, sticky = "WE", padx = 10)
+            warninfo = tk.Label(PGS, text = "恭喜，绘制完成。输出文件为：程序文件夹/" + outfile, fg = "red")
+            warninfo.grid(row = 9, column = 1, columnspan = 5, sticky = "WE", padx = 10)
         else:
             warninfo = tk.Label(PGS, text = "抱歉！程序运行失败，请查看程序目录下的PaintGeneStructure.log", fg = "red")
-            warninfo.grid(row = 8, column = 1, columnspan = 5, sticky = "WE", padx = 10)
+            warninfo.grid(row = 9, column = 1, columnspan = 5, sticky = "WE", padx = 10)
 
 PGS = tk.Tk()
 PGS.title("基因结构svg图像绘制程序")  #设置窗口标题
@@ -99,7 +102,7 @@ tk.Button(PGS, text = "选择文件", command = LoadFile
 
 filenamelist1=os.listdir(os.getcwd())
 for file in filenamelist1:
-    if re.search("(gff)|(simple)$", file):
+    if re.search("(\.gff$)|(\.simple$)", file):
         gfflist1.append(file)
 filevariable1 = tk.StringVar(PGS)
 filevariable1.set(gfflist1[0])
@@ -132,11 +135,22 @@ else:
 outfileLabel = tk.Label(PGS, text = "输出文件名:")
 outfileLabel.grid(row = rowflag, column = 0, sticky = "E", padx = 10)
 OutEn = tk.StringVar()
-OutEn.set(outfilename)
+OutEn.set("")
 outfileEntry = tk.Entry(PGS, textvariable = OutEn, width = 50)
 outfileEntry.grid(row = rowflag, column = 1, sticky = "WE", columnspan = 5)
 tk.Label(PGS, text = "默认: 输入文件名.svg"
          ).grid(row = rowflag, column = 6, sticky = "W", columnspan = 2)
+rowflag += 1
+
+#内含子参照
+intronLabel = tk.Label(PGS, text = "内含子参照:")
+intronLabel.grid(row = rowflag, column = 0, sticky = "E", padx = 10)
+intronrefvar = tk.StringVar()
+intronrefvar.set("exon")
+intronexon = tk.Radiobutton(PGS, variable = intronrefvar, text = "外显子", value = "exon")
+intronexon.grid(row = rowflag, column = 1, sticky = "W")
+introncds = tk.Radiobutton(PGS, variable = intronrefvar, text = "CDS", value = "CDS")
+introncds.grid(row = rowflag, column = 2, sticky = "W")
 rowflag += 1
 
 #内含子线型
@@ -180,7 +194,7 @@ tk.Button(PGS, text = "开始绘制", command = StartPainting, padx = 10
 photo = tk.PhotoImage(file='example.gif')
 label = tk.Label(PGS, image=photo)
 label.image = photo
-label.grid(row=8, column=6, columnspan=4, rowspan=9, sticky="WE", padx=5, pady=5)
+label.grid(row=8, column=8, columnspan=4, rowspan=9, sticky="WE", padx=5, pady=5)
 tk.Label(PGS,text= "推荐使用开源免费软件Inkscape对图像进行后续处理\nhttps://inkscape.org"
          ).grid(row = 11, column = 1, columnspan = 5, rowspan = 3, sticky = "E")
 
