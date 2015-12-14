@@ -1,0 +1,1427 @@
+15.4. argparse — 命令行选项、参数和子命令的解析器
+
+版本2.7 中新引入。
+
+源代码： Lib/argparse.py
+
+教程
+
+本页包含API的参考信息。对Python命令行解析更多的介绍，请参见argparse 教程。
+
+argparse模块使得编写用户友好的命令行接口非常容易。程序只需定义好它要求的参数，然后argparse将负责如何从sys.argv中解析出这些参数。argparse模块还会自动生成帮助和使用信息并且当用户赋给程序非法的参数时产生错误信息。
+15.4.1. 示例
+
+下面的Python程序代码接收一个整数序列并输出它们的和或者最大值：
+
+import argparse
+
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('integers', metavar='N', type=int, nargs='+',
+                   help='an integer for the accumulator')
+parser.add_argument('--sum', dest='accumulate', action='store_const',
+                   const=sum, default=max,
+                   help='sum the integers (default: find the max)')
+
+args = parser.parse_args()
+print args.accumulate(args.integers)
+
+假设上面的Python代码保存为一个叫做prog.py的文件，它可以在命令行上执行并提供有用的帮助信息：
+
+$ python prog.py -h
+usage: prog.py [-h] [--sum] N [N ...]
+
+Process some integers.
+
+positional arguments:
+ N           an integer for the accumulator
+
+optional arguments:
+ -h, --help  show this help message and exit
+ --sum       sum the integers (default: find the max)
+
+当以适当的参数运行时，它打印出命令行整数的和或者最大值：
+
+$ python prog.py 1 2 3 4
+4
+
+$ python prog.py 1 2 3 4 --sum
+10
+
+如果传进非法的参数，它将产生错误信息：
+
+$ python prog.py a b c
+usage: prog.py [-h] [--sum] N [N ...]
+prog.py: error: argument N: invalid int value: 'a'
+
+下面的部分将带你步步深入这个示例。
+15.4.1.1. 创建一个解析器
+
+使用argparse的第一步是创建一个ArgumentParser对象：
+>>>
+
+>>> parser = argparse.ArgumentParser(description='Process some integers.')
+
+ArgumentParser对象会保存把命令行解析成Python数据类型所需要的所有信息。
+15.4.1.2. 添加参数
+
+通过调用add_argument()方法向ArgumentParser添加程序的参数信息。通常情况下，这些信息告诉ArgumentParser如何接收命令行上的字符串并将它们转换成对象。这些信息被保存下来并在调用parse_args()时用到。例如：
+>>>
+
+>>> parser.add_argument('integers', metavar='N', type=int, nargs='+',
+...                     help='an integer for the accumulator')
+>>> parser.add_argument('--sum', dest='accumulate', action='store_const',
+...                     const=sum, default=max,
+...                     help='sum the integers (default: find the max)')
+
+接下来，调用parse_args()返回的对象将带有两个属性，integers和accumulate。属性integers将是一个包含一个或多个整数的列表，如果命令行上指定 --sum，那么属性accumulate将是sum()函数，如果没有指定，则是max()函数。
+15.4.1.3. 解析参数
+
+ArgumentParser通过parse_args()方法解析参数。它将检查命令行，把每个参数转换成恰当的类型并采取恰当的动作。在大部分情况下，这意味着将从命令行中解析出来的属性建立一个简单的 Namespace对象。
+>>>
+
+>>> parser.parse_args(['--sum', '7', '-1', '42'])
+Namespace(accumulate=<built-in function sum>, integers=[7, -1, 42])
+
+在脚本中，parse_args() 调用一般不带参数，ArgumentParser 将根据sys.argv自动确定命令行参数。
+15.4.2. ArgumentParser 对象
+
+class argparse.ArgumentParser(prog=None, usage=None, description=None, epilog=None, parents=[], formatter_class=argparse.HelpFormatter, prefix_chars='-', fromfile_prefix_chars=None, argument_default=None, conflict_handler='error', add_help=True)
+
+    创建一个新的ArgumentParser对象。所有的参数应该以关键字参数传递。下面有对每个参数各自详细的描述，但是简短地讲它们是：
+
+        prog - 程序的名字（默认：sys.argv[0]）
+        usage - 描述程序用法的字符串（默认：从解析器的参数生成）
+        description - 参数帮助信息之前的文本（默认：空）
+        epilog - 参数帮助信息之后的文本（默认：空）
+        parents - ArgumentParser 对象的一个列表，这些对象的参数应该包括进去
+        formatter_class - 定制化帮助信息的类
+        prefix_chars - 可选参数的前缀字符集（默认：‘-‘）
+        fromfile_prefix_chars - 额外的参数应该读取的文件的前缀字符集（默认：None）
+        argument_default - 参数的全局默认值（默认：None）
+        conflict_handler - 解决冲突的可选参数的策略（通常没有必要）
+        add_help - 给解析器添加-h/–help 选项（默认：True）
+
+下面的小节描述这些参数如何使用。
+15.4.2.1. prog 参数
+
+默认情况下，ArgumentParser对象使用sys.argv[0] 决定在帮助信息中如何显示程序的名字。这个默认值几乎一直满足需要，因为它使得帮助信息匹配如何在命令行上调用该程序。例如，考虑下面代码中名为myprogram.py的文件：
+
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('--foo', help='foo help')
+args = parser.parse_args()
+
+该程序的帮助信息将显示myprogram.py作为程序的名字（无论程序是在哪里被调用的）：
+
+$ python myprogram.py --help
+usage: myprogram.py [-h] [--foo FOO]
+
+optional arguments:
+ -h, --help  show this help message and exit
+ --foo FOO   foo help
+$ cd ..
+$ python subdir\myprogram.py --help
+usage: myprogram.py [-h] [--foo FOO]
+
+optional arguments:
+ -h, --help  show this help message and exit
+ --foo FOO   foo help
+
+如果要改变这个默认的行为，可以使用prog=参数给ArgumentParser提供另外一个值：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='myprogram')
+>>> parser.print_help()
+usage: myprogram [-h]
+
+optional arguments:
+ -h, --help  show this help message and exit
+
+注意程序的名字，无论是来自sys.argv[0]还是来自prog=参数，在帮助信息中都可以使用%(prog)s格式指示器得到。
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='myprogram')
+>>> parser.add_argument('--foo', help='foo of the %(prog)s program')
+>>> parser.print_help()
+usage: myprogram [-h] [--foo FOO]
+
+optional arguments:
+ -h, --help  show this help message and exit
+ --foo FOO   foo of the myprogram program
+
+15.4.2.2. usage 参数
+
+默认情况下，ArgumentParser依据它包含的参数计算出帮助信息：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG')
+>>> parser.add_argument('--foo', nargs='?', help='foo help')
+>>> parser.add_argument('bar', nargs='+', help='bar help')
+>>> parser.print_help()
+usage: PROG [-h] [--foo [FOO]] bar [bar ...]
+
+positional arguments:
+ bar          bar help
+
+optional arguments:
+ -h, --help   show this help message and exit
+ --foo [FOO]  foo help
+
+可以通过关键字参数usage=覆盖默认的信息：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG', usage='%(prog)s [options]')
+>>> parser.add_argument('--foo', nargs='?', help='foo help')
+>>> parser.add_argument('bar', nargs='+', help='bar help')
+>>> parser.print_help()
+usage: PROG [options]
+
+positional arguments:
+ bar          bar help
+
+optional arguments:
+ -h, --help   show this help message and exit
+ --foo [FOO]  foo help
+
+在你的帮助信息中，可以使用%(prog)s格式指示符替代程序的名字。
+15.4.2.3. description 参数
+
+ArgumentParser构造器的大部分调用都将使用description=关键字参数。这个参数给出程序做什么以及如何工作的简短描述。在帮助信息中，该描述在命令行用法字符串和各个参数的帮助信息之间显示：
+>>>
+
+>>> parser = argparse.ArgumentParser(description='A foo that bars')
+>>> parser.print_help()
+usage: argparse.py [-h]
+
+A foo that bars
+
+optional arguments:
+ -h, --help  show this help message and exit
+
+默认情况下，该描述会换行以适应给定的空间。如果要改变这个行为，可以参见formatter_class参数。
+15.4.2.4. epilog 参数
+
+有些程序喜欢在参数的描述之后显示额外的关于程序的描述。这些文本可以使用ArgumentParser的epilog=参数指定：
+>>>
+
+>>> parser = argparse.ArgumentParser(
+...     description='A foo that bars',
+...     epilog="And that's how you'd foo a bar")
+>>> parser.print_help()
+usage: argparse.py [-h]
+
+A foo that bars
+
+optional arguments:
+ -h, --help  show this help message and exit
+
+And that's how you'd foo a bar
+
+和description一样，epilog=文本默认会换行，但是可以通过ArgumentParser的formatter_class参数调整这个行为。
+15.4.2.5. parents 参数
+
+有时候，几个解析器会共享一个共同的参数集。可以使用一个带有所有共享参数的解析器传递给ArgumentParser的parents=参数，而不用重复定义这些参数。parents=参数接受一个ArgumentParser对象的列表，然后收集它们当中所有的位置参数和可选参数，并将这些参数添加到正在构建的ArgumentParser对象：
+>>>
+
+>>> parent_parser = argparse.ArgumentParser(add_help=False)
+>>> parent_parser.add_argument('--parent', type=int)
+
+>>> foo_parser = argparse.ArgumentParser(parents=[parent_parser])
+>>> foo_parser.add_argument('foo')
+>>> foo_parser.parse_args(['--parent', '2', 'XXX'])
+Namespace(foo='XXX', parent=2)
+
+>>> bar_parser = argparse.ArgumentParser(parents=[parent_parser])
+>>> bar_parser.add_argument('--bar')
+>>> bar_parser.parse_args(['--bar', 'YYY'])
+Namespace(bar='YYY', parent=None)
+
+注意大部分父解析器将指定add_help=False。否则，ArgumentParser将看到两个-h/--help 选项（一个在父解析器中，一个在子解析器中）并引发一个错误。
+
+注意
+
+在通过parents=传递父解析器之前，你必须完全初始化它们。如果在子解析器之后你改变了父解析器，这些改变不会反映在子解析器中。
+15.4.2.6. formatter_class 参数
+
+ArgumentParser对象允许通过指定一个格式化类来定制帮助信息的格式。当前，有三个种这样的类：
+
+class argparse.RawDescriptionHelpFormatter
+class argparse.RawTextHelpFormatter
+class argparse.ArgumentDefaultsHelpFormatter
+
+前两个在文本信息如何显示上允许更多控制，最后一个会自动添加关于参数默认值的信息。
+
+默认情况下，ArgumentParser对象会对命令行帮助信息中的description和epilog文本进行换行：
+>>>
+
+>>> parser = argparse.ArgumentParser(
+...     prog='PROG',
+...     description='''this description
+...         was indented weird
+...             but that is okay''',
+...     epilog='''
+...             likewise for this epilog whose whitespace will
+...         be cleaned up and whose words will be wrapped
+...         across a couple lines''')
+>>> parser.print_help()
+usage: PROG [-h]
+
+this description was indented weird but that is okay
+
+optional arguments:
+ -h, --help  show this help message and exit
+
+likewise for this epilog whose whitespace will be cleaned up and whose words
+will be wrapped across a couple lines
+
+把RawDescriptionHelpFormatter 传递给formatter_class= 表示description 和epilog 已经是正确的格式而不应该再折行：
+>>>
+
+>>> parser = argparse.ArgumentParser(
+...     prog='PROG',
+...     formatter_class=argparse.RawDescriptionHelpFormatter,
+...     description=textwrap.dedent('''\
+...         Please do not mess up this text!
+...         --------------------------------
+...             I have indented it
+...             exactly the way
+...             I want it
+...         '''))
+>>> parser.print_help()
+usage: PROG [-h]
+
+Please do not mess up this text!
+--------------------------------
+   I have indented it
+   exactly the way
+   I want it
+
+optional arguments:
+ -h, --help  show this help message and exit
+
+RawTextHelpFormatter 将保留所有帮助文本的空白，包括参数的描述。
+
+另外一个格式化类ArgumentDefaultsHelpFormatter，将添加每个参数的默认值信息。
+>>>
+
+>>> parser = argparse.ArgumentParser(
+...     prog='PROG',
+...     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+>>> parser.add_argument('--foo', type=int, default=42, help='FOO!')
+>>> parser.add_argument('bar', nargs='*', default=[1, 2, 3], help='BAR!')
+>>> parser.print_help()
+usage: PROG [-h] [--foo FOO] [bar [bar ...]]
+
+positional arguments:
+ bar         BAR! (default: [1, 2, 3])
+
+optional arguments:
+ -h, --help  show this help message and exit
+ --foo FOO   FOO! (default: 42)
+
+15.4.2.7. prefix_chars 参数
+
+大部分命令行选项使用-作为前缀，例如-f/--foo。需要指出不同的或者额外的前缀字符的解析器，例如类似+f或者/foo这样的选项，可以使用ArgumentParser构造器的prefix_chars=参数指定它们：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG', prefix_chars='-+')
+>>> parser.add_argument('+f')
+>>> parser.add_argument('++bar')
+>>> parser.parse_args('+f X ++bar Y'.split())
+Namespace(bar='Y', f='X')
+
+prefix_chars=参数默认为'-'。提供不包含-的字符集将导致不允许-f/--foo选项。
+15.4.2.8. fromfile_prefix_chars 参数
+
+有时候，例如处理一个特别长的参数列表的时候，把参数列表保存在文件中而不是在命令行中敲出来可能比较合理。如果给出ArgumentParser构造器的fromfile_prefix_chars=参数，那么以任意一个给定字符开始的参数将被当做文件，并且将被这些文件包含的参数替换。例如：
+>>>
+
+>>> with open('args.txt', 'w') as fp:
+...    fp.write('-f\nbar')
+>>> parser = argparse.ArgumentParser(fromfile_prefix_chars='@')
+>>> parser.add_argument('-f')
+>>> parser.parse_args(['-f', 'foo', '@args.txt'])
+Namespace(f='bar')
+
+从文件中读入的参数必须默认是每行一个参数（但另可参阅convert_arg_line_to_args()）并且将被当做在命令行上原始文件所在的位置。所有在上面的例子中，表达式['-f', 'foo', '@args.txt'] 被认为等同于表达式['-f', 'foo', '-f', 'bar']。
+
+fromfile_prefix_chars= 参数默认为None，意味着参数永远不会被当做文件。
+15.4.2.9. argument_default 参数
+
+通常情况下，参数默认值的指定通过传递一个默认值给add_argument()或者以一个指键-值对的集合调用set_defaults()方法。然而有时候，指定一个解析器范围的参数默认值会比较有用。这可以通过传递argument_default=关键字参数给ArgumentParser完成。例如，为了全局地阻止parse_args() 调用时不必要的属性创建，我们可以提供argument_default=SUPPRESS：
+>>>
+
+>>> parser = argparse.ArgumentParser(argument_default=argparse.SUPPRESS)
+>>> parser.add_argument('--foo')
+>>> parser.add_argument('bar', nargs='?')
+>>> parser.parse_args(['--foo', '1', 'BAR'])
+Namespace(bar='BAR', foo='1')
+>>> parser.parse_args([])
+Namespace()
+
+15.4.2.10. conflict_handler 参数
+
+ArgumentParser对象不允许同一个选项具有两个动作。默认情况下，如果试图创建一个已经使用的选项，ArgumentParser对象将抛出异常。
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG')
+>>> parser.add_argument('-f', '--foo', help='old foo help')
+>>> parser.add_argument('--foo', help='new foo help')
+Traceback (most recent call last):
+ ..
+ArgumentError: argument --foo: conflicting option string(s): --foo
+
+有时候（例如使用parents的时候）简单地用相同的选项覆盖旧的参数是有用的。为了得到这样的行为，可以提供'resolve'值给ArgumentParser的conflict_handler=参数：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG', conflict_handler='resolve')
+>>> parser.add_argument('-f', '--foo', help='old foo help')
+>>> parser.add_argument('--foo', help='new foo help')
+>>> parser.print_help()
+usage: PROG [-h] [-f FOO] [--foo FOO]
+
+optional arguments:
+ -h, --help  show this help message and exit
+ -f FOO      old foo help
+ --foo FOO   new foo help
+
+注意ArgumentParser 对象只有在所有的选项字符串被覆盖时才删除某个动作。所以，在上面的例子中，旧的-f/--foo动作依然保留为-f的动作，因为只有--foo选项字符串被覆盖。
+15.4.2.11. add_help 参数
+
+默认情况下，ArgumentParser对象会添加一个选项简单地显示解析器的帮助信息。例如，考虑一个包含如下代码的名为myprogram.py的文件：
+
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('--foo', help='foo help')
+args = parser.parse_args()
+
+如果在命令行中提供-h或者--help，ArgumentParser的帮助信息将打印出来：
+
+$ python myprogram.py --help
+usage: myprogram.py [-h] [--foo FOO]
+
+optional arguments:
+ -h, --help  show this help message and exit
+ --foo FOO   foo help
+
+偶尔，禁止这个帮助选项也可能是有用的。这可以通过传递False给ArgumentParser的add_help=参数实现：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG', add_help=False)
+>>> parser.add_argument('--foo', help='foo help')
+>>> parser.print_help()
+usage: PROG [--foo FOO]
+
+optional arguments:
+ --foo FOO  foo help
+
+该帮助选项通常是-h/--help。例外情况是指定了prefix_chars=而且不包括-，在这种情况下-h和--help不是合法的选项。在这种情况下，prefix_chars中的第一个字符将用于该帮助选项的前缀：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG', prefix_chars='+/')
+>>> parser.print_help()
+usage: PROG [+h]
+
+optional arguments:
+  +h, ++help  show this help message and exit
+
+15.4.3. add_argument() 方法
+
+ArgumentParser.add_argument(name or flags...[, action][, nargs][, const][, default][, type][, choices][, required][, help][, metavar][, dest])
+
+    定义应该如何解析一个命令行参数。下面每个参数有它们自己详细的描述，简单地讲它们是：
+
+        name or flags - 选项字符串的名字或者列表，例如foo 或者-f, --foo。
+        action - 在命令行遇到该参数时采取的基本动作类型。
+        nargs - 应该读取的命令行参数数目。
+        const - 某些action和nargs选项要求的常数值。
+        default - 如果命令行中没有出现该参数时的默认值。
+        type - 命令行参数应该被转换成的类型。
+        choices - 参数可允许的值的一个容器。
+        required - 该命令行选项是否可以省略（只针对可选参数）。
+        help - 参数的简短描述。
+        metavar - 参数在帮助信息中的名字。
+        dest - 给parse_args()返回的对象要添加的属性名称。
+
+下面的小节描述这些参数如何使用。
+15.4.3.1. name 或 flags 参数
+
+add_argument() 方法必须知道期望的是可选参数，比如-f 或者--foo，还是位置参数，比如一个文件列表。传递给add_argument() 的第一个参数因此必须是一个标记序列或者一个简单的参数名字。例如，一个可选的参数可以像这样创建：
+>>>
+
+>>> parser.add_argument('-f', '--foo')
+
+而一个位置参数可以像这样创建：
+>>>
+
+>>> parser.add_argument('bar')
+
+当调用parse_args()时，可选的参数将以- 前缀标识，剩余的参数将被假定为位置参数：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG')
+>>> parser.add_argument('-f', '--foo')
+>>> parser.add_argument('bar')
+>>> parser.parse_args(['BAR'])
+Namespace(bar='BAR', foo=None)
+>>> parser.parse_args(['BAR', '--foo', 'FOO'])
+Namespace(bar='BAR', foo='FOO')
+>>> parser.parse_args(['--foo', 'FOO'])
+usage: PROG [-h] [-f FOO] bar
+PROG: error: too few arguments
+
+15.4.3.2. action 参数
+
+ArgumentParser 对象将命令行参数和动作关联起来。这些动作可以完成与命令行参数关联的任何事情，尽管大部分动作只是简单地给parse_args()返回的对象添加一个属性。action 关键字参数指出应该如何处理命令行参数。支持的动作有：
+
+    'store' - 只是保存参数的值。这是默认的动作。例如：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('--foo')
+    >>> parser.parse_args('--foo 1'.split())
+    Namespace(foo='1')
+
+    'store_const' - 保存由const关键字参数指出的值。（注意const关键字参数默认是几乎没有帮助的None。）'store_const'动作最常用于指定某种标记的可选参数。例如：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('--foo', action='store_const', const=42)
+    >>> parser.parse_args('--foo'.split())
+    Namespace(foo=42)
+
+    'store_true'和'store_false' - 它们是'store_const' 的特殊情形，分别用于保存值True和False。另外，它们分别会创建默认值False 和True。例如：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('--foo', action='store_true')
+    >>> parser.add_argument('--bar', action='store_false')
+    >>> parser.add_argument('--baz', action='store_false')
+    >>> parser.parse_args('--foo --bar'.split())
+    Namespace(bar=False, baz=True, foo=True)
+
+    'append' - 保存一个列表，并将每个参数值附加在列表的后面。这对于允许指定多次的选项很有帮助。示例用法：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('--foo', action='append')
+    >>> parser.parse_args('--foo 1 --foo 2'.split())
+    Namespace(foo=['1', '2'])
+
+    'append_const' - 保存一个列表，并将const关键字参数指出的值附加在列表的后面。（注意const关键字参数默认是None。）'append_const' 动作在多个参数需要保存常量到相同的列表时特别有用。例如：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('--str', dest='types', action='append_const', const=str)
+    >>> parser.add_argument('--int', dest='types', action='append_const', const=int)
+    >>> parser.parse_args('--str --int'.split())
+    Namespace(types=[<type 'str'>, <type 'int'>])
+
+    'count' - 计算关键字参数出现的次数。例如，这可用于增加详细的级别：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('--verbose', '-v', action='count')
+    >>> parser.parse_args('-vvv'.split())
+    Namespace(verbose=3)
+
+    'help' - 打印当前解析器中所有选项的完整的帮助信息然后退出。默认情况下，help动作会自动添加到解析器中。参见ArgumentParser以得到如何生成输出信息。
+
+    'version' - 它期待version=参数出现在add_argument()调用中，在调用时打印出版本信息并退出：
+    >>>
+
+    >>> import argparse
+    >>> parser = argparse.ArgumentParser(prog='PROG')
+    >>> parser.add_argument('--version', action='version', version='%(prog)s 2.0')
+    >>> parser.parse_args(['--version'])
+    PROG 2.0
+
+你还可以通过传递一个实现了Action API的对象指定任意一个动作。实现该功能的最简单方法是扩展argparse.Action，并提供一个合适的__call__方法。__call__方法应该接受四个参数：
+
+    parser - 包含该动作的ArgumentParser对象。
+    namespace - parse_args()返回的Namespace对象。大部分动作会给该对象添加一个属性。
+    values - 相关联的命令行参数于类型转换之后的值。（类型转换方式通过add_argument()的type关键字参数指定。）
+    option_string - 调用该动作的选项字符串。option_string参数是可选的，如果动作关联的位置参数将不会出现。
+
+自定义动作的例子：
+>>>
+
+>>> class FooAction(argparse.Action):
+...     def __call__(self, parser, namespace, values, option_string=None):
+...         print '%r %r %r' % (namespace, values, option_string)
+...         setattr(namespace, self.dest, values)
+...
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('--foo', action=FooAction)
+>>> parser.add_argument('bar', action=FooAction)
+>>> args = parser.parse_args('1 --foo 2'.split())
+Namespace(bar=None, foo=None) '1' None
+Namespace(bar='1', foo=None) '2' '--foo'
+>>> args
+Namespace(bar='1', foo='2')
+
+15.4.3.3. nargs 参数
+
+ArgumentParser对象通常将一个动作与一个命令行参数关联。nargs关键字参数将一个动作与不同数目的命令行参数关联在一起。它支持的值有：
+
+    N（一个整数）。命令行中的N个参数将被一起收集在一个列表中。例如：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('--foo', nargs=2)
+    >>> parser.add_argument('bar', nargs=1)
+    >>> parser.parse_args('c --foo a b'.split())
+    Namespace(bar=['c'], foo=['a', 'b'])
+
+    注意nargs=1生成一个只有一个元素的列表。这和默认的行为是不一样的，默认情况下生成的是元素自己。
+
+    '?'。如果有的话就从命令行读取一个参数并生成一个元素。如果没有对应的命令行参数，则产生一个来自default的值。注意，对于可选参数，有另外一种情况 - 有选项字符串但是后面没有跟随命令行参数。在这种情况下，将生成一个来自const的值。用一些例子加以解释：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('--foo', nargs='?', const='c', default='d')
+    >>> parser.add_argument('bar', nargs='?', default='d')
+    >>> parser.parse_args('XX --foo YY'.split())
+    Namespace(bar='XX', foo='YY')
+    >>> parser.parse_args('XX --foo'.split())
+    Namespace(bar='XX', foo='c')
+    >>> parser.parse_args(''.split())
+    Namespace(bar='d', foo='d')
+
+    nargs='?'的一种更常见的用法是允许可选的输入和输出文件：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('infile', nargs='?', type=argparse.FileType('r'),
+    ...                     default=sys.stdin)
+    >>> parser.add_argument('outfile', nargs='?', type=argparse.FileType('w'),
+    ...                     default=sys.stdout)
+    >>> parser.parse_args(['input.txt', 'output.txt'])
+    Namespace(infile=<open file 'input.txt', mode 'r' at 0x...>,
+              outfile=<open file 'output.txt', mode 'w' at 0x...>)
+    >>> parser.parse_args([])
+    Namespace(infile=<open file '<stdin>', mode 'r' at 0x...>,
+              outfile=<open file '<stdout>', mode 'w' at 0x...>)
+
+    '*'。出现的所有命令行参数都被收集到一个列表中。注意，一般情况下具有多个带有nargs='*'的位置参数是不合理的，但是多个带有nargs='*'的可选参数是可能的。例如：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('--foo', nargs='*')
+    >>> parser.add_argument('--bar', nargs='*')
+    >>> parser.add_argument('baz', nargs='*')
+    >>> parser.parse_args('a b --foo x y --bar 1 2'.split())
+    Namespace(bar=['1', '2'], baz=['a', 'b'], foo=['x', 'y'])
+
+    '+'。和'*'一样，出现的所有命令行参数都被收集到一个列表中。除此之外，如果没有至少出现一个命令行参数将会产生一个错误信息。例如：
+    >>>
+
+    >>> parser = argparse.ArgumentParser(prog='PROG')
+    >>> parser.add_argument('foo', nargs='+')
+    >>> parser.parse_args('a b'.split())
+    Namespace(foo=['a', 'b'])
+    >>> parser.parse_args(''.split())
+    usage: PROG [-h] foo [foo ...]
+    PROG: error: too few arguments
+
+    argparse.REMAINDER.所有剩余的命令行参数都被收集到一个列表中。这通常用于命令行工具分发命令到其它命令行工具：
+    >>>
+
+    >>> parser = argparse.ArgumentParser(prog='PROG')
+    >>> parser.add_argument('--foo')
+    >>> parser.add_argument('command')
+    >>> parser.add_argument('args', nargs=argparse.REMAINDER)
+    >>> print parser.parse_args('--foo B cmd --arg1 XX ZZ'.split())
+    Namespace(args=['--arg1', 'XX', 'ZZ'], command='cmd', foo='B')
+
+如果没有提供nargs关键字参数，读取的参数个数取决于action。通常这意味着将读取一个命令行参数并产生一个元素（不是一个列表）。
+15.4.3.4. const 参数
+
+add_argument()的const 参数用于保存常量值，它们不是从命令行读入但是是ArgumentParser 的动作所要求的。它的两个最常见的用法是：
+
+    当以action='store_const'或者action='append_const'调用add_argument()时。这些动作向parse_args()返回对象的一个属性添加const值。参见action的描述。
+    当以选项字符串（例如-f或者--foo和nargs='?'）调用add_argument()时。它创建一个后面可以跟随零个或者一个命令行字符串的可选参数。当解析命令行参数时，如果选项字符串后面没有跟随命令行参数，则假定其为const的值。参见nargs的描述。
+
+const 关键字的默认值是None。
+15.4.3.5. default 参数
+
+所有可选的参数以及某些位置参数可以在命令行中省略。add_argument()的default关键字参数，其默认值为None，指出如果命令行参数没有出现时它们应该是什么值。对于可选参数，default的值用于选项字符串没有出现在命令行中的时候：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('--foo', default=42)
+>>> parser.parse_args('--foo 2'.split())
+Namespace(foo='2')
+>>> parser.parse_args(''.split())
+Namespace(foo=42)
+
+如果default的值是一个字符串，解析器将像命令行参数一样解析这个值。特别地，在设置Namespace返回值的属性之前，解析器会调用type的转换参数。否则，解析器就使用其原始值：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('--length', default='10', type=int)
+>>> parser.add_argument('--width', default=10.5, type=int)
+>>> parser.parse_args()
+Namespace(length=10, width=10.5)
+
+对于nargs等于?或者*的位置参数，default在没有其命令行参数时使用：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('foo', nargs='?', default=42)
+>>> parser.parse_args('a'.split())
+Namespace(foo='a')
+>>> parser.parse_args(''.split())
+Namespace(foo=42)
+
+default=argparse.SUPPRESS将导致如果没有命令行参数时不会添加属性：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('--foo', default=argparse.SUPPRESS)
+>>> parser.parse_args([])
+Namespace()
+>>> parser.parse_args(['--foo', '1'])
+Namespace(foo='1')
+
+15.4.3.6. type 参数
+
+默认情况下，ArgumentParser对象以简单字符串方式读入命令行参数。然而，很多时候命令行字符串应该被解释成另外一种类型，例如浮点数或者整数。add_argument()的type关键字参数允许任意必要的类型检查并作类型转换。常见的内建类型和函数可以直接用作type参数的值：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('foo', type=int)
+>>> parser.add_argument('bar', type=file)
+>>> parser.parse_args('2 temp.txt'.split())
+Namespace(bar=<open file 'temp.txt', mode 'r' at 0x...>, foo=2)
+
+参见default关键字参数一节关于何时type参数应用与默认参数的信息。
+
+为了简化各种文件类型的使用，argparse提供了工厂类型FileType，它以file对象的mode=和bufsize=为参数。例如，FileType('w')可以用于创建一个可写的文件：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('bar', type=argparse.FileType('w'))
+>>> parser.parse_args(['out.txt'])
+Namespace(bar=<open file 'out.txt', mode 'w' at 0x...>)
+
+type=可以接受任何可调用类型，只要该类型以一个字符串为参数并且返回转换后的类型：
+>>>
+
+>>> def perfect_square(string):
+...     value = int(string)
+...     sqrt = math.sqrt(value)
+...     if sqrt != int(sqrt):
+...         msg = "%r is not a perfect square" % string
+...         raise argparse.ArgumentTypeError(msg)
+...     return value
+...
+>>> parser = argparse.ArgumentParser(prog='PROG')
+>>> parser.add_argument('foo', type=perfect_square)
+>>> parser.parse_args('9'.split())
+Namespace(foo=9)
+>>> parser.parse_args('7'.split())
+usage: PROG [-h] foo
+PROG: error: argument foo: '7' is not a perfect square
+
+choices关键字参数对于简单的某个范围内的类型检查可能更方便：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG')
+>>> parser.add_argument('foo', type=int, choices=xrange(5, 10))
+>>> parser.parse_args('7'.split())
+Namespace(foo=7)
+>>> parser.parse_args('11'.split())
+usage: PROG [-h] {5,6,7,8,9}
+PROG: error: argument foo: invalid choice: 11 (choose from 5, 6, 7, 8, 9)
+
+更多细节请参阅choices一节。
+15.4.3.7. choices 参数
+
+某些命令行参数应该从一个受限的集合中选择。这种情况的处理可以通过传递一个容器对象作为choices关键字参数给add_argument()。当解析命令行时，将检查参数的值，如果参数不是一个可接受的值则显示一个错误信息：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='game.py')
+>>> parser.add_argument('move', choices=['rock', 'paper', 'scissors'])
+>>> parser.parse_args(['rock'])
+Namespace(move='rock')
+>>> parser.parse_args(['fire'])
+usage: game.py [-h] {rock,paper,scissors}
+game.py: error: argument move: invalid choice: 'fire' (choose from 'rock',
+'paper', 'scissors')
+
+注意choices 容器包含的对象在type转换之后检查，所以choices容器中对象的类型应该与type指出的类型相匹配：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='doors.py')
+>>> parser.add_argument('door', type=int, choices=range(1, 4))
+>>> print(parser.parse_args(['3']))
+Namespace(door=3)
+>>> parser.parse_args(['4'])
+usage: doors.py [-h] {1,2,3}
+doors.py: error: argument door: invalid choice: 4 (choose from 1, 2, 3)
+
+支持in操作符的任何对象都可以传递给choices作为它的值，所以dict对象、set对象以及自定义的容器等等都支持。
+15.4.3.8. required 参数
+
+一般情况下，argparse模块假定-f和--bar标记表示可选参数，它们在命令行中可以省略。如果要使得选项是必需的，可以指定True作为required=关键字参数的值给add_argument()：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('--foo', required=True)
+>>> parser.parse_args(['--foo', 'BAR'])
+Namespace(foo='BAR')
+>>> parser.parse_args([])
+usage: argparse.py [-h] [--foo FOO]
+argparse.py: error: option --foo is required
+
+正如例子所演示的，如果一个命令被标记为required，那么如果命令行中没有出现该参数parse_args() 将报告一个错误。
+
+注意
+
+Required 选项一般情况下认为是不好的形式因为用户期望选项 是可选 的，因此应该尽可能避免这种形式。
+15.4.3.9. help 参数
+
+help的值是一个包含参数简短描述的字符串。当用户要求帮助时（通常通过使用-h或者--help at the command line），这些help的描述将随每个参数一起显示出来：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='frobble')
+>>> parser.add_argument('--foo', action='store_true',
+...         help='foo the bars before frobbling')
+>>> parser.add_argument('bar', nargs='+',
+...         help='one of the bars to be frobbled')
+>>> parser.parse_args('-h'.split())
+usage: frobble [-h] [--foo] bar [bar ...]
+
+positional arguments:
+ bar     one of the bars to be frobbled
+
+optional arguments:
+ -h, --help  show this help message and exit
+ --foo   foo the bars before frobbling
+
+help字符串可以包含各种格式指示符以避免如程序名字和参数default的重复。可用的指示符包括程序的名称%(prog)s以及大部分add_argument()的关键字参数，例如%(default)s、%(type)s等：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='frobble')
+>>> parser.add_argument('bar', nargs='?', type=int, default=42,
+...         help='the bar to %(prog)s (default: %(default)s)')
+>>> parser.print_help()
+usage: frobble [-h] [bar]
+
+positional arguments:
+ bar     the bar to frobble (default: 42)
+
+optional arguments:
+ -h, --help  show this help message and exit
+
+通过设置help值为argparse.SUPPRESS，argparse支持隐藏特定选项的帮助：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='frobble')
+>>> parser.add_argument('--foo', help=argparse.SUPPRESS)
+>>> parser.print_help()
+usage: frobble [-h]
+
+optional arguments:
+  -h, --help  show this help message and exit
+
+15.4.3.10. metavar 参数
+
+当ArgumentParser生成帮助信息时，它需要以某种方式引用每一个参数。 默认情况下，ArgumentParser对象使用dest的值作为每个对象的“名字”。默认情况下，对于位置参数直接使用dest的值，对于可选参数则将dest的值变为大写。所以，位置参数dest='bar'将引用成bar。后面带有一个命令行参数的可选参数--foo将引用成FOO。一个例子：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('--foo')
+>>> parser.add_argument('bar')
+>>> parser.parse_args('X --foo Y'.split())
+Namespace(bar='X', foo='Y')
+>>> parser.print_help()
+usage:  [-h] [--foo FOO] bar
+
+positional arguments:
+ bar
+
+optional arguments:
+ -h, --help  show this help message and exit
+ --foo FOO
+
+可以用metavar指定另外一个名字：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('--foo', metavar='YYY')
+>>> parser.add_argument('bar', metavar='XXX')
+>>> parser.parse_args('X --foo Y'.split())
+Namespace(bar='X', foo='Y')
+>>> parser.print_help()
+usage:  [-h] [--foo YYY] XXX
+
+positional arguments:
+ XXX
+
+optional arguments:
+ -h, --help  show this help message and exit
+ --foo YYY
+
+注意metavar只会改变显示出来的名字 - parse_args() 对象中属性的名字仍然由dest的值决定。
+
+nargs的不同值可能导致metavar使用多次。传递一个列表给metavar将给每个参数指定一个不同的显示名字：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG')
+>>> parser.add_argument('-x', nargs=2)
+>>> parser.add_argument('--foo', nargs=2, metavar=('bar', 'baz'))
+>>> parser.print_help()
+usage: PROG [-h] [-x X X] [--foo bar baz]
+
+optional arguments:
+ -h, --help     show this help message and exit
+ -x X X
+ --foo bar baz
+
+15.4.3.11. dest 参数
+
+大部分ArgumentParser动作给parse_args()返回对象的某个属性添加某些值。该属性的名字由add_argument()的dest关键字参数决定。对于位置参数的动作，dest 通常作为第一个参数提供给add_argument()：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('bar')
+>>> parser.parse_args('XXX'.split())
+Namespace(bar='XXX')
+
+对于可选参数的动作，dest的动作通常从选项字符串推导出来。ArgumentParser生成的dest的值是将第一个长的选项字符串前面的--字符串去掉。如果没有提供长选项字符串，dest的获得则是将第一个短选项字符串前面的-字符去掉。任何内部的-将被转换为_字符以确保字符串是合法的属性名字。下面的实例解释了这个行为：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('-f', '--foo-bar', '--foo')
+>>> parser.add_argument('-x', '-y')
+>>> parser.parse_args('-f 1 -x 2'.split())
+Namespace(foo_bar='1', x='2')
+>>> parser.parse_args('--foo 1 -y 2'.split())
+Namespace(foo_bar='1', x='2')
+
+dest允许提供自定义的属性名：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('--foo', dest='bar')
+>>> parser.parse_args('--foo XXX'.split())
+Namespace(bar='XXX')
+
+15.4.4. parse_args() 方法
+
+ArgumentParser.parse_args(args=None, namespace=None)
+
+    将参数字符串转换成对象并设置成命名空间的属性。返回构成的命名空间。
+
+    之前对add_argument() 的调用完全决定了创建什么对象以及如何设置。详见add_argument()的文档。
+
+    默认情况下，参数字符串取自于sys.argv，并创建一个空的Namespace对象用于保存属性。
+
+15.4.4.1. 可选值的语法
+
+parse_args()方法支持几种指定一个选项的值的方法。最简单的方法是，将选项和它的值以两个分开的参数传递：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG')
+>>> parser.add_argument('-x')
+>>> parser.add_argument('--foo')
+>>> parser.parse_args('-x X'.split())
+Namespace(foo=None, x='X')
+>>> parser.parse_args('--foo FOO'.split())
+Namespace(foo='FOO', x=None)
+
+对于长选项（名字长度超过一个字符的选项），选项和它的值还可以用一个单一的命令行参数传递，并用=分隔它们：
+>>>
+
+>>> parser.parse_args('--foo=FOO'.split())
+Namespace(foo='FOO', x=None)
+
+对于短选项（长度只有一个字符的选项），选项及其值可以连在一起：
+>>>
+
+>>> parser.parse_args('-xX'.split())
+Namespace(foo=None, x='X')
+
+几个短选项可以连在一起仅使用一个-前缀，只要只有最后一个选项要求有值或者都不要有值：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG')
+>>> parser.add_argument('-x', action='store_true')
+>>> parser.add_argument('-y', action='store_true')
+>>> parser.add_argument('-z')
+>>> parser.parse_args('-xyzZ'.split())
+Namespace(x=True, y=True, z='Z')
+
+15.4.4.2. 非法的参数
+
+在解析命令行的同时，parse_args()会检查各种错误，包括有歧义的选项、不合法的类型、不合法的选项、错误的位置参数个数等等。当它遇到此类错误时，会退出并跟随用法信息一起打印出错误：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG')
+>>> parser.add_argument('--foo', type=int)
+>>> parser.add_argument('bar', nargs='?')
+
+>>> # invalid type
+>>> parser.parse_args(['--foo', 'spam'])
+usage: PROG [-h] [--foo FOO] [bar]
+PROG: error: argument --foo: invalid int value: 'spam'
+
+>>> # invalid option
+>>> parser.parse_args(['--bar'])
+usage: PROG [-h] [--foo FOO] [bar]
+PROG: error: no such option: --bar
+
+>>> # wrong number of arguments
+>>> parser.parse_args(['spam', 'badger'])
+usage: PROG [-h] [--foo FOO] [bar]
+PROG: error: extra arguments found: badger
+
+15.4.4.3. Arguments containing -
+
+parse_args()方法每当用户犯了明确的错误时会努力给出错误信息，但是有些情况天生就有歧义。例如，命令行参数-1既可以是想指明一个选项也可以是想提供一个位置参数。这里parse_args()会非常小心：位置参数只有在它们看上去像负数且解析器中没有选项看上去是负数时才可以以-开始：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG')
+>>> parser.add_argument('-x')
+>>> parser.add_argument('foo', nargs='?')
+
+>>> # no negative number options, so -1 is a positional argument
+>>> parser.parse_args(['-x', '-1'])
+Namespace(foo=None, x='-1')
+
+>>> # no negative number options, so -1 and -5 are positional arguments
+>>> parser.parse_args(['-x', '-1', '-5'])
+Namespace(foo='-5', x='-1')
+
+>>> parser = argparse.ArgumentParser(prog='PROG')
+>>> parser.add_argument('-1', dest='one')
+>>> parser.add_argument('foo', nargs='?')
+
+>>> # negative number options present, so -1 is an option
+>>> parser.parse_args(['-1', 'X'])
+Namespace(foo=None, one='X')
+
+>>> # negative number options present, so -2 is an option
+>>> parser.parse_args(['-2'])
+usage: PROG [-h] [-1 ONE] [foo]
+PROG: error: no such option: -2
+
+>>> # negative number options present, so both -1s are options
+>>> parser.parse_args(['-1', '-1'])
+usage: PROG [-h] [-1 ONE] [foo]
+PROG: error: argument -1: expected one argument
+
+如果你有必须以- 开始的位置参数且不是负数，你可以插入伪参数'--'告诉parse_args()其后的所有内容都为位置参数：
+>>>
+
+>>> parser.parse_args(['--', '-f'])
+Namespace(foo='-f', one=None)
+
+15.4.4.4. 参数的缩写（前缀匹配）
+
+parse_args()方法允许长选项简写成一个前缀，如果简写的形式没有歧义（前缀只匹配唯一的一个选项）：
+>>>
+
+>>> parser = argparse.ArgumentParser(prog='PROG')
+>>> parser.add_argument('-bacon')
+>>> parser.add_argument('-badger')
+>>> parser.parse_args('-bac MMM'.split())
+Namespace(bacon='MMM', badger=None)
+>>> parser.parse_args('-bad WOOD'.split())
+Namespace(bacon=None, badger='WOOD')
+>>> parser.parse_args('-ba BA'.split())
+usage: PROG [-h] [-bacon BACON] [-badger BADGER]
+PROG: error: ambiguous option: -ba could match -badger, -bacon
+
+如果参数可能匹配多个选项则生成一个错误信息。
+15.4.4.5. Beyond sys.argv
+
+有时候可能需要ArgumentParser解析的参数不是来自sys.argv。这可以通过传递一个字符串列表给parse_args()来完成。这在交互式命令行中测试时很有用：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument(
+...     'integers', metavar='int', type=int, choices=xrange(10),
+...  nargs='+', help='an integer in the range 0..9')
+>>> parser.add_argument(
+...     '--sum', dest='accumulate', action='store_const', const=sum,
+...   default=max, help='sum the integers (default: find the max)')
+>>> parser.parse_args(['1', '2', '3', '4'])
+Namespace(accumulate=<built-in function max>, integers=[1, 2, 3, 4])
+>>> parser.parse_args('1 2 3 4 --sum'.split())
+Namespace(accumulate=<built-in function sum>, integers=[1, 2, 3, 4])
+
+15.4.4.6. Namespace 对象
+
+class argparse.Namespace
+
+    parse_args() 默认使用的简单的类，用于创建一个保存属性的对象并返回该对象。
+
+这个类故意设计得非常简单，只是object的一个可以打印可读字符串的子类。如果你喜欢以字典的形式查看其属性，可以使用Python标准的语句vars()：
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('--foo')
+>>> args = parser.parse_args(['--foo', 'BAR'])
+>>> vars(args)
+{'foo': 'BAR'}
+
+有时可能需要让ArgumentParser分配属性给一个已经存在的对象而不是一个新的Namespace对象。这可以通过指定namespace=关键字参数达到：
+>>>
+
+>>> class C(object):
+...     pass
+...
+>>> c = C()
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('--foo')
+>>> parser.parse_args(args=['--foo', 'BAR'], namespace=c)
+>>> c.foo
+'BAR'
+
+15.4.5. 其它实用工具
+15.4.5.1. 子命令
+
+ArgumentParser.add_subparsers([title][, description][, prog][, parser_class][, action][, option_string][, dest][, help][, metavar])
+
+    许多程序将它们的功能分成多个子命令，例如，svn可以调用如svn checkout、svn update和svn commit子命令。在程序实现的几个不同的功能要求不同类型的命令行参数时，以这种方式分割程序的功能是特别好的主意。ArgumentParser支持用add_subparsers()方法创建这种子命令。add_subparsers() 方法的调用通常不带参数并返回一个特殊的动作对象。该对象只有一个方法add_parser()，它的参数是一个命令行名字和任意ArgumentParser构造器，返回的是一个可以像平常一样修改的ArgumentParser对象。
+
+    参数的描述：
+
+        title - 在输出的帮助中子解析器组的标题；默认情况下，如果提供description参数则为“subcommands”，否则使用位置参数的标题
+        description - 在输出的帮助中子解析器组的描述，默认为None
+        prog - 与子命令的帮助一起显示的使用帮助信息，默认为程序的名字和子解析器参数之前的所有位置参数
+        parser_class - 用于创建子解析器实例的类，默认为当前的解析器（例如ArgumentParser）
+        dest - 子命令的名字应该存储的属性名称；默认为None且不存储任何值
+        help - 在输出的帮助中子解析器中的帮助信息，默认为None
+        metavar - 在帮助中表示可用的子命令的字符串；默认为None并以{cmd1, cmd2, ..}的形式表示子命令
+
+    一些示例用法：
+    >>>
+
+    >>> # create the top-level parser
+    >>> parser = argparse.ArgumentParser(prog='PROG')
+    >>> parser.add_argument('--foo', action='store_true', help='foo help')
+    >>> subparsers = parser.add_subparsers(help='sub-command help')
+    >>>
+    >>> # create the parser for the "a" command
+    >>> parser_a = subparsers.add_parser('a', help='a help')
+    >>> parser_a.add_argument('bar', type=int, help='bar help')
+    >>>
+    >>> # create the parser for the "b" command
+    >>> parser_b = subparsers.add_parser('b', help='b help')
+    >>> parser_b.add_argument('--baz', choices='XYZ', help='baz help')
+    >>>
+    >>> # parse some argument lists
+    >>> parser.parse_args(['a', '12'])
+    Namespace(bar=12, foo=False)
+    >>> parser.parse_args(['--foo', 'b', '--baz', 'Z'])
+    Namespace(baz='Z', foo=True)
+
+    注意parse_args()返回的对象只包含主解析器和命令行选择的子解析器（不包含任何其它子解析器）的属性。所以在上面的示例中，当指定a命令时，只有foo和bar属性，当指定b命令时，只有foo和baz 属性。
+
+    类似地，当查看子命令的帮助信息时，只有特定的解析器的帮助会打印出来。帮助信息不包括父解析器和兄弟解析器的信息。（然而，可以通过提供help=参数给add_parser()来给每个子命令添加帮助信息。）
+    >>>
+
+    >>> parser.parse_args(['--help'])
+    usage: PROG [-h] [--foo] {a,b} ...
+
+    positional arguments:
+      {a,b}   sub-command help
+        a     a help
+        b     b help
+
+    optional arguments:
+      -h, --help  show this help message and exit
+      --foo   foo help
+
+    >>> parser.parse_args(['a', '--help'])
+    usage: PROG a [-h] bar
+
+    positional arguments:
+      bar     bar help
+
+    optional arguments:
+      -h, --help  show this help message and exit
+
+    >>> parser.parse_args(['b', '--help'])
+    usage: PROG b [-h] [--baz {X,Y,Z}]
+
+    optional arguments:
+      -h, --help     show this help message and exit
+      --baz {X,Y,Z}  baz help
+
+    add_subparsers()方法还支持title和description关键字参数。当任意一个出现时，在输出的帮助中子命令将出现在它们自己的组里。例如：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> subparsers = parser.add_subparsers(title='subcommands',
+    ...                                    description='valid subcommands',
+    ...                                    help='additional help')
+    >>> subparsers.add_parser('foo')
+    >>> subparsers.add_parser('bar')
+    >>> parser.parse_args(['-h'])
+    usage:  [-h] {foo,bar} ...
+
+    optional arguments:
+      -h, --help  show this help message and exit
+
+    subcommands:
+      valid subcommands
+
+      {foo,bar}   additional help
+
+    处理子命令的一个特别用于的方法是将add_subparsers()方法和set_defaults() 调用绑在一起使用，这样每个子命令就可以知道它应该执行哪个Python 函数。例如：
+    >>>
+
+    >>> # sub-command functions
+    >>> def foo(args):
+    ...     print args.x * args.y
+    ...
+    >>> def bar(args):
+    ...     print '((%s))' % args.z
+    ...
+    >>> # create the top-level parser
+    >>> parser = argparse.ArgumentParser()
+    >>> subparsers = parser.add_subparsers()
+    >>>
+    >>> # create the parser for the "foo" command
+    >>> parser_foo = subparsers.add_parser('foo')
+    >>> parser_foo.add_argument('-x', type=int, default=1)
+    >>> parser_foo.add_argument('y', type=float)
+    >>> parser_foo.set_defaults(func=foo)
+    >>>
+    >>> # create the parser for the "bar" command
+    >>> parser_bar = subparsers.add_parser('bar')
+    >>> parser_bar.add_argument('z')
+    >>> parser_bar.set_defaults(func=bar)
+    >>>
+    >>> # parse the args and call whatever function was selected
+    >>> args = parser.parse_args('foo 1 -x 2'.split())
+    >>> args.func(args)
+    2.0
+    >>>
+    >>> # parse the args and call whatever function was selected
+    >>> args = parser.parse_args('bar XYZYX'.split())
+    >>> args.func(args)
+    ((XYZYX))
+
+    这样的话，你可以让parse_args()在参数解析完成之后去做调用适当的函数的工作。像这种方式将函数和动作关联起来是最简单的方法来处理你每个子命令的不同动作。然而，如果需要检查调用的子命令的名字，用dest关键字参数调用add_subparsers() 就可以：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> subparsers = parser.add_subparsers(dest='subparser_name')
+    >>> subparser1 = subparsers.add_parser('1')
+    >>> subparser1.add_argument('-x')
+    >>> subparser2 = subparsers.add_parser('2')
+    >>> subparser2.add_argument('y')
+    >>> parser.parse_args(['2', 'frobble'])
+    Namespace(subparser_name='2', y='frobble')
+
+15.4.5.2. FileType 对象
+
+class argparse.FileType(mode='r', bufsize=None)
+
+    FileType创建可以传递给ArgumentParser.add_argument()的type参数的对象。以FileType对象为类型的参数将用要求的模式和缓冲区大小来打开命令行参数作为文件：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('--output', type=argparse.FileType('wb', 0))
+    >>> parser.parse_args(['--output', 'out'])
+    Namespace(output=<open file 'out', mode 'wb' at 0x...>)
+
+    FileType对象能够理解伪参数'-' 并主动将它转换成sys.stdin作为可读的FileType对象和sys.stdout作为可写的FileType对象：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('infile', type=argparse.FileType('r'))
+    >>> parser.parse_args(['-'])
+    Namespace(infile=<open file '<stdin>', mode 'r' at 0x...>)
+
+15.4.5.3. Argument groups
+
+ArgumentParser.add_argument_group(title=None, description=None)
+
+    默认情况下，在显示帮助信息的时候ArgumentParser将命令行参数分成“位置参数”和“可选参数”两个组。当有比这个默认的分组更好的分组时，可以使用add_argument_group()方法创建合适的分组：
+    >>>
+
+    >>> parser = argparse.ArgumentParser(prog='PROG', add_help=False)
+    >>> group = parser.add_argument_group('group')
+    >>> group.add_argument('--foo', help='foo help')
+    >>> group.add_argument('bar', help='bar help')
+    >>> parser.print_help()
+    usage: PROG [--foo FOO] bar
+
+    group:
+      bar    bar help
+      --foo FOO  foo help
+
+    add_argument_group()方法返回的参数分组对象具有一个和普通的ArgumentParser一样的add_argument()方法。当有参数添加进这个分组时解析器会以正常的参数对待，但是在帮助信息中显示在一个单独的分组里。add_argument_group()方法接受title和description参数可以用来定制显示：
+    >>>
+
+    >>> parser = argparse.ArgumentParser(prog='PROG', add_help=False)
+    >>> group1 = parser.add_argument_group('group1', 'group1 description')
+    >>> group1.add_argument('foo', help='foo help')
+    >>> group2 = parser.add_argument_group('group2', 'group2 description')
+    >>> group2.add_argument('--bar', help='bar help')
+    >>> parser.print_help()
+    usage: PROG [--bar BAR] foo
+
+    group1:
+      group1 description
+
+      foo    foo help
+
+    group2:
+      group2 description
+
+      --bar BAR  bar help
+
+    注意任何没有加入到你自定义的分组中的参数仍将放在通常的“位置参数”和“可选参数”部分。
+
+15.4.5.4. 互斥分组
+
+ArgumentParser.add_mutually_exclusive_group(required=False)
+
+    创建一个互斥分组。argparse将确保互斥分组中的一个参数出现在命令行上：
+    >>>
+
+    >>> parser = argparse.ArgumentParser(prog='PROG')
+    >>> group = parser.add_mutually_exclusive_group()
+    >>> group.add_argument('--foo', action='store_true')
+    >>> group.add_argument('--bar', action='store_false')
+    >>> parser.parse_args(['--foo'])
+    Namespace(bar=True, foo=True)
+    >>> parser.parse_args(['--bar'])
+    Namespace(bar=False, foo=False)
+    >>> parser.parse_args(['--foo', '--bar'])
+    usage: PROG [-h] [--foo | --bar]
+    PROG: error: argument --bar: not allowed with argument --foo
+
+    add_mutually_exclusive_group()接受一个required 参数，用于指示互斥分组中至少有一个参数是必需的：
+    >>>
+
+    >>> parser = argparse.ArgumentParser(prog='PROG')
+    >>> group = parser.add_mutually_exclusive_group(required=True)
+    >>> group.add_argument('--foo', action='store_true')
+    >>> group.add_argument('--bar', action='store_false')
+    >>> parser.parse_args([])
+    usage: PROG [-h] (--foo | --bar)
+    PROG: error: one of the arguments --foo --bar is required
+
+    注意目前互斥分组不支持add_argument_group()的title和description 参数。
+
+15.4.5.5. 解析器的默认值
+
+ArgumentParser.set_defaults(**kwargs)
+
+    大部分时候，parse_args()返回的对象的属性完全由命令行参数和参数的动作决定。set_defaults()允许添加一些额外的属性而不用命令行的解析决定：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('foo', type=int)
+    >>> parser.set_defaults(bar=42, baz='badger')
+    >>> parser.parse_args(['736'])
+    Namespace(bar=42, baz='badger', foo=736)
+
+    注意解析器基本的默认值会永远覆盖参数级别的默认值：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('--foo', default='bar')
+    >>> parser.set_defaults(foo='spam')
+    >>> parser.parse_args([])
+    Namespace(foo='spam')
+
+    解析器级别的默认值在使用多个解析器时特别有用。参考add_subparsers()方法可以看到这方面的一个示例。
+
+ArgumentParser.get_default(dest)
+
+    获得namespace某个属性的默认值，由add_argument()或set_defaults()设定：
+    >>>
+
+    >>> parser = argparse.ArgumentParser()
+    >>> parser.add_argument('--foo', default='badger')
+    >>> parser.get_default('foo')
+    'badger'
+
+15.4.5.6. 打印帮助
+
+在大部分典型的应用中，parse_args()将负责用法和错误信息的格式和打印。然而，也可以使用几种格式化的方法：
+
+ArgumentParser.print_usage(file=None)
+
+    打印关于如何在命令行上调用ArgumentParser的简单描述。如果file为None，则假定为sys.stdout。
+
+ArgumentParser.print_help(file=None)
+
+    打印帮助信息，包括程序的使用方法以及用ArgumentParser注册的参数信息。如果file为None，则假定为sys.stdout。
+
+同样这些方法还有变体只是简单地返回字符串而不是打印出来：
+
+ArgumentParser.format_usage()
+
+    返回一个字符串，包含如何在命令上调用ArgumentParser的简单描述。
+
+ArgumentParser.format_help()
+
+    返回一个字符串，包含程序的使用方法以及用ArgumentParser注册的参数信息。
+
+15.4.5.7. 部分解析
+
+ArgumentParser.parse_known_args(args=None, namespace=None)
+
+有些时候，脚本可能只会解析命令行参数一部分并将剩余的参数传递给另外一个脚本或程序。在这些情况下，parse_known_args()方法可以派上用场。除了在出现多余的参数时不会产生错误信息以外，它工作的方式与parse_args()非常类似。相反，它返回一个两个元素的元组，包含构造的namespace和剩余的参数字符串的列表。
+>>>
+
+>>> parser = argparse.ArgumentParser()
+>>> parser.add_argument('--foo', action='store_true')
+>>> parser.add_argument('bar')
+>>> parser.parse_known_args(['--foo', '--badger', 'BAR', 'spam'])
+(Namespace(bar='BAR', foo=True), ['--badger', 'spam'])
+
+警告
+
+Prefix matching规则适用于parse_known_args()。解析器将消耗一个选项即使它只是一个已知选项的前缀，而不会将它留在剩余的参数列表中。
+15.4.5.8. 定制文件的解析
+
+ArgumentParser.convert_arg_line_to_args(arg_line)
+
+    从文件中读取的参数（参见ArgumentParser构造器的fromfile_prefix_chars关键字参数）是按行每行读取一个参数。可以覆盖convert_arg_line_to_args()以获得更好的阅读体验。
+
+    该方法接受一个参数arg_line，它是从参数文件中读取出来的一个字符串。它返回从该字符串中解析出来的参数列表。该方法按顺序对参数文件中的每一行调用一次。
+
+    该方法的一个有用的覆盖是以空格分隔的单词作为参数：
+
+    def convert_arg_line_to_args(self, arg_line):
+        for arg in arg_line.split():
+            if not arg.strip():
+                continue
+            yield arg
+
+15.4.5.9. 退出的方法
+
+ArgumentParser.exit(status=0, message=None)
+
+    该方法将终止程序，以指定的status退出，如果给出message，则会在此之前打印出它。
+
+ArgumentParser.error(message)
+
+    该方法打印一个用法信息包括message参数到标准错误输出并以状态码2终止程序。
+
+15.4.6. 升级optparse的代码
+
+最初，argparse模块尝试保持与optparse的兼容性。然而，optparse很难透明地扩展，特别是新的变化要求支持nargs=指示符和更好的用法帮助信息。当optparse中的大部分内容已经被复制粘贴或者胡乱地打上补丁时，试图维持向后兼容性似乎不太实际。
+
+从optparse到argparse的部分升级路线：
+
+    替换所有的optparse.OptionParser.add_option()调用为ArgumentParser.add_argument()调用。
+    替换(options, args) = parser.parse_args()为args = parser.parse_args()并为位置参数增加一个额外的ArgumentParser.add_argument()调用。 记住之前叫做options的东西，现在在argparse环境中叫做args。
+    替换回调动作和callback_*关键字参数为type或者action参数。
+    替换type关键字参数的字符串名称为相应的类型对象（例如int、float、complex等）。
+    替换optparse.Values为Namespace并替换optparse.OptionError和optparse.OptionValueError为 ArgumentError。
+    替换隐式参数的字符串为Python 的标准语法以使用字典来格式化字符串，例如替换%default和%prog为%(default)s和%(prog)s。
+    替换OptionParser构造器的version参数为调用parser.add_argument('--version', action='version', version='<the version>')。
+

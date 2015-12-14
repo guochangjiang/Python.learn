@@ -1,0 +1,153 @@
+﻿<!doctype html public '-//W3C//DTD HTML 4.0 Transitional //EN'>
+<html>
+<head>
+<title>01.flask.入门</title>
+<meta charset='UTF-8' />
+<meta name='generator' content='EverEdit' />
+<link href='D:\Program Files\EverEdit\mode\markdown\default.css' rel='stylesheet'></link>
+<link href='D:\Program Files\EverEdit\mode\markdown\prettify.css' rel='stylesheet'></link>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\prettify.js'></script>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\jquery-1.10.2.min.js'></script>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\toc.js'></script>
+</head>
+<body>
+<div id='generated-toc'></div>
+<h2>Flask入门</h2>
+
+<p>来源：<a href="http://www.pythondoc.com/flask-mega-tutorial/helloworld.html">http://www.pythondoc.com/flask-mega-tutorial/helloworld.html</a></p>
+
+<p>在web开发中， Python/Flask组合是最为自由的实现方式之一。</p>
+
+<h3>安装 Flask</h3>
+
+<h4>虚拟环境创建</h4>
+
+<p>在安装Flask之前需要创建一个虚拟环境：<code>virtualenv</code></p>
+
+<blockquote>
+  <p>在开发Python应用程序的时候，系统安装的Python3只有一个版本。所有第三方的包都会被pip安装到Python3的site-packages目录下。如果我们要同时开发多个应用程序，那这些应用程序都会共用一个Python，就是安装在系统的Python 3。如果应用A需要jinja 2.7，而应用B需要jinja 2.6怎么办？这种情况下，每个应用可能需要各自拥有一套“独立”的Python运行环境。virtualenv就是用来为一个应用创建一套“隔离”的Python运行环境。</p>
+</blockquote>
+
+<p>首先，新建一个开发目录，例如microblog，进入该目录并运行：</p>
+
+<pre><code class="bash">python3 -m venv Flask</code></pre>
+
+<p>该命令在 flask 文件夹中创建一个完整的Python环境。</p>
+
+<p>Python 3.4 以下的版本(包括 python 2.7)，需要事先安装<code>virtualenv</code>。</p>
+
+<p>如果你在使用 <code>Mac OS X</code>，请使用下面的命令行安装:<code>$ sudo easy_install virtualenv</code></p>
+
+<p>如果你使用 <code>Linux</code>，你需要获取一个包。例如，如果你使用 Ubuntu: <code>$ sudo apt-get install python-virtualenv</code></p>
+
+<p><code>Windows</code> 用户们在安装 <code>virtualenv</code> 上有些麻烦，因此如果你想省事的话，请直接安装 Python 3.4。在 Windows 上安装 <code>virtualenv</code> 最简单地方式就是先安装 <code>pip</code>，安装方式在<a href="https://pip.pypa.io/en/latest/installing.html">这里</a>。一旦安装好了 <code>pip</code> 的话，下面的命令可以安装 <code>virtualenv</code>: <code>$ pip install virtualenv</code></p>
+
+<p>输入如下的命令以创建一个虚拟环境：</p>
+
+<pre><code class="bash">$ virtualenv flask #在 flask 文件夹中创建一个完整的Python环境</code></pre>
+
+<p>虚拟环境是能够激活以及停用的，如果需要的话，一个激活的环境可以把它的<code>bin</code>文件夹加入到系统路径（不推荐）。推荐直接输入要调用的解释器的路径。</p>
+
+<h4>Flask及其插件安装</h4>
+
+<p>在类UNIX系统上使用以下命令来安装 flask 以及扩展:</p>
+
+<pre><code class="bash">$ flask/bin/pip install flask
+$ flask/bin/pip install flask-login
+$ flask/bin/pip install flask-openid
+$ flask/bin/pip install flask-mail
+$ flask/bin/pip install flask-sqlalchemy
+$ flask/bin/pip install sqlalchemy-migrate
+$ flask/bin/pip install flask-whooshalchemy
+$ flask/bin/pip install flask-wtf
+$ flask/bin/pip install flask-babel
+$ flask/bin/pip install guess_language
+$ flask/bin/pip install flipflop
+$ flask/bin/pip install coverage</code></pre>
+
+<p>Windows则需要采用以下命令：</p>
+
+<pre><code class="bash">$ flask\Scripts\pip install flask
+$ flask\Scripts\pip install flask-login
+$ flask\Scripts\pip install flask-openid
+$ flask\Scripts\pip install flask-mail
+$ flask\Scripts\pip install flask-sqlalchemy
+$ flask\Scripts\pip install sqlalchemy-migrate
+$ flask\Scripts\pip install flask-whooshalchemy
+$ flask\Scripts\pip install flask-wtf
+$ flask\Scripts\pip install flask-babel
+$ flask\Scripts\pip install guess_language
+$ flask\Scripts\pip install flipflop
+$ flask\Scripts\pip install coverage</code></pre>
+
+<h3>第一个web应用——hello, world</h3>
+
+<p>在microblog目录下，创建以下文件结构：</p>
+
+<pre><code>mkdir app
+mkdir app/static
+mkdir app/templates
+mkdir tmp</code></pre>
+
+<p>其中，应用程序放在app文件中，子文件夹static用于存放静态文件，如图片、JS文件及样式文件等，子文件夹templates则用于存放模板文件。</p>
+
+<h4>初始化</h4>
+
+<p>首先为app 包(文件<code>app/__init__.py</code>)创建一个简单的初始化脚本:</p>
+
+<pre><code class="python">#app/__init__.python
+from flask import Flask
+
+app = Flask(__name__)
+from app import views</code></pre>
+
+<p>该脚本简单地创建应用对象，接着导入视图模块。编写第一个视图函数(文件 <code>app/views.py</code>):</p>
+
+<pre><code class="python">from app import app
+
+@app.route('/')
+@app.route('/index')
+def index():
+    return "Hello, World!"</code></pre>
+
+<p>目前该视图非常简单，只是返回一个字符串并在客户端的网页浏览器上显示。两个<code>route</code>装饰器创建了从网址<code>/</code>以及<code>/index</code>到这个函数的映射。</p>
+
+<h4>web脚本</h4>
+
+<p>为Web应用程序创建脚本<code>run.py1</code>来启动应用程序的开发Web服务器，并把它置于根目录:</p>
+
+<pre><code class="python">#!flask/bin/python
+from app import app
+app.run()  #指定监听的地址和端口app.run(host='127.0.0.1', port=5000)</code></pre>
+
+<p>该脚本从 <code>app</code> 包中导入 <code>app</code> 变量并且调用它的 <code>run</code> 方法来启动服务器。请记住 <code>app</code> 变量中含有之前创建的 <code>Flask</code> 实例。</p>
+
+<p>要启动应用程序，只需运行脚本<code>run.py</code>。在OS X，Linux 和 Cygwin 上，你必须明确这是一个可执行文件，然后你可以运行它:<code>chmod a+x run.py</code></p>
+
+<p>然后脚本可以简单地按如下方式执行:<code>./run.py</code></p>
+
+<p>在 Windows 上过程可能有些不同。不再需要指明文件是否可执行。相反你必须运行该脚本作为 Python 解释器的一个参数:<code>flask/Scripts/python.exe run.py</code></p>
+
+<p>在服务器初始化后，它将会监听 <code>127.0.0.1</code> 的 <code>5000端口</code>等待着连接。现在打开你的网页浏览器输入如下 URL:</p>
+
+<pre><code>http://localhost:5000
+</code></pre>
+
+<p>另外你也可以使用这个 URL:</p>
+
+<pre><code>http://localhost:5000/index
+</code></pre>
+
+<p>你看清楚了路由映射是如何工作的吗？第一个 URL 映射到 /，而第二个 URL 映射到 /index。这两个路由都关联到我们的视图函数，因此它们的作用是一样的。如果你输入其它的网址，你将会获得一个错误，因为只有这两个 URL 映射到视图函数。</p>
+
+<p>你可以通过 <code>Ctrl-C</code> 来终止服务器。到这里，我将会结束这一章的内容。对于不想输入代码的用户，你可以到这里下载代码：<a href="https://github.com/miguelgrinberg/microblog/archive/v0.1.zip">microblog-0.1.zip</a>。</p>
+<script type='text/javascript'>
+$(document).ready(function(){
+  if($('code').length>0){
+    $('code').parent().addClass('prettyprint linenums');
+    prettyPrint();
+};
+});
+</script>
+</body>
+</html>

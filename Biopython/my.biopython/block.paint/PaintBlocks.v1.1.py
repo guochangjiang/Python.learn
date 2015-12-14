@@ -32,16 +32,66 @@ import svgwrite
 
 
 ##参数处理
-parser = argparse.ArgumentParser(description="Version: " + __version__, epilog="Please Enjoy this Program!")
-parser.add_argument("-i", "-in", "--input", metavar="blockfile", dest="input", type=str, help="Block file to paint")
-parser.add_argument("-prefix", "--prefix", metavar="outname", dest="prefix", default = "out", type=str, help="output SVG file name prefix [default: out]")
-parser.add_argument("-C", "--color", metavar="colors", dest="colors", type=str, help="specify colors for certain block types, in the format:\n\t\"type1:color1;type2:color2;...\"")
-parser.add_argument("-S", '-step', "--step", "-length", "--length", metavar="step_size", dest="step", default=0.5, type=int, help="minimum length of rectangle or step size of rectangle movment [default: 0.5px]")
-parser.add_argument("-width", "--width", "-height", "-thickness", metavar="Block_height", dest="width", type=int, default=25, help="length of rectangle [default: 25px]")
-parser.add_argument("-bd", "--block-distance", metavar="Block_distance", dest="block_distance", type=int, default=10, help="distance of adjacent blocks [default: 10px]")
-parser.add_argument("-cd", "--chromosome-distance", metavar="Chromosome_distance", dest="chr_distance", type=int, default=30, help="distance of adjacent blocks [default: 30px]")
-parser.add_argument("-u", "--unit", metavar="unit", dest="unit", type=str, default="bp", help="unit of type [default: aa]")
-parser.add_argument("-v", "--version", action='version', help="The version of this program.", version = "Version: " + __version__)
+parser = argparse.ArgumentParser(
+    description="Version: " + __version__,
+    epilog="Please Enjoy this Program!")
+parser.add_argument(
+    "-i", "-in", "--input",
+    metavar="blockfile",
+    dest="input",
+    type=str,
+    help="Block file to paint")
+parser.add_argument(
+    "-prefix", "--prefix",
+    metavar="outname",
+    dest="prefix",
+    default = "out",
+    type=str,
+    help="output SVG file name prefix [default: out]")
+parser.add_argument(
+    "-C", "--color",
+    metavar="colors",
+    dest="colors", type=str,
+    help="specify colors for certain block types, in the format:\n\t\"type1:color1;type2:color2;...\"")
+parser.add_argument(
+    "-S", '-step', "--step", "-length", "--length",
+    metavar="step_size",
+    dest="step",
+    default=0.5,
+    type=int,
+    help="minimum length of rectangle or step size of rectangle movment [default: 0.5px]")
+parser.add_argument(
+    "-width", "--width", "-height", "-thickness",
+    metavar="Block_height",
+    dest="width",
+    type=int,
+    default=25,
+    help="length of rectangle [default: 25px]")
+parser.add_argument(
+    "-bd", "--block-distance",
+    metavar="Block_distance",
+    dest="block_distance",
+    type=int, default=10,
+    help="distance of adjacent blocks [default: 10px]")
+parser.add_argument(
+    "-cd", "--chromosome-distance",
+    metavar="Chromosome_distance",
+    dest="chr_distance",
+    type=int,
+    default=30,
+    help="distance of adjacent blocks [default: 30px]")
+parser.add_argument(
+    "-u", "--unit",
+    metavar="unit",
+    dest="unit",
+    type=str,
+    default="bp",
+    help="unit of type [default: aa]")
+parser.add_argument(
+    "-v", "--version",
+    action='version',
+    help="The version of this program.",
+    version = "Version: " + __version__)
 args = parser.parse_args()
 
 ##颜色处理
@@ -82,9 +132,21 @@ chrx0 = 5
 blockx0 = 50
 rectx0 = 120
 sw=args.width / 100
-dwg.add(dwg.text("chr", insert=(chrx0, y0), font_size = 16, fill='black'))
-dwg.add(dwg.text("block", insert=(blockx0, y0), font_size = 16, fill='black'))
-dwg.add(dwg.text("type figure", insert=(rectx0, y0), font_size = 16, fill='black'))
+dwg.add(dwg.text(
+    "chr",
+    insert=(chrx0, y0),
+    font_size = 16,
+    fill='black'))
+dwg.add(dwg.text(
+    "block",
+    insert=(blockx0, y0),
+    font_size = 16,
+    fill='black'))
+dwg.add(dwg.text(
+    "type figure",
+    insert=(rectx0, y0),
+    font_size = 16,
+    fill='black'))
 y0+=15
 
 def MergeType(type_ori):
@@ -121,18 +183,30 @@ for chr in sorted(ChrDict.keys()):
     blocknum = len(ChrDict[chr])
     currenty = y0
     chry0 = y0 + (blocknum * (args.width+args.block_distance) / 2)
-    dwg.add(dwg.text(chr, insert=(chrx0, chry0), font_size = 14, fill='black'))
+    dwg.add(dwg.text(
+                    chr,
+                    insert=(chrx0, chry0),
+                    font_size = 14,
+                    fill='black'))
     for block in sorted(BloDict.keys()):
         blochr = block.split("#")
         if blochr[1] == chr:
             print("\n\tPainting block", block, ".........", end='')
-            dwg.add(dwg.text(blochr[0], insert=(blockx0, currenty+15), font_size = 14, fill='black'))
+            dwg.add(dwg.text(
+                blochr[0],
+                insert=(blockx0, currenty+15),
+                font_size = 14, fill='black'))
             currentx = rectx0
             btype = MergeType(BloDict[block])
             index = 0
             while index < len(btype)-1:
                 length = btype[index+1] * args.step
-                dwg.add(dwg.rect(insert=(currentx, currenty), size = (str(length) + "px", str(args.width) + "px"), stroke_width = sw, stroke = colors[btype[index]], fill = colors[btype[index]]))
+                dwg.add(dwg.rect(
+                    insert=(currentx, currenty),
+                    size = (str(length) + "px", str(args.width) + "px"),
+                    stroke_width = sw,
+                    stroke = colors[btype[index]],
+                    fill = colors[btype[index]]))
                 currentx += length
                 index += 2
             currenty += (args.width + args.block_distance)
@@ -141,26 +215,59 @@ for chr in sorted(ChrDict.keys()):
 
 ## 比例尺显示
 y0 = y0 +10
-dwg.add(dwg.text("scale", insert=(blockx0, y0+10), font_size = 14, fill='black'))
-dwg.add(dwg.line((rectx0, y0+10), (rectx0+100*args.step, y0+10), stroke_width=2, stroke="black"))
-dwg.add(dwg.line((rectx0+1, y0+10), (rectx0+1, y0+7), stroke_width=2, stroke="black"))
-dwg.add(dwg.line((rectx0+100*args.step-1, y0+10), (rectx0+100*args.step-1, y0+7), stroke_width=2, stroke="black"))
-
-dwg.add(dwg.text("100" + str(args.unit), insert=(rectx0+4, y0+5), font_size = 14, fill='black'))
+dwg.add(dwg.text(
+    "scale",
+    insert=(blockx0, y0+10),
+    font_size = 14,
+    fill='black'))
+dwg.add(dwg.line(
+    (rectx0, y0+10),
+    (rectx0+100*args.step, y0+10),
+    stroke_width=2,
+    stroke="black"))
+dwg.add(dwg.line(
+    (rectx0+1, y0+10),
+    (rectx0+1, y0+7),
+    stroke_width=2,
+    stroke="black"))
+dwg.add(dwg.line(
+    (rectx0+100*args.step-1, y0+10),
+    (rectx0+100*args.step-1, y0+7),
+    stroke_width=2,
+    stroke="black"))
+dwg.add(dwg.text(
+    "100" + str(args.unit),
+    insert=(rectx0+4, y0+5),
+    font_size = 14,
+    fill='black'))
 
 
 ##图例生成
 y0 = y0 + args.width + args.block_distance
 print("\nPainting legend............", end='')
-dwg.add(dwg.text("legend", insert=(chrx0, y0+10), font_size = 14, fill='black'))
+dwg.add(dwg.text(
+    "legend",
+    insert=(chrx0, y0+10),
+    font_size = 14,
+    fill='black'))
 for type in sorted(colors.keys()):
     print("\n\tpaint type", type, "..............", end='')
     y0 = y0 + args.width + args.block_distance
-    dwg.add(dwg.rect(insert=(blockx0, y0), size = ("25px", str(args.width) + "px"), stroke_width = sw, stroke = colors[type], fill = colors[type]))
-    dwg.add(dwg.text(type, insert=(blockx0 + 30, y0 + (args.width/1.5)), font_size = 12, fill = "black"))
+    dwg.add(dwg.rect(
+        insert=(blockx0, y0),
+        size = ("25px", str(args.width) + "px"),
+        stroke_width = sw,
+        stroke = colors[type],
+        fill = colors[type]))
+    dwg.add(dwg.text(
+        type,
+        insert=(blockx0 + 30, y0 + (args.width/1.5)),
+        font_size = 12,
+        fill = "black"))
 
 dwg.save()
-print("""\n\n-------------------------
+print("""
+\n\n-------------------------
 Success!!!
 Congratulations to you!!!"""
 )

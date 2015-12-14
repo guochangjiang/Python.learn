@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="book.css" type="text/css" />
+</head>
+<body>
+<h2 id="python&#25968;&#25454;&#20998;&#26512;&#20837;&#38376;">Python&#25968;&#25454;&#20998;&#26512;&#20837;&#38376;</h2>
+<p>&#21407;&#25991;&#32593;&#22336;&#65306;http://python.jobbole.com/81133/</p>
+<p>&#26368;&#36817;&#65292;<a href="http://alstatr.blogspot.com/">Analysis with Programming</a>&#21152;&#20837;&#20102;<a href="http://planetpython.org/">Planet Python</a>&#12290;&#20316;&#20026;&#35813;&#32593;&#31449;&#30340;&#39318;&#25209;&#29305;&#32422;&#21338;&#23458;&#65292;&#25105;&#36825;&#37324;&#26469;&#20998;&#20139;&#19968;&#19979;&#22914;&#20309;&#36890;&#36807;Python&#26469;&#24320;&#22987;&#25968;&#25454;&#20998;&#26512;&#12290;&#20855;&#20307;&#20869;&#23481;&#22914;&#19979;&#65306;</p>
+<ol style="list-style-type: decimal">
+<li><p>&#25968;&#25454;&#23548;&#20837;<br />
+ &#9679; &#23548;&#20837;&#26412;&#22320;&#30340;&#25110;&#32773;web&#31471;&#30340;CSV&#25991;&#20214;&#65307;</p></li>
+<li><p>&#25968;&#25454;&#21464;&#25442;&#65307;</p></li>
+<li><p>&#25968;&#25454;&#32479;&#35745;&#25551;&#36848;&#65307;</p></li>
+<li><p>&#20551;&#35774;&#26816;&#39564;<br />
+ &#9679; &#21333;&#26679;&#26412;t&#26816;&#39564;&#65307;</p></li>
+<li>&#21487;&#35270;&#21270;&#65307;</li>
+<li><p>&#21019;&#24314;&#33258;&#23450;&#20041;&#20989;&#25968;&#12290;</p></li>
+</ol>
+<h3 id="&#25968;&#25454;&#23548;&#20837;">1. &#25968;&#25454;&#23548;&#20837;</h3>
+<p>&#36825;&#26159;&#24456;&#20851;&#38190;&#30340;&#19968;&#27493;&#65292;&#20026;&#20102;&#21518;&#32493;&#30340;&#20998;&#26512;&#25105;&#20204;&#39318;&#20808;&#38656;&#35201;&#23548;&#20837;&#25968;&#25454;&#12290;&#36890;&#24120;&#26469;&#35828;&#65292;&#25968;&#25454;&#26159;CSV&#26684;&#24335;&#65292;&#23601;&#31639;&#19981;&#26159;&#65292;&#33267;&#23569;&#20063;&#21487;&#20197;&#36716;&#25442;&#25104;CSV&#26684;&#24335;&#12290;&#22312;Python&#20013;&#65292;&#25105;&#20204;&#30340;&#25805;&#20316;&#22914;&#19979;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> pandas <span class="im">as</span> pd
+ 
+<span class="co"># Reading data locally</span>
+df <span class="op">=</span> pd.read_csv(<span class="st">&#39;/Users/al-ahmadgaidasaad/Documents/d.csv&#39;</span>)
+ 
+<span class="co"># Reading data from web</span>
+data_url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/alstat/Analysis-with-Programming/master/2014/Python/Numerical-Descriptions-of-the-Data/data.csv&quot;</span>
+df <span class="op">=</span> pd.read_csv(data_url)</code></pre></div>
+<p>&#20026;&#20102;&#35835;&#21462;&#26412;&#22320;CSV&#25991;&#20214;&#65292;&#25105;&#20204;&#38656;&#35201;<code>pandas</code>&#36825;&#20010;&#25968;&#25454;&#20998;&#26512;&#24211;&#20013;&#30340;&#30456;&#24212;&#27169;&#22359;&#12290;&#20854;&#20013;&#30340;<code>read_csv</code>&#20989;&#25968;&#33021;&#22815;&#35835;&#21462;&#26412;&#22320;&#21644;web&#25968;&#25454;&#12290;</p>
+<h3 id="&#25968;&#25454;&#21464;&#25442;">2. &#25968;&#25454;&#21464;&#25442;</h3>
+<p>&#26082;&#28982;&#22312;&#24037;&#20316;&#31354;&#38388;&#26377;&#20102;&#25968;&#25454;&#65292;&#25509;&#19979;&#26469;&#23601;&#26159;&#25968;&#25454;&#21464;&#25442;&#12290;&#32479;&#35745;&#23398;&#23478;&#21644;&#31185;&#23398;&#23478;&#20204;&#36890;&#24120;&#20250;&#22312;&#36825;&#19968;&#27493;&#31227;&#38500;&#20998;&#26512;&#20013;&#30340;&#38750;&#24517;&#35201;&#25968;&#25454;&#12290;&#25105;&#20204;&#20808;&#30475;&#30475;&#25968;&#25454;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># Head of the data</span>
+<span class="bu">print</span> df.head()
+
+<span class="co"># OUTPUT</span>
+    Abra  Apayao  Benguet  Ifugao  Kalinga
+<span class="dv">0</span>   <span class="dv">1243</span>    <span class="dv">2934</span>      <span class="dv">148</span>    <span class="dv">3300</span>    <span class="dv">10553</span>
+<span class="dv">1</span>   <span class="dv">4158</span>    <span class="dv">9235</span>     <span class="dv">4287</span>    <span class="dv">8063</span>    <span class="dv">35257</span>
+<span class="dv">2</span>   <span class="dv">1787</span>    <span class="dv">1922</span>     <span class="dv">1955</span>    <span class="dv">1074</span>     <span class="dv">4544</span>
+<span class="dv">3</span>  <span class="dv">17152</span>   <span class="dv">14501</span>     <span class="dv">3536</span>   <span class="dv">19607</span>    <span class="dv">31687</span>
+<span class="dv">4</span>   <span class="dv">1266</span>    <span class="dv">2385</span>     <span class="dv">2530</span>    <span class="dv">3315</span>     <span class="dv">8520</span>
+
+<span class="co"># Tail of the data</span>
+<span class="bu">print</span> df.tail()
+
+<span class="co"># OUTPUT</span>
+     Abra  Apayao  Benguet  Ifugao  Kalinga
+<span class="dv">74</span>   <span class="dv">2505</span>   <span class="dv">20878</span>     <span class="dv">3519</span>   <span class="dv">19737</span>    <span class="dv">16513</span>
+<span class="dv">75</span>  <span class="dv">60303</span>   <span class="dv">40065</span>     <span class="dv">7062</span>   <span class="dv">19422</span>    <span class="dv">61808</span>
+<span class="dv">76</span>   <span class="dv">6311</span>    <span class="dv">6756</span>     <span class="dv">3561</span>   <span class="dv">15910</span>    <span class="dv">23349</span>
+<span class="dv">77</span>  <span class="dv">13345</span>   <span class="dv">38902</span>     <span class="dv">2583</span>   <span class="dv">11096</span>    <span class="dv">68663</span>
+<span class="dv">78</span>   <span class="dv">2623</span>   <span class="dv">18264</span>     <span class="dv">3745</span>   <span class="dv">16787</span>    <span class="dv">16900</span></code></pre></div>
+<p>&#23545;R&#35821;&#35328;&#31243;&#24207;&#21592;&#26469;&#35828;&#65292;&#19978;&#36848;&#25805;&#20316;&#31561;&#20215;&#20110;&#36890;&#36807;<code>print(head(df))</code>&#26469;&#25171;&#21360;&#25968;&#25454;&#30340;&#21069;6&#34892;&#65292;&#20197;&#21450;&#36890;&#36807;<code>print(tail(df))</code>&#26469;&#25171;&#21360;&#25968;&#25454;&#30340;&#21518;6&#34892;&#12290;&#24403;&#28982;Python&#20013;&#65292;&#40664;&#35748;&#25171;&#21360;&#26159;5&#34892;&#65292;&#32780;R&#21017;&#26159;6&#34892;&#12290;&#22240;&#27492;R&#30340;&#20195;&#30721;<code>head(df, n = 10)</code>&#65292;&#22312;Python&#20013;&#23601;&#26159;<code>df.head(n = 10)</code>&#65292;&#25171;&#21360;&#25968;&#25454;&#23614;&#37096;&#20063;&#26159;&#21516;&#26679;&#36947;&#29702;&#12290;</p>
+<p>&#22312;R&#35821;&#35328;&#20013;&#65292;&#25968;&#25454;&#21015;&#21644;&#34892;&#30340;&#21517;&#23383;&#36890;&#36807;<code>colnames</code>&#21644;<code>rownames</code>&#26469;&#20998;&#21035;&#36827;&#34892;&#25552;&#21462;&#12290;&#22312;Python&#20013;&#65292;&#25105;&#20204;&#21017;&#20351;&#29992;<code>columns</code>&#21644;<code>index</code>&#23646;&#24615;&#26469;&#25552;&#21462;&#65292;&#22914;&#19979;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># Extracting column names</span>
+<span class="bu">print</span> df.columns
+ 
+<span class="co"># OUTPUT</span>
+Index([<span class="st">u&#39;Abra&#39;</span>, <span class="st">u&#39;Apayao&#39;</span>, <span class="st">u&#39;Benguet&#39;</span>, <span class="st">u&#39;Ifugao&#39;</span>, <span class="st">u&#39;Kalinga&#39;</span>], dtype<span class="op">=</span><span class="st">&#39;object&#39;</span>)
+ 
+<span class="co"># Extracting row names or the index</span>
+<span class="bu">print</span> df.index
+ 
+<span class="co"># OUTPUT</span>
+Int64Index([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">26</span>, <span class="dv">27</span>, <span class="dv">28</span>, <span class="dv">29</span>, <span class="dv">30</span>, <span class="dv">31</span>, <span class="dv">32</span>, <span class="dv">33</span>, <span class="dv">34</span>, <span class="dv">35</span>, <span class="dv">36</span>, <span class="dv">37</span>, <span class="dv">38</span>, <span class="dv">39</span>, <span class="dv">40</span>, <span class="dv">41</span>, <span class="dv">42</span>, <span class="dv">43</span>, <span class="dv">44</span>, <span class="dv">45</span>, <span class="dv">46</span>, <span class="dv">47</span>, <span class="dv">48</span>, <span class="dv">49</span>, <span class="dv">50</span>, <span class="dv">51</span>, <span class="dv">52</span>, <span class="dv">53</span>, <span class="dv">54</span>, <span class="dv">55</span>, <span class="dv">56</span>, <span class="dv">57</span>, <span class="dv">58</span>, <span class="dv">59</span>, <span class="dv">60</span>, <span class="dv">61</span>, <span class="dv">62</span>, <span class="dv">63</span>, <span class="dv">64</span>, <span class="dv">65</span>, <span class="dv">66</span>, <span class="dv">67</span>, <span class="dv">68</span>, <span class="dv">69</span>, <span class="dv">70</span>, <span class="dv">71</span>, <span class="dv">72</span>, <span class="dv">73</span>, <span class="dv">74</span>, <span class="dv">75</span>, <span class="dv">76</span>, <span class="dv">77</span>, <span class="dv">78</span>], dtype<span class="op">=</span><span class="st">&#39;int64&#39;</span>)</code></pre></div>
+<p>&#25968;&#25454;&#36716;&#32622;&#20351;&#29992;T&#26041;&#27861;:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># Transpose data</span>
+<span class="bu">print</span> df.T
+ 
+<span class="co"># OUTPUT</span>
+            <span class="dv">0</span>      <span class="dv">1</span>     <span class="dv">2</span>      <span class="dv">3</span>     <span class="dv">4</span>      <span class="dv">5</span>     <span class="dv">6</span>      <span class="dv">7</span>     <span class="dv">8</span>      <span class="dv">9</span>   
+Abra      <span class="dv">1243</span>   <span class="dv">4158</span>  <span class="dv">1787</span>  <span class="dv">17152</span>  <span class="dv">1266</span>   <span class="dv">5576</span>   <span class="dv">927</span>  <span class="dv">21540</span>  <span class="dv">1039</span>   <span class="dv">5424</span>   
+Apayao    <span class="dv">2934</span>   <span class="dv">9235</span>  <span class="dv">1922</span>  <span class="dv">14501</span>  <span class="dv">2385</span>   <span class="dv">7452</span>  <span class="dv">1099</span>  <span class="dv">17038</span>  <span class="dv">1382</span>  <span class="dv">10588</span>   
+Benguet    <span class="dv">148</span>   <span class="dv">4287</span>  <span class="dv">1955</span>   <span class="dv">3536</span>  <span class="dv">2530</span>    <span class="dv">771</span>  <span class="dv">2796</span>   <span class="dv">2463</span>  <span class="dv">2592</span>   <span class="dv">1064</span>   
+Ifugao    <span class="dv">3300</span>   <span class="dv">8063</span>  <span class="dv">1074</span>  <span class="dv">19607</span>  <span class="dv">3315</span>  <span class="dv">13134</span>  <span class="dv">5134</span>  <span class="dv">14226</span>  <span class="dv">6842</span>  <span class="dv">13828</span>   
+Kalinga  <span class="dv">10553</span>  <span class="dv">35257</span>  <span class="dv">4544</span>  <span class="dv">31687</span>  <span class="dv">8520</span>  <span class="dv">28252</span>  <span class="dv">3106</span>  <span class="dv">36238</span>  <span class="dv">4973</span>  <span class="dv">40140</span>   
+ 
+         ...       <span class="dv">69</span>     <span class="dv">70</span>     <span class="dv">71</span>     <span class="dv">72</span>     <span class="dv">73</span>     <span class="dv">74</span>     <span class="dv">75</span>     <span class="dv">76</span>     <span class="dv">77</span>  
+Abra     ...    <span class="dv">12763</span>   <span class="dv">2470</span>  <span class="dv">59094</span>   <span class="dv">6209</span>  <span class="dv">13316</span>   <span class="dv">2505</span>  <span class="dv">60303</span>   <span class="dv">6311</span>  <span class="dv">13345</span>   
+Apayao   ...    <span class="dv">37625</span>  <span class="dv">19532</span>  <span class="dv">35126</span>   <span class="dv">6335</span>  <span class="dv">38613</span>  <span class="dv">20878</span>  <span class="dv">40065</span>   <span class="dv">6756</span>  <span class="dv">38902</span>   
+Benguet  ...     <span class="dv">2354</span>   <span class="dv">4045</span>   <span class="dv">5987</span>   <span class="dv">3530</span>   <span class="dv">2585</span>   <span class="dv">3519</span>   <span class="dv">7062</span>   <span class="dv">3561</span>   <span class="dv">2583</span>   
+Ifugao   ...     <span class="dv">9838</span>  <span class="dv">17125</span>  <span class="dv">18940</span>  <span class="dv">15560</span>   <span class="dv">7746</span>  <span class="dv">19737</span>  <span class="dv">19422</span>  <span class="dv">15910</span>  <span class="dv">11096</span>   
+Kalinga  ...    <span class="dv">65782</span>  <span class="dv">15279</span>  <span class="dv">52437</span>  <span class="dv">24385</span>  <span class="dv">66148</span>  <span class="dv">16513</span>  <span class="dv">61808</span>  <span class="dv">23349</span>  <span class="dv">68663</span>   
+ 
+            <span class="dv">78</span>  
+Abra      <span class="dv">2623</span>  
+Apayao   <span class="dv">18264</span>  
+Benguet   <span class="dv">3745</span>  
+Ifugao   <span class="dv">16787</span>  
+Kalinga  <span class="dv">16900</span>  
+ 
+Other transformations such <span class="im">as</span> sort can be done using <span class="op">&lt;</span>code<span class="op">&gt;</span>sort<span class="op">&lt;/</span>code<span class="op">&gt;</span> attribute. Now let<span class="st">&#39;s extract a specific column. In Python, we do it using either &lt;code&gt;iloc&lt;/code&gt; or &lt;code&gt;ix&lt;/code&gt; attributes, but &lt;code&gt;ix&lt;/code&gt; is more robust and thus I prefer it. Assuming we want the head of the first column of the data, we have</span></code></pre></div>
+<p>&#20854;&#20182;&#21464;&#25442;&#65292;&#20363;&#22914;&#25490;&#24207;&#23601;&#26159;&#29992;<code>sort&#23646;&#24615;</code>&#12290;&#29616;&#22312;&#25105;&#20204;&#25552;&#21462;&#29305;&#23450;&#30340;&#26576;&#21015;&#25968;&#25454;&#12290;Python&#20013;&#65292;&#21487;&#20197;&#20351;&#29992;<code>iloc</code>&#25110;&#32773;<code>ix</code>&#23646;&#24615;&#12290;&#20294;&#26159;&#25105;&#26356;&#21916;&#27426;&#29992;<code>ix</code>&#65292;&#22240;&#20026;&#23427;&#26356;&#31283;&#23450;&#19968;&#20123;&#12290;<code>df.ix[m:n, x:y]</code>&#34920;&#31034;&#31532;m+1&#34892;&#21040;&#31532;n&#34892;&#30340;&#31532;x+1&#21015;&#21040;y&#21015;&#30340;&#25968;&#25454;&#12290;&#20551;&#35774;&#25105;&#20204;&#38656;&#25968;&#25454;&#31532;&#19968;&#21015;&#30340;&#21069;5&#34892;&#65292;&#25105;&#20204;&#26377;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> df.ix[:, <span class="dv">0</span>].head()
+ 
+<span class="co"># OUTPUT</span>
+<span class="dv">0</span>     <span class="dv">1243</span>
+<span class="dv">1</span>     <span class="dv">4158</span>
+<span class="dv">2</span>     <span class="dv">1787</span>
+<span class="dv">3</span>    <span class="dv">17152</span>
+<span class="dv">4</span>     <span class="dv">1266</span>
+Name: Abra, dtype: Int64I</code></pre></div>
+<p>&#39034;&#20415;&#25552;&#19968;&#19979;&#65292;Python&#30340;&#32034;&#24341;&#26159;&#20174;0&#24320;&#22987;&#32780;&#38750;1&#12290;&#20026;&#20102;&#21462;&#20986;&#20174;11&#21040;20&#34892;&#30340;&#21069;3&#21015;&#25968;&#25454;&#65292;&#25105;&#20204;&#26377;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> df.ix[<span class="dv">10</span>:<span class="dv">20</span>, <span class="dv">0</span>:<span class="dv">3</span>]
+ 
+<span class="co"># OUTPUT</span>
+    Abra  Apayao  Benguet
+<span class="dv">10</span>    <span class="dv">981</span>    <span class="dv">1311</span>     <span class="dv">2560</span>
+<span class="dv">11</span>  <span class="dv">27366</span>   <span class="dv">15093</span>     <span class="dv">3039</span>
+<span class="dv">12</span>   <span class="dv">1100</span>    <span class="dv">1701</span>     <span class="dv">2382</span>
+<span class="dv">13</span>   <span class="dv">7212</span>   <span class="dv">11001</span>     <span class="dv">1088</span>
+<span class="dv">14</span>   <span class="dv">1048</span>    <span class="dv">1427</span>     <span class="dv">2847</span>
+<span class="dv">15</span>  <span class="dv">25679</span>   <span class="dv">15661</span>     <span class="dv">2942</span>
+<span class="dv">16</span>   <span class="dv">1055</span>    <span class="dv">2191</span>     <span class="dv">2119</span>
+<span class="dv">17</span>   <span class="dv">5437</span>    <span class="dv">6461</span>      <span class="dv">734</span>
+<span class="dv">18</span>   <span class="dv">1029</span>    <span class="dv">1183</span>     <span class="dv">2302</span>
+<span class="dv">19</span>  <span class="dv">23710</span>   <span class="dv">12222</span>     <span class="dv">2598</span>
+<span class="dv">20</span>   <span class="dv">1091</span>    <span class="dv">2343</span>     <span class="dv">2654</span></code></pre></div>
+<p>&#19978;&#36848;&#21629;&#20196;&#30456;&#24403;&#20110;<code>df.ix[10:20, ['Abra', 'Apayao', 'Benguet']]</code>&#12290;</p>
+<p>&#20026;&#20102;&#33293;&#24323;&#25968;&#25454;&#20013;&#30340;&#21015;&#65292;&#36825;&#37324;&#26159;<code>&#21015;1(Apayao)</code>&#21644;<code>&#21015;2(Benguet)</code>&#65292;&#25105;&#20204;&#20351;&#29992;<code>drop&#23646;&#24615;</code>&#65292;&#22914;&#19979;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> df.drop(df.columns[[<span class="dv">1</span>, <span class="dv">2</span>]], axis <span class="op">=</span> <span class="dv">1</span>).head()
+ 
+<span class="co"># OUTPUT</span>
+    Abra  Ifugao  Kalinga
+<span class="dv">0</span>   <span class="dv">1243</span>    <span class="dv">3300</span>    <span class="dv">10553</span>
+<span class="dv">1</span>   <span class="dv">4158</span>    <span class="dv">8063</span>    <span class="dv">35257</span>
+<span class="dv">2</span>   <span class="dv">1787</span>    <span class="dv">1074</span>     <span class="dv">4544</span>
+<span class="dv">3</span>  <span class="dv">17152</span>   <span class="dv">19607</span>    <span class="dv">31687</span>
+<span class="dv">4</span>   <span class="dv">1266</span>    <span class="dv">3315</span>     <span class="dv">8520</span></code></pre></div>
+<p><code>axis</code>&#21442;&#25968;&#21578;&#35785;&#20989;&#25968;&#21040;&#24213;&#33293;&#24323;&#21015;&#36824;&#26159;&#34892;&#12290;&#22914;&#26524;<code>axis</code>&#31561;&#20110;0&#65292;&#37027;&#20040;&#23601;&#33293;&#24323;&#34892;&#12290;</p>
+<h3 id="&#32479;&#35745;&#25551;&#36848;">3. &#32479;&#35745;&#25551;&#36848;</h3>
+<p>&#19979;&#19968;&#27493;&#23601;&#26159;&#36890;&#36807;<code>describe&#23646;&#24615;</code>&#65292;&#23545;&#25968;&#25454;&#30340;&#32479;&#35745;&#29305;&#24615;&#36827;&#34892;&#25551;&#36848;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> df.describe()
+ 
+<span class="co"># OUTPUT</span>
+               Abra        Apayao      Benguet        Ifugao       Kalinga
+count     <span class="fl">79.000000</span>     <span class="fl">79.000000</span>    <span class="fl">79.000000</span>     <span class="fl">79.000000</span>     <span class="fl">79.000000</span>
+mean   <span class="fl">12874.379747</span>  <span class="fl">16860.645570</span>  <span class="fl">3237.392405</span>  <span class="fl">12414.620253</span>  <span class="fl">30446.417722</span>
+std    <span class="fl">16746.466945</span>  <span class="fl">15448.153794</span>  <span class="fl">1588.536429</span>   <span class="fl">5034.282019</span>  <span class="fl">22245.707692</span>
+<span class="bu">min</span>      <span class="fl">927.000000</span>    <span class="fl">401.000000</span>   <span class="fl">148.000000</span>   <span class="fl">1074.000000</span>   <span class="fl">2346.000000</span>
+<span class="dv">25</span><span class="op">%</span>     <span class="fl">1524.000000</span>   <span class="fl">3435.500000</span>  <span class="fl">2328.000000</span>   <span class="fl">8205.000000</span>   <span class="fl">8601.500000</span>
+<span class="dv">50</span><span class="op">%</span>     <span class="fl">5790.000000</span>  <span class="fl">10588.000000</span>  <span class="fl">3202.000000</span>  <span class="fl">13044.000000</span>  <span class="fl">24494.000000</span>
+<span class="dv">75</span><span class="op">%</span>    <span class="fl">13330.500000</span>  <span class="fl">33289.000000</span>  <span class="fl">3918.500000</span>  <span class="fl">16099.500000</span>  <span class="fl">52510.500000</span>
+<span class="bu">max</span>    <span class="fl">60303.000000</span>  <span class="fl">54625.000000</span>  <span class="fl">8813.000000</span>  <span class="fl">21031.000000</span>  <span class="fl">68663.000000</span></code></pre></div>
+<h3 id="&#20551;&#35774;&#26816;&#39564;">4. &#20551;&#35774;&#26816;&#39564;</h3>
+<p>Python&#26377;&#19968;&#20010;&#24456;&#22909;&#30340;&#32479;&#35745;&#25512;&#26029;&#21253;&#12290;&#37027;&#23601;&#26159;<code>scipy</code>&#37324;&#38754;&#30340;<code>stats</code>&#12290;<code>ttest_1samp</code>&#23454;&#29616;&#20102;<code>&#21333;&#26679;&#26412;t&#26816;&#39564;</code>&#12290;&#22240;&#27492;&#65292;&#22914;&#26524;&#25105;&#20204;&#24819;&#26816;&#39564;&#25968;&#25454;<code>Abra&#21015;</code>&#30340;&#31291;&#35895;&#20135;&#37327;&#22343;&#20540;&#65292;&#36890;&#36807;&#38646;&#20551;&#35774;&#65292;&#36825;&#37324;&#25105;&#20204;&#20551;&#23450;&#24635;&#20307;&#31291;&#35895;&#20135;&#37327;&#22343;&#20540;&#20026;15000&#65292;&#25105;&#20204;&#26377;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> scipy <span class="im">import</span> stats <span class="im">as</span> ss
+ 
+<span class="co"># Perform one sample t-test using 1500 as the true mean</span>
+<span class="bu">print</span> ss.ttest_1samp(a <span class="op">=</span> df.ix[:, <span class="st">&#39;Abra&#39;</span>], popmean <span class="op">=</span> <span class="dv">15000</span>)
+ 
+<span class="co"># OUTPUT</span>
+(<span class="op">-</span><span class="fl">1.1281738488299586</span>, <span class="fl">0.26270472069109496</span>)</code></pre></div>
+<p>&#36820;&#22238;&#19979;&#36848;&#20540;&#32452;&#25104;&#30340;&#20803;&#31062;&#65306;</p>
+<ul>
+<li>t : &#28014;&#28857;&#25110;&#25968;&#32452;&#31867;&#22411;&#8212;&#8212;t&#32479;&#35745;&#37327;</li>
+<li>prob : &#28014;&#28857;&#25110;&#25968;&#32452;&#31867;&#22411;&#8212;&#8212;two-tailed p-value &#21452;&#20391;&#27010;&#29575;&#20540;</li>
+</ul>
+<p>&#36890;&#36807;&#19978;&#38754;&#30340;&#36755;&#20986;&#65292;&#30475;&#21040;p&#20540;&#26159;0.267&#36828;&#22823;&#20110;&#945;&#31561;&#20110;0.05&#65292;&#22240;&#27492;&#27809;&#26377;&#20805;&#20998;&#30340;&#35777;&#25454;&#35828;&#24179;&#22343;&#31291;&#35895;&#20135;&#37327;&#19981;&#26159;150000&#12290;&#23558;&#36825;&#20010;&#26816;&#39564;&#24212;&#29992;&#21040;&#25152;&#26377;&#30340;&#21464;&#37327;&#65292;&#21516;&#26679;&#20551;&#35774;&#22343;&#20540;&#20026;15000&#65292;&#25105;&#20204;&#26377;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> ss.ttest_1samp(a <span class="op">=</span> df, popmean <span class="op">=</span> <span class="dv">15000</span>)
+ 
+<span class="co"># OUTPUT</span>
+(array([ <span class="op">-</span><span class="fl">1.12817385</span>,   <span class="fl">1.07053437</span>, <span class="op">-</span><span class="fl">65.81425599</span>,  <span class="op">-</span><span class="fl">4.564575</span>  ,   <span class="fl">6.17156198</span>]),
+ array([  <span class="fl">2.62704721e-01</span>,   <span class="fl">2.87680340e-01</span>,   <span class="fl">4.15643528e-70</span>,
+          <span class="fl">1.83764399e-05</span>,   <span class="fl">2.82461897e-08</span>]))</code></pre></div>
+<p>&#31532;&#19968;&#20010;&#25968;&#32452;&#26159;t&#32479;&#35745;&#37327;&#65292;&#31532;&#20108;&#20010;&#25968;&#32452;&#21017;&#26159;&#30456;&#24212;&#30340;p&#20540;&#12290;</p>
+<h3 id="&#21487;&#35270;&#21270;">5. &#21487;&#35270;&#21270;</h3>
+<p>Python&#20013;&#26377;&#35768;&#22810;&#21487;&#35270;&#21270;&#27169;&#22359;&#65292;&#26368;&#27969;&#34892;&#30340;&#24403;&#23646;<code>matpalotlib&#24211;</code>&#12290;&#31245;&#21152;&#25552;&#21450;&#65292;&#25105;&#20204;&#20063;&#21487;&#36873;&#25321;<code>bokeh</code>&#21644;<code>seaborn</code>&#27169;&#22359;&#12290;&#20043;&#21069;&#30340;&#21338;&#25991;&#20013;&#65292;&#25105;&#24050;&#32463;&#35828;&#26126;&#20102;<code>matplotlib&#24211;</code>&#20013;&#30340;&#30418;&#39035;&#22270;&#27169;&#22359;&#21151;&#33021;&#12290;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># Import the module for plotting</span>
+<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+ plt.show(df.plot(kind <span class="op">=</span> <span class="st">&#39;box&#39;</span>))</code></pre></div>
+<div class="figure">
+<img src="http://ww2.sinaimg.cn/mw690/6941baebgw1epzcsbms47j20hr0hk0uk.jpg" alt="" />
+
+</div>
+<p>&#29616;&#22312;&#65292;&#25105;&#20204;&#21487;&#20197;&#29992;<code>pandas</code>&#27169;&#22359;&#20013;&#38598;&#25104;R&#30340;<code>ggplot</code>&#20027;&#39064;&#26469;&#32654;&#21270;&#22270;&#34920;&#12290;&#35201;&#20351;&#29992;<code>ggplot</code>&#65292;&#25105;&#20204;&#21482;&#38656;&#35201;&#22312;&#19978;&#36848;&#20195;&#30721;&#20013;&#22810;&#21152;&#19968;&#34892;:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+pd.options.display.mpl_style <span class="op">=</span> <span class="st">&#39;default&#39;</span> <span class="co"># Sets the plotting display theme to ggplot2</span>
+df.plot(kind <span class="op">=</span> <span class="st">&#39;box&#39;</span>)</code></pre></div>
+<div class="figure">
+<img src="http://ww3.sinaimg.cn/mw690/6941baebgw1epzcsb7dx5j20hi0hedhe.jpg" alt="" />
+
+</div>
+<p>&#27604;<code>matplotlib.pyplot</code>&#20027;&#39064;&#31616;&#27905;&#22826;&#22810;&#12290;&#20294;&#26159;&#22312;&#26412;&#21338;&#25991;&#20013;&#65292;&#25105;&#26356;&#24895;&#24847;&#24341;&#20837;<code>seaborn&#27169;&#22359;</code>&#65292;&#35813;&#27169;&#22359;&#26159;&#19968;&#20010;&#32479;&#35745;&#25968;&#25454;&#21487;&#35270;&#21270;&#24211;&#12290;&#22240;&#27492;&#25105;&#20204;&#26377;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># Import the seaborn library</span>
+<span class="im">import</span> seaborn <span class="im">as</span> sns
+ <span class="co"># Do the boxplot</span>
+plt.show(sns.boxplot(df, widths <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">&quot;pastel&quot;</span>))</code></pre></div>
+<div class="figure">
+<img src="http://ww3.sinaimg.cn/mw690/6941baebgw1epzcsatuw7j20fc0fajrz.jpg" alt="" />
+
+</div>
+<p>&#22810;&#24615;&#24863;&#30340;&#30418;&#24335;&#22270;&#65292;&#32487;&#32493;&#24448;&#19979;&#30475;&#12290;</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plt.show(sns.violinplot(df, widths <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">&quot;pastel&quot;</span>))</code></pre></div>
+<div class="figure">
+<img src="http://ww4.sinaimg.cn/mw690/6941baebgw1epzcsaf9w9j20fk0fagmf.jpg" alt="" />
+
+</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plt.show(sns.distplot(df.ix[:,<span class="dv">2</span>], rug <span class="op">=</span> <span class="va">True</span>, bins <span class="op">=</span> <span class="dv">15</span>))</code></pre></div>
+<div class="figure">
+<img src="http://ww1.sinaimg.cn/mw690/6941baebgw1epzcsa9lalj20g60fvgmo.jpg" alt="" />
+
+</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">with</span> sns.axes_style(<span class="st">&quot;white&quot;</span>):
+    plt.show(sns.jointplot(df.ix[:,<span class="dv">1</span>], df.ix[:,<span class="dv">2</span>], kind <span class="op">=</span> <span class="st">&quot;kde&quot;</span>))</code></pre></div>
+<div class="figure">
+<img src="http://ww4.sinaimg.cn/mw690/6941baebgw1epzcs9mmfdj20hb0gut9n.jpg" alt="" />
+
+</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plt.show(sns.lmplot(<span class="st">&quot;Benguet&quot;</span>, <span class="st">&quot;Ifugao&quot;</span>, df))</code></pre></div>
+<div class="figure">
+<img src="http://ww3.sinaimg.cn/mw690/6941baebgw1epzcs96mw3j20g40geq41.jpg" alt="" />
+
+</div>
+</body>
+</html>
