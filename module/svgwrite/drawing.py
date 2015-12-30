@@ -126,9 +126,9 @@ class Drawing(SVG, ElementFactory):
             if svglines[i] == "</svg>":
                 pass
             if re.search("<svg", svglines[i]):
-                nouse = " xmlns:ev=\"http://www.w3.org/2001/xml-events\" xmlns:xlink=\"http://www.w3.org/1999/xlink\""
-                svglines[i] = svglines[i].replace(nouse,"")
-                 
+                #nouse = " xmlns:ev=\"http://www.w3.org/2001/xml-events\" xmlns:xlink=\"http://www.w3.org/1999/xlink\""
+                #svglines[i] = svglines[i].replace(nouse,"")
+                pass
             if svglines[i] not in ["<defs>", "</defs>", "</svg>"] and not re.search("<svg", svglines[i]):
                 svglines[i] = "    " + svglines[i]
             if svglines[i] == "<defs>":
