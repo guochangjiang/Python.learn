@@ -1,0 +1,186 @@
+<phyloxml xmlns="http://www.phyloxml.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd">
+  <phylogeny rooted="false">
+    <clade>
+      <clade>
+        <name>Q9XGM3_ARATH/16-186</name>
+        <branch_length>0.33188662</branch_length>
+      </clade>
+      <clade>
+        <branch_length>0.13135728</branch_length>
+        <confidence type="unknown">1.0</confidence>
+        <clade>
+          <branch_length>0.0440312</branch_length>
+          <confidence type="unknown">0.935</confidence>
+          <clade>
+            <name>TLR4_HUMAN/676-839</name>
+            <branch_length>0.36282489</branch_length>
+          </clade>
+          <clade>
+            <name>TLR5_HUMAN/695-858</name>
+            <branch_length>0.36965919</branch_length>
+          </clade>
+        </clade>
+        <clade>
+          <branch_length>0.04621304</branch_length>
+          <confidence type="unknown">0.98</confidence>
+          <clade>
+            <branch_length>0.02868404</branch_length>
+            <confidence type="unknown">0.841</confidence>
+            <clade>
+              <name>ILRL1_MOUSE/384-567</name>
+              <branch_length>0.30461493</branch_length>
+            </clade>
+            <clade>
+              <name>ILRL2_HUMAN/385-575</name>
+              <branch_length>0.34510259</branch_length>
+            </clade>
+          </clade>
+          <clade>
+            <branch_length>0.02743939</branch_length>
+            <confidence type="unknown">0.807</confidence>
+            <clade>
+              <branch_length>0.18844095</branch_length>
+              <confidence type="unknown">1.0</confidence>
+              <clade>
+                <name>I18RA_HUMAN/410-598</name>
+                <branch_length>0.15608137</branch_length>
+              </clade>
+              <clade>
+                <name>I18RA_MOUSE/409-597</name>
+                <branch_length>0.15079693</branch_length>
+              </clade>
+            </clade>
+            <clade>
+              <branch_length>0.01032692</branch_length>
+              <confidence type="unknown">0.505</confidence>
+              <clade>
+                <name>IL18R_HUMAN/377-541</name>
+                <branch_length>0.31108417</branch_length>
+              </clade>
+              <clade>
+                <name>IL1AP_HUMAN/407-570</name>
+                <branch_length>0.29651077</branch_length>
+              </clade>
+            </clade>
+          </clade>
+        </clade>
+      </clade>
+      <clade>
+        <branch_length>0.03128613</branch_length>
+        <confidence type="unknown">0.956</confidence>
+        <clade>
+          <name>I1KE95_SOYBN/20-200</name>
+          <branch_length>0.31062201</branch_length>
+        </clade>
+        <clade>
+          <branch_length>0.01337805</branch_length>
+          <confidence type="unknown">0.533</confidence>
+          <clade>
+            <branch_length>0.14487436</branch_length>
+            <confidence type="unknown">1.0</confidence>
+            <clade>
+              <name>D7KR54_ARALL/8-188</name>
+              <branch_length>0.13692309</branch_length>
+            </clade>
+            <clade>
+              <name>Q9SSN5_ARATH/8-185</name>
+              <branch_length>0.14959377</branch_length>
+            </clade>
+          </clade>
+          <clade>
+            <branch_length>0.01030586</branch_length>
+            <confidence type="unknown">0.471</confidence>
+            <clade>
+              <branch_length>0.06982213</branch_length>
+              <confidence type="unknown">1.0</confidence>
+              <clade>
+                <name>D7MRD9_ARALL/8-185</name>
+                <branch_length>0.20651164</branch_length>
+              </clade>
+              <clade>
+                <branch_length>0.02500839</branch_length>
+                <confidence type="unknown">0.867</confidence>
+                <clade>
+                  <name>M4E4G7_BRARP/12-187</name>
+                  <branch_length>0.18819812</branch_length>
+                </clade>
+                <clade>
+                  <branch_length>0.01156564</branch_length>
+                  <confidence type="unknown">0.611</confidence>
+                  <clade>
+                    <name>Q9ZVX6_ARATH/11-188</name>
+                    <branch_length>0.2092017</branch_length>
+                  </clade>
+                  <clade>
+                    <branch_length>0.07845779</branch_length>
+                    <confidence type="unknown">1.0</confidence>
+                    <clade>
+                      <name>F4IFF6_ARATH/55-233</name>
+                      <branch_length>0.11409485</branch_length>
+                    </clade>
+                    <clade>
+                      <name>F4J361_ARATH/93-270</name>
+                      <branch_length>0.1218602</branch_length>
+                    </clade>
+                  </clade>
+                </clade>
+              </clade>
+            </clade>
+            <clade>
+              <branch_length>0.02450459</branch_length>
+              <confidence type="unknown">0.678</confidence>
+              <clade>
+                <name>B9S9D9_RICCO/12-191</name>
+                <branch_length>0.26480113</branch_length>
+              </clade>
+              <clade>
+                <branch_length>0.00591845</branch_length>
+                <confidence type="unknown">0.446</confidence>
+                <clade>
+                  <name>I1MD01_SOYBN/13-191</name>
+                  <branch_length>0.25017199</branch_length>
+                </clade>
+                <clade>
+                  <branch_length>0.02434461</branch_length>
+                  <confidence type="unknown">0.708</confidence>
+                  <clade>
+                    <branch_length>0.03350069</branch_length>
+                    <confidence type="unknown">0.829</confidence>
+                    <clade>
+                      <name>B9S6Z7_RICCO/19-198</name>
+                      <branch_length>0.19283553</branch_length>
+                    </clade>
+                    <clade>
+                      <name>B9SBW2_RICCO/15-195</name>
+                      <branch_length>0.18494225</branch_length>
+                    </clade>
+                  </clade>
+                  <clade>
+                    <branch_length>0.00350578</branch_length>
+                    <confidence type="unknown">0.469</confidence>
+                    <clade>
+                      <name>B9N1N5_POPTR/14-194</name>
+                      <branch_length>0.21083635</branch_length>
+                    </clade>
+                    <clade>
+                      <branch_length>0.05184002</branch_length>
+                      <confidence type="unknown">0.998</confidence>
+                      <clade>
+                        <name>D7UDZ7_VITVI/24-202</name>
+                        <branch_length>0.15339773</branch_length>
+                      </clade>
+                      <clade>
+                        <name>F6I7C7_VITVI/9-189</name>
+                        <branch_length>0.14827824</branch_length>
+                      </clade>
+                    </clade>
+                  </clade>
+                </clade>
+              </clade>
+            </clade>
+          </clade>
+        </clade>
+      </clade>
+    </clade>
+  </phylogeny>
+</phyloxml>

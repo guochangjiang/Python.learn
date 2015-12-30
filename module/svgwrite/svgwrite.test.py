@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#--*-- utf8 --*--
+#--*-- coding: utf8 --*--
 
 import svgwrite
 

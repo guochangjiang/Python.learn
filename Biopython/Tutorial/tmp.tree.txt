@@ -1,0 +1,95 @@
+Tree(rooted=False, weight=1.0)
+    Clade()
+        Clade(branch_length=0.03128613, confidence=0.956)
+            Clade(branch_length=0.01337805, confidence=0.533)
+                Clade(branch_length=0.01030586, confidence=0.471)
+                    Clade(branch_length=0.02450459, confidence=0.678)
+                        Clade(branch_length=0.00591845, confidence=0.446)
+                            Clade(branch_length=0.02434461, confidence=0.708)
+                                Clade(branch_length=0.00350578, confidence=0.469)
+                                    Clade(branch_length=0.05184002, confidence=0.998)
+                                        Clade(branch_length=0.15339773, name='D7UDZ7_VITVI/24-202')
+                                        Clade(branch_length=0.14827824, name='F6I7C7_VITVI/9-189')
+                                    Clade(branch_length=0.21083635, name='B9N1N5_POPTR/14-194')
+                                Clade(branch_length=0.03350069, confidence=0.829)
+                                    Clade(branch_length=0.19283553, name='B9S6Z7_RICCO/19-198')
+                                    Clade(branch_length=0.18494225, name='B9SBW2_RICCO/15-195')
+                            Clade(branch_length=0.25017199, name='I1MD01_SOYBN/13-191')
+                        Clade(branch_length=0.26480113, name='B9S9D9_RICCO/12-191')
+                    Clade(branch_length=0.06982213, confidence=1.0)
+                        Clade(branch_length=0.20651164, name='D7MRD9_ARALL/8-185')
+                        Clade(branch_length=0.02500839, confidence=0.867)
+                            Clade(branch_length=0.18819812, name='M4E4G7_BRARP/12-187')
+                            Clade(branch_length=0.01156564, confidence=0.611)
+                                Clade(branch_length=0.2092017, name='Q9ZVX6_ARATH/11-188')
+                                Clade(branch_length=0.07845779, confidence=1.0)
+                                    Clade(branch_length=0.11409485, name='F4IFF6_ARATH/55-233')
+                                    Clade(branch_length=0.1218602, name='F4J361_ARATH/93-270')
+                Clade(branch_length=0.14487436, confidence=1.0)
+                    Clade(branch_length=0.13692309, name='D7KR54_ARALL/8-188')
+                    Clade(branch_length=0.14959377, name='Q9SSN5_ARATH/8-185')
+            Clade(branch_length=0.31062201, name='I1KE95_SOYBN/20-200')
+        Clade(branch_length=0.33188662, name='Q9XGM3_ARATH/16-186')
+        Clade(branch_length=0.13135728, confidence=1.0)
+            Clade(branch_length=0.0440312, confidence=0.935)
+                Clade(branch_length=0.36282489, name='TLR4_HUMAN/676-839')
+                Clade(branch_length=0.36965919, name='TLR5_HUMAN/695-858')
+            Clade(branch_length=0.04621304, confidence=0.98)
+                Clade(branch_length=0.02868404, confidence=0.841)
+                    Clade(branch_length=0.30461493, name='ILRL1_MOUSE/384-567')
+                    Clade(branch_length=0.34510259, name='ILRL2_HUMAN/385-575')
+                Clade(branch_length=0.02743939, confidence=0.807)
+                    Clade(branch_length=0.18844095, confidence=1.0)
+                        Clade(branch_length=0.15608137, name='I18RA_HUMAN/410-598')
+                        Clade(branch_length=0.15079693, name='I18RA_MOUSE/409-597')
+                    Clade(branch_length=0.01032692, confidence=0.505)
+                        Clade(branch_length=0.31108417, name='IL18R_HUMAN/377-541')
+                        Clade(branch_length=0.29651077, name='IL1AP_HUMAN/407-570')
+  ________________________________ Q9XGM3_ARATH/16-186
+ |
+ |                 ___________________________________ TLR4_HUMAN/676-839
+ |             ___|
+ |            |   |____________________________________ TLR5_HUMAN/695-858
+ |            |
+ |____________|       _____________________________ ILRL1_MOUSE/384-567
+ |            |    __|
+ |            |   |  |_________________________________ ILRL2_HUMAN/385-575
+ |            |   |
+_|            |___|                      ______________ I18RA_HUMAN/410-598
+ |                |   __________________|
+ |                |  |                  |______________ I18RA_MOUSE/409-597
+ |                |__|
+ |                   | ______________________________ IL18R_HUMAN/377-541
+ |                   ||
+ |                    |_____________________________ IL1AP_HUMAN/407-570
+ |
+ |   ______________________________ I1KE95_SOYBN/20-200
+ |  |
+ |  |               _____________ D7KR54_ARALL/8-188
+ |__| _____________|
+    ||             |______________ Q9SSN5_ARATH/8-185
+    ||
+    ||        ____________________ D7MRD9_ARALL/8-185
+    || ______|
+     ||      |  __________________ M4E4G7_BRARP/12-187
+     ||      |_|
+     ||        |  ___________________ Q9ZVX6_ARATH/11-188
+     ||        |_|
+     ||          |       ___________ F4IFF6_ARATH/55-233
+      |          |______|
+      |                 |____________ F4J361_ARATH/93-270
+      |
+      |  __________________________ B9S9D9_RICCO/12-191
+      | |
+      |_| ________________________ I1MD01_SOYBN/13-191
+        ||
+        ||      __________________ B9S6Z7_RICCO/19-198
+         |  ___|
+         | |   |_________________ B9SBW2_RICCO/15-195
+         |_|
+           | ____________________ B9N1N5_POPTR/14-194
+           ||
+            |     ______________ D7UDZ7_VITVI/24-202
+            |____|
+                 |______________ F6I7C7_VITVI/9-189
+

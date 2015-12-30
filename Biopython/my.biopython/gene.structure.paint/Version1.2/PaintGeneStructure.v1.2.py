@@ -340,7 +340,7 @@ tagcolors = {
     'sts': "orange",
     'domain': "blue",
     'exon': "darkorange",
-    'intron': "darkgrey",
+    'intron': "darkgray",
     'marker': "red",
     'start_codon': "lime",
     'stop_codon': "magenta",
