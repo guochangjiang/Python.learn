@@ -1,0 +1,21 @@
+{% macro render_comments(comments) %}
+    {% for c in comments %}
+        <div class="comment-item clearfix media">
+            <a name="{{ c.id }}"></a>
+            <a class="comment-user-avatar pull-left"
+               href="{{ url_for('user.view', user_abbr=c.user.abbr) }}">
+                <img class="avatar-sm" src="{{ c.user.avatar }}">
+            </a>
+
+            <div class="comment-wap media-body">
+                <div class="comment-extra-info">
+                    <a href="{{ url_for('user.view', user_abbr=c.user.abbr) }}">{{ c.user.name }}</a>
+                    <span class="comment-time">{{ c.create_time|timesince }}</span>
+                    <!-- <a class="btn-reply-somebody" data-username="{{ c.user.name }}">回应</a> -->
+                </div>
+
+                <div class="comment-body">{{ c.content }}</div>
+            </div>
+        </div>
+    {% endfor %}
+{% endmacro %}

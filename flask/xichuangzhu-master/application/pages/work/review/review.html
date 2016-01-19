@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% from "_form.html" import field_errors %}
+{% from 'topic/comments/_comments.html' import render_comments %}
+
+{% block page_title %}{{ review.title }} - 点评：{{ review.work.author.name }}《{{ review.work.title }}
+    》{% endblock %}
+{% block page_js %}
+    <script src="/pages/work/review/review.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/work/review/review.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if review.title %}
+                    <h1 class="review-title">
+                        {{ review.title }}
+                        {% if not review.is_publish %}
+                            <sup><span class='label label-primary'>草稿</span></sup>
+                        {% endif %}
+                    </h1>
+                {% endif %}
+
+                <div class="review-extra-info">
+                    <a href="{{ url_for('user.view', user_abbr=review.user.abbr) }}">{{ review.user.name }}</a>
+                    <span style="color:#333;">评</span>
+                    <a href="{{ url_for('work.view', work_id=review.work_id) }}">{{ review.work.full_title }}</a>
+                    <span style="color:#333;">〔{{ review.work.author.name }}〕</span>
+                    ·
+                    <span class="review-time">{{ review.create_time|timesince }}</span>
+                    ·
+                    <span>{{ review.click_num }} 点击</span>
+
+                    {% if permissions.WorkReviewAdminPermission(review.id).check() %}
+                        <a id="btn-edit-review"
+                           href="{{ url_for('work.edit_review', review_id=review.id) }}">编辑</a>
+                        /
+                        <a id="btn-delete-review"
+                           href="{{ url_for('work.delete_review', review_id=review.id) }}">删除</a>
+                    {% endif %}
+                </div>
+
+                <div class="review-content">{{ review.content|format_text|safe }}</div>
+
+                {% if review.comments %}
+                    <h2>回复</h2>
+
+                    {{ render_comments(review.comments) }}
+                {% endif %}
+
+                {% if g.user %}
+                    <form id="add-review-comment" method="post"
+                          action="{{ url_for('work.review', review_id=review.id) }}">
+                        {{ form.csrf_token }}
+
+                        <div class="form-group row">
+                            <div class="col-md-10">
+                                {{ form.content(class="form-control textarea-comment", rows="4") }}
+                                {{ field_errors(form.content) }}
+                            </div>
+                        </div>
+
+                        <input type="submit" class="btn btn-sm btn-default" value="回复"/>
+                    </form>
+                {% endif %}
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{% endblock %}

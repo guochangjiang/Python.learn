@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block page_title %}选集「{{ collection.name }}」{% endblock %}
+{% block page_js %}
+    <script>
+        registerContext({
+            'collectionId': {{ collection.id }}
+        });
+    </script>
+    <script src="/pages/admin/collection_works/collection_works.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/admin/collection_works/collection_works.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <h2>
+            选集「{{ collection.name }}」- {{ collection.works.count() }} 篇
+            <a href="javascript: void(0)" class="btn btn-xs pull-right btn-default" data-toggle="modal"
+               data-target="#add-work-modal">
+                <span class="fa fa-plus"></span> 添加作品
+            </a>
+        </h2>
+
+        <table class='table table-striped'>
+            <tbody>
+            <thead>
+            <tr>
+                <th>作品</th>
+                <th>作者</th>
+                <th>次序</th>
+                <th>摘录</th>
+                <th>百科</th>
+                <th>评析</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+
+            <tbody class="works-list">
+            {% for collection_work in collection.works %}
+                {% set work = collection_work.work %}
+                <tr data-order="{{ collection_work.order }}" data-id="{{ collection_work.id }}">
+                    <td>
+                        [{{ work.type.cn }}]
+                        <a target="_blank" href="{{ url_for('work.view', work_id=work.id) }}">
+                            {{ work.full_title|truncate(12, True) }}
+                        </a>
+                        {% if work.highlight %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% endif %}
+                    </td>
+
+                    <td>{{ work.author.name }}</td>
+
+                    <td>{{ collection_work.order }}</td>
+
+                    {% set quotes_num = work.quotes.count() %}
+                    <td {% if not quotes_num %}class='danger'{% endif %}>
+                        {{ quotes_num }}
+                    </td>
+
+                    <td {% if not work.baidu_wiki %}class="danger"{% endif %}>
+                        {% if work.baidu_wiki %}
+                            <a href="{{ work.baidu_wiki }}" target="_blank">
+                                <span class="fa fa-external-link"></span>
+                            </a>
+                        {% endif %}
+                    </td>
+
+                    <td {% if not work.intro %}class='danger'{% endif %}>
+                    </td>
+
+                    <td>
+                        <div class="btn-group btn-group-xs">
+                            <a title="编辑《{{ work.full_title }}》" target="_blank" class="btn btn-default"
+                               href="{{ url_for('work.edit', work_id=work.id) }}"><span
+                                    class="fa fa-edit"></span></a>
+                            <a title="删除《{{ work.full_title }}》" target="_blank"
+                               class="btn btn-default btn-remove-work-from-collection"
+                               data-id="{{ work.id }}" data-title="{{ work.title }}"
+                               href="javascript: void(0)"><span class="fa fa-trash"></span></a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="add-work-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">添加作品</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group input-group-work-title">
+                        <input class="input-work-title form-control" type="text" placeholder="搜索作品">
+
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-search-work" type="button">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </span>
+                    </div>
+
+                    <select class="form-control work-select"></select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary btn-add-work">添加</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% from '_utils.html' import render_app_panel %}
+
+{% block page_title %}免责声明{% endblock %}
+{% block page_js %}
+    <script src="/pages/site/disclaimer/disclaimer.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/site/disclaimer/disclaimer.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>免责声明</h2>
+
+                <p>对免责声明的解释、修改及更新权均属于西窗烛网所有。</p>
+            </div>
+
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+{% endblock %}

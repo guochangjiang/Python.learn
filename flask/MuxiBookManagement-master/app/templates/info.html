@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}<title>图书信息</title>{% endblock %}
+
+{% block css_file %}
+  <link href="/static/css/First.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/reset.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/new_First.css" rel="stylesheet", type="text/css" />
+{% endblock %}
+
+{% block page_content %}
+
+  <div class="container">
+    <div class="result_bgc">
+         <div class="info_left">
+              <div class="info_content">
+                <h2>{{ book.name }}</h2></br>
+                <p>{{ book.author }}</p></br>
+                <p>{{ book.summary}}</p>
+              </div>
+          </div>
+          <div class="info_right">
+            <div class="info_right_top">
+             <div class="result_book info_book">
+                <img src={{ book.image }} alt="" class="book">
+                  <div class="result_book_content">
+                  <p class="title_hid">{{ book.name}}</p>
+                  <p class="author">{{ book.author }}</p>
+                 </div>
+             </div>
+           </div>     
+           <div class="info_right_buttom">
+           {% if current_user.is_authenticated %}
+              {% if book.status == False %}
+        
+                  <form method="post"class="info_right_form" onload="content()">
+                        <div class="info_b">
+                            <div class="info_input"> 
+                            {{ form.day }}
+                            {{ form.hidden_tag() }}
+                           
+                            </div>
+                            <label class="info_logo"></label>
+                            <input type="submit" class="result_sub" value="借阅">
+                        </div>
+                  </form>
+                  {% else %}
+                  <div class="info_borrowed">
+                   <p>借阅者：{{ book.user.username}}</p>
+                   <p>到期时间：{{ book.end }}</p>
+                 </div>
+              {% endif %}
+            {% endif %}
+          </div>
+          </div>
+   </div>
+</div>
+
+
+ {% endblock%}
+
+{% block form_content %}
+
+<div class="prompt">到首页登陆后才能使用哦!</div>
+<div class="promptbox"><img src="/static/image/boss.jpg"></div>
+<div class="btn cancel"><a href="javascript:void(0)" onclick="hideBorderLog()">确认</a>
+</div>
+{% endblock %}
+ 
+
+{% block script_file %}
+  <script type="text/javascript" src="/static/js/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript" src="/static/js/shouye.js"></script>
+{% endblock %}

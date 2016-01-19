@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block page_title %}作品标签{% endblock %}
+{% block meta %}
+    <meta name="robots" content="noindex"/>{% endblock %}
+{% block page_js %}
+    <script src="/pages/work/tags/tags.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/work/tags/tags.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>作品标签</h2>
+
+                {% for t in tags %}
+                    <div class='tag-item'>
+                        <a href="{{ url_for('work.tag', tag_id=t.id) }}"><img src="{{ t.icon }}"
+                                                                              class='icon'/></a>
+
+                        <div class='content'>
+                            <a class='title' href="{{ url_for('work.tag', tag_id=t.id) }}">{{ t.title }}</a>
+
+                            <div class='desc'>{{ t.desc }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{% endblock %}

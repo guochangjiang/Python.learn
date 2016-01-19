@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% from "_form.html" import field_errors %}
+{% from "topic/comments/_comments.html" import render_comments %}
+
+{% block page_title %}{{ topic.title }} - 话题{% endblock %}
+{% block page_js %}
+    <script src="/pages/topic/topic/topic.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/topic/topic/topic.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="topic-wap">
+                    <a class="topic-user-avatar"
+                       href="{{ url_for('user.view', user_abbr=topic.user.abbr) }}">
+                        <img class="avatar" src="{{ topic.user.avatar }}">
+                    </a>
+
+                    <h1 class="topic-title">{{ topic.title|safe }}</h1>
+
+                    <div class="topic-extra-info">
+                        <a class="topic-creator"
+                           href="{{ url_for('user.view', user_abbr=topic.user.abbr) }}">
+                            {{ topic.user.name }}</a>
+                        ·
+                        <span class="topic-time">{{ topic.create_time|timesince }}</span>
+                        ·
+                        <span>{{ topic.click_num }} 点击</span>
+                        {% if permissions.TopicAdminPermission(topic.id).check() %}
+                            <a class="btn-edit-topic"
+                               href="{{ url_for('topic.edit', topic_id=topic.id) }}">编辑</a>
+                            /
+                            <a class="btn-delete-topic"
+                               href="{{ url_for('topic.delete', topic_id=topic.id) }}">删除</a>
+                        {% endif %}
+                    </div>
+                    <div class="topic-content">{{ topic.content|format_text|safe }}</div>
+                </div>
+
+                {% if topic.comments %}
+                    <h2>回复</h2>
+
+                    {{ render_comments(topic.comments) }}
+                {% endif %}
+
+                {% if g.user %}
+                    <form id="add-topic-comment" method="post"
+                          action="{{ url_for('topic.view', topic_id=topic.id) }}">
+                        {{ form.csrf_token }}
+
+                        <div class="form-group row">
+                            <div class="col-md-10">
+                                {{ form.content(class="form-control textarea-comment", rows="4") }}
+                                {{ field_errors(form.content) }}
+                            </div>
+                        </div>
+
+                        <input type="submit" class="btn btn-sm btn-default" value="回复"/>
+                    </form>
+                {% endif %}
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{% endblock %}

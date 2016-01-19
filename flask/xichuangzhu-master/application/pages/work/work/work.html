@@ -1,0 +1,219 @@
+{% extends "layout.html" %}
+{% from "_utils.html" import render_app_panel %}
+{% from "user/users/_users.html" import render_users %}
+{% from "work/work_images/_work_images.html" import render_work_images %}
+
+{% block page_title %}{{ work.title }} - {{ work.author.name }}{% endblock %}
+{% block page_js %}
+    <script src="/pages/work/work/work.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/work/work/work.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="work-title">
+                    {{ work.title }}
+                    {% if permissions.AdminPermission().check() and work.highlight %}
+                        <sup><i class="glyphicon glyphicon-ok"></i></sup>
+                    {% endif %}
+                </div>
+
+                <div class="work-author">
+                    〔<a
+                        href="{{ url_for('dynasty.view', uid = work.author.dynasty_id) }}">{{ work.author.dynasty.name }}</a>〕<a
+                        href="{{ url_for('author.view', author_id=work.author.id) }}">{{ work.author.name }}</a>
+                </div>
+
+                <!-- TODO: 32 is a experienced value -->
+                {% if work.foreword %}
+                    <div class="work-foreword work-{{ work.type.en }}-foreward
+                        {% if work.foreword|length < 32 %}single-line{% endif %}">
+                        {{ work.foreword }}
+                    </div>
+                {% endif %}
+
+                <div class="work-content work-type-{{ work.type.en }} work-layout-{{ work.layout }}">
+                    {{ work.content|markdown_work|safe }}
+                </div>
+
+                {% if g.user %}
+                    <div class="btn-group btn-group-sm pull-right" id="work-cmds">
+                        {% if permissions.AdminPermission().check() %}
+                            <a class="btn btn-default" href="{{ url_for('work.edit', work_id=work.id) }}">
+                                <span class="glyphicon glyphicon-edit"></span> 编辑
+                            </a>
+
+                            {% if work.highlight %}
+                                <a class="btn btn-default" href="{{ url_for('work.shade', work_id=work.id) }}">
+                                    <span class="glyphicon glyphicon-remove"></span> 取消加精
+                                </a>
+                            {% else %}
+                                <a class="btn btn-default"
+                                   href="{{ url_for('work.highlight', work_id=work.id) }}">
+                                    <span class="fa fa-check"></span> 加精
+                                </a>
+                            {% endif %}
+
+                            <a class="btn btn-default" title="添加摘录"
+                               href="{{ url_for('work.add_quote', work_id=work.id) }}">
+                                <span class="fa fa-plus"></span> 添加摘录
+                            </a>
+                        {% endif %}
+
+                        {#                        <a class="btn btn-default" target="_blank" title="点评作品"#}
+                        {#                           href="{{ url_for('work.add_review', work_id=work.id) }}">#}
+                        {#                            <span class="glyphicon glyphicon-pencil"></span> 点评#}
+                        {#                        </a>#}
+
+                        <a class="btn btn-default" title='上传图片'
+                           href="{{ url_for('work.add_image', work_id=work.id) }}">
+                            <span class="glyphicon glyphicon-picture"></span> 添加图片
+                        </a>
+                        {##}
+                        {#                        {% if work|is_work_collected %}#}
+                        {#                            <a class="btn btn-default" title="取消收藏"#}
+                        {#                               href="{{ url_for('work.discollect', work_id=work.id) }}">#}
+                        {#                                <span class="fa fa-bookmark"></span> 已收藏#}
+                        {#                            </a>#}
+                        {#                        {% else %}#}
+                        {#                            <a class="btn btn-default" title="收藏作品"#}
+                        {#                               href="{{ url_for('work.collect', work_id=work.id) }}">#}
+                        {#                                <span class="fa fa-bookmark-o"></span> 收藏#}
+                        {#                            </a>#}
+                        {#                        {% endif %}#}
+                    </div>
+                {% endif %}
+
+                {% if permissions.AdminPermission().check() %}
+                    {% set quotes_count = work.quotes.count() %}
+                    <h2>摘录 / {{ quotes_count }}</h2>
+
+                    {% if quotes_count %}
+                        <table class="table table-striped table-hover">
+                            <tbody>
+                            {% for q in work.quotes %}
+                                <tr>
+                                    <td>{{ q.quote }}</td>
+                                    <td>
+                                        <div class='btn-group btn-group-sm'>
+                                            <a class="btn btn-default" title="编辑"
+                                               href="{{ url_for('work.edit_quote', quote_id=q.id) }}">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </a>
+                                            <a class="btn btn-default btn-rm-quote" title='删除'
+                                               href="{{ url_for('work.delete_quote', quote_id=q.id) }}">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% endif %}
+
+                {% if '<' in work.content %}
+                    <h2>注释</h2>
+
+                    <div class='work-annotate'></div>
+                {% endif %}
+
+                {% if work.intro %}
+                    <h2>评析</h2>
+
+                    <div class="work-introduction">{{ work.intro|markdown|safe }}</div>
+                {% endif %}
+
+                {#                {% if reviews_num %}#}
+                {#                    <h2>#}
+                {#                        点评#}
+                {#                        <span class='link-more'>#}
+                {#                           <a href="{{ url_for('work.reviews', work_id=work.id) }}">#}
+                {#                               全部 / {{ reviews_num }} »#}
+                {#                           </a>#}
+                {#                        </span>#}
+                {#                    </h2>#}
+                {##}
+                {#                    {{ render_work_reviews(reviews) }}#}
+                {#                {% endif %}#}
+
+                {% set images_count = work.images.count() %}
+                {% if images_count %}
+                    <h2>
+                        图片
+               <span class='link-more'>
+                  <a href="{{ url_for('work.images', work_id=work.id) }}">
+                      全部 / {{ images_count }} »
+                  </a>
+               </span>
+                    </h2>
+
+                    {{ render_work_images(images) }}
+                {% endif %}
+            </div>
+
+            <div class="col-md-4">
+                {#         <h2>标签</h2>#}
+                {#         <ul class="work-tags">#}
+                {#            {% for t in work.tags %}#}
+                {#               <li><a href="{{ url_for('work.tag', tag_id=t.tag_id) }}">{{ t.tag.title }}</a></li>#}
+                {#            {% endfor %}#}
+                {#            <li>#}
+                {#               <a href="#" class='add-tag-btn'>#}
+                {#                  <span class='glyphicon glyphicon-plus'></span> 添加#}
+                {#               </a>#}
+                {#            </li>#}
+                {#         </ul>#}
+
+                <h2>其他版本</h2>
+
+                <a href="{{ url_for('work.vertical_view', work_id=work.id) }}"
+                   class="vertical-work-link work-version-link"
+                   target="_blank">竖版</a>
+
+                {% if work.highlight %}
+                    <a class="download-ios-app work-version-link"
+                       href="http://app.xichuangzhu.com" target="_blank">
+                        移动版</a>
+                {% endif %}
+
+                {% if work.baidu_wiki %}
+                    <a href="{{ work.baidu_wiki }}" target="_blank" class="work-version-link">百科</a>
+                {% endif %}
+
+                <h2>作者简介</h2>
+
+                <div>
+                    {{ work.author.intro|truncate(55, True) }}
+                    <span class='link-more'>
+                       <a href="{{ url_for('author.view', author_id=work.author.id) }}">更多»</a>
+                    </span>
+                </div>
+
+                {% if other_works.count() %}
+                    <h2>其他作品</h2>
+
+                    {% for work in other_works %}
+                        <div class="other-work-item">
+                            <a class="other-work-title" href="{{ url_for('work.view', work_id=work.id) }}">
+                                {{ work.full_title|truncate(12, True, '') }}</a>
+                           <span class="other-work-content">
+                              {{ work.content|clean_work|truncate(8, True) }}
+                           </span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                {% if collectors.count() > 0 %}
+                    <h2>谁收藏了它？</h2>
+
+                    {{ render_users(collectors) }}
+                {% endif %}
+
+                {{ render_app_panel() }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

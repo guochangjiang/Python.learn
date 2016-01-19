@@ -1,0 +1,33 @@
+.work-images-wap {
+  position: relative;
+
+  .work-image {
+    display: none;
+    position: absolute;
+    margin-bottom: 10px;
+    width: 195px;
+
+    img {
+      width: 100%;
+    }
+
+    .is-original-tag {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 12px;
+      line-height: 1;
+      border: 1px solid #a40000;
+      border-bottom-left-radius: 3px;
+      padding: 2px;
+      background-color: white;
+      color: #a40000;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .work-images-wap .work-image {
+    width: 100%;
+  }
+}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Brighton and Hove Python User Group : {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/reset.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/typography.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+    <link href="{{ url_for('feed') }}" rel="alternate" title="BrightonPy Events" type="application/atom+xml">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="Brighton Python User Group" /></a>
+            <h1>Brighton and Hove <br /> Python User Group</h1>
+        </div>
+        
+        <div id="menu">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('page', path='location') }}">Location</a></li>
+                <li class="meetings">
+                    <a href="{{ url_for('meetings') }}">Meetings</a>
+                    <a class="feed" href="{{ url_for('feed') }}" title="BrightonPy Events Atom Feed">
+                        <img src="{{ url_for('static', filename='images/atom.png') }}" alt="BrightonPy Events Atom Feed" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    <div id="footer">
+        <p>Site powered by <a href="http://flask.pocoo.org">Flask</a> and hosted by <a href="http://heroku.com">heroku</a>. Source code on <a href="http://github.com/j4mie/brightonpy.org">GitHub</a>. </p>
+    </div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-16290537-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</body>
+</html>

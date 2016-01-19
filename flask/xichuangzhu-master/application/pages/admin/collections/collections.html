@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block page_title %}管理选集{% endblock %}
+{% block page_js %}
+    <script src="/pages/admin/collections/collections.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/admin/collections/collections.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <h2>管理选集</h2>
+
+        {% for collection_kind in collection_kinds %}
+            <p><span class="label label-primary">{{ collection_kind.name }}</span></p>
+
+            <table class='table table-striped'>
+                <thead>
+                <tr>
+                    <th>选集</th>
+                    <th>封面</th>
+                    {#                    <th>缩写</th>#}
+                    {#                    <th>全称</th>#}
+                    <th>篇目</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+
+                <tbody class="collections-list">
+                {% for collection in collection_kind.collections %}
+                    <tr data-order="{{ collection.order }}" data-id="{{ collection.id }}">
+                        <td>
+                            <a href="{{ url_for('admin.collection_works', uid=collection.id) }}">
+                                {{ collection.name }}</a>
+                        </td>
+                        <td>
+                            <img class="collection-cover img-circle"
+                                 src="{{ collection.cover or "http://7xobyn.com1.z0.glb.clouddn.com/default.png" }}"
+                                 alt="">
+                        </td>
+                        {#                        <td>{{ collection.abbr or "" }}</td>#}
+                        {#                        <td>{{ collection.full_name or "" }}</td>#}
+                        <td>{{ collection.works.count() }} 篇</td>
+                        <td>
+                            <div class="btn-group btn-group-xs">
+                                <a class="btn btn-default"
+                                   title="编辑选集" href="{{ url_for('collection.edit', uid=collection.id) }}">
+                                    <span class="fa fa-edit"></span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+    </div>
+{% endblock %}

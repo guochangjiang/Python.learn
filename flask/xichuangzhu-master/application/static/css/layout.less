@@ -1,0 +1,122 @@
+@import "fonts";
+
+html {
+  position: relative;
+  min-height: 100%;
+
+  body {
+    .font-song;
+    margin: 0 0 10em 0;
+
+    .flash-message {
+      background-color: darkred;
+      text-align: center;
+      border-radius: 2px;
+      border: 0;
+      padding: 10px 30px;
+      position: fixed;
+      z-index: 100000;
+      top: 65px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+      display: none;
+      color: white;
+      font-size: 12px;
+    }
+
+    .navbar {
+      margin-bottom: 15px;
+
+      .navbar-form {
+        margin-top: 10px;
+
+        .input-group-sm {
+          width: 250px;
+
+          .search-content {
+            width: 100%;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+          }
+        }
+      }
+
+      #btn-s2t {
+        margin-top: 10px;
+        margin-right: 10px;
+        outline: none;
+      }
+
+      #douban-icon {
+        margin-top: 10px;
+        cursor: pointer;
+        text-decoration: none;
+
+        img {
+          height: 29px;
+        }
+      }
+    }
+
+    #main-wap {
+      line-height: 180%;
+    }
+
+    #footer {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2.8em;
+      z-index: 10;
+      text-align: center;
+      font-size: 12px;
+      width: 100%;
+      color: #666;
+      padding-top: 3px;
+      .font-hei;
+
+      a {
+        color: #37a;
+      }
+
+      img {
+        display: none;
+      }
+
+      .container {
+        #copyright {
+          float: left;
+        }
+
+        #links {
+          float: right;
+          margin: 0;
+          list-style-type: none;
+
+          li {
+            display: inline-block;
+            margin-left: 15px;
+          }
+
+          #beian {
+            a {
+              color: gray;
+            }
+          }
+        }
+
+        #extra-info {
+          float: right;
+          margin-right: 20px;
+
+          a {
+            color: #666;
+          }
+        }
+      }
+    }
+
+    img[src='http://eiv.baidu.com/hmt/icon/21.gif'] {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="900" version="1.1" width="900" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style type="text/css">
+    <![CDATA[.red { fill: red; stroke=none; }
+    .green { fill: green; stroke: none; }
+    .blue { fill: blue; stroke: yellow; stroke-width: 5; }
+    .yellow { fill: yellow; stroke: none; }
+    .text { font-family: serif; fill: white; }
+    ]]>
+    </style>
+    <symbol id="symbol_without_fill" viewBox="-25.0,-25.0,50,50">
+      <polygon points="-25.0,-25.0 25.0,-25.0 0,21.65065" />
+    </symbol>
+  </defs>
+
+      <rect fill="grey" height="100%" width="100%" x="0" y="0" />
+      <use class="yellow" height="50" width="50" x="200" xlink:href="#symbol_without_fill" y="200" />
+      <use class="red" height="60.0" width="60.0" x="300" xlink:href="#symbol_without_fill" y="300" />
+      <use class="blue" height="25.0" width="25.0" x="400" xlink:href="#symbol_without_fill" y="400" />
+    <text class="text" font-size="20" x="0" y="25">defs_test.svg: Example of creating your own colors and defs/use.</text>
+</svg>

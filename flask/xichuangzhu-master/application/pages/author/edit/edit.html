@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% from "_form.html" import field_errors, horizontal_field %}
+
+{% block page_title %}编辑文学家{% endblock %}
+{% block page_js %}
+    <script src="/pages/author/edit/edit.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/author/edit/edit.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <form id="form-edit-author" class="form-horizontal" method="post"
+              action="{{ url_for('author.edit', author_id=author.id) }}">
+            <fieldset>
+                <legend>编辑文学家</legend>
+
+                {{ form.csrf_token }}
+
+                {{ horizontal_field(form.name, length=3) }}
+
+                {{ horizontal_field(form.dynasty_id, length=3) }}
+
+                <div class="form-group">
+                    {{ form.birth_year.label(class="col-md-2 control-label") }}
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            {{ form.birth_year(class="form-control") }}
+                            <span class="input-group-addon">年</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form.death_year.label(class="col-md-2 control-label") }}
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            {{ form.death_year(class="form-control") }}
+                            <span class="input-group-addon">年</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{ horizontal_field(form.baidu_wiki) }}
+
+                {{ horizontal_field(form.intro, rows=10) }}
+
+                <legend>繁体</legend>
+
+                {{ horizontal_field(form.name_tr, length=3) }}
+
+                {{ horizontal_field(form.intro_tr, rows=10) }}
+
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-2">
+                        <input type="submit" value="提交" class="btn btn-sm btn-primary"/>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

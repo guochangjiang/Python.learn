@@ -1,0 +1,21 @@
+{
+  "name": "xichuangzhu",
+  "version": "0.9.0",
+  "homepage": "https://github.com/hustlzp/xichuangzhu",
+  "authors": [
+    "hustlzp <hustlzp@qq.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "1.11.0",
+    "font-awesome": "~4.2.0",
+    "fonts.css": "1.1.0",
+    "jquery-s2t": "0.1.0",
+    "jquery-cookie": "1.4.0",
+    "bootstrap": "3.3.5",
+    "respond": "1.4.2",
+    "imagesloaded": "3.1.4",
+    "plupload": "~2.1.2"
+  }
+}

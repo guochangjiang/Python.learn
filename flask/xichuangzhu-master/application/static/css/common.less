@@ -1,0 +1,176 @@
+@import "fonts.less";
+
+.link-more a {
+  margin-left: 5px;
+  font-size: 12px;
+  .font-hei;
+  font-weight: normal;
+  color: #37a;
+  cursor: pointer;
+}
+
+.itunes-img {
+  width: 70%;
+}
+
+// text gap style in work review and topic
+.text-gap {
+  height: 7px;
+}
+
+.user-profile {
+  padding-top: 15px;
+
+  #user-avatar {
+  }
+
+  .user-info {
+    .user-name {
+      font-size: 20px;
+      line-height: 26px;
+      margin-bottom: 2px;
+      .font-hei;
+
+      a {
+        color: #333;
+      }
+    }
+
+    .user-signature {
+      font-size: 12px;
+      color: #666;
+    }
+  }
+}
+
+// component - work tags
+.work-tags {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: inline-block;
+
+    a {
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 12px;
+      padding: 5px 5px 5px 6px;
+      margin: 0 5px 5px 0;
+      cursor: pointer;
+      color: #666;
+      background-color: #F2F2F2;
+      box-shadow: 1px 1px 0px #bbb;
+
+      &:hover {
+        background-color: #EbEbEb;
+      }
+
+      &.add-tag-btn {
+        padding: 5px 7px 6px 7px;
+        color: #ffffff;
+        background-color: #428bca;
+        // background-color: #aaa;
+        border-radius: 2px;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+// work tags
+.tag-item {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 10px;
+  margin-bottom: 12px;
+  padding-top: 10px;
+
+  .icon {
+    width: 60px;
+    height: 60px;
+    float: left;
+  }
+
+  .content {
+    float: left;
+    margin-left: 12px;
+    width: 140px;
+
+    .title {
+      display: block;
+      font-size: 16px;
+      color: #37a;
+    }
+
+    .desc {
+      font-size: 12px;
+      line-height: 19px;
+      color: gray;
+    }
+  }
+}
+
+// Utilities
+.list-form-errors {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+}
+
+.avatar-sm {
+  width: 36px;
+  height: 36px;
+}
+
+.avatar-lg {
+  width: 72px;
+  height: 72px;
+}
+
+.avatar-xl {
+  width: 160px;
+  height: 160px;
+}
+
+.embed-btn {
+  background-color: #ffffff;
+  outline: 0;
+  box-shadow: none;
+  border: 0;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  outline: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #ffffff;
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+.position-relative {
+  position: relative;
+}
+
+.margin-top-15 {
+  margin-top: 15px;
+}
+
+.text-light {
+  color: #999999;
+}
+
+.text-small {
+  font-size: 12px;
+}

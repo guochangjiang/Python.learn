@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% from "_form.html" import horizontal_field %}
+
+{% block page_title %}编辑点评：{{ review.title }}{% endblock %}
+{% block page_js %}
+    <script src="/pages/work/edit_review/edit_review.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/work/edit_review/edit_review.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <h2 class="legend legend-lg">编辑点评</h2>
+            </div>
+
+            <div class="col-sm-8">
+                <form id="form-edit-review" class="form-horizontal" method="post"
+                      action="{{ url_for('work.edit_review', review_id=review.id) }}">
+                    <fieldset>
+                        {{ form.csrf_token }}
+
+                        {{ horizontal_field(form.title, length=10) }}
+
+                        {{ horizontal_field(form.content, rows='15', length=10) }}
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-2">
+                                {% if review.is_publish %}
+                                    <input type="submit" name="publish" value="保存"
+                                           class="btn btn-primary btn-sm"/>
+                                {% else %}
+                                    <input type="submit" name="draft" value="保存草稿"
+                                           class="btn btn-default btn-sm"/>
+                                    <input type="submit" name="publish" value="发布"
+                                           class="btn btn-primary btn-sm"/>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

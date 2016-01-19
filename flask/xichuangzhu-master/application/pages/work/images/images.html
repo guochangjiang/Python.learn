@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% from "_utils.html" import pagination %}
+{% from "work/work_images/_work_images.html" import render_work_images %}
+
+{% block page_title %}{{ work.author.name }}《{{ work.title }}》的图片{% endblock %}
+{% block page_js %}
+    <script src="/pages/work/images/images.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/work/images/images.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="span8">
+                <h2>{{ work.author.name }}《{{ work.title }}》的图片 / {{ paginator.total }}</h2>
+
+                {{ render_work_images(paginator.items) }}
+
+                {{ pagination(paginator) }}
+            </div>
+
+            <div class="span4"></div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% from "_form.html" import horizontal_field %}
+
+{% block page_title %}编辑话题{% endblock %}
+{% block page_js %}
+    <script src="/pages/topic/edit/edit.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/topic/edit/edit.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <h2 class="legend legend-lg">编辑话题</h2>
+            </div>
+
+            <div class="col-sm-8">
+                <form id="form-edit-topic" class="form-horizontal" method="post"
+                      action="{{ url_for('topic.edit', topic_id=topic.id) }}">
+                    <fieldset>
+
+                        {{ form.csrf_token }}
+
+                        {{ horizontal_field(form.title, length=10) }}
+
+                        {{ horizontal_field(form.content, rows="15", length=10) }}
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-2">
+                                <input type="submit" value="保存" class="btn btn-primary btn-sm"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

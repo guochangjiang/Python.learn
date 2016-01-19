@@ -1,0 +1,43 @@
+speaker: Ian Ozsvald and John Montgomery
+title: Scientific Computing with Python
+venue: The Skiff
+datetime: 2010-05-25 19:30
+---
+
+<div class="past_meeting">
+
+This meeting has now taken place. Audio recordings of each talk can be found below:
+
+<object height="81" width="100%"> <param name="movie" value="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2Fj4mie%2Fian-ozsvald-introduction-to-pycuda"></param> <param name="allowscriptaccess" value="always"></param> <embed allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2Fj4mie%2Fian-ozsvald-introduction-to-pycuda" type="application/x-shockwave-flash" width="100%"></embed> </object>  <span><a href="http://soundcloud.com/j4mie/ian-ozsvald-introduction-to-pycuda">Ian Ozsvald: Introduction to PyCUDA</a> by <a href="http://soundcloud.com/j4mie">j4mie</a></span>
+
+<object height="81" width="100%"> <param name="movie" value="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2Fj4mie%2Fjohn-montgomery-tackling-the-travelling-salesman-problem"></param> <param name="allowscriptaccess" value="always"></param> <embed allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2Fj4mie%2Fjohn-montgomery-tackling-the-travelling-salesman-problem" type="application/x-shockwave-flash" width="100%"></embed> </object>  <span><a href="http://soundcloud.com/j4mie/john-montgomery-tackling-the-travelling-salesman-problem">John Montgomery: Tackling The Travelling Salesman Problem</a> by <a href="http://soundcloud.com/j4mie">j4mie</a></span>
+
+</div>
+
+**Please [sign up on Upcoming](http://upcoming.yahoo.com/event/5871683/) if you will be attending.**
+
+This meeting will consist of two talks, followed by discussion and beers in the pub!
+
+### Ian Ozsvald: Introduction to PyCUDA ###
+
+*"Using the 'mini-Cray supercomputer' that is your graphics card to do super-fast math in a few lines of Python"*
+
+#### About PyCUDA ####
+
+[PyCUDA](http://mathema.tician.de/software/pycuda) gives you easy, Pythonic access to Nvidia‘s CUDA parallel computation API.
+
+#### About Ian Ozsvald ####
+
+[Ian Ozsvald](http://twitter.com/ianozsvald) is an Artificial Intelligence researcher in industry, screencaster and author of The Screencasting Handbook, entrepreneurial geek, £5 App founder, ShowMeDoer.
+
+### John Montgomery: Tackling The Travelling Salesman Problem ###
+
+*"Using Python to explore different stochastic algorithms"*
+
+#### About the Travelling Saleman Problem ####
+
+The [Travelling Salesman Problem (TSP)](http://en.wikipedia.org/wiki/Travelling_salesman_problem) is a problem in combinatorial optimization studied in operations research and theoretical computer science. Given a list of cities and their pairwise distances, the task is to find a shortest possible tour that visits each city exactly once.
+
+#### About John Montgomery ####
+
+[John Montgomery](http://twitter.com/lilspikey) is a software developer living in Brighton with experience in POP-11 (an AI teaching language), Prolog, Java, Javascript, Perl, C++, Visual Basic and Python. He is also a £5 App founder.

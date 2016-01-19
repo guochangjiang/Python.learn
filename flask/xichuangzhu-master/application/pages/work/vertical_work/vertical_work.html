@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block page_title %}{{ work.title }} - {{ work.author.name }}{% endblock %}
+{% block page_js %}
+    <script src="/pages/work/vertical_work/vertical_work.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/work/vertical_work/vertical_work.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="work-title">
+            {{ work.title }}
+        </div>
+
+        <div class="work-author">
+            〔<a
+                href="{{ url_for('dynasty.view', uid = work.author.dynasty_id) }}">{{ work.author.dynasty.name }}</a>〕<a
+                href="{{ url_for('author.view', author_id=work.author.id) }}">{{ work.author.name }}</a>
+        </div>
+
+        <div class="work-content work-type-{{ work.type.en }} work-layout-{{ work.layout }}">
+            {{ work.content|markdown_work|safe }}
+        </div>
+
+        {% if work.intro %}
+            <div class="divider"></div>
+
+            <div class="work-introduction">{{ work.intro|markdown|safe }}</div>
+        {% endif %}
+
+        <div class="logo">
+            <a href="http://www.xichuangzhu.com" target="_blank"><img src="/static/img/favicon.png" alt=""></a>
+        </div>
+    </div>
+{% endblock %}

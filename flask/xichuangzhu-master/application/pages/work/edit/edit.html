@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% from "_form.html" import field_errors, horizontal_field %}
+{% from "author/search_authors/_search_authors.html" import render_search_authors %}
+
+{% block page_title %}编辑作品{% endblock %}
+{% block page_js %}
+    <script>
+        registerContext({
+            searchKeyWord: "{{ work.title }}{% if work.title_suffix %}{{ work.title_suffix }}{% endif %}"
+        });
+    </script>
+    <script src="/pages/work/edit/edit.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/work/edit/edit.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <form id="form-edit-work" class="form-horizontal" method="post"
+              action="{{ url_for('work.edit', work_id=work.id) }}">
+            <fieldset>
+                <legend>编辑作品</legend>
+                {{ form.csrf_token }}
+
+                {{ horizontal_field(form.title, length=3) }}
+
+                {{ horizontal_field(form.mobile_title, length=3) }}
+
+                {{ horizontal_field(form.title_suffix, length=3) }}
+
+                {{ horizontal_field(form.type_id, length=3) }}
+
+                {{ horizontal_field(form.layout, length=3) }}
+
+                <div class="form-group">
+                    {{ form.author_id.label(class="col-md-2 control-label") }}
+
+                    <div class="col-md-3">
+                        <div class="position-relative">
+                            <input id="input-author-name" type="text" class='form-control'
+                                   placeholder="搜索作者"/>
+                            <button id="btn-search-author" class="btn btn-default embed-btn">
+                                <span class='glyphicon glyphicon-search'></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3 col-md-offset-2">
+                        <select id="author_id" name="author_id" class='form-control'>
+                            <option value="{{ work.author_id }}">
+                                〔{{ work.author.dynasty.name }}〕{{ work.author.name }}</option>
+                        </select>
+                        {{ field_errors(form.author_id) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form.baidu_wiki.label(class="col-md-2 control-label") }}
+
+                    <div class="col-md-6">
+                        <div class="position-relative">
+                            {{ form.baidu_wiki(class="form-control") }}
+
+                            <button class="btn btn-default embed-btn btn-search-wiki" type="button">
+                                <span class='glyphicon glyphicon-search'></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {{ horizontal_field(form.foreword, rows=5) }}
+
+                {{ horizontal_field(form.intro, rows=5) }}
+
+                {{ horizontal_field(form.content, rows=15) }}
+
+                {{ horizontal_field(form.mobile_content, rows=15) }}
+
+                <legend>繁体</legend>
+
+                {{ horizontal_field(form.title_tr, length=3) }}
+
+                {{ horizontal_field(form.mobile_title_tr, length=3) }}
+
+                {{ horizontal_field(form.title_suffix_tr, length=3) }}
+
+                {{ horizontal_field(form.foreword_tr, rows=5) }}
+
+                {{ horizontal_field(form.intro_tr, rows=5) }}
+
+                {{ horizontal_field(form.content_tr, rows=15) }}
+
+                {{ horizontal_field(form.mobile_content_tr, rows=15) }}
+
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-2">
+                        <input type="submit" value="提交" class="btn btn-sm btn-primary"/>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+        {{ render_search_authors() }}
+    </div>
+{% endblock %}

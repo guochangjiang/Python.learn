@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% from '_utils.html' import pagination %}
+{% from "user/users/_users.html" import render_users %}
+{% from "work/work_reviews/_work_reviews.html" import render_work_reviews %}
+
+{% block page_title %}最新点评{% endblock %}
+{% block page_js %}
+    <script src="/pages/work/all_reviews/all_reviews.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/work/all_reviews/all_reviews.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>最新点评</h2>
+
+                {{ render_work_reviews(paginator.items) }}
+
+                {{ pagination(paginator) }}
+            </div>
+
+            <div class="col-md-4">
+                <h2>点评人</h2>
+
+                {{ render_users(hot_reviewers) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

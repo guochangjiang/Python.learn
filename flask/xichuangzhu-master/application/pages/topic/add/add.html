@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% from "_form.html" import field_errors, horizontal_field %}
+
+{% block page_title %}发起新话题{% endblock %}
+{% block page_js %}
+    <script src="/pages/topic/add/add.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/topic/add/add.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <h2 class="legend legend-lg">新话题</h2>
+            </div>
+
+            <div class="col-sm-8">
+                <form id="form-add-topic" class="form-horizontal" method="post"
+                      action="{{ url_for('topic.add') }}">
+                    <fieldset>
+                        {{ form.csrf_token }}
+
+                        {{ horizontal_field(form.title, length=10) }}
+
+                        {{ horizontal_field(form.content, rows="15", length=10) }}
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-2">
+                                <input type="submit" value="发表" class="btn btn-primary btn-sm"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

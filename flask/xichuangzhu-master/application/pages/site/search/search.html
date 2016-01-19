@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% from '_utils.html' import pagination %}
+{% from 'author/authors/_authors.html' import render_authors %}
+{% from 'work/works/_works.html' import render_works with context %}
+
+{% block page_title %}搜索{% endblock %}
+{% block page_js %}
+    <script src="/pages/site/search/search.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/site/search/search.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>
+                    作品{% if keyword %} / {{ keyword }}{% endif %}
+                </h2>
+
+                {% if not keyword %}
+                    <p class="text-light text-small">请输入关键字</p>
+                {% elif not works.total %}
+                    <p class="text-light text-small">找不到相关作品</p>
+                {% else %}
+                    {{ render_works(works.items) }}
+
+                    {{ pagination(works) }}
+                {% endif %}
+            </div>
+
+            <div class="col-md-4">
+                <h2>
+                    文学家{% if keyword %} / {{ keyword }}{% endif %}
+                </h2>
+
+                {% if not keyword %}
+                    <p class="text-light text-small">请输入关键字</p>
+                {% elif not authors.count() %}
+                    <p class="text-light text-small">找不到相关文学家</p>
+                {% else %}
+                    {{ render_authors(authors) }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

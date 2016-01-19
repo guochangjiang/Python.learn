@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% from "_utils.html" import pagination %}
+{% from "work/works/_works.html" import render_works with context %}
+
+{% block page_title %}加精作品{% endblock %}
+{% block page_js %}
+    <script src="/pages/admin/highlight_works/highlight_works.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/admin/highlight_works/highlight_works.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>加精 - <span id="dynasty_type_tag"></span> / {{ paginator.total }}</h2>
+
+                {{ render_works(paginator.items) }}
+
+                {{ pagination(paginator) }}
+            </div>
+
+            <div class="col-md-4">
+                <h2>统计信息</h2>
+
+                <table class="table table-condensed">
+                    <tr>
+                        <td>文学家</td>
+                        <td>{{ authors_count }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>作品</td>
+                        <td>{{ works_count }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>摘录</td>
+                        <td>{{ quotes_count }}</td>
+                    </tr>
+                </table>
+
+                <h2>年代</h2>
+                <ul id="dynasty-selector">
+                    <li {% if not dynasty_id %}class="active"{% endif %}>
+                        <a href="{{ set_url_param(type=work_type, dynasty_id=None, page=None) }}">
+                            全部
+                        </a>
+                    </li>
+
+                    {% for d in dynasties %}
+                        <li {% if dynasty_id == d.id %}class="active"{% endif %}>
+                            <a href="{{ set_url_param(type=work_type, dynasty_id=d.id, page=None) }}">
+                                {{ d.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <h2>体裁</h2>
+                <ul id="type-selector">
+                    <li {% if not work_type %}class="active"{% endif %}>
+                        <a href="{{ set_url_param(type=None, dynasty_id=dynasty_id, page=None) }}">
+                            全部</a>
+                    </li>
+
+                    {% for t in work_types %}
+                        <li {% if work_type == t.en %}class="active"{% endif %}>
+                            <a href="{{ set_url_param(type=t.en, dynasty_id=dynasty_id, page=None) }}">
+                                {{ t.cn }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

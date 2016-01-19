@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% from "author/authors/_authors.html" import render_authors %}
+
+{% block page_title %}{{ dynasty.name }}{% endblock %}
+{% block page_js %}
+    <script>
+        registerContext({
+            dynastiesCount: {{ dynasties.count() }}
+        });
+    </script>
+    <script src="/pages/dynasty/dynasty/dynasty.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/dynasty/dynasty/dynasty.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <ul id="dyn-selector" class="clearfix">
+            {% for dyn in dynasties %}
+                <li>
+                    <a href="{{ url_for('dynasty.view', uid=dyn.id) }}" id="dyn-{{ dyn.id }}"
+                       data-dynasty-id="{{ dyn.id }}"
+                       style="{% if dyn.id == dynasty.id %}margin-top: 10px{% endif %}">{{ dyn.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div id="dynasty-wap">
+                    {% if permissions.AdminPermission().check() %}
+                        <a class="btn btn-default btn-sm pull-right"
+                           href="{{ url_for('dynasty.edit', dynasty_id=dynasty.id) }}">
+                            <span class="glyphicon glyphicon-edit"></span> 编辑
+                        </a>
+                    {% endif %}
+
+                    <h1 class='dynasty'>{{ dynasty.name }}</h1>
+
+                    <div class="dynasty-period">
+                        {{ dynasty.start_year|format_year }} ~
+                        {% if dynasty.end_year %}{{ dynasty.end_year|format_year }}{% else %}至今{% endif %}
+                    </div>
+
+                    <h2>简介</h2>
+
+                    <div class='dynasty-introduction'>{{ dynasty.intro }}</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <h2>
+                    文学家
+            <span class='link-more'>
+               <a href="{{ url_for('author.authors') }}#{{ dynasty.id }}">
+                   更多 / {{ dynasty.authors.count() }} »
+               </a>
+            </span>
+                </h2>
+
+                {{ render_authors(authors) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

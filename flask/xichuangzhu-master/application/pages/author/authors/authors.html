@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% from 'author/authors/_authors.html' import render_authors %}
+
+{% block page_title %}历代文学家{% endblock %}
+{% block page_js %}
+    <script src="/pages/author/authors/authors.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/author/authors/authors.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>历代文学家</h2>
+
+                {% for dynasty in dynasties %}
+                    <a name="{{ dynasty.id }}"></a>
+
+                    <div class="author-wap">
+                        <a class='author-dynasty'
+                           href="{{ url_for('dynasty.view', uid=dynasty.id) }}">
+                            {{ dynasty.name }}
+                        </a>
+
+                        <ul class="author-group clearfix">
+                            {% for author in dynasty.authors %}
+                                <li class='author'>
+                                    <a href="{{ url_for('author.view', author_id=author.id) }}">
+                                        {{ author.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-4">
+                <h2>近期热门</h2>
+
+                {{ render_authors(hot_authors) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

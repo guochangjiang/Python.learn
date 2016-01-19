@@ -1,0 +1,31 @@
+speaker: Various speakers
+title: Python Show and Tell
+venue: The Skiff
+datetime: 2011-06-14 19:00
+---
+
+**Please [sign up on Lanyrd](http://lanyrd.com/2011/brightonpy-python-show-and-tell/) if you will be attending.**
+
+It's time for another Python Show and Tell. An opportunity to learn and share knowledge and stories about how you use Python, how you'd like to use it, cool features of the language, open source projects you've used, deployment, war stories, philosophy, Zen, or anything remotely related to Python.
+
+We'll also be discussing plans for a BrightonPy Hack Day sometime over the summer, so if you have any ideas for things to work on, come along to chat.
+
+**If you'd like to speak, please [drop me a quick email](mailto:jamie.matthews@gmail.com) with your name and a very brief description of your topic**
+
+### Talks confirmed so far ###
+
+#### John Montgomery - Mini Sparql ####
+
+John will be talking about his latest project, [Mini Sparql](http://www.psychicorigami.com/2011/06/05/a-little-sparql/), an in-memory triple store. The implementation includes [PyParsing](http://pyparsing.wikispaces.com/) for parsing [SPARQL](http://en.wikipedia.org/wiki/Sparql) queries, lots of [generator functions](http://wiki.python.org/moin/Generators) for lazy evaluation, has an interactive prompt, and can load triple data from files/stdin.
+
+#### Ollie Glass - Akin.to ####
+
+A new approach to music discovey, Akin.to reveals surprising, beautiful and quirky connections by comparing language used in music reviews. It uses the [NLTK](http://www.nltk.org/) natural language library, [SQLAlchemy](http://www.sqlalchemy.org/), the [Flask microframework](http://flask.pocoo.org/), [Beautiful Soup](http://www.crummy.com/software/BeautifulSoup/) and Python's [multiprocessing](http://docs.python.org/library/multiprocessing.html) module.
+
+#### Jamie Matthews - Integrating Django with legacy systems ####
+
+Jamie will talk about his experience in building an unusual Django application which uses an HTTP API and a remote Microsoft SQL Server database (rather than Django's model layer) to supply most of its data.
+
+#### Tom Christie - Django Core hacking ####
+
+Tom will talk about some recent work he's been doing on Django itself.

@@ -1,0 +1,37 @@
+{% macro render_work_reviews(work_reviews) %}
+    {% for r in work_reviews %}
+        <div class="work-review-item media">
+            <a class="user-avatar pull-left" href="{{ url_for('user.view', user_abbr=r.user.abbr) }}">
+                <img class="avatar" src="{{ r.user.avatar }}"/>
+            </a>
+
+            <div class="review-wap media-body">
+                {% if r.title %}
+                    <div class="review-title">
+                        <a href="{{ url_for('work.review', review_id = r.id) }}">{{ r.title }}</a>
+                        {% if not r.is_publish %}
+                            <sup>
+                                <span class="label label-primary">草稿</span>
+                            </sup>
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                <div class="review-content">
+                    {{ r.content|truncate(30, True)|safe }}
+                    {% if not r.title and r.content|length > 30 %}
+                        <a href="{{ url_for('work.review', review_id = r.id) }}">全部»</a>
+                    {% endif %}
+                </div>
+
+                <div class="review-meta-info">
+                    <a href="{{ url_for('user.view', user_abbr=r.user.abbr) }}">{{ r.user.name }}</a>
+                    评
+                    <a href="{{ url_for('work.view', work_id=r.work.id) }}">{{ r.work.full_title }}</a>〔{{ r.work.author.name }}〕
+                    <span class="review-time">{{ r.create_time|timesince }}</span>
+                    <span class="comments-count">{{ r.comments.count() }} 回复</span>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endmacro %}

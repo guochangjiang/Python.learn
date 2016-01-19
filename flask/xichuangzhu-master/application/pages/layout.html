@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+    <title>{% block page_title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name='description' content="{% block description %}{% endblock %}"/>
+    {% block meta %}{% endblock %}
+    <meta name="google-site-verification" content="zJepc6vImx49zVPi4ID-67OUzuetR1JQNKrHN26bU7E"/>
+    <meta name="baidu-site-verification" content="fKxRmqSY9r"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <!-- tY01T6z2-CO7TsfMMZfvk7vkMhY -->
+    <link rel="Shortcut Icon" href="/static/img/favicon.png">
+
+    {# CSS libs #}
+    <link rel="stylesheet" href="/static/css/libs/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/libs/font-awesome.css">
+    <link rel="stylesheet" href="/static/css/libs/jquery-ui.min.css">
+
+    {# CSS layout #}
+    <link rel="stylesheet" href="/static/css/bootstrap.theme.css"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <link rel="stylesheet" href="/static/output/macros.css"/>
+    <link rel="stylesheet" href="/static/css/layout.css"/>
+
+    {# CSS page #}
+    {% block page_css %}{% endblock %}
+
+    {# JS global vars #}
+    <script type="text/javascript">
+        var g = {
+            domain: "{{ config.SITE_DOMAIN }}",
+            csrfToken: "{{ csrf_token() }}",
+            rules: {{ rules|safe }},
+            method: "{{ request.method }}",
+            signedIn: {% if g.user %}true{% else %}false{% endif %},
+            userId: {% if g.user %}{{ g.user.id }}{% else %}false{% endif %}
+        };
+    </script>
+
+    {# JS libs #}
+    <script src="/static/js/libs/respond.min.js"></script>
+    <script src="/static/js/libs/jquery.min.js"></script>
+    <script src="/static/js/libs/bootstrap.min.js"></script>
+    <script src="/static/js/libs/jquery.cookie.js"></script>
+    <script src="/static/js/libs/jquery.s2t.js"></script>
+    <script src="/static/js/libs/EventEmitter.min.js"></script>
+    <script src="/static/js/libs/eventie.js"></script>
+    <script src="/static/js/libs/imagesloaded.js"></script>
+    <script src="/static/js/libs/jquery-ui.min.js"></script>
+    <script src="/static/js/libs/plupload.full.min.js"></script>
+    <script src="/static/js/libs/zh_CN.js"></script>
+    <script src="/static/js/init.js"></script>
+</head>
+
+<body id="{% block page_id %}{% endblock %}">
+
+{% with message = get_flashed_messages()[0] %}
+    {% if message %}
+        <div class="alert alert-success flash-message">{{ message }}</div>
+    {% endif %}
+{% endwith %}
+
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class='container'>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('site.index') }}">西窗烛</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('site.index') }}">首页</a></li>
+
+                <li><a href="{{ url_for('author.authors') }}">文学家</a></li>
+
+                {#                <li><a href="{{ url_for('collection.collections') }}">选集</a></li>#}
+
+                {# <li><a href="{{ url_for('work.tags') }}">标签</a></li>#}
+
+                {#                {% if g.user %}#}
+                {#                    <li><a href="{{ url_for('user.collects') }}">收藏</a></li>#}
+                {#                {% endif %}#}
+
+                {#            <li><a href="{{ url_for('topic.topics') }}">社区</a></li>#}
+
+                <li><a href="http://classic.xichuangzhu.com" target="_blank">一首</a></li>
+
+                <li><a href="http://one.xichuangzhu.com" target="_blank">一句</a></li>
+
+                {% if not g.user %}
+                    <li><a href="{{ url_for('site.about') }}">关于</a></li>
+                {% endif %}
+            </ul>
+
+            <form class="navbar-form navbar-left" method="get" action="{{ url_for('site.search') }}"
+                  role="search">
+                <div class="form-group">
+                    <div class='input-group-sm position-relative'>
+                        <input type="text" class="search-content form-control" placeholder="作品 / 文学家"
+                               value="{{ keyword or "" }}" name="q">
+
+                        <button type="submit" title='搜索' class="btn btn-default btn-sm embed-btn">
+                            <span class='glyphicon glyphicon-search'></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            {% if g.user %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            {{ g.user.name }} <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ url_for('user.view', user_abbr=g.user.abbr) }}">我的主页</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('account.settings') }}">个人设置</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('account.signout') }}">退出</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                {% if permissions.AdminPermission().check() %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                添加 <i class="fa fa-angle-down"></i>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url_for('work.add') }}">作品</a></li>
+                                <li><a href="{{ url_for('collection.add') }}">选集</a></li>
+                                <li><a href="{{ url_for('author.add') }}">文学家</a></li>
+                                <li><a href="{{ url_for('dynasty.add') }}">朝代</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                管理 <i class="fa fa-angle-down"></i>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url_for('admin.collections') }}">选集</a></li>
+                                <li><a href="{{ url_for('admin.works') }}">作品</a></li>
+                                <li><a href="{{ url_for('admin.highlight_works') }}">加精作品</a></li>
+                                <li><a href="{{ url_for('admin.unhighlight_works') }}">未加精作品</a></li>
+                                <li><a href="{{ url_for('admin.authors') }}">文学家</a></li>
+                                <li><a href="{{ url_for('admin.quotes') }}">摘录</a></li>
+                                <li><a href="{{ url_for('admin.generate_main_db') }}">下载 xcz.db</a></li>
+                                <li><a href="{{ url_for('admin.generate_user_db') }}">下载 xzc_user.db</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% endif %}
+            {% else %}
+                <a class='navbar-right navbar-btn' id='douban-icon'
+                   href="{{ url_for('account.pre_signin') }}">
+                    <img title="用豆瓣帐号登陆"
+                         src="http://img3.douban.com/pics/douban-icons/login_with_douban_32.png"/>
+                </a>
+            {% endif %}
+
+            <button id="btn-s2t" class="btn btn-sm btn-default navbar-btn navbar-right">简</button>
+
+            <script type="text/javascript">
+                var bodyIsFt = $.cookie("bodyIsFt");
+
+                $('#btn-s2t').click(function () {
+                    // to simplified
+                    if (bodyIsFt == "1") {
+                        $.cookie("bodyIsFt", 0, {expires: 365, path: '/'});
+                        bodyIsFt = "0";
+                        $('#btn-s2t').text('简');
+                        $(document.body).t2s();
+                    } else {
+                        // to traditional
+                        $.cookie("bodyIsFt", 1, {expires: 365, path: '/'});
+                        bodyIsFt = "1";
+                        $('#btn-s2t').text('繁');
+                        $(document.body).s2t();
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</nav>
+
+<div id="main">
+    {% block page_content %}{% endblock %}
+</div>
+
+<div id="footer">
+    <div class='container'>
+        <div id='copyright'>西窗烛 ©2015 by <a href="http://hustlzp.com" target="_blank">hustlzp</a>
+        </div>
+
+        <ul id='links'>
+            <li id="beian" class="hidden-xs">
+                <a target="_blank" href="http://www.miitbeian.gov.cn/">鄂ICP备14000800号</a></li>
+            <li class="hidden-xs"><a href="{{ url_for('site.disclaimer') }}">免责声明</a></li>
+            <li><a href="{{ url_for('site.about') }}">关于</a></li>
+            <li><a href="https://itunes.apple.com/cn/app/xi-chuang-zhu/id912139104">iPhone 应用</a></li>
+            <li class="hidden-xs">
+                <a target="_blank" href="https://github.com/hustlzp/xichuangzhu">GitHub</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{# JS layout #}
+<script src="/static/js/layout.js"></script>
+
+{# JS macros #}
+<script src="/static/output/macros.js"></script>
+
+{# JS page #}
+{% block page_js %}{% endblock %}
+</body>
+</html>

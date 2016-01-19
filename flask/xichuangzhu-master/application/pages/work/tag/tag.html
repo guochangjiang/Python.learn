@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% from "_utils.html" import pagination %}
+{% from "work/works/_works.html" import render_works with context %}
+
+{% block page_title %}标签 - {{ tag.title }}{% endblock %}
+{% block page_js %}
+    <script src="/pages/work/tag/tag.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/work/tag/tag.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="media">
+                    <img class="media-object pull-left" src="{{ tag.icon }}">
+
+                    <div class="media-body">
+                        <div class="media-heading">{{ tag.title }}</div>
+                        <div class='media-content'>{{ tag.desc }}</div>
+                    </div>
+
+                    <button class='btn btn-primary btn-sm pull-right add-work-btn'>添加作品</button>
+                </div>
+
+                {{ render_works(paginator.items) }}
+
+                {{ pagination(paginator) }}
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{% endblock %}

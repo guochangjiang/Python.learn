@@ -1,0 +1,114 @@
+@import "fonts.less";
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 970px;
+  }
+}
+
+h1 {
+  font-size: 25px;
+  line-height: 35px;
+  margin: 15px 0 10px 0;
+}
+
+h2 {
+  font-size: 15px;
+  .font-hei;
+  line-height: 15px;
+  font-weight: normal;
+  margin: 20px 0 15px 0;
+  color: rgb(173, 22, 22);
+  clear: both;
+
+  &.legend {
+    border-bottom: 1px solid #d0d0d0;
+    padding-bottom: 12px;
+  }
+
+  &.legend-lg {
+    margin-bottom: 25px;
+  }
+}
+
+ul {
+  padding-left: 30px;
+  list-style: square;
+}
+
+legend {
+  line-height: 40px;
+  padding-bottom: 5px;
+}
+
+label {
+  font-weight: normal;
+}
+
+blockquote {
+  padding: 0 0 0 20px;
+
+  p {
+    font-size: 14px;
+    line-height: 180%;
+    margin-bottom: 5px;
+  }
+}
+
+input[type='file'] {
+  line-height: 1;
+}
+
+.label {
+  border-radius: 0;
+  padding: .2em .5em;
+  font-weight: normal;
+}
+
+.tooltip {
+  .font-song;
+  text-indent: 0;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 160%;
+}
+
+.tooltip-inner {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.alert-danger ul li {
+  margin: 0 0 5px 0;
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
+.input-group-btn:last-child > .btn {
+  border-left: 0;
+}
+
+.table thead > tr > th {
+  border-bottom: 1px solid #ddd;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 1px;
+}
+
+.form-group-sm {
+  margin-bottom: 5px;
+}
+
+.btn-group.no-border-radius {
+  .btn {
+    border-radius: 0;
+  }
+}
+
+.media > .pull-left {
+  margin-right: 12px;
+}

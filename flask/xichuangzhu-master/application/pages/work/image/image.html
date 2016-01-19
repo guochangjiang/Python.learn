@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block page_title %}《{{ work_image.work.title }}》相关图片{% endblock %}
+{% block page_js %}
+    <script src="/pages/work/image/image.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/work/image/image.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class='row'>
+            <div class='col-md-8'>
+                <p class='image-info'>
+                    <a href="{{ url_for('user.view', user_abbr=work_image.user.abbr) }}">
+                        {{ work_image.user.name }}</a>
+                    上传于《<a
+                        href="{{ url_for('work.view', work_id=work_image.work.id) }}">{{ work_image.work.full_title }}</a>》：
+                </p>
+
+                <blockquote>
+                    <p>{{ work_image.work.content|clean_work|truncate(100, True) }}</p>
+                    <small>
+                        〔{{ work_image.work.author.dynasty.name }}〕{{ work_image.work.author.name }}
+                    </small>
+                </blockquote>
+            </div>
+
+            <div class='col-md-2'>
+                <div class='btn-group btn-group-sm'>
+                    {% if g.user %}
+                        {% if permissions.WorkImageAdminPermission(work_image.id).check() %}
+                            <a class='btn btn-default'
+                               href="{{ url_for('work.edit_image', work_image_id=work_image.id) }}"><span
+                                    class='glyphicon glyphicon-edit'></span> 编辑</a>
+                            <a class='btn btn-default btn-remove'
+                               href="{{ url_for('work.delete_image', work_image_id=work_image.id) }}"><span
+                                    class='glyphicon glyphicon-trash'></span> 删除</a>
+                            {#               {% else %}#}
+                            {#                  {% if work_image|is_work_image_collected %}#}
+                            {#                     <a class='btn btn-default' title='取消收藏'#}
+                            {#                        href="{{ url_for('work.discollect_image', work_image_id=work_image.id) }}">#}
+                            {#                        <span class='fa fa-bookmark'></span> 已收藏#}
+                            {#                     </a>#}
+                            {#                  {% else %}#}
+                            {#                     <a class='btn btn-default' title='点击收藏'#}
+                            {#                        href="{{ url_for('work.collect_image', work_image_id=work_image.id) }}">#}
+                            {#                        <span class='fa fa-bookmark-o'></span> 收藏#}
+                            {#                     </a>#}
+                            {#                  {% endif %}#}
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-10'>
+                <div class="work-image-wap">
+                    <img src="{{ work_image.url }}" class='work-image img-responsive'
+                         alt="《{{ work_image.work.title }}》书法作品"/>
+                    {% if work_image.is_original %}
+                        <span title="原创作品" class="is-original-tag">原创</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% from "_utils.html" import pagination %}
+{% from "topic/topics/_topics.html" import render_topics %}
+
+{% block page_title %}社区 - 西窗烛{% endblock %}
+{% block page_js %}
+    <script src="/pages/topic/topics/topics.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/topic/topics/topics.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>话题</h2>
+
+                {% if permissions.UserPermission().check() %}
+                    <a class="btn btn-sm btn-default btn-new-topic" href="{{ url_for('topic.add') }}">
+                        <span class='glyphicon glyphicon-align-left'></span> 新话题
+                    </a>
+                {% endif %}
+
+                {{ render_topics(paginator.items) }}
+
+                {{ pagination(paginator) }}
+            </div>
+
+            <div class="col-md-4">
+                <ul class='topic-tips'>
+                    <li>话题讨论</li>
+                    <li>建议与反馈</li>
+                    <li>推荐文学家/作品</li>
+                    <li>作品勘误</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

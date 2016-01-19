@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% from "_utils.html" import pagination %}
+
+{% block page_title %}管理摘录{% endblock %}
+{% block page_js %}
+    <script src="/pages/admin/quotes/quotes.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/admin/quotes/quotes.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class='row'>
+            <div class='col-md-12'>
+                <h2>管理摘录</h2>
+
+                <table class='table table-striped'>
+                    <thead>
+                    <tr>
+                        <th>摘录</th>
+                        <th>作品</th>
+                        <th>文学家</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for q in paginator.items %}
+                        <tr>
+                            <td>
+                                {{ q.quote }}
+                            </td>
+
+                            <td>
+                                <a target="_blank" href="{{ url_for('work.view', work_id=q.work_id) }}">
+                                    {{ q.work.title }}
+                                </a>
+                            </td>
+
+                            <td>
+                                <a target="_blank" href="{{ url_for('author.view', author_id=q.author.id) }}">
+                                    {{ q.author.name }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                {{ pagination(paginator) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

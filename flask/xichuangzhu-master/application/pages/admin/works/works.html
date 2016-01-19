@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+{% from "_utils.html" import pagination %}
+
+{% block page_title %}管理作品{% endblock %}
+{% block page_js %}
+    <script src="/pages/admin/works/works.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/admin/works/works.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <h2>管理作品</h2>
+
+        <table class='table table-striped'>
+            <thead>
+            <tr>
+                <th>作品</th>
+                <th>作者</th>
+                <th>摘录</th>
+                <th>百科</th>
+                {#                <th>注释</th>#}
+                <th>评析</th>
+                <!-- <th>点评</th>
+                <th>图片</th> -->
+                <th>操作</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for w in paginator.items %}
+                {% if not w.tags or '<' not in w.content or w.intro == '' %}
+                    <tr>
+                        <td>
+                            [{{ w.type.cn }}]
+                            <a target="_blank" href="{{ url_for('work.view', work_id=w.id) }}">
+                                {{ w.full_title|truncate(12, True) }}
+                            </a>
+                            {% if w.highlight %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ w.author.name }}</td>
+
+                        {#                        <td {% if not w.tags %}class='danger'{% endif %}>#}
+                        {#                            <ul class="work-tags">#}
+                        {#                                {% if not w.tags %}#}
+                        {#                                    <a title="为《{{ w.full_title }}》添加标签" target="_blank"#}
+                        {#                                       class="btn btn-sm btn-default" href="#">#}
+                        {#                                        <span class="glyphicon glyphicon-tags"></span>#}
+                        {#                                    </a>#}
+                        {#                                {% else %}#}
+                        {#                                    {% for t in w.tags %}#}
+                        {#                                        <li>#}
+                        {#                                            <a href="{{ url_for('work.tag', tag_id=t.tag.id) }}">#}
+                        {#                                                {{ t.tag.title }}#}
+                        {#                                            </a>#}
+                        {#                                        </li>#}
+                        {#                                    {% endfor %}#}
+                        {#                                {% endif %}#}
+                        {#                            </ul>#}
+                        {#                        </td>#}
+
+                        {% set quotes_num = w.quotes.count() %}
+                        <td {% if not quotes_num %}class='danger'{% endif %}>
+                            {{ quotes_num }}
+                        </td>
+
+                        {#                        <td {% if '<' not in w.content %}class='danger'{% endif %}>#}
+                        {#                            {% if '<' not in w.content %}#}
+                        {#                                <a title="编辑《{{ w.full_title }}》" target="_blank" class="btn btn-sm btn-default"#}
+                        {#                                   href="{{ url_for('work.edit', work_id=w.id) }}"><span#}
+                        {#                                        class="glyphicon glyphicon-edit"></span></a>#}
+                        {#                            {% endif %}#}
+                        {#                        </td>#}
+
+                        <td {% if not w.baidu_wiki %}class="danger"{% endif %}>
+                            {% if w.baidu_wiki %}
+                                <a href="{{ w.baidu_wiki }}" target="_blank">
+                                    <span class="fa fa-external-link"></span>
+                                </a>
+                            {% endif %}
+                        </td>
+
+                        <td {% if not w.intro %}class='danger'{% endif %}>
+                        </td>
+
+                        <td>
+                            <a title="编辑《{{ w.full_title }}》" target="_blank" class="btn btn-sm btn-default"
+                               href="{{ url_for('work.edit', work_id=w.id) }}"><span
+                                    class="glyphicon glyphicon-edit"></span></a>
+                        </td>
+
+                        <!-- <td {% if w.reviews.count() == 0 %}class='danger'{% endif %}>
+                          {% if w.reviews.count() == 0 %}
+                          <a title="点评《{{ w.full_title }}》" target="_blank" class='btn btn-sm btn-default' href="
+                                {{ url_for('work.add_review', work_id=w.id) }}"><span class='glyphicon glyphicon-pencil'></span></a>
+                          {% endif %}
+                       </td>
+
+                       <td {% if w.images.count() == 0 %}class='danger'{% endif %}>
+                          {% if w.images.count() == 0 %}
+                          <a title="为《{{ w.full_title }}》添加书法作品" target="_blank" class='btn btn-sm btn-default' href="
+                                {{ url_for('work.add_image', work_id=w.id) }}"><span class='glyphicon glyphicon-picture'></span></a>
+                          {% endif %}
+                       </td> -->
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {{ pagination(paginator) }}
+    </div>
+{% endblock %}

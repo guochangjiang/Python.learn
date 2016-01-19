@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% from "_form.html" import field_errors, horizontal_field %}
+
+{% block page_title %}添加朝代{% endblock %}
+{% block page_js %}
+    <script src="/pages/dynasty/add/add.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/dynasty/add/add.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <form id="form-add-dynasty" class="form-horizontal" method="post"
+              action="{{ url_for('dynasty.add') }}">
+            <fieldset>
+                <legend>添加朝代</legend>
+
+                {{ form.csrf_token }}
+
+                {{ horizontal_field(form.name, length=3) }}
+
+                <div class="form-group">
+                    {{ form.start_year.label(class="col-md-2 control-label") }}
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            {{ form.start_year(class="form-control") }}
+                            <span class="input-group-addon">年</span>
+                        </div>
+                        {{ field_errors(form.start_year) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form.end_year.label(class="col-md-2 control-label") }}
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            {{ form.end_year(class="form-control") }}
+                            <span class="input-group-addon">年</span>
+                        </div>
+                        {{ field_errors(form.end_year) }}
+                    </div>
+                </div>
+
+                {{ horizontal_field(form.intro, rows=8) }}
+
+                <legend>繁体</legend>
+
+                {{ horizontal_field(form.name_tr, length=3) }}
+
+                {{ horizontal_field(form.intro_tr, rows=8) }}
+
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-2">
+                        <input type="submit" value="提交" class="btn btn-sm btn-primary"/>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

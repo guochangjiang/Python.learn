@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="1800" version="1.1" width="1000" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs />
+
+    <g font-size="14">
+    <text x="10" y="20">This is a Test!</text>
+    <text fill="black" font-family="sans-serif" font-size="25px" text-anchor="middle" x="450" y="20">Test!</text>
+    <text fill="red" font-family="sans-serif" font-size="25px" text-anchor="start" x="450" y="20">Test!</text>
+    <text fill="green" font-family="sans-serif" font-size="25px" text-anchor="end" x="450" y="20">Test!</text>
+    <text fill="blue" font-family="sans-serif" font-size="25px" text-anchor="inherit" x="450" y="20">Test!</text>
+    <text dominant-baseline="auto" fill="blue" font-family="sans-serif" font-size="25px" x="0" y="100">auto	##abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text dominant-baseline="use-script" fill="blue" font-family="sans-serif" font-size="25px" x="0" y="150">use-script	##abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text dominant-baseline="no-change" fill="blue" font-family="sans-serif" font-size="25px" x="0" y="200">no-change	##abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text dominant-baseline="reset-size" fill="blue" font-family="sans-serif" font-size="25px" x="0" y="250">reset-size	##abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text dominant-baseline="ideographic" fill="blue" font-family="sans-serif" font-size="25px" x="0" y="300">ideographic	##abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text dominant-baseline="alphabetic" fill="blue" font-family="sans-serif" font-size="25px" x="0" y="350">alphabetic	##abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text dominant-baseline="hanging" fill="blue" font-family="sans-serif" font-size="25px" x="0" y="400">hanging	##abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text dominant-baseline="mathematical" fill="blue" font-family="sans-serif" font-size="25px" x="0" y="450">mathematical	##abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text dominant-baseline="central" fill="blue" font-family="sans-serif" font-size="25px" x="0" y="500">central	##abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text dominant-baseline="middle" fill="blue" font-family="sans-serif" font-size="25px" x="0" y="550">middle	##abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text dominant-baseline="text-after-edge" fill="blue" font-family="sans-serif" font-size="25px" x="0" y="600">text-after-edge	##abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text dominant-baseline="text-before-edge" fill="blue" font-family="sans-serif" font-size="25px" x="0" y="650">text-before-edge	##abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text dominant-baseline="inherit" fill="blue" font-family="sans-serif" font-size="25px" x="0" y="700">inherit	##abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text x="10" y="750 755 760 765 770">This is a Test</text>
+    <text x="5 10 20 25 30 100" y="800">This is a Test</text>
+    <text font-size="1.0em" x="10" y="830">A<tspan fill="red" font-size="1.5em"> Word</tspan>
+    <tspan fill="green" font-size="0.7em"> is a Word!</tspan>
+    </text>
+    <text x="10" y="870">This is a Test</text>
+    <text dx="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" fill="brown" x="10" y="890">ThisisaTest</text>
+    <text dy="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" fill="blue" x="10" y="910">ThisisaTest</text>
+    <text dx="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" dy="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" fill="red" x="10" y="930">ThisisaTest</text>
+    <text rotate="90" x="10" y="950">This is a Test</text>
+    </g>
+
+      <line stroke="red" x1="0" x2="1000" y1="20" y2="20" />
+      <line stroke="red" x1="0" x2="1000" y1="100" y2="100" />
+      <line stroke="red" x1="0" x2="1000" y1="150" y2="150" />
+      <line stroke="red" x1="0" x2="1000" y1="200" y2="200" />
+      <line stroke="red" x1="0" x2="1000" y1="250" y2="250" />
+      <line stroke="red" x1="0" x2="1000" y1="300" y2="300" />
+      <line stroke="red" x1="0" x2="1000" y1="350" y2="350" />
+      <line stroke="red" x1="0" x2="1000" y1="400" y2="400" />
+      <line stroke="red" x1="0" x2="1000" y1="450" y2="450" />
+      <line stroke="red" x1="0" x2="1000" y1="500" y2="500" />
+      <line stroke="red" x1="0" x2="1000" y1="550" y2="550" />
+      <line stroke="red" x1="0" x2="1000" y1="600" y2="600" />
+      <line stroke="red" x1="0" x2="1000" y1="650" y2="650" />
+      <line stroke="red" x1="0" x2="1000" y1="700" y2="700" />
+
+    <g fill="black" font-family="sans-serif" font-size="20" id="text.group">
+    <text x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-3)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-6)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-9)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-12)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-15)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-18)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-21)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-24)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-27)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-30)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-33)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-36)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-39)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-42)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-45)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-48)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-51)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-54)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-57)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-60)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-63)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-66)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-69)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-72)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-75)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-78)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-81)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-84)" x="10" y="970">PhD</text>
+    <text transform="translate(10,0)rotate(-87)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-3)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-6)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-9)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-12)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-15)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-18)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-21)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-24)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-27)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-30)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-33)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-36)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-39)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-42)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-45)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-48)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-51)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-54)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-57)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-60)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-63)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-66)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-69)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-72)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-75)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-78)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-81)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-84)" x="10" y="970">PhD</text>
+    <text transform="translate(0,50)rotate(-87)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-3)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-6)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-9)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-12)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-15)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-18)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-21)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-24)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-27)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-30)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-33)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-36)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-39)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-42)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-45)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-48)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-51)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-54)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-57)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-60)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-63)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-66)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-69)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-72)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-75)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-78)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-81)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-84)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-200)rotate(-87)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-3)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-6)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-9)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-12)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-15)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-18)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-21)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-24)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-27)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-30)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-33)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-36)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-39)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-42)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-45)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-48)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-51)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-54)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-57)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-60)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-63)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-66)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-69)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-72)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-75)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-78)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-81)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-84)" x="10" y="970">PhD</text>
+    <text transform="translate(0,-800)rotate(-87)" x="10" y="970">PhD</text>
+    </g>
+
+
+    <g transform="translate(300,1200)">
+
+    <g transform="rotate(1)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(11)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(21)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(31)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(41)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(51)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(61)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(71)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(81)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(91)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(101)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(111)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(121)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(131)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(141)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(151)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(161)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(171)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(181)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(191)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(201)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(211)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(221)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(231)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(241)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(251)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(261)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(271)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(281)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(291)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(301)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(311)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(321)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(331)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(341)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+
+    <g transform="rotate(351)">
+    <text fill="black" font-size="20" x="0" y="0">This is a rotation test1</text>
+    </g>
+
+    </g>
+
+    <text fill="red" font-size="20" transform="translate(50, 1200)rotate(30)" x="0" y="0">This is a rotation test2</text>
+    <text fill="red" font-size="20" transform="translate(50, 1200)rotate(50)" x="0" y="0">This is a rotation test2</text>
+    <text fill="red" font-size="20" transform="translate(50, 1200)rotate(70)" x="0" y="0">This is a rotation test2</text>
+      <line stroke="blue" stroke-width="10" transform="translate(50, 1400)rotate(0)" x1="0" x2="150" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(50, 1400)rotate(10)" x1="0" x2="150" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(50, 1400)rotate(20)" x1="0" x2="150" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(50, 1400)rotate(30)" x1="0" x2="150" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(50, 1400)rotate(40)" x1="0" x2="150" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(50, 1400)rotate(50)" x1="0" x2="150" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(50, 1400)rotate(60)" x1="0" x2="150" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(50, 1400)rotate(70)" x1="0" x2="150" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(50, 1400)rotate(80)" x1="0" x2="150" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(50, 1400)rotate(90)" x1="0" x2="150" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(350, 1400)rotate(0)" x1="-100" x2="100" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(350, 1400)rotate(10)" x1="-100" x2="100" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(350, 1400)rotate(20)" x1="-100" x2="100" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(350, 1400)rotate(30)" x1="-100" x2="100" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(350, 1400)rotate(40)" x1="-100" x2="100" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(350, 1400)rotate(50)" x1="-100" x2="100" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(350, 1400)rotate(60)" x1="-100" x2="100" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(350, 1400)rotate(70)" x1="-100" x2="100" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(350, 1400)rotate(80)" x1="-100" x2="100" y1="0" y2="0" />
+      <line stroke="blue" stroke-width="10" transform="translate(350, 1400)rotate(90)" x1="-100" x2="100" y1="0" y2="0" />
+</svg>

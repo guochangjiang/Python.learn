@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% from "_utils.html" import pagination %}
+{% from "work/work_reviews/_work_reviews.html" import render_work_reviews %}
+{% from "user/user_profile/_user_profile.html" import render_user_profile %}
+
+{% block page_title %}{{ user.name }}的点评{% endblock %}
+{% block page_js %}
+    <script src="/pages/user/work_reviews/work_reviews.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/user/work_reviews/work_reviews.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {{ render_user_profile(user) }}
+
+                <h2>点评 / {{ paginator.total }}</h2>
+
+                {{ render_work_reviews(paginator.items) }}
+
+                {{ pagination(paginator) }}
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{% endblock %}

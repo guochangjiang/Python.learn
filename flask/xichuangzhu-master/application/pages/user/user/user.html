@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% from "work/work_reviews/_work_reviews.html" import render_work_reviews %}
+{% from "work/work_images/_work_images.html" import render_work_images %}
+{% from "topic/topics/_topics.html" import render_topics %}
+{% from "user/user_profile/_user_profile.html" import render_user_profile %}
+
+{% block page_title %}{{ user.name }}的个人主页{% endblock %}
+{% block page_js %}
+    <script src="/pages/user/user/user.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/user/user/user.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {{ render_user_profile(user) }}
+
+                {#                <h2>#}
+                {#                    点评#}
+                {#                    <span class='link-more'>#}
+                {#                       <a href="{{ url_for('user.work_reviews', user_abbr=user.abbr) }}">#}
+                {#                           全部 / {{ work_reviews_num }} »</a>#}
+                {#                    </span>#}
+                {#                </h2>#}
+                {##}
+                {#                {{ render_work_reviews(work_reviews) }}#}
+                {##}
+                {#                <h2>#}
+                {#                    话题#}
+                {#                    <span class='link-more'>#}
+                {#                       <a href="{{ url_for('user.topics', user_abbr=user.abbr) }}">#}
+                {#                           全部 / {{ user.topics.count() }} »#}
+                {#                       </a>#}
+                {#                    </span>#}
+                {#                </h2>#}
+                {##}
+                {#                {{ render_topics(topics) }}#}
+
+                <h2>
+                    图片
+                    <span class='link-more'>
+                       <a href="{{ url_for('user.work_images', user_abbr=user.abbr) }}">
+                           全部 / {{ user.work_images.count() }} »
+                       </a>
+                    </span>
+                </h2>
+
+                {{ render_work_images(work_images) }}
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{% endblock %}

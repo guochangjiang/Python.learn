@@ -1,0 +1,71 @@
+﻿<!doctype html public '-//W3C//DTD HTML 4.0 Transitional //EN'>
+<html>
+<head>
+<title>linux下非root用户python3的安装与配置</title>
+<meta charset='UTF-8' />
+<meta name='generator' content='EverEdit' />
+<link href='D:\Program Files\EverEdit\mode\markdown\default.css' rel='stylesheet'></link>
+<link href='D:\Program Files\EverEdit\mode\markdown\prettify.css' rel='stylesheet'></link>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\prettify.js'></script>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\jquery-1.10.2.min.js'></script>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\toc.js'></script>
+</head>
+<body>
+<div id='generated-toc'></div>
+<h2>linux下非root用户python3的安装与配置</h2>
+
+<h3>下载</h3>
+
+<p>首先，从Python官方网站<a href="https://www.python.org/downloads/release">https://www.python.org/downloads/release</a>下载最新版本的python源代码包(如<a href="https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz">python3.5.1.tgz</a>)</p>
+
+<h3>安装</h3>
+
+<p>使用以下命令进行安装：</p>
+
+<pre><code class="bash">tar -zxvf Python-3.5.1.tgz
+cd Python-3.5.1
+./configure --prefix=/home/xxx/programs/Python3  #准备安装的路径，在自己的家目录下
+make &amp;&amp; make install</code></pre>
+
+<h3>将python3添加到环境变量</h3>
+
+<p>为了不影响linux系统自带python2的正常使用，可仅将python3添加自己的环境变量中，命令如下：</p>
+
+<pre><code class="bash">mkdir ~/bin #在家目录创建bin目录
+ln -s /home/xx/programs/Python3/bin/python3.5 /home/xxx/bin/python3
+export PATH=$PATH:/home/xx/programs/Python3/bin &gt;&gt; ~/.bashrc
+export PATH=$PATH:/home/xxx/bin &gt;&gt; ~/.bashrc
+source ~/.bashrc</code></pre>
+
+<h3>安装模块的两种方法</h3>
+
+<h4>方法一：pip</h4>
+
+<p>可以使用安装python3时附带安装的pip3进行命令行在线安装：</p>
+
+<pre><code class="bash">pip3 install module.name</code></pre>
+
+<h4>方法二：下载模块包本地安装</h4>
+
+<p>手动从web上下载模块代码包，如argparse-1.4.0.tar.gz，然后使用以下命令进行安装：</p>
+
+<pre><code class="bash">tar -zxvf argparse-1.4.0.tar.gz
+cd argparse-1.4.0
+python3 setup.py install</code></pre>
+
+<h3>注意</h3>
+
+<p>需要注意的是，在编写python3代码脚本时，需要在其头部添加如下内容以指示该脚本需要使用python3进行解释和运行。</p>
+
+<pre><code class="python">#!/usr/bin/env python3
+#-*- coding: utf-8 -*-</code></pre>
+<script type='text/javascript'>
+$(document).ready(function(){
+  if($('code').length>0){
+    $('code').parent().addClass('prettyprint linenums');
+    prettyPrint();
+};
+});
+</script>
+</body>
+</html>

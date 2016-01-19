@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% from '_utils.html' import render_app_panel %}
+{% from 'work/works/_works.html' import render_works %}
+{% from 'work/work_images/_work_images.html' import render_work_images %}
+{% from 'work/work_reviews/_work_reviews.html' import render_work_reviews %}
+{% from 'author/authors/_authors.html' import render_authors %}
+
+{% block page_title %}西窗烛 | 品味传统文学之美{% endblock %}
+{% block page_js %}
+    <script src="/pages/site/index/index.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/site/index/index.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>
+                    作品
+            <span class='link-more'>
+               <a id="work-refresh">换换</a>
+               <a href="{{ url_for('work.works') }}">更多»</a>
+            </span>
+                </h2>
+
+                <div id="index-works-wap">
+                    {{ render_works(works) }}
+                </div>
+
+                {#                <h2>#}
+                {#                    点评#}
+                {#                    <span class='link-more'>#}
+                {#                       <a href="{{ url_for('work.all_reviews') }}">更多»</a>#}
+                {#                    </span>#}
+                {#                </h2>#}
+                {##}
+                {#                {{ render_work_reviews(work_reviews) }}#}
+
+                <h2>
+                    图片
+                    <span class='link-more'>
+                       <a href="{{ url_for('work.all_images') }}">更多»</a>
+                    </span>
+                </h2>
+
+                {{ render_work_images(work_images) }}
+            </div>
+
+            <div class="col-md-4">
+
+                <h2>
+                    文学家
+            <span class='link-more'>
+               <a href="{{ url_for('author.authors') }}">更多»</a>
+            </span>
+                </h2>
+
+                {{ render_authors(authors) }}
+
+                <h2>五千年</h2>
+
+                <ul id="dynasties-wap" class="clearfix">
+                    {% for dynasty in dynasties %}
+                        <li class='dynasty-item'>
+                            <a href="{{ url_for('dynasty.view', uid=dynasty.id) }}">{{ dynasty.name }}</a>
+                            {% if not loop.last %}
+                                <span>/</span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                {{ render_app_panel() }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

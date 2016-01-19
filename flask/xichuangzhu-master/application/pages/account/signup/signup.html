@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% from "_form.html" import field_errors, horizontal_field %}
+
+{% block page_title %}注册{% endblock %}
+{% block page_js %}
+    <script src="/pages/account/signup/signup.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/account/signup/signup.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+                <h2 class="legend">欢迎来到西窗烛</h2>
+
+                <form id="form-verify-email" class="form-horizontal" method="post"
+                      action="{{ url_for('account.signup', user_id=user_info.id) }}">
+                    <fieldset>
+
+                        {{ form.csrf_token }}
+
+                        <div class="form-group form-group-sm">
+                            <label for="" class="col-md-2 control-label">名号</label>
+
+                            <div class="col-md-4">
+                                <p class="form-control-static">{{ user_info.uid }}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="col-md-2 control-label">签名</label>
+
+                            <div class="col-md-4">
+                                <p class="form-control-static">{{ user_info.signature }}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="col-md-2 control-label">头像</label>
+
+                            <div class="col-md-4">
+                                <p><img src="{{ user_info.large_avatar }}" alt=""/></p>
+                            </div>
+                        </div>
+
+                        {{ horizontal_field(form.email, length=4) }}
+
+                        <div class='form-group'>
+                            <div class="col-md-6 col-md-offset-2">
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-paper-plane"></i> 发送激活邮件
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

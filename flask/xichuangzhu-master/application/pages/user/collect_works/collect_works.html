@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% from "_utils.html" import pagination %}
+{% from "work/works/_works.html" import render_works with context %}
+
+{% block page_title %}作品收藏{% endblock %}
+{% block page_js %}
+    <script src="/pages/user/collect_works/collect_works.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/user/collect_works/collect_works.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>作品收藏 / {{ paginator.total }}</h2>
+
+                {{ render_works(paginator.items) }}
+
+                {{ pagination(paginator) }}
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{% endblock %}

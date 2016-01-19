@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="900" version="1.1" width="900" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs />
+
+    <g fill="black" font-family="sans-serif" font-size="20">
+    <text x="0" y="25">title1</text>
+    <text font-size="30" x="0" y="50">title2</text>
+    </g>
+
+
+    <g fill="none" stroke="green" stroke-width="10">
+      <line x1="50" x2="150" y1="100" y2="100" />
+      <polyline points="50,250 50,300 75,250 100,300 120,250 150,250 150,300" />
+    </g>
+
+</svg>

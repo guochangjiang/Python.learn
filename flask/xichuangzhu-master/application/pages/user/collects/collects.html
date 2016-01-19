@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% from "_utils.html" import pagination %}
+{% from "work/works/_works.html" import render_works with context %}
+{% from "work/work_images/_work_images.html" import render_work_images with context %}
+
+{% block page_title %}我的收藏{% endblock %}
+{% block page_js %}
+    <script src="/pages/user/collects/collects.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/user/collects/collects.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>
+                    作品收藏
+                    {#            <span class='link-more'>#}
+                    {#               <a href="{{ url_for('user.collect_works') }}">#}
+                    {#                  全部 / {{ user.collect_works.count() }} »#}
+                    {#               </a>#}
+                    {#            </span>#}
+                </h2>
+
+                {{ render_works(paginator.items) }}
+
+                {#         <h2>#}
+                {#            图片收藏#}
+                {#            <span class='link-more'>#}
+                {#               <a href="{{ url_for('user.collect_work_images') }}">#}
+                {#                  全部 / {{ user.collect_work_images.count() }} »#}
+                {#               </a>#}
+                {#            </span>#}
+                {#         </h2>#}
+                {##}
+                {#         {{ render_work_images(collect_work_images) }}#}
+
+                {{ pagination(paginator) }}
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{% endblock %}

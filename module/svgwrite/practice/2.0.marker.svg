@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="100%" version="1.1" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <marker id="id1" markerHeight="10" markerWidth="10" refX="5" refY="5">
+      <circle cx="5" cy="5" fill="red" opacity="0.5" r="5" />
+    </marker>
+    <marker id="id2" markerHeight="8" markerWidth="8" refX="4" refY="4">
+      <circle cx="4" cy="4" fill="blue" opacity="0.5" r="4" />
+    </marker>
+    <marker id="id3" markerHeight="12" markerWidth="12" refX="6" refY="6">
+      <circle cx="6" cy="6" fill="green" opacity="0.5" r="6" />
+    </marker>
+  </defs>
+
+      <polyline fill="none" marker-end="url(#id3)" marker-mid="url(#id1)" marker-start="url(#id2)" points="10,10 50,20 70,50 100,30" stroke="black" />
+</svg>

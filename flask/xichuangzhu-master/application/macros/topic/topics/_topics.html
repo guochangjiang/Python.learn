@@ -1,0 +1,23 @@
+{% macro render_topics(topics) %}
+    {% for t in topics %}
+        <div class="topic-item media">
+            <a class="pull-left" href="{{ url_for('user.view', user_abbr=t.user.abbr) }}">
+                <img class="avatar" src="{{ t.user.avatar }}">
+            </a>
+
+            <div class="topic-info media-body">
+                <div class="topic-title">
+                    <a href="{{ url_for('topic.view', topic_id=t.id) }}">{{ t.title }}</a>
+                </div>
+                <div class="topic-extra-info">
+                    <a class="topic-creator"
+                       href="{{ url_for('user.view', user_abbr=t.user.abbr) }}">{{ t.user.name }}</a>
+                    <span class="topic-time">{{ t.create_time|timesince }}</span>
+                </div>
+                {% if t.comments.count() > 0 %}
+                    <div class="topic-comment-num">{{ t.comments.count() }}</div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endmacro %}

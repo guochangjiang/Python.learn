@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% from "_form.html" import horizontal_field %}
+
+{% block page_title %}添加选集{% endblock %}
+{% block page_js %}
+    <script src="/pages/collection/add/add.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/collection/add/add.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <form id="form-add-author" class="form-horizontal" role="form" method="post"
+              action="{{ url_for('collection.add') }}">
+            <fieldset>
+                <legend>添加选集</legend>
+
+                {{ form.csrf_token }}
+
+                {{ horizontal_field(form.name, length=3) }}
+
+                {#                {{ horizontal_field(form.full_name, length=3) }}#}
+
+                {#                {{ horizontal_field(form.abbr, length=3) }}#}
+
+                {{ horizontal_field(form.kind_id) }}
+
+                {{ horizontal_field(form.desc, rows=2) }}
+
+                {{ horizontal_field(form.cover) }}
+
+                {#                {{ horizontal_field(form.link) }}#}
+
+                <legend>繁体</legend>
+
+                {{ horizontal_field(form.name_tr, length=3) }}
+
+                {#                {{ horizontal_field(form.full_name_tr, length=3) }}#}
+
+                {{ horizontal_field(form.desc_tr, rows=2) }}
+
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-2">
+                        <input type="submit" value="提交" class="btn btn-sm btn-primary"/>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

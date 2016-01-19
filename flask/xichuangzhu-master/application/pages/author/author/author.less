@@ -1,0 +1,111 @@
+@import "utils";
+@import "fonts";
+
+#main {
+  .author {
+    h1 {
+      display: inline-block;
+      .font-song;
+    }
+
+    .author-quote {
+      font-size: 12px;
+      font-weight: normal;
+      color: gray;
+      margin-left: 12px;
+      text-decoration: none;
+      display: inline-block;
+    }
+  }
+
+  .wiki-link {
+    font-size: 12px;
+    .font-hei;
+  }
+
+  .author-period {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .works-num-wap {
+    display: inline-block;
+    margin-left: 10px;
+
+    span {
+      font-size: 12px;
+      line-height: 12px;
+      cursor: pointer;
+      margin-right: 3px;
+      padding: 2px 5px 2px 6px;
+      color: gray;
+      letter-spacing: 1px;
+
+      &.active {
+        background-color: #0088cc;
+        color: white;
+      }
+    }
+  }
+
+  .work-item {
+    float: left;
+    display: block;
+    width: 130px;
+    height: 135px;
+    border: 1px solid #E4E4E4;
+    margin: 5px 15px 10px 0;
+    padding: 8px 5px 5px 12px;
+    overflow: hidden;
+    text-decoration: none;
+
+    &.highlight {
+      border-color: #ad1616;
+    }
+
+    &:hover {
+      background-color: #FBFBFB;
+
+      .work-content {
+        color: #333;
+      }
+    }
+
+    .content-wap {
+      height: 112px;
+      overflow: hidden;
+    }
+
+    .work-title {
+      font-size: 14px;
+      padding-bottom: 4px;
+      .font-hei;
+      color: rgb(39, 125, 221);
+      line-height: 22px;
+    }
+
+    .work-content {
+      font-size: 13px;
+      line-height: 22px;
+      color: #666;
+    }
+  }
+
+  .table-quotes {
+    td {
+      position: relative;
+    }
+    .quote {
+      display: block;
+      margin-bottom: 0px;
+      padding: 4px 0;
+      color: #333333;
+    }
+
+    .cmds {
+      position: absolute;
+      right: 8px;
+      top: 11px;
+    }
+  }
+}

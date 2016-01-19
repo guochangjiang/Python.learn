@@ -1,0 +1,149 @@
+@import "fonts";
+
+.work-title {
+  font-size: 25px;
+  line-height: 35px;
+  margin-top: 30px;
+  margin-bottom: 12px;
+  text-align: center;
+  clear: both;
+}
+
+.work-author {
+  text-align: center;
+  margin-bottom: 14px;
+  padding-right: 10px;
+  font-size: 16px;
+}
+
+.work-foreword {
+  font-size: 17px;
+  .font-kai;
+  margin-bottom: 8px;
+  text-indent: 2em;
+  padding: 0 2em;
+
+  &.single-line {
+    padding: 0;
+    text-indent: 0;
+    text-align: center;
+  }
+
+  &.work-shi-foreward {
+    margin-bottom: 12px;
+  }
+}
+
+.work-content {
+  font-size: 16px;
+  margin-bottom: 30px;
+
+  sup {
+    font-family: serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1;
+    margin-left: 2px;
+    padding: 1px 3px;
+    cursor: pointer;
+    color: #8b0000;
+    border-radius: 1px;
+
+    &:hover {
+      background-color: #8b0000;
+      color: #ffffff;
+    }
+  }
+}
+
+// 作品正文布局类型只有2种
+// 居中型、段落缩进型
+.work-layout-center {
+  text-align: center;
+}
+
+.work-layout-indent {
+  text-indent: 2em;
+  line-height: 28px;
+  padding: 0 0.5em;
+
+  p {
+    margin-bottom: 16px;
+  }
+}
+
+// 对于词/曲的排版来说，左右边距需更大，段落间距也稍微大一些
+.work-type-ci.work-layout-indent,
+.work-type-qu.work-layout-indent {
+  padding: 0 2em;
+  line-height: 29px;
+
+  p {
+    margin-bottom: 10px;
+  }
+}
+
+// 对于诗来说，需对其进行重新排版，因此不用居中对齐
+//  .work-type-shi.work-layout-center {
+//    text-align: left;
+//  }
+
+#work-cmds {
+  margin-right: 15px;
+  margin-bottom: 5px;
+}
+
+.work-annotate {
+  div {
+    margin-bottom: 3px;
+
+    .annotate-index {
+      font-family: serif;
+      line-height: 1;
+      vertical-align: text-bottom;
+      color: darkred;
+    }
+  }
+}
+
+.work-version-link {
+  background: white;
+  color: #888;
+  border: 1px solid #AAAAAA;
+  border-radius: 2px;
+  padding: 3px 5px;
+  margin-right: 6px;
+  font-size: 12px;
+  line-height: 1;
+  .font-hei();
+
+  &:hover,
+  &:focus {
+    color: #8b0000;
+    border-color: #8b0000;
+    text-decoration: none;
+  }
+}
+
+.download-ios-app {
+
+}
+
+.other-work-item {
+  margin-bottom: 5px;
+  border-bottom: 1px dashed #DDD;
+  padding-bottom: 5px;
+
+  &:last-child {
+    border: 0;
+  }
+
+  .other-work-title {
+  }
+
+  .other-work-content {
+    font-size: 12px;
+    margin-left: 5px;
+    color: gray;
+  }
+}

@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block page_title %}{{ author.name }} - {{ author.dynasty.name }}{% endblock %}
+{% block page_js %}
+    <script src="/pages/author/author/author.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/author/author/author.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% set admin_permission = permissions.AdminPermission().check() %}
+                {% if admin_permission %}
+                    <div class='btn-group pull-right margin-top-15'>
+                        <a class="btn btn-default btn-sm"
+                           href="{{ url_for('author.edit', author_id=author.id) }}">
+                            <span class="glyphicon glyphicon-edit"></span> 编辑
+                        </a>
+                        <a class="btn btn-default btn-sm"
+                           href="{{ url_for('work.add', author_id=author.id) }}">
+                            <span class="glyphicon glyphicon-file"></span> 添加作品
+                        </a>
+                    </div>
+                {% endif %}
+
+                <div class="author">
+                    <h1>{{ author.name }}</h1>
+
+                    {% if quote %}
+                        <a href="{{ url_for('work.view', work_id=quote.work.id) }}" class="author-quote"
+                           title="《{{ quote.work.title }}》">{{ quote.quote }}</a>
+                    {% endif %}
+                </div>
+
+                <div class='author-period'>
+                    〔<a
+                        href="{{ url_for('dynasty.view', uid=author.dynasty_id) }}">{{ author.dynasty.name }}</a>〕
+                    {% if author.death_year %}
+                        {{ author.birth_year|format_year }} ~ {{ author.death_year|format_year }}
+                    {% endif %}
+                </div>
+
+                <h2>简介</h2>
+
+                <div class='author-introduction'>
+                    {{ author.intro }}
+                    {% if author.baidu_wiki %}
+                        <a href="{{ author.baidu_wiki }}" target="_blank" class="wiki-link" title="百度百科">
+                            <span class="fa fa-external-link"></span>
+                        </a>
+                    {% endif %}
+                </div>
+
+                <h2>
+                    作品
+                    <span class="works-num-wap">
+                       <span data-work-type="all" class="active">全部</span>
+                        {% for t in work_types %}
+                            {% if t.type_num != 0 %}
+                                <span data-work-type="{{ t.WorkType.en }}">{{ t.WorkType.cn }}{{ t.type_num }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                </h2>
+
+                <div class="clearfix">
+                    {% for work in author.works %}
+                        {% set show = admin_permission and work.highlight %}
+                        <a href="{{ url_for('work.view', work_id=work.id) }}"
+                           data-work-type="{{ work.type.en }}"
+                           class="work-item {% if show %}highlight{% endif %}">
+                            <div class="content-wap">
+                                <div class='work-title'>{{ work.full_title }}</div>
+                                <div class='work-content'>{{ work.content|clean_work|truncate(22, True) }}</div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                {% set quotes_count = quotes.count() %}
+                <h2>摘录{% if admin_permission %} / {{ quotes_count }}{% endif %}</h2>
+
+                {% if quotes_count %}
+                    <table class="table table-striped table-quotes">
+                        <tbody>
+                        {% for q in quotes %}
+                            <tr>
+                                <td>
+                                    <a class="quote" target="_blank"
+                                       title="《{{ q.work.full_title }}》"
+                                       href="{{ url_for('work.view', work_id=q.work_id) }}">
+                                        {{ q.quote|truncate(18, true) }}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

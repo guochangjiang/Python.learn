@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% from '_utils.html' import render_app_panel %}
+
+{% block page_title %}关于西窗烛{% endblock %}
+{% block page_js %}
+    <script src="/pages/site/about/about.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/site/about/about.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>西窗烛</h2>
+
+                <p>
+                    何当共剪西窗烛，却话巴山夜雨时。&nbsp;——&nbsp;&nbsp;李商隐&nbsp;《<a target="_blank"
+                                                                     href="{{ url_for('work.view', work_id=10024) }}">夜雨寄北</a>》
+                </p>
+
+                <p><b>关于西窗烛</b></p>
+
+                <p>
+                    不得不承认，中国传统文化的一部分，是对人性和自由的禁锢。五四运动所要摒弃的，是传统中的糟粕。但大江东去的豪放明快、低头弄青梅的婉媚曲折、西窗剪烛的情深意重，每次读到都会有所触动。文学之美，与时代无关。</p>
+
+                <p>“西窗烛”旨在为大家提供一个 <b>围绕传统文学作品的欣赏、点评的网络空间</b>。对于小站的任何意见，欢迎在话题页面发表。</p>
+
+                <p><b>关于作者</b></p>
+
+                <p>
+                    <a href="{{ url_for('user.view', user_abbr='hustlzp') }}" target="_blank">hustlzp</a>，毕业于华中科技大学，Web开发工程师，现居北京。
+                </p>
+
+                <p>联系方式：hustlzp@qq.com</p>
+            </div>
+
+            <div class="col-md-4">
+                {{ render_app_panel() }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

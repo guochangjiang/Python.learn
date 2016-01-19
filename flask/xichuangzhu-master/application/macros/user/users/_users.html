@@ -1,0 +1,16 @@
+{% macro render_users(users) %}
+    {% for u in users %}
+        <div class="user-item clearfix">
+            <a class="user-avatar" href="{{ url_for('user.view', user_abbr=u.abbr) }}">
+                <img class="avatar-sm" src="{{ u.avatar }}"/>
+            </a>
+
+            <div class="user-info">
+                <div class="user-name">
+                    <a href="{{ url_for('user.view', user_abbr=u.abbr) }}">{{ u.name }}</a>
+                </div>
+                <div class="user-signature">{{ u.signature }}</div>
+            </div>
+        </div>
+    {% endfor %}
+{% endmacro %}

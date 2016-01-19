@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% from "_form.html" import field_errors, horizontal_field %}
+{% from "work/upload_work_image/_upload_work_image.html" import render_upload_work_image %}
+
+{% block page_title %}上传图片{% endblock %}
+{% block page_js %}
+    <script src="/pages/work/add_image/add_image.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/work/add_image/add_image.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <h2 class="legend legend-lg">为《{{ work.title }}》添加图片</h2>
+            </div>
+
+            <div class="col-sm-8">
+                <form id="form-add-work" class="form-horizontal" method="post"
+                      action="{{ url_for('work.add_image', work_id=work.id) }}"
+                      enctype="multipart/form-data">
+                    <fieldset>
+
+                        {{ form.csrf_token }}
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">图片</label>
+
+                            <div class="col-md-8 form-control-static">
+                                <img class="preview" src="" alt=""/>
+
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 0%;"></div>
+                                </div>
+                                {{ field_errors(form.image) }}
+                                <button type="button" class="btn btn-default btn-xs" id="btn-upload-work-image">
+                                    选择图片
+                                </button>
+                                {{ form.image }}
+                            </div>
+                        </div>
+
+                        <div class="form-group select-is-original">
+                            <label class="control-label col-md-2">类别</label>
+
+                            <div class="col-md-8 form-control-static">
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-default btn-sm">
+                                        <input type="radio" name="is_original" value="yes"> 原创
+                                    </label>
+                                    <label class="btn btn-default btn-sm active">
+                                        <input type="radio" name="is_original" value="no" checked> 非原创
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-2">
+                                <input type="submit" value="保存" class="btn btn-sm btn-primary"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{ render_upload_work_image() }}
+{% endblock %}

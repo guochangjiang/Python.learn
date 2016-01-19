@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% from "_form.html" import horizontal_field %}
+
+{% block page_title %}添加摘录 - {{ work.title }}{% endblock %}
+{% block page_js %}
+    <script src="/pages/work/add_quote/add_quote.js"></script>{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="/pages/work/add_quote/add_quote.css"/>{% endblock %}
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <form id="form-edit-quote" class="form-horizontal" method="post"
+                      action="{{ url_for('work.add_quote', work_id=work.id) }}">
+                    <fieldset>
+                        <legend>添加摘录</legend>
+                        {{ form.csrf_token }}
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">作品</label>
+
+                            <div class="col-sm-6 form-control-static">
+                                <p>{{ work.author.name }} - {{ work.title }}</p>
+                            </div>
+                        </div>
+
+                        {{ horizontal_field(form.quote) }}
+
+                        <legend>繁体</legend>
+
+                        {{ horizontal_field(form.quote_tr) }}
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-2">
+                                <input type="submit" value="添加" class="btn btn-primary btn-sm"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% macro render_works(works, external_link=False) %}
+    {% for w in works %}
+        {% set show = permissions.AdminPermission().check() and w.highlight %}
+        <div class="work-item">
+            <div class="work-header">
+                <a class="work-type" href="{{ url_for('work.works') }}?type={{ w.type.en }}"
+                   {% if external_link %}target="_blank" {% endif %}>
+                    {{ w.type.cn }}</a>
+                <a class="work-title" href="{{ url_for('work.view', work_id=w.id) }}"
+                   {% if external_link %}target="_blank"{% endif %}>
+                    {{ w.full_title }}</a>
+                <sup class="work-author">
+                    〔<a href="{{ url_for('author.view', author_id=w.author.id) }}"
+                        {% if external_link %}target="_blank"{% endif %}>{{ w.author.name }}</a>〕
+                    {% if show %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% endif %}
+                </sup>
+            </div>
+
+            <div class="work-content">{{ w.content|clean_work|truncate(35, True) }}</div>
+        </div>
+    {% endfor %}
+{% endmacro %}

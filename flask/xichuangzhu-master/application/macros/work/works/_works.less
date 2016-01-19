@@ -1,0 +1,50 @@
+.work-item {
+  margin-bottom: 8px;
+  border-bottom: 1px dashed #DDD;
+  padding-bottom: 8px;
+
+  .work-header {
+    padding: 4px 0 4px 0;
+
+    .work-type {
+      display: inline-block;
+      background-color: lighten(darkred, 5%);
+      padding: 2px;
+      border: 1px solid lighten(darkred, 5%);
+      font-size: 12px;
+      line-height: 12px;
+      font-weight: normal;
+      border-radius: 2px;
+      margin-right: 5px;
+      vertical-align: 1px;
+      text-decoration: none;
+      color: #FBFBFB;
+
+      &:hover {
+        background-color: white;
+        color: lighten(darkred, 5%);
+      }
+    }
+
+    .work-title {
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .work-author {
+      font-size: 12px;
+      font-weight: normal;
+
+      a {
+        color: #333;
+      }
+    }
+  }
+
+  .work-content {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}

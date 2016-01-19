@@ -1,0 +1,12 @@
+{% macro render_work_images(work_images) %}
+    <div class='work-images-wap'>
+        {% for image in work_images %}
+            <a href="{{ url_for('work.image', work_image_id=image.id) }}" class="work-image">
+                <img class='img-responsive' src="{{ image.url }}">
+                {% if image.is_original %}
+                    <span title="原创作品" class="is-original-tag">原</span>
+                {% endif %}
+            </a>
+        {% endfor %}
+    </div>
+{% endmacro %}

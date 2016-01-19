@@ -1,0 +1,36 @@
+@import "utils";
+@import "fonts";
+
+#main {
+  .author-wap {
+    border-top: 1px dashed lightgray;
+    padding-top: 15px;
+
+    .author-dynasty {
+      font-size: 15px;
+      line-height: 15px;
+      color: rgb(29, 86, 172);
+      .font-hei;
+      width: 100px;
+      float: left;
+      display: inline-block;
+      padding-top: 4px;
+    }
+
+    .author-group {
+      list-style: none;
+      margin: 0 0 0 100px;
+
+      li {
+        float: left;
+        margin-bottom: 15px;
+
+        &.author {
+          font-size: 16px;
+          line-height: 20px;
+          width: 120px;
+        }
+      }
+    }
+  }
+}
