@@ -1,0 +1,23 @@
+{% if questions %}
+<ul class="questions">
+    {% for question in questions %}
+    <li class="question">
+        <div class="question-content">
+            <div class="question-body">
+                <a class="question-link" href="{{ url_for('.question', id=question.id) }}">{{ question.body }}</a>
+            </div>
+
+            {% if question.answers.count() > 0 %}
+            <div class="answer">
+                <div class="answer-count">Answer 1 of {{ question.answers.count() }} • <a href="{{ url_for('.question', id=question.id) }}#answers">View All</a></div>
+                <div class="answer-author">{{ question.answers[0].author.username }}</div>
+                <div class="answer-body">{{ question.answers[0].body }}</div>
+            </div>
+            {% endif %}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<div>No results found for '{{ q }}'</div>
+{% endif %}

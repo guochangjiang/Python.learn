@@ -1,0 +1,15 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% if current_user.can(Permission.ANSWER) %}
+    <div>
+        <form class="form" method="post" role="form"
+              action="{% if new %}{{ url_for('.answer', id=id) }}{% else %}{{ url_for('.edit_answer', id=id) }}{% endif %}">
+            {{ form.hidden_tag() }}
+            {{ wtf.form_errors(form, hiddens="only") }}
+
+            {{ wtf.form_field(form.body) }}
+            {{ wtf.form_field(form.submit, button_map={'submit': 'primary'}) }}
+            <button class="answer-cancel btn btn-link">Cancel</button>
+        </form>
+    </div>
+{% endif %}

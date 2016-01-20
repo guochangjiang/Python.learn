@@ -1,0 +1,10 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Distribution / packaging
+venv/
+.idea/
+tmp/
+.env
+
+*.sqlite

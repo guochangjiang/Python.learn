@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Flaskq{% endblock %}
+
+{% block page_content %}
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Ask</h4>
+            </div>
+            <div class="modal-body">
+                {% if current_user.can(Permission.ASK) %}
+                    {{ wtf.quick_form(form, button_map={'submit': 'primary'}) }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="acvitity-tabs">
+    <ul class="nav nav-tabs">
+        <li{% if not show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_all') }}">All</a></li>
+        {% if current_user.is_authenticated %}
+        <li{% if show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_followed') }}">Followers</a></li>
+        {% endif %}
+    </ul>
+    {% include "_activities.html" %}
+</div>
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.index') }}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='comment.js') }}"></script>
+<script src="{{ url_for('static', filename='answer.js') }}"></script>
+<script src="{{ url_for('static', filename='vote.js') }}"></script>
+<script src="{{ url_for('static', filename='more.js') }}"></script>
+<script src="{{ url_for('static', filename='popover.js') }}"></script>
+{% endblock %}

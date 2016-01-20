@@ -1,0 +1,77 @@
+Changes
+=======
+0.5.2
+-----
+fix complement (@mruffalo)
+
+0.5.0
+-----
+python 3 compatibility thanks to mruffalo
+
+0.4.5
+-----
+pyfasta split can handle > 52 files. (thanks Devtulya)
+
+0.4.4
+-----
+fix pyfasta extract
+
+0.4.3
+-----
+Add 0 or 1-based intervals in sequence() thanks @jamescasbon
+
+0.4.2
+-----
+update for latest numpy (can't close memmap)
+
+0.4.1
+-----
+check for duplicate headers.
+
+0.4.0
+-----
+* add key_fn kwarg to constuctor
+
+0.3.9
+-----
+* only require 'r' (not r+) for memory map.
+
+0.3.8
+-----
+* clean up logic for mixing inplace/non-inplace flattened files.
+  if the inplace is available, it is always used. 
+
+0.3.6/7
+-------
+* dont re-flatten the file every time!
+* allow spaces before and after the header in the orginal fasta.
+
+0.3.5
+-----
+
+* update docs in README.txt for new CLI stuff.
+* allow flattening inplace.
+* get rid of memmap (results in faster parsing).
+
+0.3.4
+-----
+
+* restore python2.5 compatiblity.
+* CLI: add ability to exclude sequence from extract
+* CLI: allow spliting based on header.
+
+0.3.3
+-----
+
+* include this file in the tar ball (thanks wen h.)
+
+0.3.2
+-----
+
+* separate out backends into records.py
+
+* use nosetests (python setup.py nosetests)
+
+* add a TCRecord backend for next-gen sequencing availabe if tc is (easy-)installed.
+
+* improve test coverage.
