@@ -29,19 +29,19 @@ import argparse
 from Bio import SeqIO
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-i", "-in", "--input", metavar="filename", dest="input_file", type=str , help="fasta file to input")
-parser.add_argument("-o", "-out", "--output", metavar="filename", dest="out_file", type=str , help="fasta file to output")
+parser.add_argument("-i", "-in", "--input", metavar="filename", dest="input_file", type=str , required=True, help="fasta file to input")
+parser.add_argument("-o", "-out", "--output", metavar="filename", dest="out_file", type=str , required=True, help="fasta file to output")
 parser.add_argument("-v", "--version", action='version', help="The version of this program.", version = "Version: " + __version__)
-parser.add_argument("-name", "--name", metavar="keyword", dest="sequence name", type=str, help="the keyword of the sequence name")
+parser.add_argument("-name", "--name", metavar="keyword", dest="sequence_name", type=str, required=True, help="the keyword of the sequence name")
 args = parser.parse_args()
 
 
-output = open(args.out, 'w')
+output = open(args.out_file, 'w')
 
 print()
-for seq_record in SeqIO.parse(args.input, "fasta"):
+for seq_record in SeqIO.parse(args.input_file, "fasta"):
     #print("Processing", seq_record.id, "............")
-    if re.match(args.name, seq_record.id):
+    if re.match(args.sequence_name, seq_record.id):
         output.write(">")
         output.write(seq_record.id)
         output.write("\n")

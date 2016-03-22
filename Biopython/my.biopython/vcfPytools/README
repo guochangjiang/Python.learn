@@ -1,0 +1,309 @@
+-------------------------------------------------------------------------------
+README: vcfPytools
+-------------------------------------------------------------------------------
+
+vcfPytools is a set of tools in python for manipulation vcf v4.0 files.
+
+-------------------------------------------------------------------------------
+Available tools:
+-------------------------------------------------------------------------------
+
+	annotate - annotate a vcf file. (dbsnp, hapmap)
+	extract - extract reads from a specified region.
+	filter - filter the vcf file.
+	intersect - generate the intersection of two vcf files.
+	merge - merge any number of vcf files.
+	multi - calculate Wenn diagram sections from vcf files.
+	sort - sort a vcf file
+	stats - generate statistics on defined parameters.
+	union - generate the union of two vcf files.
+	unique - generate a vcf file of the unique records in a vcf file.
+	validate - validate a vcf file.
+
+-------------------------------------------------------------------------------
+General information:
+-------------------------------------------------------------------------------
+
+  The tools in vcfPytools are written to try and minimise the memroy
+usage.  As a result, they are not necessarily as quick or as efficient
+as they could be.
+
+  All of the tools can accept a piped vcf as input.  This means that
+the filter tool could be used, for example, and the output piped into
+another instance of vcfPytools.  If the input is coming from a pipe, the
+input vcf file must be listed as "stdin" and must be the first of the
+defined input files.
+
+  If no output file is defined, the output will be sent to stdout.
+
+-------------------------------------------------------------------------------
+annotate:
+-------------------------------------------------------------------------------
+
+python vcfPytools.py annotate [options]
+
+options:
+	--in (-i): 	input vcf file
+	--out (-o):	output vcf file
+	--hapmap (-m):	input hapmap vcf file
+	--dbsnp (-d):	input dbSNP vcf file
+
+  Currently, either a hapmap or a dbsnp file should be provided, not both.  It
+is simple to pipe the result of dbsnp annotation back into the annotation tool
+to provide annotation of both.
+
+  --dbsnp (-d) will annotate the vcf file with dbSNP rsid values.  The input 
+dbSNP file must also be in vcf v4.0 format.  Only dbSNP entries with VC=SNP are
+included.
+
+  --hapmap (-m) annotates the vcf file info string to include HM3 if the record
+is included hapmap.  If the ref/alt values do not match the hapmap file, the
+info string will be populated with HM3A.
+
+-------------------------------------------------------------------------------
+extract:
+-------------------------------------------------------------------------------
+
+python vcfPytools.py extract [options]
+
+options:
+	--in (-i):			input vcf file
+	--out (-o):			output vcf file
+	--discard-info (-d):		discard records containing this field
+        --keep-info (-k):		only keep records containing this field
+        --pass-filter (-p):		discard records with a failed filter
+	--keep-quality (-q):		only keep records with specified quality
+	--region (-r):			extract records from region
+	--reference-sequence (-s):	extract records from reference sequence
+
+  Option --discard-info (-d) ensures that all records containing this value in
+the info field will not be included in the output file.  This cannot be used
+in conjunction with --keep-info to avoid conflict.
+
+  Option --keep-info (-k) allows all records to be removed unless they contain
+this value in the info field.
+
+  Option --pass-filter (-p) will only output records that have the filter field
+populated with PASS.  All filtered records or records that haven't undergone
+filtering (filter=.) will be discarded.
+
+  Option --keep-quality (-q) allows only records with specified quality values
+to be retained.  This requires two arguments: the quality value and a logical
+operator (eq - equals, le - less than or equal to, lt - less than, ge - greater
+than or equal to , gt - greater than) to determine which records to keep.  For
+example:
+
+  python vcfPytools.py extract --in <VCF> --keep-quality 90 ge
+
+  will retain all records that have a quality of 90 or greater.
+
+  Option --region (-r) outputs all records from the specified region
+from the input vcf file into the output vcf file.  The format of the
+region is ref:start..end, where the start and end coordinates are 1-based.
+
+  Option --ref (-s) outputs all records from the specified reference
+sequence from the input vcf file into the output vcf file.
+
+-------------------------------------------------------------------------------
+filter:
+-------------------------------------------------------------------------------
+
+python vcfPytools.py filter [options]
+
+options:
+	--in (-i):			input vcf file
+	--out (-o):			output vcf file
+	--quality (-q):			filter on defined quality score
+	--info (-n):			filter on entries in the info string
+	--remove-genotypes (-r):	strip genotype information from file
+
+  Option --quality (-q) will check the variant quality for each record
+and if it is below the defined value, the filter field will be
+populated with the filter entry Q[value].
+
+  Any value in the info string can be used for filtering by using the
+--info (-n) command line option.  This option takes three values: the
+info string tag, the cutoff value and whether to filter out those records
+with less than (lt) or greater than (gt) this value.  For example:
+
+  --info DP 10 lt 
+
+  would filter out all varianta with a depth (DP) less than 10 and the 
+filter field would be populated with DP10.
+
+  This command line argument can be defined as many times as required.
+
+-------------------------------------------------------------------------------
+intersect:
+-------------------------------------------------------------------------------
+
+python vcfPytools.py intersect [options]
+
+options:
+	--in (-i):		input vcf files
+        --bed (-b):		input bed file
+	--out (-o):		output vcf file
+        --priority-file (-f):	output record from this file
+
+  Two input files are required as input and the intersection of
+these two files is generated and sent to the output.  These files must
+be sorted by genomic coordinate to function correctly, although the
+reference sequence order is no important.
+
+  The intersection can be calculated on two vcf files or a vcf and a bed
+file.
+
+  If the --priority-file (-f) argument is set (this must be equal to one
+of the input vcf files), then the record written to the output will come
+from this file.  If this argument is not set, the record with the
+highest quality is written out.
+
+  If the --priority-file (-f) argument is set to "merge", the data from both
+files will be included in the resulting file seperated by a "/".  If using this
+function, other tools may, currently, no longer function as they cannot all
+handle the multiple sets of data.
+
+-------------------------------------------------------------------------------
+merge:
+-------------------------------------------------------------------------------
+
+python vcfPytools.py merge [options]
+
+options:
+	--in (-i):	input vcf files
+	--out (-o):	output vcf file
+
+  Any number of input vcf files are merged into a single file.  This is
+achieved by appending all the files to a single output and so if the
+input files contain records for the same reference sequence, the
+resulting output file will not be sorted.
+
+-------------------------------------------------------------------------------
+multi:
+-------------------------------------------------------------------------------
+
+python vcfPytools.py multi [options]
+
+options:
+	--in (-i):	list of input files and identifiers
+
+  Given a list of input files and identifiers, multi will generate and execute
+command lines to calculate the intersections and unique fractions of a set of
+vcf files.  The identifiers are used to construct the output file names. For
+example, the command line:
+
+  python vcfPytools.py multi --in fileA.vcf A --in fileB.vcf B --in fileC.vcf C
+
+would generate a set of vcf files representing all of the elements of a Wenn
+diagram.  The files that would result (the names being constructed from the
+identifiers, A, B and C) would be:
+
+  variantsFrom.A.B.C.vcf:	interection of all three files
+  variantsFrom.A.B.vcf:		those records in A and B, but not C
+  variantsFrom.B.C.vcf:		those records in B and C, but not A
+  variantsFrom.A.C.vcf:		those records in A and C, but not B
+  variantsFrom.A.vcf:		those records unique to A
+  variantsFrom.B.vcf:		those records unique to B
+  variantsFrom.C.vcf:		those records unique to C
+
+  The number of input files must be at least two.
+
+-------------------------------------------------------------------------------
+sort:
+-------------------------------------------------------------------------------
+
+python vcfPytools.py sort [options]
+
+options:
+	--in (-i):	input vcf file
+	--out (-o):	output vcf file
+
+  The input vcf file is sorted by genomic coordinates.
+
+-------------------------------------------------------------------------------
+stats:
+-------------------------------------------------------------------------------
+
+python vcfPytools.py stats [options]
+
+options:
+	--in (-i):		input vcf file
+	--out (-o):		output statistics file
+        --distributions (-d):	calculate defined distributions
+	--filter-pass (-f):	only consider records that PASS
+	--plot (-p):		plot distributions
+	--quality (-q)		calculate distribution of quality values
+
+  Generate statistics from the vcf file.  If only the input file is
+specified, the stats tool calculates statistics relating to the ts/tv
+ratio and dbSNP membership for all reference sequences, filters and
+totals.  The dbSNP percentage is only calculated if the vcf file is
+annotated with dbSNP rsid values.  The dbsnp tool can be used to perform
+this annotation.  The outputted distributions keep track of dbSNP
+membership and transitions/transversions.
+
+  The --distributions (-d) argument allows distributions to be created
+for the specified info field.  As many distributions as there are info
+strings can be requested.  --distriutions all will create distributions
+for all of the fields in the info string.
+
+  Including the --filter-pass (-f) ensures that distributions are only
+built using records that are listed as "PASS", thus omitting all
+filtered records.
+
+  The --plot (-p) argument will use R to generate plots for the requested
+distributions.
+
+-------------------------------------------------------------------------------
+union:
+-------------------------------------------------------------------------------
+
+python vcfPytools.py union [options]
+
+options:
+	--in (-i):		input vcf files
+	--out (-o):		output vcf file
+        --priority-file (-f):	output record from this file
+	--pass-filter (-p):	only output records that pass filters
+
+  Generate the union of the two input vcf files.  The comments included
+in the explanation of the intersection tool are applicable to this tool.
+
+-------------------------------------------------------------------------------
+unique:
+-------------------------------------------------------------------------------
+
+python vcfPytools.py unique [options]
+
+options:
+	--in (-i):	input vcf files
+	--out (-o):	output vcf file
+	--pass-filter (-p):	only output records that pass filters
+
+  Output the records that are unique to the first inputted vcf file
+when compared with another vcf file.
+
+-------------------------------------------------------------------------------
+validate:
+-------------------------------------------------------------------------------
+
+python vcfPytools.py validate [options]
+
+options:
+	--in (-i):	input vcf file
+	--out (-o):	output vcf file
+
+  Validate the vcf file.  This performs the following checks:
+
+1. Check that the vcf file is sorted.  The order of the reference
+sequences is not important, but all entries for a reference sequence
+must appear together and be sorted by genomic coordinate within this
+block.
+
+2. All info string entries are checked with the information in the
+header to ensure that there are the correct number and type of values.
+
+3. Genotype fields are checked to ensure that each listed sample has a
+genotype and that the data is consistent with the format string for that
+record.  All of the genotype entries are also checked to ensure that
+they are consistent with the description in the header.

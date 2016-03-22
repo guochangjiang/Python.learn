@@ -1,0 +1,165 @@
+﻿<!doctype html public '-//W3C//DTD HTML 4.0 Transitional //EN'>
+<html>
+<head>
+<title>2.base.structure</title>
+<meta charset='UTF-8' />
+<meta name='generator' content='EverEdit' />
+<link href='D:\Program Files\EverEdit\mode\markdown\default.css' rel='stylesheet'></link>
+<link href='D:\Program Files\EverEdit\mode\markdown\prettify.css' rel='stylesheet'></link>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\prettify.js'></script>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\jquery-1.10.2.min.js'></script>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\toc.js'></script>
+</head>
+<body>
+<div id='generated-toc'></div>
+<h2>第2章 程序的基本结构</h2>
+
+<p>===================</p>
+
+<h3>2.1 初始化</h3>
+
+<p>所有Flask程序都必须创建一个<strong>程序示例</strong>。WSGI将请求转交给该对象处理。
+程序示例是<code>Flask类</code>的对象。创建方式如下：</p>
+
+<pre><code class="python">from flask import Flask
+app = Flask(__name__)</code></pre>
+
+<blockquote>
+  <p>Flask类构造函数只有一个必须指定的参数，即程序主模块的名字，多数情况下是<code>__name__</code>变量。</p>
+</blockquote>
+
+<h3>2.2 路由和视图函数</h3>
+
+<p>客户端（例如 Web 浏览器）把<code>请求</code>发送给 Web 服务器， Web 服务器再把请求发送给 Flask
+程序实例。处理 URL 和函数之间关系的程序称为<code>路由</code>。</p>
+
+<p>使用程序实例提供的 app.route 修饰器定义路由：</p>
+
+<pre><code class="python">@app.route("/")
+def index():
+    return '&lt;h1&gt; Hello World! &lt;h1&gt;'</code></pre>
+
+<blockquote>
+  <p>通过修饰器把函数<code>index()</code>注册为根地址的处理程序。</p>
+</blockquote>
+
+<p><code>index()</code>如此的函数的称为<strong>视图函数</strong>。</p>
+
+<p>定义具有动态名字的路由：</p>
+
+<pre><code class="python">@app.route('/user/&lt;name&gt;')
+def user(name):
+    return '&lt;h1&gt;Hello, %s!&lt;/h1&gt;' % name</code></pre>
+
+<blockquote>
+  <p>路由中的动态部分默认使用字符串，不过也可使用类型定义。例如，路由 /user/<int:id>
+  只会匹配动态片段 id 为整数的 URL。 Flask 支持在路由中使用 int、 float 和 path 类型。</p>
+</blockquote>
+
+<h3>2.3 启动服务器</h3>
+
+<p>使用<code>run方法</code>启动Flask继承的Web服务器：</p>
+
+<pre><code class="python">if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
+
+<blockquote>
+  <p>Flask提供的Web服务器不适合在生产环境中使用。</p>
+</blockquote>
+
+<h3>2.4 完整的程序</h3>
+
+<p>（略）</p>
+
+<h3>2.5 请求-响应循环</h3>
+
+<h4>2.5.1 程序和请求上下文</h4>
+
+<p>为了避免大量可有可无的参数把视图函数弄得一团糟， Flask 使用<code>上下文</code>临时把某些对象
+变为全局可访问。有了上下文，就可以写出下面的视图函数：</p>
+
+<pre><code class="python">from flask import request
+@app.route('/')
+def index():
+    user_agent = request.headers.get('User-Agent')
+    return '&lt;p&gt;Your browser is %s&lt;/p&gt;' % user_agent</code></pre>
+
+<blockquote>
+  <p>Flask 使用上下文让特定的变量在一个线程中全局可访问，与此同时却不会干扰其他线程。</p>
+</blockquote>
+
+<p>在 Flask 中有两种上下文： 程序上下文和请求上下文。</p>
+
+<ul>
+<li>current_app —— 程序上下文 —— 当前激活程序的程序实例</li>
+<li>g —— 程序上下文 —— 处理请求时用作临时存储的对象。每次请求都会重设这个变量</li>
+<li>request —— 请求上下文 —— 请求对象，封装了客户端发出的 HTTP 请求中的内容</li>
+<li>session —— 请求上下文 —— 用户会话，用于存储请求之间需要“记住”的值的词典</li>
+</ul>
+
+<h4>2.5.2 请求调度</h4>
+
+<p>URL 映射是 URL 和视图函数之间的对应关系。
+Flask 使用 <code>app.route</code> 修饰器或者非修饰器形式的 <code>app.add_url_rule()</code> 生成映射。</p>
+
+<p>在Python shell中检查hello.py生成的映射：</p>
+
+<pre><code class="python">(venv) $ python
+&gt;&gt;&gt; from hello import app
+&gt;&gt;&gt; app.url_map
+Map([&lt;Rule '/' (HEAD, OPTIONS, GET) -&gt; index&gt;,
+&lt;Rule '/static/&lt;filename&gt;' (HEAD, OPTIONS, GET) -&gt; static&gt;,
+&lt;Rule '/user/&lt;name&gt;' (HEAD, OPTIONS, GET) -&gt; user&gt;])</code></pre>
+
+<blockquote>
+  <p>URL 映射中的 HEAD、 Options、 GET 是<code>请求方法</code>，由路由进行处理。</p>
+</blockquote>
+
+<h4>2.5.3 请求钩子</h4>
+
+<p>有时在处理请求之前或之后执行代码会很有用。例如，在请求开始时，我们可能需要创
+建数据库连接或者认证发起请求的用户。 为了避免在每个视图函数中都使用重复的代码，
+Flask 提供了注册通用函数的功能， 注册的函数可在请求被分发到视图函数之前或之后
+调用。</p>
+
+<p>请求钩子使用修饰器实现。 Flask 支持以下 4 种钩子：</p>
+
+<ol>
+<li><code>before_first_request</code>：注册一个函数，在处理第一个请求之前运行。</li>
+<li><code>before_request</code>：注册一个函数，在每次请求之前运行。</li>
+<li><code>after_request</code>：注册一个函数，如果没有未处理的异常抛出，在每次请求之后运行。</li>
+<li><code>teardown_request</code>：注册一个函数，即使有未处理的异常抛出，也在每次请求之后运行。</li>
+</ol>
+
+<blockquote>
+  <p>在请求钩子函数和视图函数之间共享数据一般使用上下文全局变量 g。例如， before_
+  request 处理程序可以从数据库中加载已登录用户，并将其保存到 g.user 中。随后调用视
+  图函数时，视图函数再使用 g.user 获取用户。</p>
+</blockquote>
+
+<h4>2.5.4 响应</h4>
+
+<p>Flask 调用视图函数后，会将其返回值作为响应的内容。大多数情况下，响应就是一个简
+单的字符串，作为 HTML 页面回送客户端。</p>
+
+<p>TTP 响应中一个很重要的部分是状态码， Flask 默认设为 200，这个代码表明请求已经被成功处理。下述视图函数返回一个 400 状态码，表示请求无效：</p>
+
+<pre><code class="python">@app.route("/")
+def index():
+    return '&lt;h1&gt;Bad Request&lt;/h1&gt;', 400</code></pre>
+
+<p>Flask 视图函数还可以返回 <code>Response 对象</code>。
+<code>make_response()</code> 函数可接受 1 个、 2 个或 3 个参数（和视图函数的返回值一样），并
+返回一个 Response 对象。下例创建了一个响应对象，然后设置了 cookie：</p>
+
+<p>&#8220;&#8216;python</p>
+<script type='text/javascript'>
+$(document).ready(function(){
+  if($('code').length>0){
+    $('code').parent().addClass('prettyprint linenums');
+    prettyPrint();
+};
+});
+</script>
+</body>
+</html>

@@ -17,23 +17,24 @@ make && make install
 为了不影响linux系统自带python2的正常使用，可仅将python3添加自己的环境变量中，命令如下：
 
 ```bash
+export "PATH=\$PATH:/home/xx/programs/Python3/bin" >> ~/.bashrc
+或者
 mkdir ~/bin #在家目录创建bin目录
 ln -s /home/xx/programs/Python3/bin/python3.5 /home/xxx/bin/python3
-export PATH=$PATH:/home/xx/programs/Python3/bin >> ~/.bashrc
-export PATH=$PATH:/home/xxx/bin >> ~/.bashrc
+export "PATH=\$PATH:/home/xxx/bin" >> ~/.bashrc
 source ~/.bashrc
 ```
 
 ### 安装模块的两种方法
 
-#### 方法一：pip
+#### 方法一：pip(会安装到默认路径，一般需要root权限)
 可以使用安装python3时附带安装的pip3进行命令行在线安装：
 
 ```bash
 pip3 install module.name
 ```
 
-#### 方法二：下载模块包本地安装
+#### 方法二：下载模块包本地安装(一般用户可以使用该方法)
 手动从web上下载模块代码包，如argparse-1.4.0.tar.gz，然后使用以下命令进行安装：
 
 ```bash
