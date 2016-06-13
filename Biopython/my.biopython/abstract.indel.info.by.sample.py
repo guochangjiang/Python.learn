@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
-
 """
 从指定的vcf文件中获取其中的insert/deletion位点信息
 并按样品分别输出到指定文件
@@ -12,25 +11,43 @@ import re
 
 #命令行参数处理
 parser = argparse.ArgumentParser()
-parser.add_argument("-i", "-in", "--input", metavar="vcf_filename", dest="input_vcf", type=str , required=True, help="vcf file to analyze")
-parser.add_argument("-o", "-out", "--output", metavar="out_filename", dest="output_file", type=str, help="txt file to output, [default: inputfile.indel.info.txt]")
-parser.add_argument("-v", "--version", action='version', help="The version of this program.", version = "Version: " + __version__)
+parser.add_argument("-i",
+                    "-in",
+                    "--input",
+                    metavar="vcf_filename",
+                    dest="input_vcf",
+                    type=str,
+                    required=True,
+                    help="vcf file to analyze")
+parser.add_argument(
+    "-o",
+    "-out",
+    "--output",
+    metavar="out_filename",
+    dest="output_file",
+    type=str,
+    help="txt file to output, [default: inputfile.indel.info.txt]")
+parser.add_argument("-v",
+                    "--version",
+                    action='version',
+                    help="The version of this program.",
+                    version="Version: " + __version__)
 args = parser.parse_args()
 
-vcf_in = args.input_vcf #输入文件
+vcf_in = args.input_vcf  #输入文件
 try:
     txt_out = args.output_file
 finally:
-    txt_out = vcf_in.replace("vcf", "indel.info.txt")   #输出文件
+    txt_out = vcf_in.replace("vcf", "indel.info.txt")  #输出文件
 
-position_start = -1 #vcf开始位置
-position_end = -1   #vcf终止位置
-indel_pos= []       #记录indel位置
-ref_seq = ""        #获取参看序列
-samples_list = []   #获取样本列表
-indel_info_dict = {}    #记录indel位点详细信息
-flank_len = 10          #从indel位点向两边扩展长度
-print("Processing", "."*25, end = "")
+position_start = -1  #vcf开始位置
+position_end = -1  #vcf终止位置
+indel_pos = []  #记录indel位置
+ref_seq = ""  #获取参看序列
+samples_list = []  #获取样本列表
+indel_info_dict = {}  #记录indel位点详细信息
+flank_len = 10  #从indel位点向两边扩展长度
+print("Processing", "." * 25, end="")
 with open(vcf_in) as IN:
     for line in IN:
         line = line.strip()
@@ -67,7 +84,7 @@ with open(vcf_in) as IN:
                 indel_flag = 1
         if indel_flag == 1:
             indel_pos.append(int(columns[1]))
-            for index in range(9,len(columns)):
+            for index in range(9, len(columns)):
                 info = columns[index]
                 m = re.match("^(.)/(.)", info)
                 base1 = m.group(1)
@@ -81,24 +98,31 @@ with open(vcf_in) as IN:
                 # 3.记录ref序列与所有的indel相关alt序列
                 base1 = int(base1)
                 base2 = int(base2)
-                indel_info_dict[samples_list[index-9]][columns[1]] = []
-                if base1 == 0:#情况1: ref/indel杂合型
+                indel_info_dict[samples_list[index - 9]][columns[1]] = []
+                if base1 == 0:  #情况1: ref/indel杂合型
                     if base_len[base2] > base_len[0]:
-                        indel_info_dict[samples_list[index-9]][columns[1]].append("ref/insertion")
+                        indel_info_dict[samples_list[index - 9]][columns[
+                            1]].append("ref/insertion")
                     if base_len[base2] < base_len[0]:
-                        indel_info_dict[samples_list[index-9]][columns[1]].append("ref/deletion")
-                    indel_info_dict[samples_list[index-9]][columns[1]].append(bases[0])
-                    indel_info_dict[samples_list[index-9]][columns[1]].append(bases[base2])
-                elif base1 == base2 > 0:#情况2: indel纯合型
+                        indel_info_dict[samples_list[index - 9]][columns[
+                            1]].append("ref/deletion")
+                    indel_info_dict[samples_list[index - 9]][columns[
+                        1]].append(bases[0])
+                    indel_info_dict[samples_list[index - 9]][columns[
+                        1]].append(bases[base2])
+                elif base1 == base2 > 0:  #情况2: indel纯合型
                     btype1 = ""
                     if base_len[base1] > base_len[0]:
                         btype1 = "insertion"
                     if base_len[base1] < base_len[0]:
                         btype1 = "deletion"
-                    indel_info_dict[samples_list[index-9]][columns[1]].append(btype1)
-                    indel_info_dict[samples_list[index-9]][columns[1]].append(bases[0])
-                    indel_info_dict[samples_list[index-9]][columns[1]].append(bases[base1])
-                else:#情况3: indel杂合型
+                    indel_info_dict[samples_list[index - 9]][columns[
+                        1]].append(btype1)
+                    indel_info_dict[samples_list[index - 9]][columns[
+                        1]].append(bases[0])
+                    indel_info_dict[samples_list[index - 9]][columns[
+                        1]].append(bases[base1])
+                else:  #情况3: indel杂合型
                     btype1 = ""
                     btype2 = ""
                     if base_len[base1] > base_len[0]:
@@ -109,10 +133,14 @@ with open(vcf_in) as IN:
                         btype2 = "insertion"
                     if base_len[base2] < base_len[0]:
                         btype2 = "deletion"
-                    indel_info_dict[samples_list[index-9]][columns[1]].append(btype1 + "/" + btype2)
-                    indel_info_dict[samples_list[index-9]][columns[1]].append(bases[0])
-                    indel_info_dict[samples_list[index-9]][columns[1]].append(bases[base1])
-                    indel_info_dict[samples_list[index-9]][columns[1]].append(bases[base2])
+                    indel_info_dict[samples_list[index - 9]][columns[
+                        1]].append(btype1 + "/" + btype2)
+                    indel_info_dict[samples_list[index - 9]][columns[
+                        1]].append(bases[0])
+                    indel_info_dict[samples_list[index - 9]][columns[
+                        1]].append(bases[base1])
+                    indel_info_dict[samples_list[index - 9]][columns[
+                        1]].append(bases[base2])
         #获取vcf参考序列
         else:
             ref_seq += columns[3]
@@ -122,7 +150,7 @@ print("\n")
 TxtOut = open(txt_out, "w")
 print("#Sample--position--genotype--ref--alt")
 for key in samples_list:
-    if indel_info_dict[key] != {}:#过滤无indel样本
+    if indel_info_dict[key] != {}:  #过滤无indel样本
         TxtOut.write("Sample:%s\n" % key)
         #按位置对indel信息进行排序
         pos_list = indel_info_dict[key].keys()
@@ -132,18 +160,19 @@ for key in samples_list:
         #按位置对indel信息进行输出
         for pos in pos_list:
             indel_seq = "--".join(indel_info_dict[key][pos][:])
-            print("%s--%s--%s" %(key, pos, indel_seq)) #屏幕简单信息输出
+            print("%s--%s--%s" % (key, pos, indel_seq))  #屏幕简单信息输出
             #获取indel侧翼序列位置信息
             start1 = int(pos) - position_start - flank_len
             end1 = int(pos) - position_start
             ref_len = len(indel_info_dict[key][pos][1])
             start2 = int(pos) - position_start + ref_len
             end2 = int(pos) - position_start + flank_len
-            ref_region = ref_seq[start1:end2] #ref片段
+            ref_region = ref_seq[start1:end2]  #ref片段
             alt_seq = []
             #indel序列获取
             for alt in indel_info_dict[key][pos][2:]:
-                alt_seq.append(ref_seq[start1:end1] + alt + ref_seq[start2:end2])
+                alt_seq.append(ref_seq[start1:end1] + alt + ref_seq[start2:
+                                                                    end2])
             TxtOut.write("Position:%s\n" % pos)
             TxtOut.write("GenoType:%s\n" % indel_info_dict[key][pos][0])
             TxtOut.write("ref sequence:%s\n" % ref_region)

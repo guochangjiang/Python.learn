@@ -1,0 +1,9 @@
+Two main primer design scripts reside in this directory: snp_sequencing_primers.py and cloning-primers.py (or russ-clprimers.py). 
+
+typical usage is python <script.py> <sequence>
+
+custom usages can be found by running each with no arguments, or looking at the head of the code. 
+
+snp_primers designs primers for resequencing a variant found within the center of the sequence (good for dragging and dropping sequences from programs like Geneious)
+
+cloning-primers (previously named russcl-primers.py) will design primers to amplify from the exact termini of the given sequence. Restriction site extensions can be added manually, or by uncommenting a couple lines in the code)

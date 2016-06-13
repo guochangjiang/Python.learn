@@ -1,0 +1,21 @@
+##нд╪Ч:example.gff2
+##length of cds:1290
+##start of domain:88
+##length of domain:153
+##domain:CC
+##start:88bp
+##length:153bp
+3847--3913
+3996--4081
+####domain end
+
+##length of cds:1290
+##start of domain:598
+##length of domain:423
+##domain:NB_ARC
+##start:598bp
+##length:423bp
+4748--5095
+5174--5248
+####domain end
+

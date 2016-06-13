@@ -314,7 +314,7 @@ parser.add_argument(
 parser.add_argument(
         "-C", "--color",
         metavar = "colors",
-            dest = "colors", type=str,
+        dest = "colors", type=str,
         default = '',
         help = "specify colors for certain types, in the format:"
              + "\n\ttype1:color1;type2:color2;...")

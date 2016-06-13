@@ -1,0 +1,2 @@
+do file: example.aln.fas ......
+Process rate: 1 / 3Process rate: 2 / 3Process rate: 3 / 3

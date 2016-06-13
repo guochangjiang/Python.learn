@@ -67,7 +67,7 @@ for base in DNAseq:
     if base in BaseData.keys():
         DNA_rev += BaseData[base]
     else:
-        print ("Abnormal base is found!! It's", base)
+        print("Abnormal base is found!! It's", base)
     #print("DNA_rev: ", DNA_rev)
 
 print("------------\n\nThe complementary sequence:")
@@ -77,6 +77,3 @@ print(DNA_rev)
 pyperclip.copy(DNA_rev)
 
 os.system('pause')
-
-
-

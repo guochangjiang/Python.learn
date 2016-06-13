@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>RAP-DB - Keyword Search</title>
+    <script src="/js/jquery.js" type="text/javascript"></script>
+    <script src="/js/jquery.hint.js" type="text/javascript"></script>
+    <script src="/js/loading_search.js" type="text/javascript"></script>
+    <script src="/js/search.js" type="text/javascript"></script>
+    <script src="/js/top.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/footerFixed.js"></script>
+    <script type="text/javascript" src="/js/advanced_search_on_header.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/search.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/css/print.css" media="print" />
+    </head>
+	<div id="content">
+	<div id="mainBox">
+    <h1>Keyword Search Result</h1>
+      <form method="get" action="/tools/search/run" id="search">
+      	<div class="post03">
+        <fieldset>
+            <input value="Os02g0628600" name="keyword" class="focus editbox_search" id="keyword" type="text" size="50" />
+            <input value="Search" name="submit" id="submit" class="searchBtn03 searchBtnColor01" type="submit" />
+            <input value="Reset" name="reset" id="reset" class="searchBtn03 searchBtnColor03" type="reset" />
+            &nbsp;&nbsp;&nbsp;
+            <a href="/tools/search/advanced" id="advanced_link">Advanced search</a>
+            <input value="on" name="id" type="hidden" />
+            <input value="desc" name="attr" type="hidden" />
+            <input value="cgs" name="attr" type="hidden" />
+            <input value="cgn" name="attr" type="hidden" />
+            <input value="cgss" name="attr" type="hidden" />
+            <input value="cgns" name="attr" type="hidden" />
+        </fieldset>
+        </div>
+      </form>
+      <div id="hit-feat" class="lv2">
+          <h2>Hits &nbsp;&nbsp;&nbsp;<small><font color="black">( Search results <font color="brown">1</font> - <font color="brown">1</font> of <font color="brown">1</font> )</small></h2>
+          <table id="result_table">
+            <tr class="title">
+              <th class="c01">ID</th>
+              <th class="c02">Description</th>
+              <th class="c03">Position</th>
+              <th class="c04">CGSNL Gene Symbol</th>
+              <th class="c05">CGSNL Gene Name</th>
+              <th class="c06">CGSNL Gene Symbol Synonym(s)</th>
+              <th class="c07">CGSNL Gene Name Synonym(s)</th>
+            </tr>
+            <tr class="result">
+              <td class="c01" nowrap="nowrap"><a href="/viewer/gbrowse_details/irgsp1?name=Os02g0628600;feature_id=2509667" target="_blank">Os02g0628600</a></td>
+              <td class="c02">Similar to Auxin response factor 8. (Os02t0628600-01)</td>
+              <td class="c03"><a href="/viewer/gbrowse/irgsp1?name=Os02g0628600;ref=chr02;start=25133526;stop=25136096" target="_blank">chr02:25133526..25136096</a></td>
+              <td class="c04">ARF8</td>
+              <td class="c05">AUXIN RESPONSE FACTOR 8</td>
+              <td class="c06">OsARF8</td>
+              <td class="c07">auxin response factor-8, auxin response factor 8</td>
+            </tr>
+          </table>
+        </div>
+    <div id="forLoading">
+    </div>
+	</div>
+    </div>
+    <!--// Footer //-->
+	<div id="footer" class="footer_size">
+		<div class="footer_content">	
+			<span> &copy; 2013 National Institute of Agrobiological Sciences</span>
+			<ul class="footer_menu">
+				<li><a href="/contact.html">Disclaimer</a>&nbsp;|</li>
+				<li><span class="inactive_link">FAQ</span>&nbsp;|</li>
+				<li><a href="/contact.html">Contact</a>&nbsp;</li>
+				<li><a href="#"><img src="/images/btn_facebook.png" alt ="Facebook" width="27" height="27"></a></li>
+				<li><a href="#"><img src="/images/btn_twitter.png" alt ="Twitter" width="27" height="27"></a></li>
+				<li><a href="#"><img src="/images/btn_rss.png" alt ="RSS" width="27" height="27"></a></li>
+			</ul>
+		</div>
+	</div>
+  </div>
+  </body>
+</html>
