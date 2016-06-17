@@ -1,0 +1,65 @@
+body { 
+	margin: 0; 
+	color:darkgray; 
+	background-color:lightgray;
+}
+
+#content {
+	width: 900px; 
+	background-color:white; 
+	color: indigo; 
+	margin-left: auto; 
+	margin-right: auto; 
+	padding: 8px;
+}
+
+/*Headline Styles */
+H1, .pageHead {font-family: Trebuchet MS,verdana,arial; font-size: 32px; color: #666666; margin-top: 0; margin-bottom: 0; font-weight: normal}
+H2, .pageSubHead {font-family: Trebuchet MS,verdana,arial; font-size: 24px; color: #666666; margin-top: 0; margin-bottom: 0;  font-weight: normal}
+H3, .headline {font-family: Trebuchet MS,verdana,arial; font-size: 21px; color: #000066 ; margin-top: 0; margin-bottom: 7;  font-weight: normal}
+H4, .subHeadline {font-family: verdana,arial; font-size: 13px; color: #666666; font-weight: bold; margin-top: 0; margin-bottom: 0}
+
+/*Standard text*/
+B, .bold, P.standardBold {font-family: verdana,arial; font-size: 11px; color: #000066; font-weight: bold}
+tr, td, th, P, P.standard, .text, P LI {font-family: verdana,arial; font-size: 11px; color: #666666; margin-top: 0; margin-bottom: 7; margin:0; padding:2;}
+EM, .emphasis {font-family: verdana,arial; font-size: 11px; color: #000066; font-style: normal}
+.standard {}
+p.overhang { text-indent: -8em; margin-top: 1; margin-bottom: 7; margin-left: 8em;}
+
+table {margin:0; padding:4px;}
+table.darkerblue {margin:0; padding:1px;}
+tr.header { background-color: #DDDDFF;}
+tr.odd { background-color: #EEEEDD;}
+tr.even { background-color: #CCCCFF;}
+th {text-align: left;}
+
+/* Link Information */
+
+
+a, A:link, A:active, .link, table.medOrange P A:link, table.medOrange P A:active {font-family: verdana,arial; font-size: 11px; color: #0000CC}
+A:visited, table.medOrange P A:visited {font-family: verdana,arial; font-size: 11px; color: #6699CC}
+
+H3 A:link, H3 A:active, A:link H3, A:active H3 {font-family: verdana,arial; font-size: 21px; color: #0000CC}
+H3 A:visited, A:visited H3 {font-family: verdana,arial; font-size: 21px; color: #6699CC}
+
+H4 A:link, H4 A:active, A:link H4, A:active H4 {font-family: verdana,arial; font-size: 13px; color: #0000CC}
+H4 A:visited, A:visited H4	 {font-family: verdana,arial; font-size: 13px; color: #6699CC}
+
+A.standard:link, A.standard:active {font-family: verdana,arial; font-size: 11px; color: #0000CC}
+A.standard:visited {font-family: verdana,arial; font-size: 11px; color: #6699CC}
+
+/*List Styles*/
+UL {margin-left:0; margin-top:0px; margin-bottom:0px; padding-left: 15px; padding-top: 2px; padding-bottom: 10px}
+
+OL {margin-left:10; margin-top:0px; margin-bottom:0px; padding-left: 15px; padding-top: 2px; padding-bottom: 10px}
+
+LI, LI.bullet {list-style-position: outside; font-family: verdana,arial; font-size: 11px; color: #666666; margin-bottom: 7px; margin-left: 4px; margin-top: 0px}
+
+
+
+/* style for having 2 columns */
+.twoColOuter {font-family: verdana,arial; font-size: 11px; color: #666666; margin-top: 0; margin-bottom: 7; float:left; width:579px; margin:0; padding:0;}
+.colOneA {font-family: verdana,arial; font-size: 11px; color: #666666; margin-top: 0; margin-bottom: 0; float:left; width:278; margin-right:15px; padding-right:0;}
+.colOneB {font-family: verdana,arial; font-size: 11px; color: #666666; margin-top: 0; margin-bottom: 0; float:left; width:286; margin:0; padding-right:0;}
+
+

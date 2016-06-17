@@ -1,0 +1,1046 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>OligoCalc: Oligonucleotide Properties Calculator</title>
+	<link rel="shortcut icon" href="http://biotools.nubic.northwestern.edu/images/favicon.ico">
+<meta name="AUTHOR" content="Warren Kibbe, Qing Cao">
+
+<script language="JavaScript" type="text/javascript">
+ <!--
+// GLOBALS
+var NS4plus        = (document.layers);
+var IE4plus        = (document.all);
+// added Safari check, WAKibbe 02/09/2004
+var isSafari        = (navigator.appVersion.indexOf("Safari") != -1);
+var browserVersion = parseFloat(navigator.appVersion);
+var browserAppName=navigator.appName;
+var supportLayers  = (NS4plus || IE4plus || isSafari);   
+var isMac          = (navigator.appVersion.indexOf("Mac") != -1);
+var isNetscape     = (browserAppName == "Netscape");
+var isIE           = (navigator.appVersion.indexOf("MSIE") != -1);
+var browserVersion = (navigator.appVersion.indexOf("MSIE 5" ) != -1)?5:browserVersion;
+	supportLayers  = (supportLayers || isNetscape && browserVersion > 4);   
+var isCompatible   = supportLayers;
+
+
+
+var debug = 0;  // set to 1 for debugging output, 0 to turn it off
+var broadMatch=false;
+var theOligo=0; //holder for theOligo object
+var theComplement=0; //holder for theComplement object
+var theVersion="3.27 (last modified by WAKibbe 12/30/2015)";
+var MacStyleSheet="BODY,P,BR,TD,DIV,A {font-family: Arial,Helvetica,serif; font-size: 10pt;} \
+	 PRE {font-family: Courier New,Courier,nonproportional,fixed;} \
+	 H1 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 18pt;} \
+	 H2 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 14pt;} \
+	 H3 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 12pt;} \
+	 TH {font-family: Arial,Helvetica,sans-serif; font-size: 11pt;} \
+	 .center {text-align: center;} \
+	 .right {text-align: right;} \
+	 .bigger {font-size: 11pt; font-weight: bold;} \
+	 .darkerblue, a.darkerblue  { color: white; background-color: #333399; } \
+	 .darkwheat { color: black; background-color: wheat; } \
+	 .standardblue { color: black; background-color: #CCCCFF; } \
+	 .lighterblue { color: black; background-color: #7da7d9; }";
+var PCStyleSheet="BODY,P,BR,TD,DIV,A {font-family: Arial,Helvetica,serif; font-size: 9pt;} \
+	PRE {font-family: Courier New,Courier,nonproportional,fixed;} \
+	H1 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 14pt;} \
+	H2 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 12pt;} \
+	H3 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 10pt;} \
+	TH {font-family: Arial,Helvetica,sans-serif; font-size: 9pt;} \
+	 .center {text-align: center;} \
+	 .right {text-align: right;} \
+	.H1 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 14pt;} \
+	.H2 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 12pt;} \
+	.H3 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 10pt;} \
+	.bigger {font-size: 9pt; font-weight: bold;} \
+	.darkerblue, a.darkerblue { color: white; background-color: #333399; } \
+	.darkwheat { color: black; background-color: wheat; } \
+	.standardblue { color: black; background-color: aliceblue; } \
+	.lighterblue { color: black; background-color: lavender; }";
+ 
+if (debug > 0) {
+	alert('browserVersion='+browserVersion);
+	alert('browserAppName='+browserAppName);
+	alert('supportLayers='+supportLayers);
+	alert('navigator.appVersion='+navigator.appVersion);
+}
+ /* provide blank defs for all browsers with javascript */
+	if (!supportLayers) event = null;
+	function Calculate(){}
+	function ReCalculate(){}
+	function DoNewFocus(){}
+	function GetOligoValueFromCookie(){} 
+	function RecalcMWConcAndOD(){} 
+	function Blast2(){} 
+	function SwapStrands(){}
+	function calcPrimer(){} 
+
+	if (browserVersion < 3) {
+		alert('Sorry - your browser is too old or does not support javascript 1.1! Please upgrade!');
+	} else if (browserVersion < 4) {
+		document.write('<META HTTP-EQUIV=REFRESH CONTENT="0;URL=../biotools/OligoCalc1.2.html">');
+	} else {
+		document.write("<script src='CommonUtils.js' type='text/javascript' language='javascript1.1'><\/script>");
+		document.write("<SCRIPT LANGUAGE='JavaScript1.1' SRC='OligoCalcUtils.js'><\/SCRIPT>");
+		document.write("<SCRIPT LANGUAGE='JavaScript1.1' SRC='OligoCalcMfold.js'><\/SCRIPT>");
+		document.write("<SCRIPT LANGUAGE='JavaScript1.1' SRC='OligoCalc.js'><\/SCRIPT>");
+		document.write("<SCRIPT LANGUAGE='JavaScript1.1' SRC='OligoCalcBLAST.js'><\/SCRIPT>");
+		document.write("<SCRIPT LANGUAGE='JavaScript1.1' SRC='OligoCalcObj.js'><\/SCRIPT>");
+		if (browserVersion >= 4)
+			document.write("<SCRIPT LANGUAGE='JavaScript1.2' SRC='OligoCalcCompare.js'><\/SCRIPT>");
+	}
+//-->
+</script><script src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/CommonUtils.js" type="text/javascript" language="javascript1.1"></script><script language="JavaScript1.1" src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/OligoCalcUtils.js"></script><script language="JavaScript1.1" src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/OligoCalcMfold.js"></script><script language="JavaScript1.1" src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/OligoCalc.js"></script><script language="JavaScript1.1" src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/OligoCalcBLAST.js"></script><script language="JavaScript1.1" src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/OligoCalcObj.js"></script><script language="JavaScript1.2" src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/OligoCalcCompare.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+	document.write('<link href="stylesheet.css" type="text\/css" rel="stylesheet" \/>');
+	
+	document.write('<STYLE type="text/css">');
+	document.write('<!--');
+	if (isMac && browserVersion < 5.0) {
+		document.write(MacStyleSheet);
+	} else {
+		document.write(PCStyleSheet);
+	}
+	document.write('-->');
+	document.write('</style>');
+//-->
+</script><link href="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/stylesheet.css" type="text/css" rel="stylesheet"><style type="text/css"><!--BODY,P,BR,TD,DIV,A {font-family: Arial,Helvetica,serif; font-size: 9pt;} 	PRE {font-family: Courier New,Courier,nonproportional,fixed;} 	H1 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 14pt;} 	H2 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 12pt;} 	H3 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 10pt;} 	TH {font-family: Arial,Helvetica,sans-serif; font-size: 9pt;} 	 .center {text-align: center;} 	 .right {text-align: right;} 	.H1 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 14pt;} 	.H2 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 12pt;} 	.H3 {font-family: Comic Sans MS,Arial,Helvetica,sans-serif; font-size: 10pt;} 	.bigger {font-size: 9pt; font-weight: bold;} 	.darkerblue, a.darkerblue { color: white; background-color: #333399; } 	.darkwheat { color: black; background-color: wheat; } 	.standardblue { color: black; background-color: aliceblue; } 	.lighterblue { color: black; background-color: lavender; }--></style>
+
+</head>
+<body onfocus="DoNewFocus(document.OligoCalc);">
+<div id="content">
+
+<center>
+<h1>Oligo Calc: Oligonucleotide Properties Calculator</h1>
+<form name="OligoCalc">
+
+<table class="darkerblue" align="center" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td>
+<table class="standardblue" align="center" border="0" cellpadding="2" cellspacing="0">
+<tbody><tr class="darkerblue">
+<td colspan="2" class="darkerblue" align="Center"><div class="h3">Enter Oligonucleotide
+Sequence Below</div>
+<i>OD calculations are for single-stranded
+DNA or RNA</i></td>
+</tr>
+
+<tr>
+<td colspan="2">
+<a href="#helpIUPAC">Nucleotide base codes</a><table align="center" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td colspan="2">
+<textarea name="oligoBox" rows="5" cols="80" onchange="ReCalculate(this.form)" align="left" wrap="virtual">ACA TAC TAC GGT ATG TCC TAT CTG</textarea><br>
+</td></tr>
+
+<tr><td colspan="2" bgcolor="pink">
+<font color="maroon">
+Reverse Complement Strand(5' to 3') is:<br>
+<textarea name="complementBox" rows="2" cols="80" onfocus="Disallow(this.form)" align="left" wrap="virtual">CAG ATA GGA CAT ACC GTA GTA TGT</textarea><br>
+</font>
+</td></tr>
+<tr><td>
+
+	<table cellpadding="2" cellspacing="0">
+	<tbody><tr><td><a href="http://biotools.nubic.northwestern.edu/OligoCalcModifications.html" target="modifications">5' modification</a> (if any)</td>
+		<td><a href="http://biotools.nubic.northwestern.edu/OligoCalcModifications.html" target="modifications">3' modification</a> (if any)</td>
+		<td>Select molecule</td>
+	</tr>
+	<tr>
+	<td><select name="FivePrime" onchange="RecalcMWConcAndOD(this.form)">
+		<option value="0" selected="selected"> 
+		</option><option value="402" display="Amino dT (C2)">Amino dT (C2)</option>
+		<option value="458.41" display="Amino dT (C6)">Amino dT (C6)</option>
+		<option value="538.49" display="BHQ-1 (Black Hole Quencher)">BHQ-1 (Black Hole Quencher)</option>
+		<option value="405.45" display="Biotin">Biotin</option>
+		<option value="435.48" display="Biotin">Biotin</option>
+		<option value="368" display="Bromo-dC">Bromo-dC</option>
+		<option value="369" display="Bromo-dU">Bromo-dU</option>
+		<option value="263.32" display="C12-Aminolink">C12-Aminolink</option>
+		<option value="179.16" display="C6-Aminolink">C6-Aminolink</option>
+		<option value="755.97" display="Cholesterol-TEG">Cholesterol-TEG</option>
+		<option value="607.7" display="Cyanine (CY) 3.5 ">Cyanine (CY) 3.5 </option>
+		<option value="633.74" display="Cyanine (CY) 5.5">Cyanine (CY) 5.5</option>
+		<option value="507.59" display="Cyanine (CY) 3">Cyanine (CY) 3</option>
+		<option value="766" display="Cyanine (CY) 3 NHS Ester">Cyanine (CY) 3 NHS Ester</option>
+		<option value="533.63" display="Cyanine (CY) 5">Cyanine (CY) 5</option>
+		<option value="820" display="Cyanine (CY) 5 Ester">Cyanine (CY) 5 Ester</option>
+		<option value="724" display="Digoxigenin">Digoxigenin</option>
+		<option value="180.1" display="dSpacer">dSpacer</option>
+		<option value="290.17" display="dUridine">dUridine</option>
+		<option value="537.46" display="Fluorescein (6-FAM)">Fluorescein (6-FAM)</option>
+		<option value="598.56" display="Fluorescein">Fluorescein</option>
+		<option value="744.13" display="Hexachloro-Fluorescein (HEX)">Hexachloro-Fluorescein (HEX)</option>
+		<option value="415.08" display="5-iodo-2'-dCytidine">5-iodo-2'-dCytidine</option>
+		<option value="416.07" display="5-iodo-2'-dUridine">5-iodo-2'-dUridine</option>
+		<option value="753" display="IRDye 700 chromophore">IRDye 700 chromophore</option>
+		<option value="861" display="IRDye 800 chromophore">IRDye 800 chromophore</option>
+		<option value="667" display="JOE chromophore">JOE chromophore</option>
+		<option value="825" display="LightCycler Red 610">LightCycler Red 610</option>
+		<option value="904" display="LightCycler Red 640">LightCycler Red 640</option>
+		<option value="534" display="LightCycler Red 670">LightCycler Red 670</option>
+		<option value="634" display="LightCycler Red 705">LightCycler Red 705</option>
+		<option value="303.21" display="MethylCytosine">MethylCytosine</option>
+		<option value="574" display="Oregon Green 488">Oregon Green 488</option>
+		<option value="80.0" display="32-P labeled">32-P labeled</option>
+		<option value="81.0" display="33-P labeled">33-P labeled</option>
+		<option value="79.0" display="Phosphorylated">Phosphorylated</option> 
+		<option value="420.4" display="Psoralen C6-Linker">Psoralen C6-Linker</option>
+		<option value="453" display="Psoralen TEG-Linker">Psoralen TEG-Linker</option>
+		<option value="727" display="Rhodamine Fluorophore">Rhodamine Fluorophore</option>
+		<option value="536" display="Rhodamine-Green">Rhodamine-Green</option>
+		<option value="698" display="6-Carboxy-X-rhodamine (ROX)">6-Carboxy-X-rhodamine (ROX)</option>
+		<option value="344.3" display="Spacer-18">Spacer-18</option>
+		<option value="264.3" display="Spacer-C12">Spacer-C12</option>
+		<option value="138.06" display="Spacer-C3">Spacer-C3</option>
+		<option value="180" display="Spacer-C6">Spacer-C6</option>
+		<option value="576" display="Tetramethyl-rhodamine (TAMRA)">Tetramethyl-rhodamine (TAMRA)</option>
+		<option value="675.24" display="Tetrachloro-Fluorescein (TET)">Tetrachloro-Fluorescein (TET)</option>
+		<option value="882" display="Texas Red Fluorophore">Texas Red Fluorophore</option>
+		<option value="196.2" display="Thiol-Modifier C6 S-S">Thiol-Modifier C6 S-S</option>
+	</select>
+	</td>
+	<td><select name="ThreePrime" onchange="RecalcMWConcAndOD(this.form)">
+		<option value="0" selected="selected"> 
+		</option><option value="554.49" display="BHQ-1 (Black Hole Quencher)">BHQ-1 (Black Hole Quencher)</option>
+		<option value="540.47" display="BHQ-2 (Black Hole Quencher)">BHQ-2 (Black Hole Quencher)</option>
+		<option value="435.48" display="Biotin">Biotin</option>
+		<option value="570" display="Biotin TEG (Triethyleneglycol)">Biotin TEG (Triethyleneglycol)</option>
+		<option value="209.18" display="C7-Aminolink">C7-Aminolink</option>
+		<option value="360.22" display="Carboxy-dT">Carboxy-dT</option>
+		<option value="855" display="Cholesterol-TEG-Link">Cholesterol-TEG-Link</option>
+		<option value="587" display="Cyanine (CY) 3">Cyanine (CY) 3</option>
+		<option value="613" display="Cyanine (CY) 5">Cyanine (CY) 5</option>
+		<option value="498.49" display="Dabsyl">Dabsyl</option>
+		<option value="297.21" display="2',3'-ddA">2',3'-ddA</option>
+		<option value="273.18" display="2',3'-ddC">2',3'-ddC</option>
+		<option value="288.19" display="2',3'-ddT">2',3'-ddT</option>
+		<option value="754" display="Dig with C7 Spacer">Dig with C7 Spacer</option>
+		<option value="569.46" display="Fluorescein (6-FAM)">Fluorescein (6-FAM)</option>
+		<option value="598.56" display="Fluorescein">Fluorescein</option>
+		<option value="566.48" display="6-Fluorescein">6-Fluorescein</option>
+		<option value="1216" display="Hexachloro-Fluorescein (HEX)">Hexachloro-Fluorescein (HEX)</option>
+		<option value="314.19" display="Inosine">Inosine</option>
+		<option value="697" display="JOE chromophore">JOE chromophore</option>
+		<option value="934" display="LightCycler Red 640">LightCycler Red 640</option>
+		<option value="757" display="Rhodamine Fluorophore">Rhodamine Fluorophore</option>
+		<option value="1104" display="6-Carboxy-X-rhodamine (ROX)">6-Carboxy-X-rhodamine (ROX)</option>
+		<option value="715" display="ROX Ester">ROX Ester</option>
+		<option value="623.6" display="Tetramethyl-rhodamine (TAMRA)">Tetramethyl-rhodamine (TAMRA)</option>
+		<option value="1147" display="Tetrachloro-Fluorescein (TET)">Tetrachloro-Fluorescein (TET)</option>
+		<option value="154.12" display="Thiol-Modifier C3 S-S">Thiol-Modifier C3 S-S</option>
+	</select>
+	</td>
+	<td><select name="deoxy" onchange="RecalcMWConcAndOD(this.form)">
+		<option value="ssDNA" selected="selected"> ssDNA
+		</option><option value="ssRNA"> ssRNA
+		</option><option value="dsDNA"> dsDNA
+		</option><option value="dsRNA"> dsRNA
+	</option></select>
+	</td></tr>
+	<!-- added emailAddress on 03/22/2007 -->
+	<input name="emailAddress" value="" type="hidden">
+	<tr><td colspan="1">&nbsp; &nbsp; &nbsp; &nbsp; 
+	<input class="right" name="primerConcBox" size="7" value="50" onchange="ReCalculate(this.form)" type="text">  n<u>M</u> Primer
+	</td>
+	<td colspan="2" rowspan="2" valign="middle">&nbsp; &nbsp; &nbsp; &nbsp; 
+	<input class="right" name="ODs" size="5" value="1" onchange="RecalcMWConcAndOD(this.form)" type="text"> Measured Absorbance at 260 nanometers
+	</td>
+	</tr>
+	<tr><td colspan="1">&nbsp; &nbsp; &nbsp; &nbsp; 
+	<input class="right" name="saltConcBox" size="7" value="50" onchange="ReCalculate(this.form)" type="text"> m<u>M</u> Salt (Na<sup>+</sup>)
+	</td></tr>
+	</tbody></table>
+	</td></tr>
+	<tr> <td align="center">
+	<table border="0">
+	<tbody><tr><td>
+	<input value="Calculate" name="Calbutton" onclick="return ReCalculate(this.form)" src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/Calculate.gif" type="image">
+	</td><td>
+	<input value="SWAP STRANDS" name="Swap" onclick="return SwapStrands(this.form)" src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/SwapStrands.gif" type="image">
+	</td><td>
+	<input value="BLAST2" name="BlastMe" onclick="return Blast2()" src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/BLAST.gif" type="image">
+	</td><td>
+	<input value="mfold" name="Complement" onclick="return mfoldCreateWindow()" src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/mfold.gif" type="image">
+	</td></tr>
+	</tbody></table>
+</td></tr>
+</tbody></table>
+
+</td>
+</tr>
+<tr>
+<th class="darkerblue">
+<div class="H2">Physical Constants</div>
+</th><th class="darkwheat">
+<div class="h3">Melting Temperature (T<font size="-1"><sub>M</sub></font>) Calculations</div>
+</th>
+</tr>
+
+<tr><td class="lighterblue">
+<table padding="0" margin="0" border="0" width="100%">
+<tbody><tr><td>
+Length: <input value="24" class="right" name="lBox" size="4" onfocus="Disallow(this.form)" type="text"> 
+</td><td>
+Molecular Weight: <input value="7302.8" class="right" name="mwBox" size="10" onfocus="Disallow(this.form)" type="text"><a href="#helpMW"><sup><font size="-1"><b>4</b></font></sup></a> 
+</td><td>
+GC content: <input value="42" class="right" name="gcBox" size="4" onfocus="Disallow(this.form)" type="text">% 
+</td></tr>
+</tbody></table>
+1 ml of a sol'n with an Absorbance of
+<input class="right" name="ODreadOnly" size="3" value="1" onfocus="Disallow(this.form)" type="text"> at
+260 nm<br>
+is <input value="4.02" class="right" name="micromolarConc" size="8" onfocus="Disallow(this.form)" type="text">
+microMolar <a href="#helpOD"><sup><font size="-1"><b>5</b></font></sup></a>
+and contains <input value="29.4" class="right" name="micrograms" size="15" onfocus="Disallow(this.form)">
+micrograms.<br>
+</td>
+<td class="lightsalmon">
+
+<a href="#helpbasic"><b>1</b></a> <input value="54" class="right" name="tmBox" size="10" onfocus="Disallow(this.form)"> °C (Basic)<br>
+<a href="#helpadjusted"><b>2</b></a> <input value="62" class="right" name="WAKtmBox" size="10" onfocus="Disallow(this.form)"> °C (Salt Adjusted)<br>
+<a href="#helpthermo"><b>3</b></a> <input value="52.86" class="right" name="nTmBox" size="10" onfocus="Disallow(this.form)" type="TEXT"> °C (Nearest Neighbor)<br>
+</td>
+</tr>
+<tr>
+<th colspan="2" class="darkerblue"><a href="#helpthermo" class="darkerblue"><div class="h2">Thermodynamic
+Constants
+Conditions:  1 <u>M</u> NaCl at 25°C at pH 7.</div></a></th>
+</tr>
+
+<tr class="lighterblue">
+<td>RlnK <input value="33.404" class="right" name="RlogKBox" size="12" onfocus="Disallow(this.form)">
+cal/(°K*mol)</td>
+<td>deltaH <input value="185.8" class="right" name="deltaHBox" size="12" onfocus="Disallow(this.form)">
+Kcal/mol</td>
+</tr>
+<tr class="lighterblue">
+<td>deltaG <input value="28.4" class="right" name="deltaGBox" size="12" onfocus="Disallow(this.form)">
+Kcal/mol</td>
+<td>deltaS <input value="491.7" class="right" name="deltaSBox" size="12" onfocus="Disallow(this.form)">
+cal/(°K*mol)</td>
+</tr>
+
+<tr>
+<th colspan="2" class="darkerblue"><a href="#helpComplementarity" class="darkerblue"><div class="h2">Deprecated Hairpin/self dimerization calculations</div></a></th>
+</tr>
+	<!-- removed options on 03/20/2007 
+	<input type="hidden" name="selfComp" value="5" />
+	<input type="hidden" name="hairpin" value="4" />
+	-->
+<tr><td> &nbsp; &nbsp; 
+	<select name="selfComp">
+		<option value="1"> 1
+		</option><option value="2"> 2
+		</option><option value="3"> 3
+		</option><option value="4"> 4
+		</option><option value="5" selected="selected"> 5
+		</option><option value="6"> 6
+		</option><option value="7"> 7
+		</option><option value="8"> 8
+	</option></select>
+	(Minimum base pairs required for single primer self-dimerization) <br>
+	&nbsp; &nbsp; 
+	<select name="hairpin">
+		<option value="1"> 1
+		</option><option value="2"> 2
+		</option><option value="3"> 3
+		</option><option value="4" selected="selected"> 4
+		</option><option value="5"> 5
+		</option><option value="6"> 6
+		</option><option value="7"> 7
+		</option><option value="8"> 8
+	</option></select>
+	(Minimum base pairs required for a hairpin)
+	</td> <td align="center">
+	<input value="Check Self-Complementarity" name="Complement" onclick="return calcPrimer(this.form)" src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/selfcomplementarity.gif" type="image">
+	</td>
+</tr>
+	
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+
+</form>
+<table>
+<tbody><tr><td>Citation:   	
+Kibbe WA. 'OligoCalc: an online oligonucleotide properties calculator'. (2007) 
+<br>
+&nbsp; &nbsp; <i>Nucleic Acids Res.</i> <b>35</b>(webserver issue): May 25. (
+<a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkm234">Abstract</a>/<a href="http://nar.oxfordjournals.org/cgi/content/full/gkm234">Full text</a>)
+</td></tr>
+<tr><td>
+This page may be freely linked or distributed for any educational or non-commercial use.<br>
+Copyright (c) Northwestern University, 1997-2015.
+</td></tr>
+<tr><td>
+Localized versions of OligoCalc are available in <a href="http://bio.bsu.by/molbiol/index.php?pg=oligocalc">Russian</a>.
+</td></tr>
+<tr><td class="center">
+<a href="http://biotools.nubic.northwestern.edu/OligoCalcVersions.html" target="history">Version history</a><br>
+<a href="http://biotools.nubic.northwestern.edu/Statistics2006.html" target="statistics">Web traffic statistics for 2006</a><br>
+<a href="http://biotools.nubic.northwestern.edu/OligoCalcUsage.html" target="statistics">OligoCalc Usage Patterns</a><br>
+<a href="http://biotools.nubic.northwestern.edu/OligoCalcModifications.html" target="modifications">Table of chemical modifications and structures</a> <br>
+<a href="http://biotools.nubic.northwestern.edu/OligoCalcSource3.19.zip">Source Code</a><br>
+<a href="http://bio.bsu.by/molbiol/index.php?pg=oligocalc">Russian language version</a><br>
+</td></tr>
+</tbody></table>
+</center>
+<p>&nbsp;</p>
+<hr size="4">
+
+<h2>Melting Temperature (Tm) Calculations</h2>
+<table bgcolor="FFCECE" border="0" cellpadding="4" cellspacing="4" width="100%">
+<tbody><tr><td>
+<b>ASSUMPTIONS:</b><br>
+None of the following melting temperature (Tm) calculations provide an 
+adjustment for magnesium or manganese divalent cation concentration, 
+although lack of these cations has been shown to adversely affect proper
+ duplex formation. See Nakano <i>et al</i>, (1999) <i>Nucleic Acids Res.</i> <b>27</b>:2957-65. (<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=PubMed&amp;cmd=Retrieve&amp;list_uids=10390539&amp;dopt=Citation">Abstract</a>) <br>
+</td></tr>
+</tbody></table>
+
+<a name="helpthermo"></a>
+<h3>Thermodynamic Calculations taking into account base stacking energy</h3>
+The nearest neighbor and thermodynamic calculations are done essentially
+as described by
+Breslauer <i>et al.</i>,  (1986) <i>Proc. Nat. Acad. Sci.</i> <b>83</b>:3746-50 
+(<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=PubMed&amp;cmd=Retrieve&amp;list_uids=3459152&amp;dopt=Citation">Abstract</a>) but using the values published by Sugimoto <i>et al.</i>, (1996) <i>Nucl. Acids Res.</i> <b>24</b>:4501-4505   (<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=PubMed&amp;cmd=Retrieve&amp;list_uids=8948641&amp;dopt=Abstract">Abstract</a>).
+ RNA thermodynamic properties were taken from Xia T., SantaLucia J., 
+Burkard M.E., Kierzek R., Schroeder S.J., Jiao X., Cox C., Turner D.H. 
+(1998) <i>Biochemistry</i> <b>37</b>:14719-14735 (<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=PubMed&amp;cmd=Retrieve&amp;list_uids=9778347&amp;dopt=Abstract">Abstract</a>). 
+This program assumes that the sequences are not symmetric and
+contain at least one G or C.  The minimum length for the query sequence is
+8.<p>
+The melting temperature calculations are based on the thermodynamic
+relationship
+between entropy, enthalpy, free energy and temperature, where</p><p>
+</p><center>
+<img src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/thermoeq1.gif" align="middle" border="0" height="21" hspace="12" vspace="12" width="143"><p>
+</p></center>
+The change in entropy (order or a measure of the randomness of the
+oligonucleotide)
+and enthalpy (heat released or absorbed by the oligonucleotide) are
+directly calculated
+by summing the values for nucleotide pairs obtained by Sugimoto <i>et al.</i>, (1996) <i>Nucleic Acids Res</i> <b>24</b>:4501-4505   (<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=PubMed&amp;cmd=Retrieve&amp;list_uids=8948641&amp;dopt=AbstractPlus">Abstract</a>). The relationship between the free energy and the
+concentration
+of reactants and products at equilibrium is given by<p>
+</p><center>
+<img src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/thermoeq2.gif" align="middle" border="0" hspace="12" vspace="12"><p>
+</p></center>
+
+where [DNA•primer] is the concentration of the bound DNA•primer complex,
+ [DNA] is the concentration of unbound DNA target sequence, and [primer]
+ is the concentration of unbound primer. Substituting for ΔG, the two 
+equations give us:<p>
+</p><center>
+<img src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/thermoeq3.gif" align="middle" border="0" hspace="12" vspace="12"><p>
+</p></center>
+and solving for temperature T gives<p>
+</p><center>
+<img src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/thermoeq4.gif" align="middle" border="0" hspace="12" vspace="12"><p>
+</p></center>
+We can assume that the concentration of DNA and the concentration of the
+DNA-primer complex are equal (that is, the concentration of primer is in excess of the 
+target DNA and the melting point is where the concentration of bound and unbound DNA are at equilibrium), so
+this simplifies the equation considerably. If the two strands are in equal concentration, 
+the effective concentration is 0.25 the total concentration of oligonucleotide 
+(Wetmur,J.G., (1991) <i>Crit Rev Biochem Mol Biol</i> <b>26</b>:227-259 [<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&amp;cmd=Retrieve&amp;list_uids=1718662&amp;dopt=AbstractPlus">Abstract</a>).
+ It has been determined
+empirically that there is a
+5 kcal free energy change (3.4 by Sugimoto et al. and the value used by 
+OligoCalc)  during the transition from single stranded to
+B-form DNA. This represents the helix initiation energy. Finally, adding
+ an adjustment for salt gives the equation that the OligoCalc uses:
+<center>
+<img src="OligoCalc%20%20Oligonucleotide%20Properties%20Calculator_files/thermoeq5.gif" align="middle" border="0" hspace="12" vspace="12"><p>
+</p></center>
+An adjustment constant for salt concentration is <i>not</i> needed, since the various
+parameters were determined at 1 Molar NaCl, and the log of 1 is zero.<p>
+</p><table bgcolor="FFCECE" border="0" cellpadding="4" cellspacing="4" width="100%">
+<tbody><tr><td>
+<b>ASSUMPTIONS:</b><br>
+The thermodynamic calculations assume that the annealing occurs at pH 
+7.0.
+The melting temperature (Tm) calculations assume the sequences are not 
+symmetric and
+contain at least one G or C. The oligonucleotide sequence should be at
+least 8 bases long to give reasonable Tms.
+
+The accuracy of the calculation decreases after 20 nucleotides since the
+ equations and parameters were defined with oligonucleotides in the size
+ range of 14-20 nucleotides. Monovalent cations concentrations (either 
+Na+ or K+) should be between 0.01 and 1.0 M.  None of the following 
+melting temperature (Tm) calculations provide an adjustment for 
+magnesium or manganese divalent cation concentration, although lack of 
+these cations has been shown to adversely affect proper duplex 
+formation. See Nakano <i>et al</i>, (1999) <i>Nucleic Acids Res</i> <b>27</b>:2957-65. (<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=PubMed&amp;cmd=Retrieve&amp;list_uids=10390539&amp;dopt=AbstractPlus">Abstract</a>) <br>
+<br>
+</td></tr>
+</tbody></table>
+<hr size="4">
+<a name="helpbasic"></a>
+<h3>Basic Melting Temperature (Tm) Calculations</h3>
+The two standard approximation calculations are used. For sequences less
+than 14 nucleotides the formula is<p>
+</p><ul>
+<dfn><b>	Tm= (wA+xT) * 2 + (yG+zC) * 4</b></dfn><p>
+
+where w,x,y,z are the number of the bases A,T,G,C in the sequence,
+respectively (from Marmur,J., and Doty,P. (1962)  <i>J Mol Biol</i> <b>5</b>:109-118 [<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&amp;cmd=Retrieve&amp;dopt=AbstractPlus&amp;list_uids=14470099">PubMed</a>]).<br>
+</p></ul>
+
+For sequences longer than 13 nucleotides, the equation used is<p>
+
+</p><ul>
+<dfn><b>	Tm= 64.9 +41*(yG+zC-16.4)/(wA+xT+yG+zC)</b></dfn><br>
+</ul>
+
+<p>See Wallace,R.B., Shaffer,J., Murphy,R.F., Bonner,J., Hirose,T., and Itakura,K. (1979) <i>Nucleic Acids Res</i> <b>6</b>:3543-3557 (<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&amp;cmd=Retrieve&amp;dopt=AbstractPlus&amp;list_uids=158748">Abstract</a>)
+ and Sambrook,J., and  Russell,D.W. (2001) Molecular Cloning: A 
+Laboratory Manual. Cold Spring Harbor Laboratory Press; Cold Spring 
+Harbor, NY. (<a href="http://www.molecularcloning.com/">CHSL Press</a>)</p>
+
+<table bgcolor="FFCECE" border="0" cellpadding="4" cellspacing="4" width="100%">
+<tbody><tr><td>
+<b>ASSUMPTIONS:</b><br>
+<i>Both</i> equations assume that the annealing occurs under the
+standard conditions of 50 n<u>M</u> primer,  50 m<u>M</u> Na<sup>+</sup>,
+and pH 7.0.<br>
+</td></tr>
+</tbody></table>
+<hr size="4">
+
+<a name="helpadjusted"></a>
+<h3>Salt Adjusted Melting Temperature (Tm) Calculations</h3>
+A variation on two standard approximation calculations are used. For
+sequences less
+than 14 nucleotides the same formula as the basic calculation is use, with
+a salt concentration adjustment<p>
+
+</p><ul>
+<dfn><b>	Tm= (wA+xT)*2 + (yG+zC)*4 - 16.6*log<sub>10</sub>(0.050) +
+16.6*log<sub>10</sub>([Na<sup>+</sup>])</b></dfn><p>
+
+where w,x,y,z are the number of the bases A,T,G,C in the sequence,
+respectively.<br>
+</p></ul>
+
+The term
+<dfn><b>16.6*log<sub>10</sub>([Na<sup>+</sup>])</b></dfn> adjusts the Tm
+for changes in the salt concentration,
+and the term <dfn><b>log<sub>10</sub>(0.050)</b></dfn> adjusts for the
+salt adjustment at
+50 m<u>M</u> Na<sup>+</sup>. Other monovalent and divalent salts will have
+an effect
+on the Tm of the oligonucleotide, but sodium ions are much more effective
+at forming
+salt bridges between DNA strands and therefore have the greatest effect in
+stabilizing
+double-stranded DNA, although trace amounts of divalent cations have significant and often overlooked affects (See Nakano <i>et al</i>, (1999) <i>Proc. Nuclec Acids Res.</i> <b>27</b>:2957-65. (<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=PubMed&amp;cmd=Retrieve&amp;list_uids=10390539&amp;dopt=Citation">Abstract</a>)).<br>
+
+
+For sequences longer than 13 nucleotides, the equation used is<p>
+
+</p><ul>
+<dfn><b>Tm= 100.5 + (41 * (yG+zC)/(wA+xT+yG+zC)) - (820/(wA+xT+yG+zC)) +
+16.6*log<sub>10</sub>([Na<sup>+</sup>])</b></dfn><br>
+</ul>
+
+This equation is  accurate for sequences in the 18-25mer range (Howley,P.M., Israel,M.F., Law,M-F., and Martin,M.A. (1979) <i>J Biol Chem</i> <b>254</b>:4876-4883 [<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&amp;cmd=Retrieve&amp;dopt=AbstractPlus&amp;list_uids=220264">Abstract</a>]). OligoCalc uses the above equation for all sequences longer than 13 nucleotides.<p>
+
+The following equation is provided <i>only</i> for your reference. It is not actually used by OligoCalc. It is reportedly more accurate for longer sequences.</p><p>
+
+</p><ul>
+<dfn><b>Tm= 81.5 + (41 * (yG+zC)/(wA+xT+yG+zC)) - (500/(wA+xT+yG+zC)) +
+16.6*log<sub>10</sub>([Na<sup>+</sup>]) - 0.62F</b></dfn><br>
+</ul>
+
+This equation is most accurate for sequences longer than 50 nucleotides.
+It is valid for oligos longer than 50 nucleotides from pH 5 to 9.
+
+Symbols and salt adjustment term as above, with the  term
+<dfn><b>(41 * (yG + zC-16.4)/(wA + xT + yG + zC))</b></dfn>
+adjusting for G/C content and the term <dfn><b>(500/(wA + xT + yG +
+zC))</b></dfn>
+adjusting for the length of the sequence, and  F is the percent concentration of formamide.<p>
+
+For more information please see the reference:<br>
+
+Howley, P.M; Israel, M.F.; Law, M-F.; and M.A. Martin "A rapid method 
+for detecting and mapping homology between heterologous DNAs. Evaluation
+ of polyomavirus genomes." 
+<i>J. Biol. Chem.</i> <b>254</b>, 4876-4883, 1979.</p><p>
+
+RNA melting temperatures<br>
+
+</p><ul>
+<dfn><b>Tm= 79.8 + 18.5*log<sub>10</sub>([Na<sup>+</sup>]) + (58.4 * (yG+zC)/(wA+xT+yG+zC))  
++  (11.8 * ((yG+zC)/(wA+xT+yG+zC))<sup>2</sup>) - (820/(wA+xT+yG+zC)) 
+</b></dfn><br>
+</ul>
+
+Where yG+zC are the mole fractions of G and C in the oligo, 
+L is the length of the shortest strand in the duplex (From Sambrook,J., 
+and  Russell,D.W. (2001) Molecular Cloning: A Laboratory Manual. Cold 
+Spring Harbor Laboratory Press; Cold Spring Harbor, NY. (<a href="http://www.molecularcloning.com/">CHSL Press</a>).<br>
+
+
+<table bgcolor="FFCECE" border="0" cellpadding="4" cellspacing="4" width="100%">
+<tbody><tr><td>
+<b>ASSUMPTIONS:</b><br>
+These equations assume that the annealing occurs under the
+standard conditions of 50 n<u>M</u> primer and pH 7.0.<br>
+</td></tr>
+</tbody></table>
+<p>
+</p><h3>Melting Temperature Method Comparisons</h3>
+<p>The Basic Melting Temperature calculations  are provided as a 
+baseline for comparison, and are the least preferred, however are 
+perhaps the most often employed method for calculating melting 
+temperature by bench scientists. OligoCalc was designed to give 
+researchers an easy tool for finding and comparing melting temperatures 
+using more accurate calculations. For oligonucleotides between 8 and 40 
+nucleotides, the nearest neighbor method is the preferred method. Note 
+that the equations were developed using 14-20mers, so this method is the
+ most accurate for oligonucleotides of this length. A comparison of 
+these data sets and recommendations were recently published 
+(Panjkovich,A. and Melo,F. (2005) <i>Bioinformatics</i> <b>21</b>:711-722 [<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&amp;cmd=Retrieve&amp;dopt=AbstractPlus&amp;list_uids=15501913">Abstract</a>])
+ and implemented as a webserver (Panjkovich,A., Norambuena,T. and 
+Melo,F. (2005)  dnaMATE: a consensus melting temperature prediction 
+server for short DNA sequences. <i>Nucleic Acids Res</i> <b>33</b>:W570-W572. [<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&amp;cmd=Retrieve&amp;dopt=AbstractPlus&amp;list_uids=15980538">Abstract</a>]),
+ and predominantly agree with the methods we have chosen. For longer 
+sequences, or for oligonucleotides with base substitutions or 
+modifications, the Salt Adjusted Melting Temperature calculation is the 
+preferred method. Please note that these calculations are only estimates
+ and many other factors can affect the melting temperature, including 
+detergents, presence of other counter ions, solvents (ethanol for 
+instance), formamide, etc.
+</p>
+
+<hr size="4">
+<a name="helpMW"></a><p><a name="helpMW"></a>
+</p><h3>Molecular Weight Calculations</h3>
+<p>
+DNA Molecular Weight (typically for  synthesized DNA oligonucleotides. 
+The OligoCalc DNA MW calculations assume that there is not a 5' 
+monophosphate)</p><p>
+
+Anhydrous Molecular Weight = (A<sub>n</sub> x 313.21) + (T<sub>n</sub> x 304.2) + (C<sub>n</sub> x 289.18) + (G<sub>n</sub> x 329.21) - 61.96</p><p>
+
+A<sub>n</sub>, T<sub>n</sub>, C<sub>n</sub>, and G<sub>n</sub> are the 
+number of each respective nucleotide within the polynucleotide. The 
+subtraction of 61.96 gm/mole from the oligonucleotide molecular weight 
+takes into account the removal of HPO<sub>2</sub> (63.98) and the 
+addition of two hydrogens (2.02). Alternatively, you could think of this
+ of the removal of a phosphate and the addition of a hydroxyl, since 
+this formula calculates the molecular weight of 5' and 3' hydroxylated 
+oligonucleotides.</p>
+
+<p>Please note: this calculation works well for synthesized 
+oligonucleotides. If you would like an accurate MW for restriction 
+enzyme cut DNA, please use:</p>
+
+<p>Molecular Weight = (A<sub>n</sub> x 313.21) + (T<sub>n</sub> x 304.2) + (C<sub>n</sub> x 289.18) + (G<sub>n</sub> x 329.21) - 61.96 + 79.0</p><p>
+The addition of 79.0 gm/mole to the oligonucleotide molecular weight 
+takes into account the 5' monophosphate left by most restriction 
+enzymes. 
+No phosphate is present at the 5' end of strands made by primer 
+extension, so no adjustment to the OligoCalc DNA MW calculation is 
+necessary for primer extensions. That means that for ssDNA, you need to 
+add 79.0 to the value calculated by OligoCalc to get the weight with a 
+5' monophosphate. Finally, if you need to calculate the molecular weight
+ of phosphorylated dsDNA, don't forget to adjust both strands. You can 
+automatically perform either addition by selecting the <strong>Phosphorylated</strong>
+ option from the 5' modification select list. Please note that the 
+chemical modifications are only valid for DNA and may not be valid for 
+RNA due to differences in the linkage chemistry, and also due to the 
+lack of the 5' phosphates from synthetic RNA molecules. </p>
+
+<p>RNA Molecular Weight (for instance from an RNA transcript. The 
+OligoCalc RNA MW calculations assume that there is a 5' triphosphate on 
+the molecule)<br>
+Molecular Weight = (A<sub>n</sub> x 329.21) + (U<sub>n</sub> x 306.17) + (C<sub>n</sub> x 305.18) + (G<sub>n</sub> x 345.21) + 159.0<br>
+A<sub>n</sub>, U<sub>n</sub>, C<sub>n</sub>, and G<sub>n</sub> are the number of each respective nucleotide within the polynucleotide.
+Addition of 159.0 gm/mole to the molecular weight takes into account the 5' triphosphate.</p>
+
+<hr size="4">
+<a name="helpBLAST"></a><p><a name="helpBLAST"></a>
+</p><h3>BLAST linkout</h3>
+<p>Clicking on the BLAST button will perform a BLAST search at the NCBI 
+against the NR database. For more information about BLAST, please go to 
+the main BLAST server site and read about the many, many options 
+available there. </p>
+<ul>
+<li>About BLAST: <a href="http://www.ncbi.nlm.nih.gov/blast/producttable.html" target="_blank">http://www.ncbi.nlm.nih.gov/blast/producttable.html</a></li>
+<li>BLAST main site: <a href="http://www.ncbi.nlm.nih.gov/blast/" target="_blank">http://www.ncbi.nlm.nih.gov/blast/</a></li>
+<li> BLAST FAQs: <a href="http://www.ncbi.nlm.nih.gov/blast/blast_FAQs.html" target="_blank">http://www.ncbi.nlm.nih.gov/blast/blast_FAQs.html</a></li>
+</ul>
+
+<hr size="4">
+<a name="helpMFOLD"></a><p><a name="helpMFOLD"></a>
+</p><h3><i>mfold</i> linkout</h3>
+<p>Please go to the main <i>mfold</i> webserver for more information about <i>mfold</i> and the many, many excellent features and options it has for determining folding structures for DNA and RNA. <i>mfold</i>
+ was written by Professor Michael Zuker and colleagues at RPI. See 
+Zuker,M. (2003) "Mfold web server for nucleic acid folding and 
+hybridization prediction" <i>Nucleic Acids Res</i> <b>31</b>:3406-15 (<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&amp;cmd=Retrieve&amp;dopt=AbstractPlus&amp;list_uids=12824337">Abstract</a>) and
+Mathews,D.H., Sabina,J., Zuker,M. and Turner, D.H. (1999) <i>J Mol Biol</i> <b>288</b>:911-940 (<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&amp;cmd=Retrieve&amp;dopt=AbstractPlus&amp;list_uids=10329189">Abstract</a>).</p>
+
+<ul>
+<li><i>mfold</i> documentation: <a href="http://mfold.rna.albany.edu/doc/form1-doc.php" target="_blank">http://mfold.rna.albany.edu/doc/form1-doc.php</a></li>
+<li><i>mfold</i> main site: <a href="http://mfold.rna.albany.edu/" target="_blank">http://mfold.rna.albany.edu/</a></li>
+</ul>
+<p> Professor Zuker has also released a more advanced folding application, and that package is available <a href="http://mfold.rna.albany.edu/" target="_blank">here</a>.</p>
+
+<hr size="4">
+<a name="helpComplementarity"></a><p><a name="helpComplementarity"></a>
+</p><h3>Self-dimerization, hairping formation, and self-annealing of 3' and 5' ends</h3>
+<p>These methods have been replaced by the mfold webserver linkout, but 
+for those who want to compare the methods, I am providing the old method
+ as well. Clicking the 'Check Self-Complementarity' button results in a 
+new window with likely hairpin and self-complementary areas highlighted.
+ The structures shown are based solely on homology and length of 
+homology as well as some rudimentary constraints for ends, size of 
+hairpins, etc. These calculations were based on available models and 
+assumptions as described in: </p>
+<ul>
+<li>Hilbers,C.W., Blommers,M.J.J., Haasnoot,C.A.G., van der Marel, G.A. 
+and van Boom, J. H. (1987) Structure and folding of DNA and RNA 
+hairpins.  <i>Anal Chem</i> <b>327</b>:70 (not in PubMed)</li>
+<li>Serra,M.J., Lyttle,M.H., Axenson,T.J., Schadt.C.A. and Turner,D.H. (1993) <i>Nucleic Acids Res</i> <b>21</b>:3845-3849 (<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&amp;cmd=Retrieve&amp;dopt=AbstractPlus&amp;list_uids=7690127">Abstract</a>) and Vallone,P.M., Paner,T.M., Hilario,J., Lane,M.J., Faldasz,B.D., Benight,A.S. (1999) Biopolymers. 50, 425-442 (<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&amp;cmd=Retrieve&amp;dopt=AbstractPlus&amp;list_uids=10423551&amp;query_hl=24&amp;itool=pubmed_docsum">Abstract</a>)</li>
+</ul>
+<p>The calculations are also available as part of the OligoCalc source code. </p>
+
+
+<hr size="4">
+<a name="helpOD"></a><p><a name="helpOD"></a>
+</p><h3>Optical Density (OD) Calculations</h3>
+<p>Molar Absorptivity values in 1/(Moles cm)</p>
+
+<table bgcolor="lightblue" cellpadding="4" cellspacing="0">
+
+<tbody><tr>
+<th>Residue</th><th>Moles<font size="-1"><sup>-1</sup></font> cm<font size="-1"><sup>-1</sup></font></th><th>A<sub>max</sub>(nm)</th><th>Molecular Weight<br>(after protecting groups are removed)</th>
+</tr>
+<tr>
+	<td><a href="http://biotools.nubic.northwestern.edu/images/dAMP.gif" target="monomer">Adenine</a> (dAMP, Na salt)</td>	<td>15200</td><td>259</td><td>313.21</td>
+</tr>
+<tr>
+	<td><a href="http://biotools.nubic.northwestern.edu/images/dGMP.gif" target="monomer">Guanine</a> (dGMP, Na salt)</td>	<td>12010</td><td>253</td><td>329.21</td>
+</tr>
+<tr>
+	<td><a href="http://biotools.nubic.northwestern.edu/images/dCMP.gif" target="monomer">Cytosine</a> (dCMP, Na salt)</td>	<td>7050</td><td>271</td><td>289.18</td>
+</tr>
+<tr>
+	<td><a href="http://biotools.nubic.northwestern.edu/images/dTMP.gif" target="monomer">Thymidine</a> (dTMP, Na salt)</td>	<td>8400</td><td>267</td><td>304.2</td>
+</tr>
+<tr>
+	<td>dUradine (dUMP, Na salt)</td>	<td>9800</td><td>-</td><td>290.169</td>
+</tr>
+<tr>
+	<td>dInosine (dUMP, Na salt)</td>	<td>-</td><td>-</td><td>314</td>
+</tr>
+
+<tr>
+	<th colspan="3">RNA nucleotides</th>
+</tr>
+<tr>
+	<td>Adenine (AMP, Na salt)</td>	<td>15400</td><td>259</td><td>329.21</td>
+</tr>
+<tr>
+	<td>Guanine (GMP, Na salt)</td>	<td>13700</td><td>253</td><td>345.21</td>
+</tr>
+<tr>
+	<td>Cytosine (CMP, Na salt)</td>	<td>9000</td><td>271</td><td>305.18</td>
+</tr>
+<tr>
+	<td>Uradine (UMP, Na salt)</td>	<td>10000</td><td>262</td><td>306.2</td>
+</tr>
+<tr>
+	<th colspan="3">Other nucleotides</th>
+</tr>
+<tr>
+	<td><a href="http://biotools.nubic.northwestern.edu/images/FAM.gif" target="monomer">6' FAM</a></td>	<td>20960</td> <td></td> 	<td>537.46</td>
+</tr>
+<tr>
+	<td><a href="http://biotools.nubic.northwestern.edu/images/TET.gif" target="monomer">TET</a></td>	<td>16255</td> <td></td> 	<td>675.24</td>
+</tr>
+<tr>
+	<td><a href="http://biotools.nubic.northwestern.edu/images/HEX.gif" target="monomer">HEX</a></td>	<td>31580</td> <td></td> 	<td>744.13</td>
+</tr>
+<tr>
+	<td>TAMRA</td>	<td>31980</td><td></td><td>
+</td></tr>
+</tbody></table>
+
+<p>
+Assume 1 OD of a standard 1ml solution, measured in a cuvette with a 1 cm
+pathlength.</p><p>
+</p><p>
+<a name="FAM"></a></p><p>
+</p><hr size="4">
+
+<h3><a href="http://biotools.nubic.northwestern.edu/images/FAM.gif" target="monomer">6-FAM:</a></h3>
+
+<table bgcolor="lightblue" border="0" cellpadding="4" cellspacing="0">
+<tbody><tr>
+	<td>Chemical name:</td>	<td><b>6-carboxyfluorescein</b></td>
+</tr>
+<tr>
+	<td>Absorption wavelength maximum:</td>	<td><b>495 nm</b></td>
+</tr>
+<tr>
+	<td>Emission wavelength maximum:</td>	<td><b>521 nm</b></td>
+</tr>
+<tr>
+	<td>Molar Absorptivity at 260nm:</td>	<td><b>20960</b> Moles<font size="-1"><sup>-1</sup></font> cm<font size="-1"><sup>-1</sup></font></td>
+</tr>
+</tbody></table>
+<p>
+<a name="TET"></a></p><p>
+</p><hr size="4">
+
+<h3><a href="http://biotools.nubic.northwestern.edu/images/TET.gif" target="monomer">TET:</a></h3>
+
+
+<table bgcolor="lightblue" border="0" cellpadding="4" cellspacing="0">
+<tbody><tr>
+	<td>Chemical name:</td>	<td><b>4, 7, 2',
+7'-Tetrachloro-6-carboxyfluorescein</b></td>
+</tr>
+<tr>
+	<td>Absorption wavelength maximum:</td>	<td><b>519 nm</b></td>
+</tr>
+<tr>
+	<td>Emission wavelength maximum:</td>	<td><b>539 nm</b></td>
+</tr>
+<tr>
+	<td>Molar Absorptivity at 260nm:</td>	<td><b>16255</b> Moles<font size="-1"><sup>-1</sup></font> cm<font size="-1"><sup>-1</sup></font></td>
+</tr>
+</tbody></table>
+
+<p>
+<a name="HEX"></a></p><p>
+</p><hr size="4">
+
+<h3><a href="http://biotools.nubic.northwestern.edu/images/HEX.gif" target="monomer">HEX:</a></h3>
+
+<table bgcolor="lightblue" border="0" cellpadding="4" cellspacing="0">
+<tbody><tr>
+	<td>Chemical name:</td>	<td><b>4, 7, 2', 4', 5',
+7'-Hexachloro-6-carboxyfluorescein</b></td>
+</tr>
+<tr>
+	<td>Absorption wavelength maximum:</td>	<td><b>537 nm</b></td>
+</tr>
+<tr>
+	<td>Emission wavelength maximum:</td>	<td><b>556 nm</b></td>
+</tr>
+<tr>
+	<td>Molar Absorptivity at 260nm:</td>	<td><b>31580</b> Moles<font size="-1"><sup>-1</sup></font> cm<font size="-1"><sup>-1</sup></font></td>
+</tr>
+</tbody></table>
+
+<p>
+<a name="TAMRA"></a></p><p>
+</p><hr size="4">
+
+<h3>TAMRA:</h3>
+
+<table bgcolor="lightblue" border="0" cellpadding="4" cellspacing="0">
+<tbody><tr>
+	<td>Chemical name:</td>	<td><b>N, N, N',
+N'-tetramethyl-6-carboxyrhodamine</b></td>
+</tr>
+<tr>
+	<td>Absorption wavelength maximum:</td>	<td><b>555 nm</b></td>
+</tr>
+<tr>
+	<td>Emission wavelength maximum:</td>	<td><b>580 nm</b></td>
+</tr>
+<tr>
+	<td>Molar Absorptivity at 260nm:</td>	<td><b>31980</b> Moles<font size="-1"><sup>-1</sup></font> cm<font size="-1"><sup>-1</sup></font></td>
+</tr>
+</tbody></table>
+<p>
+<a name="helpIUPAC"></a></p><p>
+</p><hr size="4">
+<h3>Nucleotide base codes (IUPAC)</h3>
+<table bgcolor="lightblue" border="0" cellpadding="4" cellspacing="0">
+<tbody><tr><th colspan="3">Symbol: nucleotide(s)</th></tr>
+<tr>
+<td valign="top">
+<ul>
+	<table>
+	<tbody><tr valign="top"><th><b>A</b></th><td> adenine	</td></tr>
+	<tr valign="top"><th><b>C</b></th><td> cytosine</td></tr>
+	<tr valign="top"><th><b>G</b></th><td> guanine</td></tr>
+	<tr valign="top"><th><b>T</b></th><td> thymine in DNA;<br>uracil in RNA</td></tr>
+	<tr valign="top"><th><b>U</b></th><td> deoxy-Uracil in DNA;<br>uracil in RNA</td></tr>
+	<tr valign="top"><th><b>I</b></th><td> inosine</td></tr>
+	<tr valign="top"><th><b>N</b></th><td> A or C or G or T</td></tr>
+	</tbody></table>
+</ul>
+</td>
+<td valign="top">
+	<table>
+	<tbody><tr valign="top"><th><b>M</b></th><td> A or C</td></tr>
+	<tr valign="top"><th><b>R</b></th><td> A or G</td></tr>
+	<tr valign="top"><th><b>W</b></th><td> A or T</td></tr>
+	<tr valign="top"><th><b>S</b></th><td> C or G</td></tr>
+	<tr valign="top"><th><b>Y</b></th><td> C or T</td></tr>
+	</tbody></table>
+</td>
+<td valign="top">
+	<table>
+	<tbody><tr valign="top"><th><b>K</b></th><td> G or T</td></tr>
+	<tr valign="top"><th><b>V</b></th><td> A or C or G; not T</td></tr>
+	<tr valign="top"><th><b>H</b></th><td> A or C or T; not G</td></tr>
+	<tr valign="top"><th><b>D</b></th><td> A or G or T; not C</td></tr>
+	<tr valign="top"><th><b>B</b></th><td> C or G or T; not A</td></tr>
+	</tbody></table>
+</td>
+</tr></tbody></table>
+
+<hr size="4">
+<p>
+The most recent version is always available at the URL: <a href="http://www.basic.northwestern.edu/biotools/OligoCalc.html">http://www.basic.northwestern.edu/biotools/OligoCalc.html</a></p>
+
+<hr size="4">
+<p>OligoCalc was written in Javascript.</p>
+<p>&nbsp;</p>
+<p>If you have comments, kudos, raspberries, please contact:</p>
+<ul>
+<p>Warren A. Kibbe, Ph.D. 
+<script>
+document.writeln('<A HREF="mailto:wakibbe'+'@'+'northwestern.edu">e-mail</a>');
+</script><a href="mailto:wakibbe@northwestern.edu">e-mail</a>
+
+and <a href="http://directory.northwestern.edu/index.cgi?query=Warren+Kibbe" target="_blank">PH
+entry</a>.<br>
+Robert H. Lurie Comprehensive Cancer Center<br>
+Feinberg School of Medicine<br>
+Northwestern University <br>
+Chicago, IL 60611</p>
+</ul>
+<p>&nbsp;</p>
+<p>Original code (1996) by Eugen Buehler</p>
+<ul>
+<p>Research Support Facilities<br>
+Department of Molecular Genetics and Biochemistry<br>
+University of Pittsburgh School of Medicine</p>
+</ul>
+
+<p>&nbsp;</p>
+<p>Hairpin and complementarity checking code by Qing Cao, M.S. </p>
+<ul>
+<p>while working in Research Computing (1999-2001)<br>
+Northwestern University Medical School<br>
+Chicago, IL 60611</p>
+</ul>
+
+
+<p>&nbsp;</p>
+<p>Monomer structures and molecular weights provided by Bob Somers, Ph.D.
+<script>
+document.writeln('<A HREF="mailto:bob'+'@'+'glenres.com">e-mail</a>');
+</script><a href="mailto:bob@glenres.com">e-mail</a>
+
+at 
+<a href="http://www.glenres.com/">Glen Research Corporation</a></p>
+
+<p>&nbsp;</p>
+<p>Uppercase/lowercase strand complementation problem described by Alexey Merz 
+<script>
+document.writeln('<A HREF="mailto:alexey'+'@'+'dartmouth.edu">e-mail</a>');
+</script><a href="mailto:alexey@dartmouth.edu">e-mail</a>
+
+</p>
+
+<p>&nbsp;</p>
+<p>The RNA calculations and functions were requested by Suzanne Kennedy, Ph.D.
+<script>
+document.writeln('<A HREF="mailto:Suzanne.Kennedy'+'@'+'qiagen.com">e-mail</a>');
+</script><a href="mailto:Suzanne.Kennedy@qiagen.com">e-mail</a>
+
+at <a href="http://www.qiagen.com/">Qiagen</a>
+</p>
+
+<p>&nbsp;</p>
+<p>The fluorescent tags and tagging options were requested by and the data provided by 
+Florian Preitauer 
+<script>
+document.writeln('<A HREF="mailto:f.preitauer'+'@'+'metabion.com">e-mail</a>');
+</script><a href="mailto:f.preitauer@metabion.com">e-mail</a>
+
+and Regina Bichlmaier, Ph.D.
+<script>
+document.writeln('<A HREF="mailto:regina'+'@'+'metabion.com">e-mail</a>');
+</script><a href="mailto:regina@metabion.com">e-mail</a>
+
+at <a href="http://www.metabion.com/">metabion GmbH</a>
+</p>
+
+<p>&nbsp;</p>
+<p>The dsDNA and dsRNA molecular weight calculation problems in version 
+3.xx and fixed in 3.10 was reported by Borries Demeler, Ph.D. 
+<script>
+document.writeln('<A HREF="mailto:demeler'+'@'+'biochem.uthscsa.edu">e-mail</a>');
+</script><a href="mailto:demeler@biochem.uthscsa.edu">e-mail</a>
+
+and Regina Bichlmaier, Ph.D.
+<script>
+document.writeln('<A HREF="mailto:regina'+'@'+'metabion.com">e-mail</a>');
+</script><a href="mailto:regina@metabion.com">e-mail</a>
+
+at <a href="http://www.metabion.com/">metabion GmbH</a>
+</p>
+
+<p>&nbsp;</p>
+<p>A failure to include 'U's in the OD calculations was reported by Rachel Mitton-Fry
+<script>
+document.writeln('<A HREF="mailto:rm482'+'@'+'email.med.yale.edu">e-mail</a>');
+</script><a href="mailto:rm482@email.med.yale.edu">e-mail</a>
+
+at Yale University
+</p>
+<p>&nbsp;</p>
+<p>The Russian localization of OligoCalc was done by Leonid Valentovich 
+<script>
+document.writeln('<A HREF="mailto:leony'+'@'+'bio.bsu.by">e-mail</a>'); 
+</script><a href="mailto:leony@bio.bsu.by">e-mail</a>
+
+
+</p>
+<p>&nbsp;</p>
+<p>A longstanding failure to include A260s for 3' and 5' modifications in the OD calculations was reported by Kate Lieberman
+<script>
+document.writeln('<A HREF="mailto:lieberman'+'@'+'biology.ucsc.edu">e-mail</a>');
+</script><a href="mailto:lieberman@biology.ucsc.edu">e-mail</a>
+
+at the University of California, Santa Cruz.
+</p>
+
+<p>&nbsp;</p>
+<p>An increase in precision to 0.01 degree increments for SNP analysis and HRM was requested by Zhao Chen
+<script>
+document.writeln('<A HREF="mailto:zchen'+'@'+'mdanderson.org">e-mail</a>');
+</script><a href="mailto:zchen@mdanderson.org">e-mail</a>
+
+at the MD Anderson Cancer Center.
+</p>
+
+<p>&nbsp;</p>
+<script language="JavaScript">
+<!-- begin script
+	CheckOligoCookie(document.OligoCalc);
+	Calculate(document.OligoCalc);
+	document.writeln("<p><FONT COLOR='indigo'>Oligo Calculator version " + theVersion + "</font></p>");
+// end script -->
+</script><p><font color="indigo">Oligo Calculator version 3.27 (last modified by WAKibbe 12/30/2015)</font></p>
+
+</div> <!-- end of content -->
+
+
+</body></html>

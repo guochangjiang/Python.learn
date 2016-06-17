@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>OligoCalc BLAST submission page</title>
+	<meta name="generator" content="BBEdit 8.2" />
+	<link href="stylesheet.css" type="text/css" rel="stylesheet" />
+	<script src="CommonUtils.js" type="text/javascript" language="javascript1.1" ></script>
+	<script src="OligoCalcBLAST.js" type="text/javascript" language="javascript1.1" ></script>
+	<link rel="shortcut icon" href="images/favicon.ico" />
+</head>
+<body>
+<div id="content">
+<h3>This page should automatically submit a query against the NR database to the NCBI BLAST interface</h3>
+<p>If it does not, you can try manually submitting the form. Please go to the main BLAST server for more information about the NCBI BLAST site and the many, many options available there. </p>
+<ul>
+<li>About BLAST: <a href="http://www.ncbi.nlm.nih.gov/blast/producttable.html">http://www.ncbi.nlm.nih.gov/blast/producttable.html</a></li>
+<li>BLAST main site: <a href="http://www.ncbi.nlm.nih.gov/blast/">http://www.ncbi.nlm.nih.gov/blast/</a></li>
+</ul>
+
+<li> BLAST FAQs: <a href="http://www.ncbi.nlm.nih.gov/blast/blast_FAQs.html">http://www.ncbi.nlm.nih.gov/blast/blast_FAQs.html</a></li>
+
+
+<form name="blastme" action="http://www.ncbi.nlm.nih.gov/blast/Blast.cgi" method="POST">
+Sequence:<br />
+<textarea name="QUERY" rows="5" cols="70"></textarea><br />
+<input type="hidden" name = "QUERY_FROM" value=" ">
+<input type="hidden" name = "QUERY_TO" value=" ">
+<input type="hidden" name = "ENTREZ_QUERY" value="All organisms">
+<input type="hidden" name = "DATABASE" value="nr">
+<input type="hidden" name = "EXPECT" value="100">
+<input type="hidden" name = "WORD_SIZE" value="11">
+	
+<input type="hidden" name = "OTHER_ADVANCED" value=" ">
+<input type="hidden" name = "SHOW_OVERVIEW" value="1">
+<input type="hidden" name = "SHOW_LINKOUT" value="1">
+<input type="hidden" name = "NCBI_GI" value="1">
+<input type="hidden" name = "FORMAT_OBJECT" value="Alignment">
+<input type="hidden" name = "FORMAT_TYPE" value="HTML">
+<input type="hidden" name = "DESCRIPTIONS" value="100">
+<input type="hidden" name = "ALIGNMENTS" value="50">
+<input type="hidden" name = "ALIGNMENT_VIEW" value="Pairwise">
+<input type="hidden" name = "FORMAT_ENTREZ_QUERY" value="All organisms">
+<input type="hidden" name = "EXPECT_LOW" value=" ">
+<input type="hidden" name = "EXPECT_HIGH" value=" ">
+<input type="hidden" name = "LAYOUT" value="TwoWindows">
+<input type="hidden" name = "FORMAT_BLOCK_ON_RESPAGE" value="None">
+<input type="hidden" name = "AUTO_FORMAT" value="Semiauto">
+
+<input type="hidden" name = "PROGRAM" value="blastn">
+<input type="hidden" name = "SET_DEFAULTS" value="Yes">
+<input type="hidden" name = "CLIENT" value="web">
+<input type="hidden" name = "SERVICE" value="plain">
+<input type="hidden" name = "PAGE" value="Nucleotides">
+<input type="hidden" name = "CMD" value="Put">
+<input type="submit" value="Perform BLAST">
+</form>
+</body>
+<script type="text/javascript" language="javascript1.1">
+<!--
+	BLASTprepare(document.blastme);
+//-->
+</script>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>OligoCalc mfold submission page</title>
+	<meta name="generator" content="BBEdit 8.2" />
+	<link href="stylesheet.css" type="text/css" rel="stylesheet" />
+	<script src="CommonUtils.js" type="text/javascript" language="javascript1.1" ></script>
+	<script src="OligoCalcMfold.js" type="text/javascript" language="javascript1.1" ></script>
+	<link rel="shortcut icon" href="images/favicon.ico" />
+</head>
+<body>
+<div id="content">
+<h3>This page should automatically submit to the <i>mfold</i> server</h3>
+<p>If it does not, you can try manually submitting the form. Please go to the main <i>mfold</i> webserver for more information about <i>mfold</i> and the many, many excellent features and options it has for determining folding structures for DNA and RNA. <i>mfold</i> was written by Professor Michael Zuker and colleagues at RPI. </p>
+<ul>
+<li><i>mfold</i> documentation: <a href="http://www.bioinfo.rpi.edu/applications/mfold/doc/form1-doc.html">http://www.bioinfo.rpi.edu/applications/mfold/doc/form1-doc.html</a></li>
+<li><i>mfold</i> main site: <a href="http://www.bioinfo.rpi.edu/applications/mfold/">http://www.bioinfo.rpi.edu/applications/mfold/</a></li>
+</ul>
+<p> Professor Zuker has also released a more advanced folding application, and that package is available <a href="http://www.bioinfo.rpi.edu/applications/hybrid/">here</a>.</p>
+
+<form name="mfold" method="POST"  action="http://www.bioinfo.rpi.edu/applications/mfold/cgi-bin/nph-mfold-3.2.cgi">
+<!-- see http://www.bioinfo.rpi.edu/applications/mfold/doc/form1-doc.html for documentation on this form -->
+
+Sequence:<br />
+<textarea name="SEQUENCE" rows="5" cols="70"></textarea><br />
+Your email: <br />
+<input type="text" size="50" name="EMAIL_ADDR" value=""> <br />
+
+<input type="hidden" name="SEQ_NAME" value="">
+<input type="hidden" name="NA_CONC" value="50" >
+<input type="hidden" name="MG_CONC" value="0">
+<input type="hidden" name="UNITS" value="mM" >
+<input type="hidden" name="OLIPOLY" value="oligo">
+<input type="hidden" name="PERCENT" value="5">
+<input type="hidden" name="MAX_FOLDS" value="50">
+<input type="hidden" name="WINDOW" value="default">
+<input type="hidden" name="MAX_LP" value="30">
+<input type="hidden" name="MAX_AS" value="30">
+<input type="hidden" name="MAXBP" value="no limit">
+<input type="hidden" name="MAX_LENGTH1" value="800">
+<input type="hidden" name="MAX_LENGTH2" value="6000">
+<input type="hidden" name="CONSTRAINTS" value="">
+<input type="hidden" name="RH" value="www.basic.northwestern.edu">
+<input type="hidden" name="LorC" value="linear">
+<input type="hidden" name="BATCH" value="An immediate">
+<input type="hidden" name="GIFRES" value="110x110">
+<input type="hidden" name="IMG_WID" value="935">
+<input type="hidden" name="MODE" value="auto">
+<input type="hidden" name="GRID" value="on">
+<input type="hidden" name="LAB_FR" value="default">
+<input type="hidden" name="ANGLES" value="default">
+<input type="hidden" name="OFFSET" value="0">
+<input type="hidden" name="REG_DEG" value="0">
+<input type="hidden" name="ROT_ANG" value="auto">
+<input type="hidden" name="ANN" value="none">
+<input type="hidden" name="T" value="37">
+<input type="hidden" name="NA" value="DNA"> <!-- RNA or DNA, capitalized as shown -->
+
+<input type="submit" value="Perform Fold">
+
+</form>
+
+</div>
+</body>
+<script type="text/javascript" language="javascript1.1">
+<!--
+	mfoldPrepare(document.mfold);
+//-->
+</script>
+</html>
