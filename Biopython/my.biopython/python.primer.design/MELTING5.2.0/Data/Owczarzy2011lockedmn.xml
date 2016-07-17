@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+/*      This program is free software; you can redistribute it and/or modify  */
+/*       it under the terms of the GNU General Public License as published by */
+/*       the Free Software Foundation; either version 2 of the License, or    */
+/*       (at your option) any later version.                                  */
+
+/*       This program is distributed in the hope that it will be useful, but  */
+/*       WITHOUT ANY WARRANTY; without even the implied warranty of           */
+/*       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
+/*       General Public License for more details.                             */
+
+/*       You should have received a copy of the GNU General Public License    */
+/*       along with this program; if not, write to the Free Software          */
+/*       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 */
+/*       USA                                                                  */
+
+/*       Marine Dumousseau                                                    */
+/*       EMBL-EBI, neurobiology computational group,                          */
+/*       Cambridge, UK. e-mail: marine@ebi.ac.uk                   */
+-->
+
+<!--/******************************************************************************/
+    /* contains the parameters for DNA/DNA single locked acid nucleic of
+    /* - Owczarzy et al.(2011). Biochemistry 2011, 50, 9352-9367  */
+    /******************************************************************************/-->
+
+<data type="modified_nucleotides">
+    <modified   sequence="ALA/TT">
+        <enthalpy>-7193.0</enthalpy>
+        <entropy>-19.723</entropy>
+    </modified>
+    <modified   sequence="ALC/TG">
+        <enthalpy>-7269.0</enthalpy>
+        <entropy>-18.336</entropy>
+    </modified>
+    <modified   sequence="ALG/TC">
+        <enthalpy>-7536.0</enthalpy>
+        <entropy>-18.387</entropy>
+    </modified>
+    <modified   sequence="ALT/TA">
+        <enthalpy>-4918.0</enthalpy>
+        <entropy>-12.943</entropy>
+    </modified>
+    <modified   sequence="CLA/GT">
+        <enthalpy>-7451.0</enthalpy>
+        <entropy>-18.380</entropy>
+    </modified>
+    <modified   sequence="CLC/GG">
+        <enthalpy>-5904.0</enthalpy>
+        <entropy>-11.904</entropy>
+    </modified>
+    <modified   sequence="CLG/GC">
+        <enthalpy>-9815.0</enthalpy>
+        <entropy>-23.491</entropy>
+    </modified>
+    <modified   sequence="CLT/GA">
+        <enthalpy>-7092.0</enthalpy>
+        <entropy>-16.825</entropy>
+    </modified>
+    <modified   sequence="GLA/CT">
+        <enthalpy>-5038.0</enthalpy>
+        <entropy>-11.656</entropy>
+    </modified>
+    <modified   sequence="GLC/CG">
+        <enthalpy>-10160.0</enthalpy>
+        <entropy>-24.651</entropy>
+    </modified>
+    <modified   sequence="GLG/CC">
+        <enthalpy>-10844.0</enthalpy>
+        <entropy>-26.580</entropy>
+    </modified>
+    <modified   sequence="GLT/CA">
+        <enthalpy>-8612.0</enthalpy>
+        <entropy>-22.327</entropy>
+    </modified>
+    <modified   sequence="TLA/AT">
+        <enthalpy>-7246.0</enthalpy>
+        <entropy>-19.738</entropy>
+    </modified>
+    <modified   sequence="TLC/AG">
+        <enthalpy>-6307.0</enthalpy>
+        <entropy>-15.515</entropy>
+    </modified>
+    <modified   sequence="TLG/AC">
+        <enthalpy>-10040.0</enthalpy>
+        <entropy>-25.744</entropy>
+    </modified>
+    <modified   sequence="TLT/AA">
+        <enthalpy>-6372.0</enthalpy>
+        <entropy>-16.902</entropy>
+    </modified>
+    <modified   sequence="AAL/TT">
+        <enthalpy>-6908.0</enthalpy>
+        <entropy>-18.135</entropy>
+    </modified>
+    <modified   sequence="ACL/TG">
+        <enthalpy>-5510.0</enthalpy>
+        <entropy>-11.824</entropy>
+    </modified>
+    <modified   sequence="AGL/TC">
+        <enthalpy>-9000.0</enthalpy>
+        <entropy>-22.826</entropy>
+    </modified>
+    <modified   sequence="ATL/TA">
+        <enthalpy>-5384.0</enthalpy>
+        <entropy>-13.537</entropy>
+    </modified>
+    <modified   sequence="CAL/GT">
+        <enthalpy>-7142.0</enthalpy>
+        <entropy>-18.333</entropy>
+    </modified>
+    <modified   sequence="CCL/GG">
+        <enthalpy>-5937.0</enthalpy>
+        <entropy>-12.335</entropy>
+    </modified>
+    <modified   sequence="CGL/GC">
+        <enthalpy>-10876.0</enthalpy>
+        <entropy>-27.918</entropy>
+    </modified>
+    <modified   sequence="CTL/GA">
+        <enthalpy>-9471.0</enthalpy>
+        <entropy>-25.070</entropy>
+    </modified>
+    <modified   sequence="GAL/CT">
+        <enthalpy>-7756.0</enthalpy>
+        <entropy>-19.302</entropy>
+    </modified>
+    <modified   sequence="GCL/CG">
+        <enthalpy>-10725.0</enthalpy>
+        <entropy>-25.511</entropy>
+    </modified>
+    <modified   sequence="GGL/CC">
+        <enthalpy>-8943.0</enthalpy>
+        <entropy>-20.833</entropy>
+    </modified>
+    <modified   sequence="GTL/CA">
+        <enthalpy>-9035.0</enthalpy>
+        <entropy>-22.742</entropy>
+    </modified>
+    <modified   sequence="TAL/AT">
+        <enthalpy>-5609.0</enthalpy>
+        <entropy>-16.019</entropy>
+    </modified>
+    <modified   sequence="TCL/AG">
+        <enthalpy>-7591.0</enthalpy>
+        <entropy>-19.031</entropy>
+    </modified>
+    <modified   sequence="TGL/AC">
+        <enthalpy>-6335.0</enthalpy>
+        <entropy>-15.537</entropy>
+    </modified>
+    <modified   sequence="TTL/AA">
+        <enthalpy>-5574.0</enthalpy>
+        <entropy>-14.149</entropy>
+    </modified>
+</data>

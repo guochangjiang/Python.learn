@@ -1,0 +1,1326 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2014.8.5)  8 AUG 2014 18:34
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./images.tex
+(./images.tex
+LaTeX2e <2011/06/27>
+Babel <3.9f> and hyphenation patterns for 2 languages loaded.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+(/usr/share/texlive/texmf-dist/tex/latex/base/latin1.def
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+)) (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+)) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/mathptmx.sty
+Package: mathptmx 2005/04/12 PSNFSS-v9.2a Times w/ Math, improved (SPQR, WaS) 
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+\symbold=\mathgroup4
+\symitalic=\mathgroup5
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/ptm/m/it on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 35.
+LaTeX Info: Redefining \hbar on input line 50.
+) (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip43
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks16
+\ex@=\dimen103
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen104
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count87
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count88
+\leftroot@=\count89
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count90
+\DOTSCASE@=\count91
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen105
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count92
+\c@MaxMatrixCols=\count93
+\dotsspace@=\muskip11
+\c@parentequation=\count94
+\dspbrk@lvl=\count95
+\tag@help=\toks17
+\row@=\count96
+\column@=\count97
+\maxfields@=\count98
+\andhelp@=\toks18
+\eqnshift@=\dimen106
+\alignsep@=\dimen107
+\tagshift@=\dimen108
+\tagwidth@=\dimen109
+\totwidth@=\dimen110
+\lineht@=\dimen111
+\@envbody=\toks19
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+) (/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty
+Package: alltt 1997/06/16 v2.0g defines alltt environment
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks21
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+) (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: dvips.def on input line 91.
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen112
+\Gin@req@width=\dimen113
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: dvips.def on input line 130.
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\sizebox=\box28
+\lthtmlwrite=\write3
+(./images.aux)
+\openout1 = `images.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 134.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
+File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
+)
+
+latex2htmlLength hsize=349.0pt
+
+latex2htmlLength vsize=633.0pt
+
+latex2htmlLength hoffset=0.0pt
+
+latex2htmlLength voffset=0.0pt
+
+latex2htmlLength topmargin=0.0pt
+
+latex2htmlLength topskip=0.00003pt
+
+latex2htmlLength headheight=0.0pt
+
+latex2htmlLength headsep=0.0pt
+
+latex2htmlLength parskip=0.0pt plus 1.0pt
+
+latex2htmlLength oddsidemargin=62.0pt
+
+latex2htmlLength evensidemargin=62.0pt
+
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 15
+8.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
+File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 15
+8.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlztmcm.fd
+File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 15
+8.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsztmcm.fd
+File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 15
+8.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxztmcm.fd
+File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 158.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 158.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 158.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 158.
+! Undefined control sequence.
+l.158 $ [\unhbox \voidb
+                       @x \hbox {Na}^+] = 1$%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   @
+l.158 $ [\unhbox \voidb@
+                        x \hbox {Na}^+] = 1$%
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Incompatible list can't be unboxed.
+<to be read again> 
+                   @
+l.158 $ [\unhbox \voidb@
+                        x \hbox {Na}^+] = 1$%
+Sorry, Pandora. (You sneaky devil.)
+I refuse to unbox an \hbox in vertical mode or vice versa.
+And I can't open any boxes in math mode.
+
+l2hSize :tex2html_wrap_inline4553:8.45284pt::8.45284pt::54.84346pt.
+[1
+
+
+
+]
+! Undefined control sequence.
+l.164 $ [\unhbox \voidb
+                       @x \hbox {nucleic acid}] = 4\cdot {}10^{-4}$%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   @
+l.164 $ [\unhbox \voidb@
+                        x \hbox {nucleic acid}] = 4\cdot {}10^{-4}$%
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+l2hSize :tex2html_wrap_inline4555:9.08043pt::9.08043pt::110.47054pt.
+[2
+
+
+]
+! Undefined control sequence.
+l.170 $ [\unhbox \voidb
+                       @x \hbox {nucleic acid}] = 2\cdot {}10^{-4}$%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   @
+l.170 $ [\unhbox \voidb@
+                        x \hbox {nucleic acid}] = 2\cdot {}10^{-4}$%
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+l2hSize :tex2html_wrap_inline4563:9.08043pt::9.08043pt::110.47054pt.
+[3
+
+
+]
+! Undefined control sequence.
+l.176 $ [\unhbox \voidb
+                       @x \hbox {nucleic acid}] = 1\cdot {}10^{-4}$%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   @
+l.176 $ [\unhbox \voidb@
+                        x \hbox {nucleic acid}] = 1\cdot {}10^{-4}$%
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+l2hSize :tex2html_wrap_inline4571:9.08043pt::9.08043pt::110.47054pt.
+[4
+
+
+]
+! Undefined control sequence.
+l.182 $ [\unhbox \voidb
+                       @x \hbox {nucleic acid}] = 2\cdot {}10^{-6}$%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   @
+l.182 $ [\unhbox \voidb@
+                        x \hbox {nucleic acid}] = 2\cdot {}10^{-6}$%
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+l2hSize :tex2html_wrap_inline4723:9.18399pt::9.18399pt::110.47054pt.
+[5
+
+
+]
+! Undefined control sequence.
+l.188 $ [\unhbox \voidb
+                       @x \hbox {nucleic acid}] = 5\cdot {}10^{-6}$%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   @
+l.188 $ [\unhbox \voidb@
+                        x \hbox {nucleic acid}] = 5\cdot {}10^{-6}$%
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+l2hSize :tex2html_wrap_inline4739:9.18399pt::9.18399pt::110.47054pt.
+[6
+
+
+]
+l2hSize :tex2html_wrap_inline4795:8.0pt::8.0pt::3.26993pt.
+[7
+
+
+]
+l2hSize :tex2html_wrap_inline4796:8.42923pt::8.42923pt::9.51964pt.
+[8
+
+
+]
+l2hSize :tex2html_wrap_inline4801:9.18399pt::9.18399pt::13.21964pt.
+[9
+
+
+]
+l2hSize :tex2html_wrap_indisplay4805:16.10004pt::16.10004pt::147.0586pt.
+[10
+
+
+]
+l2hSize :tex2html_wrap_indisplay4809:16.10004pt::16.10004pt::246.137pt.
+[11
+
+
+]
+l2hSize :tex2html_wrap_indisplay4812:16.10004pt::16.10004pt::162.37001pt.
+[12
+
+
+]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 258.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 258.
+
+
+Underfull \hbox (badness 10000) detected at line 258
+ []$[]  \OT1/ztmcm/m/n/10 ^^A\OML/ztmcm/m/it/10 H[] \OT1/ztmcm/m/n/10 = ^^A\OML
+/ztmcm/m/it/10 H[] \OT1/ztmcm/m/n/10 + ^^A\OML/ztmcm/m/it/10 H[] \OT1/ztmcm/m/n
+/10 + ^^A\OML/ztmcm/m/it/10 H[] \OT1/ztmcm/m/n/10 + ^^A\OML/ztmcm/m/it/10 H[]  
+$ 
+ []
+
+l2hSize :multlinestar521:27.98987pt::0.0pt::349.0pt.
+[13
+
+
+]
+l2hSize :tex2html_wrap_inline4905:7.32988pt::7.32988pt::11.69998pt.
+[14
+
+
+]
+l2hSize :tex2html_wrap_inline4910:8.42923pt::8.42923pt::26.73387pt.
+[15
+
+
+]
+l2hSize :tex2html_wrap_inline4913:9.08043pt::9.08043pt::45.98148pt.
+[16
+
+
+]
+l2hSize :tex2html_wrap_inline4928:9.08043pt::9.08043pt::45.98148pt.
+[17
+
+
+]
+l2hSize :tex2html_wrap_inline4943:9.08043pt::9.08043pt::45.98148pt.
+[18
+
+
+]
+l2hSize :tex2html_wrap_indisplay4968:8.89996pt::8.89996pt::156.94917pt.
+[19
+
+
+]
+Underfull \hbox (badness 10000) detected at line 307
+ []$[]  \OT1/ztmcm/m/n/10 ^^A\OML/ztmcm/m/it/10 H[] \OT1/ztmcm/m/n/10 = ^^A\OML
+/ztmcm/m/it/10 H[]  $ 
+ []
+
+l2hSize :multlinestar585:27.98987pt::0.0pt::349.0pt.
+[20
+
+
+]
+l2hSize :tex2html_wrap_indisplay5007:8.89996pt::8.89996pt::247.04677pt.
+[21
+
+
+]
+l2hSize :multlinestar620:43.98987pt::0.0pt::349.0pt.
+[22
+
+
+]
+l2hSize :multlinestar640:43.98987pt::0.0pt::349.0pt.
+[23
+
+
+]
+l2hSize :multlinestar656:34.9193pt::0.0pt::349.0pt.
+[24
+
+
+]
+l2hSize :tex2html_wrap_inline5047:7.94495pt::7.94495pt::80.40424pt.
+[25
+
+
+]
+l2hSize :tex2html_wrap_inline5049:7.94495pt::7.94495pt::89.03253pt.
+[26
+
+
+]
+l2hSize :tex2html_wrap_inline5051:7.94495pt::7.94495pt::36.83408pt.
+[27
+
+
+]
+l2hSize :multlinestar672:43.98987pt::0.0pt::349.0pt.
+[28
+
+
+]
+l2hSize :multlinestar682:34.9193pt::0.0pt::349.0pt.
+[29
+
+
+]
+l2hSize :tex2html_wrap_inline5058:7.94495pt::7.94495pt::79.16855pt.
+[30
+
+
+]
+l2hSize :tex2html_wrap_inline5060:7.94495pt::7.94495pt::22.85548pt.
+[31
+
+
+]
+l2hSize :tex2html_wrap_inline5062:7.94495pt::7.94495pt::36.53806pt.
+[32
+
+
+]
+l2hSize :tex2html_wrap_inline5064:7.94495pt::7.94495pt::52.0335pt.
+[33
+
+
+]
+l2hSize :multlinestar702:43.98987pt::0.0pt::349.0pt.
+[34
+
+
+]
+l2hSize :multlinestar729:34.96991pt::0.0pt::349.0pt.
+[35
+
+
+]
+l2hSize :multlinestar738:43.98987pt::0.0pt::349.0pt.
+[36
+
+
+]
+l2hSize :multlinestar756:33.60004pt::0.0pt::349.0pt.
+[37
+
+
+]
+l2hSize :multlinestar764:43.98987pt::0.0pt::349.0pt.
+[38
+
+
+]
+l2hSize :multlinestar771:56.47585pt::0.0pt::349.0pt.
+[39
+
+
+]
+l2hSize :tex2html_wrap_inline5173:7.94495pt::7.94495pt::78.64331pt.
+[40
+
+
+]
+l2hSize :tex2html_wrap_inline5175:7.94495pt::7.94495pt::78.64331pt.
+[41
+
+
+]
+l2hSize :tex2html_wrap_inline5179:7.94495pt::7.94495pt::15.86993pt.
+[42
+
+
+]
+l2hSize :multlinestar792:43.98987pt::0.0pt::349.0pt.
+[43
+
+
+]
+l2hSize :multlinestar821:79.96004pt::0.0pt::349.0pt.
+[44
+
+
+]
+l2hSize :tex2html_wrap_inline5247:7.94495pt::7.94495pt::63.12556pt.
+[45
+
+
+]
+l2hSize :tex2html_wrap_inline5249:7.94495pt::7.94495pt::45.05505pt.
+[46
+
+
+]
+l2hSize :tex2html_wrap_inline5251:7.94495pt::7.94495pt::86.97508pt.
+[47
+
+
+]
+l2hSize :tex2html_wrap_inline5253:7.94495pt::7.94495pt::91.08952pt.
+[48
+
+
+]
+l2hSize :multlinestar848:71.97974pt::0.0pt::349.0pt.
+[49
+
+
+]
+l2hSize :multlinestar864:49.96004pt::0.0pt::349.0pt.
+[50
+
+
+]
+l2hSize :tex2html_wrap_inline5258:7.94495pt::7.94495pt::67.2472pt.
+[51
+
+
+]
+l2hSize :tex2html_wrap_inline5262:7.94495pt::7.94495pt::46.17993pt.
+[52
+
+
+]
+l2hSize :tex2html_wrap_inline5264:7.94495pt::7.94495pt::94.77498pt.
+[53
+
+
+]
+l2hSize :multlinestar884:43.98987pt::0.0pt::349.0pt.
+[54
+
+
+]
+l2hSize :tex2html_wrap_indisplay5318:8.89996pt::8.89996pt::318.9299pt.
+[55
+
+
+]
+l2hSize :multlinestar919:43.98987pt::0.0pt::349.0pt.
+[56
+
+
+]
+l2hSize :multlinestar928:43.98987pt::0.0pt::349.0pt.
+[57
+
+
+]
+l2hSize :tex2html_wrap_indisplay5358:8.89996pt::8.89996pt::265.91971pt.
+[58
+
+
+]
+l2hSize :multlinestar973:71.97974pt::0.0pt::349.0pt.
+[59
+
+
+]
+l2hSize :multlinestar1010:48.60004pt::0.0pt::349.0pt.
+[60
+
+
+]
+l2hSize :multlinestar1019:43.98987pt::0.0pt::349.0pt.
+[61
+
+
+]
+l2hSize :multlinestar1042:33.60004pt::0.0pt::349.0pt.
+[62
+
+
+]
+l2hSize :multlinestar1053:71.97974pt::0.0pt::349.0pt.
+[63
+
+
+]
+l2hSize :multlinestar1091:33.60004pt::0.0pt::349.0pt.
+[64
+
+
+]
+l2hSize :multlinestar1101:87.97974pt::0.0pt::349.0pt.
+[65
+
+
+]
+l2hSize :multlinestar1117:48.60004pt::0.0pt::349.0pt.
+[66
+
+
+]
+l2hSize :tex2html_wrap_inline5609:7.94495pt::7.94495pt::68.73502pt.
+[67
+
+
+]
+l2hSize :tex2html_wrap_inline5611:7.94495pt::7.94495pt::62.20085pt.
+[68
+
+
+]
+l2hSize :tex2html_wrap_inline5613:7.94495pt::7.94495pt::75.87573pt.
+[69
+
+
+]
+l2hSize :multlinestar1138:71.97974pt::0.0pt::349.0pt.
+[70
+
+
+]
+l2hSize :multlinestar1150:33.60004pt::0.0pt::349.0pt.
+[71
+
+
+]
+l2hSize :tex2html_wrap_inline5620:7.94495pt::7.94495pt::101.21295pt.
+[72
+
+
+]
+l2hSize :multlinestar1162:43.98987pt::0.0pt::349.0pt.
+[73
+
+
+]
+l2hSize :multlinestar1195:48.60004pt::0.0pt::349.0pt.
+[74
+
+
+]
+l2hSize :tex2html_wrap_inline5702:7.94495pt::7.94495pt::68.73502pt.
+[75
+
+
+]
+l2hSize :multlinestar1210:43.98987pt::0.0pt::349.0pt.
+[76
+
+
+]
+l2hSize :multlinestar1218:49.9193pt::0.0pt::349.0pt.
+[77
+
+
+]
+l2hSize :tex2html_wrap_inline5709:7.94495pt::7.94495pt::101.21295pt.
+[78
+
+
+]
+l2hSize :tex2html_wrap_inline5711:7.94495pt::7.94495pt::79.56853pt.
+[79
+
+
+]
+l2hSize :multlinestar1230:43.98987pt::0.0pt::349.0pt.
+[80
+
+
+]
+l2hSize :tex2html_wrap_indisplay5750:8.89996pt::8.89996pt::295.12418pt.
+[81
+
+
+]
+l2hSize :multlinestar1257:43.98987pt::0.0pt::349.0pt.
+[82
+
+
+]
+l2hSize :multlinestar1266:43.98987pt::0.0pt::349.0pt.
+[83
+
+
+]
+l2hSize :multlinestar1301:33.60004pt::0.0pt::349.0pt.
+[84
+
+
+]
+l2hSize :multlinestar1311:87.97974pt::0.0pt::349.0pt.
+[85
+
+
+]
+l2hSize :tex2html_wrap_inline5850:9.18399pt::9.18399pt::45.98148pt.
+[86
+
+
+]
+l2hSize :multlinestar1343:34.68494pt::0.0pt::349.0pt.
+[87
+
+
+]
+l2hSize :multlinestar1352:58.98987pt::0.0pt::349.0pt.
+[88
+
+
+]
+l2hSize :multlinestar1379:35.05481pt::0.0pt::349.0pt.
+[89
+
+
+]
+l2hSize :multlinestar1388:58.98987pt::0.0pt::349.0pt.
+[90
+
+
+]
+l2hSize :multlinestar1400:43.98987pt::0.0pt::349.0pt.
+[91
+
+
+]
+l2hSize :tex2html_wrap_inline5926:9.18399pt::9.18399pt::45.98148pt.
+[92
+
+
+]
+l2hSize :multlinestar1427:43.98987pt::0.0pt::349.0pt.
+[93
+
+
+]
+l2hSize :multlinestar1455:43.98987pt::0.0pt::349.0pt.
+[94
+
+
+]
+l2hSize :tex2html_wrap_inline5988:9.49405pt::9.49405pt::89.91968pt.
+[95
+
+
+]
+l2hSize :tex2html_wrap_inline5990:7.92923pt::0.0pt::6.74974pt.
+[96
+
+
+]
+l2hSize :tex2html_wrap_inline6004:9.49405pt::9.49405pt::51.60704pt.
+[97
+
+
+]
+l2hSize :tex2html_wrap_inline6019:7.94495pt::7.94495pt::66.6671pt.
+[98
+
+
+]
+l2hSize :tex2html_wrap_inline6021:7.24997pt::7.24997pt::24.13979pt.
+[99
+
+
+]
+l2hSize :tex2html_wrap_inline6023:7.24997pt::7.24997pt::22.47974pt.
+[100
+
+
+]
+l2hSize :tex2html_wrap_inline6027:7.24997pt::7.24997pt::60.56383pt.
+[101
+
+
+]
+l2hSize :tex2html_wrap_inline6031:7.24997pt::7.24997pt::11.97401pt.
+[102
+
+
+]
+l2hSize :tex2html_wrap_inline6039:7.94495pt::7.94495pt::21.97401pt.
+[103
+
+
+]
+l2hSize :tex2html_wrap_inline6085:9.08043pt::9.08043pt::13.21964pt.
+[104
+
+
+]
+l2hSize :tex2html_wrap_indisplay6088:8.92921pt::8.92921pt::195.34737pt.
+[105
+
+
+]
+l2hSize :tex2html_wrap_indisplay6090:8.92921pt::8.92921pt::212.93831pt.
+[106
+
+
+]
+l2hSize :tex2html_wrap_inline6092:7.24997pt::7.24997pt::16.8113pt.
+[107
+
+
+]
+l2hSize :tex2html_wrap_indisplay6094:8.92921pt::8.92921pt::212.93831pt.
+[108
+
+
+]
+l2hSize :tex2html_wrap_indisplay6098:8.92921pt::8.92921pt::220.7082pt.
+[109
+
+
+]
+l2hSize :tex2html_wrap_indisplay6102:13.95984pt::13.95984pt::260.6859pt.
+[110
+
+
+]
+l2hSize :tex2html_wrap_indisplay6106:8.92921pt::8.92921pt::220.7082pt.
+[111
+
+
+]
+l2hSize :tex2html_wrap_indisplay6108:8.0pt::8.0pt::56.01709pt.
+[112
+
+
+]
+l2hSize :tex2html_wrap_indisplay6109:9.58041pt::9.58041pt::17.5995pt.
+[113
+
+
+]
+Underfull \hbox (badness 10000) detected at line 1151
+ []$[]  [] \OT1/ztmcm/m/n/10 = [] + (4\OML/ztmcm/m/it/10 :\OT1/ztmcm/m/n/10 29 
+\OMS/ztmcm/m/n/10 ^^B \OML/ztmcm/m/it/10 ^^_[] \OMS/ztmcm/m/n/10 ^^@ \OT1/ztmcm
+/m/n/10 3\OML/ztmcm/m/it/10 :\OT1/ztmcm/m/n/10 95)\OMS/ztmcm/m/n/10 ^^B  $ 
+ []
+
+l2hSize :multlinestar1607:30.40973pt::0.0pt::349.0pt.
+[114
+
+
+]
+Underfull \hbox (badness 10000) detected at line 1160
+ []$[]  [] \OMS/ztmcm/m/n/10 ^^B []\OT1/ztmcm/m/n/10 [[][]] + 9\OML/ztmcm/m/it/
+10 :\OT1/ztmcm/m/n/10 40 \OMS/ztmcm/m/n/10 ^^B [] ^^B []\OT1/ztmcm/m/n/10 [[][]
+]  $ 
+ []
+
+l2hSize :multlinestar1615:24.47473pt::0.0pt::349.0pt.
+[115
+
+
+]
+l2hSize :tex2html_wrap_indisplay6117:8.0pt::8.0pt::34.9308pt.
+[116
+
+
+]
+l2hSize :tex2html_wrap_indisplay6118:8.92921pt::8.92921pt::9.51964pt.
+[117
+
+
+]
+l2hSize :tex2html_wrap_indisplay6120:8.92921pt::8.92921pt::187.57747pt.
+[118
+
+
+]
+l2hSize :tex2html_wrap_indisplay6122:8.92921pt::8.92921pt::155.0022pt.
+[119
+
+
+]
+l2hSize :tex2html_wrap_indisplay6124:8.0pt::8.0pt::164.11806pt.
+[120
+
+
+]
+l2hSize :tex2html_wrap_indisplay6126:14.15483pt::14.15483pt::55.66187pt.
+[121
+
+
+]
+l2hSize :tex2html_wrap_indisplay6128:8.0pt::8.0pt::69.35146pt.
+[122
+
+
+]
+l2hSize :tex2html_wrap_indisplay6129:8.92921pt::8.92921pt::67.8144pt.
+[123
+
+
+]
+l2hSize :tex2html_wrap_indisplay6130:9.58041pt::9.58041pt::21.2995pt.
+[124
+
+
+]
+l2hSize :tex2html_wrap_indisplay6132:8.0pt::8.0pt::70.46143pt.
+[125
+
+
+]
+l2hSize :tex2html_wrap_indisplay6139:8.0pt::8.0pt::74.35146pt.
+[126
+
+
+]
+l2hSize :tex2html_wrap_indisplay6143:8.0pt::8.0pt::70.46143pt.
+[127
+
+
+]
+l2hSize :tex2html_wrap_indisplay6146:15.22273pt::15.22273pt::205.71176pt.
+[128
+
+
+]
+l2hSize :tex2html_wrap_indisplay6269:14.29282pt::14.29282pt::340.04448pt.
+[129
+
+
+]
+l2hSize :tex2html_wrap_indisplay6271:8.0pt::8.0pt::44.53807pt.
+[130
+
+
+]
+l2hSize :tex2html_wrap_indisplay6272:9.58041pt::9.58041pt::43.1969pt.
+[131
+
+
+]
+l2hSize :tex2html_wrap_indisplay6273:9.58041pt::9.58041pt::27.94926pt.
+[132
+
+
+]
+l2hSize :tex2html_wrap_inline6277:9.18399pt::9.18399pt::20.44974pt.
+[133
+
+
+]
+l2hSize :tex2html_wrap_inline6279:9.18399pt::9.18399pt::20.44974pt.
+[134
+
+
+]
+l2hSize :tex2html_wrap_inline6285:9.08043pt::9.08043pt::20.44974pt.
+[135
+
+
+]
+l2hSize :tex2html_wrap_indisplay6291:8.0pt::8.0pt::164.11806pt.
+[136
+
+
+]
+l2hSize :tex2html_wrap_indisplay6293:14.15483pt::14.15483pt::64.89148pt.
+[137
+
+
+]
+l2hSize :tex2html_wrap_indisplay6295:8.0pt::8.0pt::61.58156pt.
+[138
+
+
+]
+l2hSize :tex2html_wrap_indisplay6296:9.58041pt::9.58041pt::76.5144pt.
+[139
+
+
+]
+l2hSize :tex2html_wrap_indisplay6299:8.0pt::8.0pt::61.58156pt.
+[140
+
+
+]
+l2hSize :tex2html_wrap_indisplay6300:9.58041pt::9.58041pt::71.5144pt.
+[141
+
+
+]
+l2hSize :tex2html_wrap_indisplay6307:14.09978pt::14.09978pt::100.06895pt.
+[142
+
+
+]
+l2hSize :tex2html_wrap_indisplay6311:8.0pt::8.0pt::33.26405pt.
+[143
+
+
+]
+l2hSize :tex2html_wrap_indisplay6312:9.58041pt::9.58041pt::63.7445pt.
+[144
+
+
+]
+l2hSize :tex2html_wrap_indisplay6366:9.68398pt::9.68398pt::123.71864pt.
+[145
+
+
+]
+l2hSize :tex2html_wrap_indisplay6367:9.68398pt::9.68398pt::31.13022pt.
+[146
+
+
+]
+l2hSize :tex2html_wrap_indisplay6368:8.92921pt::8.92921pt::13.3995pt.
+[147
+
+
+]
+l2hSize :tex2html_wrap_indisplay6370:9.68398pt::9.68398pt::153.62683pt.
+[148
+
+
+]
+l2hSize :tex2html_wrap_indisplay6371:9.58041pt::9.58041pt::74.99533pt.
+[149
+
+
+]
+l2hSize :tex2html_wrap_indisplay6372:9.58041pt::9.58041pt::17.5995pt.
+[150
+
+
+]
+l2hSize :tex2html_wrap_indisplay6374:9.68398pt::9.68398pt::132.60962pt.
+[151
+
+
+]
+l2hSize :tex2html_wrap_indisplay6375:9.58041pt::9.58041pt::74.99533pt.
+[152
+
+
+]
+l2hSize :tex2html_wrap_indisplay6376:9.58041pt::9.58041pt::13.71964pt.
+[153
+
+
+]
+l2hSize :tex2html_wrap_indisplay6378:8.0pt::8.0pt::269.64749pt.
+[154
+
+
+]
+l2hSize :tex2html_wrap_indisplay6380:8.0pt::8.0pt::109.38634pt.
+[155
+
+
+]
+l2hSize :tex2html_wrap_indisplay6381:16.82143pt::16.82143pt::96.95915pt.
+[156
+
+
+]
+l2hSize :tex2html_wrap_indisplay6383:15.22273pt::15.22273pt::206.55127pt.
+[157
+
+
+]
+l2hSize :tex2html_wrap_indisplay6385:7.24997pt::7.24997pt::47.20154pt.
+[158
+
+
+]
+l2hSize :tex2html_wrap_indisplay6420:8.0pt::8.0pt::3.26993pt.
+[159
+
+
+]
+l2hSize :tex2html_wrap_indisplay6421:8.92921pt::8.92921pt::24.50377pt.
+[160
+
+
+]
+l2hSize :tex2html_wrap_indisplay6422:8.92921pt::8.92921pt::22.83714pt.
+[161
+
+
+]
+l2hSize :tex2html_wrap_inline6433:9.08043pt::9.08043pt::25.18953pt.
+[162
+
+
+]
+l2hSize :tex2html_wrap_indisplay6459:15.49277pt::15.49277pt::157.69067pt.
+[163
+
+
+]
+l2hSize :tex2html_wrap_indisplay6464:15.49277pt::15.49277pt::144.92078pt.
+[164
+
+
+]
+l2hSize :tex2html_wrap_indisplay6469:15.49277pt::15.49277pt::152.69067pt.
+[165
+
+
+]
+l2hSize :tex2html_wrap_inline6496:7.24997pt::7.24997pt::21.04764pt.
+[166
+
+
+]
+l2hSize :tex2html_wrap_indisplay6499:8.0pt::8.0pt::161.15244pt.
+[167
+
+
+]
+l2hSize :tex2html_wrap_indisplay6501:8.0pt::8.0pt::156.15244pt.
+[168
+
+
+]
+l2hSize :tex2html_wrap_indisplay6503:8.0pt::8.0pt::166.15244pt.
+[169
+
+
+]
+l2hSize :tex2html_wrap_indisplay6505:8.0pt::8.0pt::156.15244pt.
+[170
+
+
+]
+l2hSize :tex2html_wrap_indisplay6559:8.0pt::8.0pt::266.66783pt.
+[171
+
+
+]
+l2hSize :tex2html_wrap_indisplay6563:8.0pt::8.0pt::198.73172pt.
+[172
+
+
+]
+l2hSize :tex2html_wrap_inline6608:7.24997pt::7.24997pt::8.26993pt.
+[173
+
+
+]
+l2hSize :tex2html_wrap_indisplay6610:8.0pt::8.0pt::136.4363pt.
+[174
+
+
+]
+l2hSize :tex2html_wrap_indisplay6611:14.09978pt::14.09978pt::139.34941pt.
+[175
+
+
+]
+l2hSize :tex2html_wrap_indisplay6613:14.09978pt::14.09978pt::133.2865pt.
+[176
+
+
+]
+l2hSize :tex2html_wrap_indisplay6615:14.09978pt::14.09978pt::133.2865pt.
+[177
+
+
+]
+l2hSize :tex2html_wrap_indisplay6617:8.0pt::8.0pt::98.94887pt.
+[178
+
+
+]
+l2hSize :tex2html_wrap_indisplay6618:14.09978pt::14.09978pt::98.27217pt.
+[179
+
+
+]
+l2hSize :tex2html_wrap_indisplay6620:8.0pt::8.0pt::141.4363pt.
+[180
+
+
+]
+l2hSize :tex2html_wrap_indisplay6621:8.92921pt::8.92921pt::116.40181pt.
+[181
+
+
+]
+l2hSize :tex2html_wrap_indisplay6623:8.0pt::8.0pt::98.94887pt.
+[182
+
+
+]
+l2hSize :tex2html_wrap_indisplay6624:14.09978pt::14.09978pt::98.27217pt.
+[183
+
+
+]
+l2hSize :tex2html_wrap_indisplay6626:15.22273pt::15.22273pt::292.00229pt.
+[184
+
+
+]
+l2hSize :tex2html_wrap_indisplay6628:15.22273pt::15.22273pt::279.23239pt.
+[185
+
+
+]
+l2hSize :tex2html_wrap_indisplay6630:15.22273pt::15.22273pt::279.23239pt.
+[186
+
+
+] (./images.aux) ) 
+Here is how much of TeX's memory you used:
+ 1968 strings out of 495032
+ 24882 string characters out of 6181558
+ 69661 words of memory out of 5000000
+ 5163 multiletter control sequences out of 15000+600000
+ 18404 words of font info for 39 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 27i,10n,21p,389b,220s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on images.dvi (186 pages, 58924 bytes).

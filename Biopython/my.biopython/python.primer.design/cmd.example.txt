@@ -1,0 +1,1 @@
+python PythonPrimerDesign.v1.0.py -in example.fasta -range 100 200 700 800 -min_len 20 -max_len 24 -min_tm 57 -max_tm 60 -max_tm_diff 3 -exclude_gc -min_gc 40 -max_gc 60 -exclude_clamp -exclude_repeat_run -run 4 -repeat 3 -exclude_max_dimer -max_dimer_bp 10 -exclude_max_3_dimer -max_3_dimer_bp 3/5 -simple -out dna.pyprimer.simple.results.txt

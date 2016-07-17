@@ -22,14 +22,14 @@ ORGANIZATION: Nanjing University, China
 '''
 用法举例：将引物设计参考序列存入Fasta文件，如dna.fasta， 在5'端100到200区域设计正向引物，3'端700到800设计反向引物。
          引物长度为20-24bp，Tm值在57℃ - 63℃之间，最大Tm差异为3℃，要求引物GC含量为40%-60%，要求引物末端3个碱基
-         中至少有2个G/C（GC clamp), 要求引物单碱基重复数不多于4个，多碱基重复不多于3个，引物二聚体中匹配引物不超过10个，
-         而在3'可延伸二聚体中最后5个碱基不多于3个匹配碱基，把结果输出到dna.pyprimer.results.txt，且输出所有引物的详细信息，
+         中至少有2个G/C（GC clamp), 要求引物单碱基重复数不多于4个，多碱基重复不多于3个，引物二聚体中匹配碱基不超过10个，
+         而在3'可延伸二聚体中最后5个碱基不多于3个匹配碱基，把简略结果输出到dna.pyprimer.results.txt，且输出所有引物的详细信息，
          那么命令应为:
 $ python PythonPrimerDesign.v1.0.py -in dna.fasta -range 100 200 700 800 -min_len 20 -max_len 24 \
-                                    -min_tm 57 -max_tm -max_tm_diff 3 -exclude_gc -min_gc 40 -max_gc 60 \
+                                    -min_tm 57 -max_tm 60 -max_tm_diff 3 -exclude_gc -min_gc 40 -max_gc 60 \
                                     -exclude_clamp -exclude_repeat_run -run 4 -repeat 3 \
                                     -exclude_max_dimer -max_dimer_bp 10 -exclude_max_3_dimer -max_3_dimer_bp 3/5 \
-                                    -report -out dna.pyprimer.results.txt
+                                    --report -simple -out dna.pyprimer.results.txt
 注意：如最后找到的引物数目为0，请根据输出中的过滤信息调整相应参数。
 '''
 import argparse
@@ -187,15 +187,15 @@ def Tm(sequence):
     deltaS += (0.368 * (seq_len - 1) * math.log(Na_eq))
     oligo_conc_mols = oligo_conc / 1000000000
     corrected_tm=((deltaH * 1000) / (deltaS + (1.987 * math.log(oligo_conc_mols/4)))) - 273.15
-    deltaG = deltaH-((273.15 + corrected_tm)*(deltaS/1000))
+    deltaG = deltaH-((273.15 + temperature)*(deltaS/1000))
     return (corrected_tm, deltaH, deltaS, deltaG)
 
 # 搜索Tm值匹配且引物二聚体符合要求的引物对
 def Primer_Pair_Cal():
     primer_1_id = 0
+    primer_count = 0
     global all_pp_num
     global tm_diff_filter_pp_num
-    
     all_pp_num = len(primer_forward_list) * len(primer_reverse_list)
     for primer_1 in primer_forward_list:
         (primer_1_pos, primer_1_len, primer_1_seq, primer_1_tm) = primer_1
@@ -212,7 +212,8 @@ def Primer_Pair_Cal():
                 primer_2_bind_list.append([])
                 primer_2_bind_list_full.append([])
             primer_2_id += 1
-            percent_process = (primer_1_id * primer_2_id) * 100 / all_pp_num
+            primer_count += 1
+            percent_process = primer_count * 100 / all_pp_num
             print("引物搜索进度: %2.0f%%\r" %percent_process, end='')
             amp_size = primer_2_pos - primer_1_pos + 1 + primer_2_len
             # Tm差值检查
@@ -560,6 +561,13 @@ parser.add_argument(
                     dest='report_out',
                     help="引物详细信息输出")
 parser.add_argument(
+                    '-simple',
+                    "--simple_out",
+                    action='store_true',
+                    default=False,
+                    dest='simple_out',
+                    help="引物信息简略输出")
+parser.add_argument(
                     "-v", "--version",
                     action='version',
                     help="本程序的版本号.",
@@ -874,29 +882,32 @@ if report_out:
 OUT.write('# fasta file: %s\n' %args.fasta_in)
 # 过滤条件生成
 OUT.write("#\n# filter conditions\n")
-OUT.write("Primer Tm range: %d ℃ - %d ℃\n" %(min_tm, max_tm))
-OUT.write("Max Tm difference: %d ℃\n" %max_tm_diff)
-OUT.write("Primer length range: %d bp - %d bp\n" %(min_len, max_len))
-OUT.write("Amplicon range: 5' %d - %d  3' %d - %d\n" %(min_range_5p, min_range_3p, max_range_5p, max_range_3p))
+OUT.write("#-Primer Tm range: %d ℃ - %d ℃\n" %(min_tm, max_tm))
+OUT.write("#-Max Tm difference: %d ℃\n" %max_tm_diff)
+OUT.write("#-Primer length range: %d bp - %d bp\n" %(min_len, max_len))
+OUT.write("#-Amplicon range: 5' %d - %d  3' %d - %d\n" %(min_range_5p, min_range_3p, max_range_5p, max_range_3p))
 if exclude_gc:
-    OUT.write("GC content: %d %% - %d %%\n" %(min_gc, max_gc))
+    OUT.write("#-GC content: %d %% - %d %%\n" %(min_gc, max_gc))
 if exclude_gc_clamp:
-    OUT.write("GC clamp(two of the last three bases G or C)\n")
+    OUT.write("#-GC clamp(two of the last three bases G or C)\n")
 if exclude_rr:
-    OUT.write("single base repeat: %d\n" %run)
-    OUT.write("two or more bases repeat: %d\n" %repeat)
+    OUT.write("#-single base repeat: %d\n" %run)
+    OUT.write("#-two or more bases repeat: %d\n" %repeat)
 if args.remain_extend_dimer:
-    OUT.write("remain primer with 3' extensible dimer\n")
+    OUT.write("#-remain primer with 3' extensible dimer\n")
 if exclude_max_dimer:
-    OUT.write("exclude primer with dimer more than %d complementary bases\n" %max_dimer_basepair_num)
+    OUT.write("#-exclude primer with dimer more than %d complementary bases\n" %max_dimer_basepair_num)
 if exclude_max_3_dimer:
-    OUT.write("exclude primer with %d bp 3' dimer with more than %d bp complementary bases\n" %(max_3_dimer_total_num, max_3_dimer_bp_num))
+    OUT.write("#-exclude primer with %d bp 3' dimer with more than %d bp complementary bases\n" %(max_3_dimer_total_num, max_3_dimer_bp_num))
 if report_out:
     REPORT.write("# Report generated at %s\n" %time_detail)
     REPORT.write("# See file %s simple result\n" %(args.file_out))
     REPORT.write('# fasta file: %s\n' %args.fasta_in)
 
-out_str = '\n----------------\nALL PRIMER PAIRS\n----------------\n\n'
+if not args.simple_out:
+    out_str = '\n----------------\nALL PRIMER PAIRS\n----------------\n\n'
+else:
+    OUT.write("\n#Foward_Primer\tPos\tLen\tTm\tReverse_Primer\tPos\tTm\tAmp_size\tExt_dimer_dG\tFull_dimer_dG\n")
 if report_out:
     report_str = '\n引物详情(未考虑二聚体情况)\n--------------------------\n'
 
@@ -904,41 +915,47 @@ primer_pair_total_num = len(primer_pairs_list)
 primer_pair_num = 0     # 符合条件的引物对数
 pp_id = 0
 # 最佳引物筛选
-best_pp_str = "\n-----------------------------------------\nBest Primer Pair(only 3'-dimer concerned)\n"
-best_pp_dG_extand = -999
-best_pp_dG_full = -999
-for primer_info in primer_pairs_list:
-    pp_id += 1
-    if best_pp_dG_extand < primer_info[9]:
-        best_pp_dG_extand = primer_info[9]
-    if best_pp_dG_full < primer_info[10]:
-        best_pp_dG_full = primer_info[10]
-    (p1_id, p2_id) = primer_info[-2:]
-    p_dG_list = []
-    p_dG_list_full = []
-    for p_bind_info in primer_1_bind_list[p1_id-1]:
-        p_dG_list.append(p_bind_info[1])
-    for p_bind_info in primer_1_bind_list_full[p1_id-1]:
-        p_dG_list_full.append(p_bind_info[1])
-    for p_bind_info in primer_2_bind_list[p2_id-1]:
-        p_dG_list.append(p_bind_info[1])
-    for p_bind_info in primer_2_bind_list_full[p2_id-1]:
-        p_dG_list_full.append(p_bind_info[1])
-    for p_bind_info in primer_pairs_bind_list[pp_id-1]:
-        p_dG_list.append(p_bind_info[1])
-    for p_bind_info in primer_pairs_bind_list_full[pp_id-1]:
-        p_dG_list_full.append(p_bind_info[1])
-    if p_dG_list:
-        min_p_dG = min(p_dG_list)
-        if best_pp_dG_extand < min_p_dG and min_p_dG != 999:
-            best_pp_dG_extand = min_p_dG
-    if p_dG_list_full:
-        min_p_dG = min(p_dG_list_full)
-        if best_pp_dG_full < min_p_dG and min_p_dG != 999:
-            best_pp_dG_full = min_p_dG
-best_pp_str += (" 3' -dimer ΔG: %.2f\n" %best_pp_dG_extand)
-best_pp_str += ("full dimer ΔG: %.2f\n" %best_pp_dG_full)
+if not args.simple_out:
+    best_pp_str = "\n-----------------------------------------\nBest Primer Pair(only 3'-dimer concerned)\n"
+    best_pp_dG_extand = -999
+    best_pp_dG_full = -999
+    for primer_info in primer_pairs_list:
+        pp_id += 1
+        if best_pp_dG_extand < primer_info[9]:
+            best_pp_dG_extand = primer_info[9]
+        if best_pp_dG_full < primer_info[10]:
+            best_pp_dG_full = primer_info[10]
+        (p1_id, p2_id) = primer_info[-2:]
+        p_dG_list = []
+        p_dG_list_full = []
+        for p_bind_info in primer_1_bind_list[p1_id-1]:
+            p_dG_list.append(p_bind_info[1])
+        for p_bind_info in primer_1_bind_list_full[p1_id-1]:
+            p_dG_list_full.append(p_bind_info[1])
+        for p_bind_info in primer_2_bind_list[p2_id-1]:
+            p_dG_list.append(p_bind_info[1])
+        for p_bind_info in primer_2_bind_list_full[p2_id-1]:
+            p_dG_list_full.append(p_bind_info[1])
+        for p_bind_info in primer_pairs_bind_list[pp_id-1]:
+            p_dG_list.append(p_bind_info[1])
+        for p_bind_info in primer_pairs_bind_list_full[pp_id-1]:
+            p_dG_list_full.append(p_bind_info[1])
+        if p_dG_list:
+            min_p_dG = min(p_dG_list)
+            if best_pp_dG_extand < min_p_dG and min_p_dG != 999:
+                best_pp_dG_extand = min_p_dG
+        if p_dG_list_full:
+            min_p_dG = min(p_dG_list_full)
+            if best_pp_dG_full < min_p_dG and min_p_dG != 999:
+                best_pp_dG_full = min_p_dG
+    best_pp_str += (" 3' -dimer ΔG: %.2f\n" %best_pp_dG_extand)
+    best_pp_str += ("full dimer ΔG: %.2f\n" %best_pp_dG_full)
+
 pp_id = 0
+foward_primer_filter_by_dimer=[]
+foward_primer_filter_by_3_dimer=[]
+reverse_primer_filter_by_dimer=[]
+reverse_primer_filter_by_3_dimer=[]
 for primer_info in primer_pairs_list:
     pp_id += 1
     process_rate = (pp_id) * 100 / primer_pair_total_num
@@ -982,26 +999,28 @@ for primer_info in primer_pairs_list:
         p_dG_list_full.append(p_bind_info[1])
     # 所有候选引物信息输出
     if report_out:
-        report_str += ("---------------------\n## PRIMER PAIR: %d\n" %pp_id)
-        report_str += ("Forward: 5' %s 3'\nReverse: 5' %s 3'\n" %(primer_info[0], primer_info[4]))
-        report_str += ("\nAmplicon Size: %d bases(%d - %d)\n" %(primer_info[8], primer_info[1], primer_info[5]))
-        report_str += "\n### PRIMER DETAILS\n"
-        report_str += ("\nForward: %s (deltaG: %.2f)\nForward vs. Forward\n" %(primer_info[0], Tm(primer_info[0])[-1]))
+        REPORT.write("---------------------\n## PRIMER PAIR: %d\n" %pp_id)
+        REPORT.write("Forward: 5' %s 3'\nReverse: 5' %s 3'\n" %(primer_info[0], primer_info[4]))
+        REPORT.write("\nAmplicon Size: %d bases(%d - %d)\n" %(primer_info[8], primer_info[1], primer_info[5]))
+        REPORT.write("\n### PRIMER DETAILS\n")
+        REPORT.write("\nForward: %s (deltaG: %.2f)\nForward vs. Forward\n" %(primer_info[0], Tm(primer_info[0])[-1]))
         for p1_info in p1_bind_str_list_full:
-            report_str += ("ΔG: %.2f kcal/mol(%s)\n" % (p1_info[1], p1_info[2]))
-            report_str += Dimer_Align(p1_info[-1], p1_info[-1], p1_info[0], p1_info[2])
-            report_str += "\n"
-        report_str += ("\nReverse: %s (deltaG: %.2f)\nReverse vs. Reverse\n" %(primer_info[4], Tm(primer_info[4])[-1]))
+            REPORT.write("ΔG: %.2f kcal/mol(%s)\n" % (p1_info[1], p1_info[2]))
+            REPORT.write(Dimer_Align(p1_info[-1], p1_info[-1], p1_info[0], p1_info[2]))
+            REPORT.write("\n")
+        REPORT.write("\nReverse: %s (deltaG: %.2f)\nReverse vs. Reverse\n" %(primer_info[4], Tm(primer_info[4])[-1]))
         for p2_info in p2_bind_str_list_full:
-            report_str += ("ΔG: %.2f kcal/mol(%s)\n" % (p2_info[1], p2_info[2]))
-            report_str += Dimer_Align(p2_info[-1], p2_info[-1], p2_info[0], p2_info[2])
-            report_str += "\n"
-        report_str += ("\nForward vs. Reverse\n")
+            REPORT.write("ΔG: %.2f kcal/mol(%s)\n" % (p2_info[1], p2_info[2]))
+            REPORT.write(Dimer_Align(p2_info[-1], p2_info[-1], p2_info[0], p2_info[2]))
+            REPORT.write("\n")
+        REPORT.write("\nForward vs. Reverse\n")
         for pp_info in pp_bind_str_list_full:
-            report_str += ("ΔG: %.2f kcal/mol(%s)\n" % (pp_info[1], pp_info[2]))
-            report_str += Dimer_Align(pp_info[-2], pp_info[-1], pp_info[0], pp_info[2])
-            report_str += "\n"
+            REPORT.write("ΔG: %.2f kcal/mol(%s)\n" % (pp_info[1], pp_info[2]))
+            REPORT.write(Dimer_Align(pp_info[-2], pp_info[-1], pp_info[0], pp_info[2]))
+            REPORT.write("\n")
     # 正向引物检查
+    if primer_info[0] in foward_primer_filter_by_dimer or primer_info[0] in foward_primer_filter_by_3_dimer:
+        continue
     dimer_num = 0
     dimer_3_num = 0
     dG_0 = p1_bind_str_list_full[0][1]
@@ -1038,13 +1057,17 @@ for primer_info in primer_pairs_list:
                     dimer_base_num_3 = dimer_count
                     max_dimer_id_p1_extend = dG_id
         dG_id += 1
-    if exclude_max_dimer and dimer_num > max_dimer_basepair_num:
+    if exclude_max_dimer and dimer_num > max_dimer_basepair_num and primer_info[0] not in foward_primer_filter_by_dimer:
         max_dimer_filter_forward_num += 1
+        foward_primer_filter_by_dimer.append(primer_info[0])
         continue
-    if exclude_max_3_dimer and dimer_3_num > max_3_dimer_bp_num:
+    if exclude_max_3_dimer and dimer_3_num > max_3_dimer_bp_num and primer_info[0] not in foward_primer_filter_by_3_dimer:
         max_3_dimer_filter_forward_num += 1
+        foward_primer_filter_by_3_dimer.append(primer_info[0])
         continue
     # 反向引物检查
+    if primer_info[4] in reverse_primer_filter_by_dimer or primer_info[4] in reverse_primer_filter_by_3_dimer:
+        continue
     dimer_num = 0
     dimer_3_num = 0
     dG_0 = p2_bind_str_list_full[0][1]
@@ -1081,11 +1104,13 @@ for primer_info in primer_pairs_list:
                     dimer_base_num_3 = dimer_count
                     max_dimer_id_p2_extend = dG_id
         dG_id += 1
-    if exclude_max_dimer and dimer_num > max_dimer_basepair_num:
+    if exclude_max_dimer and dimer_num > max_dimer_basepair_num and primer_info[4] not in reverse_primer_filter_by_dimer:
         max_dimer_filter_reverse_num += 1
+        reverse_primer_filter_by_dimer.append(primer_info[4])
         continue
-    if exclude_max_3_dimer and dimer_3_num > max_3_dimer_bp_num:
+    if exclude_max_3_dimer and dimer_3_num > max_3_dimer_bp_num and primer_info[4] not in reverse_primer_filter_by_3_dimer:
         max_3_dimer_filter_reverse_num += 1
+        reverse_primer_filter_by_3_dimer.append(primer_info[4])
         continue
     # 引物对检查
     dimer_num = 0
@@ -1131,51 +1156,56 @@ for primer_info in primer_pairs_list:
         max_3_dimer_filter_pp_num += 1
         continue
     primer_pair_num += 1
-    if best_pp_dG_extand == min(p_dG_list):
+    if not args.simple_out and best_pp_dG_extand == min(p_dG_list):
         best_pp_str += ("## %d\n" %primer_pair_num)
         best_pp_str += ("Forward: 5' %s 3' (3'ΔG: %.2f kcal/mol)\nReverse: 5' %s 3' (3'ΔG: %.2f kcal/mol)\n" %(primer_info[0],Tm(primer_info[0][-5:])[3], primer_info[4], Tm(primer_info[4][-5:])[3]))
     '''if best_pp_dG_full == min(min_p1_dG_full, min_p2_dG_full, min_pp_dG_full, primer_info[10]):
         best_pp_str += ("## BEST PRIMER PAIR(full dimer concerned): %d\n" %primer_pair_num)
         best_pp_str += ("Forward: 5' %s 3'\nReverse: 5' %s 3'\n" %(primer_info[0], primer_info[4]))'''
-    out_str += ("---------------------\n## PRIMER PAIR: %d\n" %primer_pair_num)
-    out_str += ("Forward: 5' %s 3'\nReverse: 5' %s 3'\n" %(primer_info[0], primer_info[4]))
-    out_str += ("\nAmplicon Size: %d bases(%d - %d)\n" %(primer_info[8], primer_info[1], primer_info[5]))
-    out_str += "\n### PRIMER DETAILS\n"
-    out_str += ("\nForward primer: %s\n\n" % primer_info[0])
-    Tm_1 = Tm(primer_info[0])
-    out_str += ("Tm: %.2f ℃                Length: %d bases\nΔS: %.2f eu              ΔH: %.2f kcal/mol\nΔG(%d℃): %.2f kcal/mol   3'ΔG: %.2f kcal/mol\n\n" %(primer_info[3], primer_info[2], Tm_1[2], Tm_1[1], temperature, Tm_1[3], Tm(primer_info[0][-5:])[3]))
-    out_str += ("\nReverse primer: %s\n\n" % primer_info[4])
-    Tm_2 = Tm(primer_info[4])
-    out_str += ("Tm: %.2f ℃                Length: %d bases\nΔS: %.2f eu              ΔH: %.2f kcal/mol\nΔG(%d℃): %.2f kcal/mol   3'ΔG: %.2f kcal/mol\n\n" %(primer_info[7], primer_info[6], Tm_2[2], Tm_2[1], temperature, Tm_2[3], Tm(primer_info[4][-5:])[3]))
-    out_str += "### Most stable primer-dimers\n"
-    out_str += ("Forward vs Forward: %.2f kcal/mol\n%s\n" % (p1_bind_str_list_full[max_dG_id_p1][1], Dimer_Align(p1_bind_str_list_full[max_dG_id_p1][-1], p1_bind_str_list_full[max_dG_id_p1][-1], p1_bind_str_list_full[max_dG_id_p1][0], p1_bind_str_list_full[max_dG_id_p1][2])))
-    out_str += ("Forward vs Forward(3' extensible): %.2f kcal/mol\n%s\n" % (p1_bind_str_list_full[max_dG_id_p1_extend][1], Dimer_Align(p1_bind_str_list_full[max_dG_id_p1_extend][-1], p1_bind_str_list_full[max_dG_id_p1_extend][-1], p1_bind_str_list_full[max_dG_id_p1_extend][0], p1_bind_str_list_full[max_dG_id_p1_extend][2])))
-    out_str += "### Most complementary-base primer-dimers\n"
-    out_str += ("Forward vs Forward: %.2f kcal/mol\n%s\n" % (p1_bind_str_list_full[max_dimer_id_p1][1], Dimer_Align(p1_bind_str_list_full[max_dimer_id_p1][-1], p1_bind_str_list_full[max_dimer_id_p1][-1], p1_bind_str_list_full[max_dimer_id_p1][0], p1_bind_str_list_full[max_dimer_id_p1][2])))
-    out_str += ("Forward vs Forward(3' extensible): %.2f kcal/mol\n%s\n" % (p1_bind_str_list_full[max_dimer_id_p1_extend][1], Dimer_Align(p1_bind_str_list_full[max_dimer_id_p1_extend][-1], p1_bind_str_list_full[max_dimer_id_p1_extend][-1], p1_bind_str_list_full[max_dimer_id_p1_extend][0], p1_bind_str_list_full[max_dimer_id_p1_extend][2])))
-    out_str += "### Most stable primer-dimers\n"
-    out_str += ("Reverse vs Reverse: %.2f kcal/mol\n%s\n" % (p2_bind_str_list_full[max_dG_id_p2][1], Dimer_Align(p2_bind_str_list_full[max_dG_id_p2][-1], p2_bind_str_list_full[max_dG_id_p2][-1], p2_bind_str_list_full[max_dG_id_p2][0], p2_bind_str_list_full[max_dG_id_p2][2])))
-    out_str += ("Reverse vs Reverse(3' extensible): %.2f kcal/mol\n%s\n" % (p2_bind_str_list_full[max_dG_id_p2_extend][1], Dimer_Align(p2_bind_str_list_full[max_dG_id_p2_extend][-1], p2_bind_str_list_full[max_dG_id_p2_extend][-1], p2_bind_str_list_full[max_dG_id_p2_extend][0], p2_bind_str_list_full[max_dG_id_p2_extend][2])))
-    out_str += "### Most complementary-base primer-dimers\n"
-    out_str += ("Reverse vs Reverse: %.2f kcal/mol\n%s\n" % (p2_bind_str_list_full[max_dimer_id_p2][1], Dimer_Align(p2_bind_str_list_full[max_dimer_id_p2][-1], p2_bind_str_list_full[max_dimer_id_p2][-1], p2_bind_str_list_full[max_dimer_id_p2][0], p2_bind_str_list_full[max_dimer_id_p2][2])))
-    out_str += ("Reverse vs Reverse(3' extensible): %.2f kcal/mol\n%s\n" % (p2_bind_str_list_full[max_dimer_id_p2_extend][1], Dimer_Align(p2_bind_str_list_full[max_dimer_id_p2_extend][-1], p2_bind_str_list_full[max_dimer_id_p2_extend][-1], p2_bind_str_list_full[max_dimer_id_p2_extend][0], p2_bind_str_list_full[max_dimer_id_p2_extend][2])))
-    out_str += "### Most stable primer-dimers\n"
-    out_str += ("Forward vs Reverse: %.2f kcal/mol\n%s\n" % (pp_bind_str_list_full[max_dG_id_pp][1], Dimer_Align(pp_bind_str_list_full[max_dG_id_pp][-2], pp_bind_str_list_full[max_dG_id_pp][-1], pp_bind_str_list_full[max_dG_id_pp][0], pp_bind_str_list_full[max_dG_id_pp][2])))
-    out_str += ("Forward vs Reverse(3' extensible): %.2f kcal/mol\n%s\n" % (pp_bind_str_list_full[max_dG_id_pp_extend][1], Dimer_Align(pp_bind_str_list_full[max_dG_id_pp_extend][-2], pp_bind_str_list_full[max_dG_id_pp_extend][-1], pp_bind_str_list_full[max_dG_id_pp_extend][0], pp_bind_str_list_full[max_dG_id_pp_extend][2])))
-    out_str += "### Most complementary-base primer-dimers\n"
-    out_str += ("Forward vs Reverse: %.2f kcal/mol\n%s\n" % (pp_bind_str_list_full[max_dimer_id_pp][1], Dimer_Align(pp_bind_str_list_full[max_dimer_id_pp][-2], pp_bind_str_list_full[max_dimer_id_pp][-1], pp_bind_str_list_full[max_dimer_id_pp][0], pp_bind_str_list_full[max_dimer_id_pp][2])))
-    out_str += ("Forward vs Reverse(3' extensible): %.2f kcal/mol\n%s\n" % (pp_bind_str_list_full[max_dimer_id_pp_extend][1], Dimer_Align(pp_bind_str_list_full[max_dG_id_pp_extend][-2], pp_bind_str_list_full[max_dG_id_pp_extend][-1], pp_bind_str_list_full[max_dG_id_pp_extend][0], pp_bind_str_list_full[max_dG_id_pp_extend][2])))
+    if not args.simple_out:
+        out_str += ("---------------------\n## PRIMER PAIR: %d\n" %primer_pair_num)
+        out_str += ("Forward: 5' %s 3'\nReverse: 5' %s 3'\n" %(primer_info[0], primer_info[4]))
+        out_str += ("\nAmplicon Size: %d bases(%d - %d)\n" %(primer_info[8], primer_info[1], primer_info[5]))
+        out_str += "\n### PRIMER DETAILS\n"
+        out_str += ("\nForward primer: %s\n\n" % primer_info[0])
+        Tm_1 = Tm(primer_info[0])
+        out_str += ("Tm: %.2f ℃                Length: %d bases\nΔS: %.2f eu              ΔH: %.2f kcal/mol\nΔG(%d℃): %.2f kcal/mol   3'ΔG: %.2f kcal/mol\n\n" %(primer_info[3], primer_info[2], Tm_1[2], Tm_1[1], temperature, Tm_1[3], Tm(primer_info[0][-5:])[3]))
+        out_str += ("\nReverse primer: %s\n\n" % primer_info[4])
+        Tm_2 = Tm(primer_info[4])
+        out_str += ("Tm: %.2f ℃                Length: %d bases\nΔS: %.2f eu              ΔH: %.2f kcal/mol\nΔG(%d℃): %.2f kcal/mol   3'ΔG: %.2f kcal/mol\n\n" %(primer_info[7], primer_info[6], Tm_2[2], Tm_2[1], temperature, Tm_2[3], Tm(primer_info[4][-5:])[3]))
+        out_str += "### Most stable primer-dimers\n"
+        out_str += ("Forward vs Forward: %.2f kcal/mol\n%s\n" % (p1_bind_str_list_full[max_dG_id_p1][1], Dimer_Align(p1_bind_str_list_full[max_dG_id_p1][-1], p1_bind_str_list_full[max_dG_id_p1][-1], p1_bind_str_list_full[max_dG_id_p1][0], p1_bind_str_list_full[max_dG_id_p1][2])))
+        out_str += ("Forward vs Forward(3' extensible): %.2f kcal/mol\n%s\n" % (p1_bind_str_list_full[max_dG_id_p1_extend][1], Dimer_Align(p1_bind_str_list_full[max_dG_id_p1_extend][-1], p1_bind_str_list_full[max_dG_id_p1_extend][-1], p1_bind_str_list_full[max_dG_id_p1_extend][0], p1_bind_str_list_full[max_dG_id_p1_extend][2])))
+        out_str += "### Most complementary-base primer-dimers\n"
+        out_str += ("Forward vs Forward: %.2f kcal/mol\n%s\n" % (p1_bind_str_list_full[max_dimer_id_p1][1], Dimer_Align(p1_bind_str_list_full[max_dimer_id_p1][-1], p1_bind_str_list_full[max_dimer_id_p1][-1], p1_bind_str_list_full[max_dimer_id_p1][0], p1_bind_str_list_full[max_dimer_id_p1][2])))
+        out_str += ("Forward vs Forward(3' extensible): %.2f kcal/mol\n%s\n" % (p1_bind_str_list_full[max_dimer_id_p1_extend][1], Dimer_Align(p1_bind_str_list_full[max_dimer_id_p1_extend][-1], p1_bind_str_list_full[max_dimer_id_p1_extend][-1], p1_bind_str_list_full[max_dimer_id_p1_extend][0], p1_bind_str_list_full[max_dimer_id_p1_extend][2])))
+        out_str += "### Most stable primer-dimers\n"
+        out_str += ("Reverse vs Reverse: %.2f kcal/mol\n%s\n" % (p2_bind_str_list_full[max_dG_id_p2][1], Dimer_Align(p2_bind_str_list_full[max_dG_id_p2][-1], p2_bind_str_list_full[max_dG_id_p2][-1], p2_bind_str_list_full[max_dG_id_p2][0], p2_bind_str_list_full[max_dG_id_p2][2])))
+        out_str += ("Reverse vs Reverse(3' extensible): %.2f kcal/mol\n%s\n" % (p2_bind_str_list_full[max_dG_id_p2_extend][1], Dimer_Align(p2_bind_str_list_full[max_dG_id_p2_extend][-1], p2_bind_str_list_full[max_dG_id_p2_extend][-1], p2_bind_str_list_full[max_dG_id_p2_extend][0], p2_bind_str_list_full[max_dG_id_p2_extend][2])))
+        out_str += "### Most complementary-base primer-dimers\n"
+        out_str += ("Reverse vs Reverse: %.2f kcal/mol\n%s\n" % (p2_bind_str_list_full[max_dimer_id_p2][1], Dimer_Align(p2_bind_str_list_full[max_dimer_id_p2][-1], p2_bind_str_list_full[max_dimer_id_p2][-1], p2_bind_str_list_full[max_dimer_id_p2][0], p2_bind_str_list_full[max_dimer_id_p2][2])))
+        out_str += ("Reverse vs Reverse(3' extensible): %.2f kcal/mol\n%s\n" % (p2_bind_str_list_full[max_dimer_id_p2_extend][1], Dimer_Align(p2_bind_str_list_full[max_dimer_id_p2_extend][-1], p2_bind_str_list_full[max_dimer_id_p2_extend][-1], p2_bind_str_list_full[max_dimer_id_p2_extend][0], p2_bind_str_list_full[max_dimer_id_p2_extend][2])))
+        out_str += "### Most stable primer-dimers\n"
+        out_str += ("Forward vs Reverse: %.2f kcal/mol\n%s\n" % (pp_bind_str_list_full[max_dG_id_pp][1], Dimer_Align(pp_bind_str_list_full[max_dG_id_pp][-2], pp_bind_str_list_full[max_dG_id_pp][-1], pp_bind_str_list_full[max_dG_id_pp][0], pp_bind_str_list_full[max_dG_id_pp][2])))
+        out_str += ("Forward vs Reverse(3' extensible): %.2f kcal/mol\n%s\n" % (pp_bind_str_list_full[max_dG_id_pp_extend][1], Dimer_Align(pp_bind_str_list_full[max_dG_id_pp_extend][-2], pp_bind_str_list_full[max_dG_id_pp_extend][-1], pp_bind_str_list_full[max_dG_id_pp_extend][0], pp_bind_str_list_full[max_dG_id_pp_extend][2])))
+        out_str += "### Most complementary-base primer-dimers\n"
+        out_str += ("Forward vs Reverse: %.2f kcal/mol\n%s\n" % (pp_bind_str_list_full[max_dimer_id_pp][1], Dimer_Align(pp_bind_str_list_full[max_dimer_id_pp][-2], pp_bind_str_list_full[max_dimer_id_pp][-1], pp_bind_str_list_full[max_dimer_id_pp][0], pp_bind_str_list_full[max_dimer_id_pp][2])))
+        out_str += ("Forward vs Reverse(3' extensible): %.2f kcal/mol\n%s\n" % (pp_bind_str_list_full[max_dimer_id_pp_extend][1], Dimer_Align(pp_bind_str_list_full[max_dG_id_pp_extend][-2], pp_bind_str_list_full[max_dG_id_pp_extend][-1], pp_bind_str_list_full[max_dG_id_pp_extend][0], pp_bind_str_list_full[max_dG_id_pp_extend][2])))
+    else:
+        ext_dG = min(p1_bind_str_list_full[max_dG_id_p1_extend][1], p2_bind_str_list_full[max_dG_id_p2_extend][1], pp_bind_str_list_full[max_dG_id_pp_extend][1])
+        full_dG = min(p1_bind_str_list_full[max_dG_id_p1][1], p2_bind_str_list_full[max_dG_id_p2][1], pp_bind_str_list_full[max_dG_id_pp][1])
+        OUT.write("%s\t%d\t%d\t%.2f\t%s\t%d\t%d\t%.2f\t%d\t%.2f\t%.2f\n" %(primer_info[0], primer_info[1], primer_info[2], primer_info[3], primer_info[4], primer_info[5], primer_info[6], primer_info[7], primer_info[8], ext_dG, full_dG))
 
 
 print("过滤完毕，最终获得引物对: %d" %primer_pair_num)
 print("写入文件中 ...")
-OUT.write(best_pp_str)
-OUT.write(out_str)
+if not args.simple_out:
+    OUT.write(best_pp_str)
+    OUT.write(out_str)
+    OUT.close()
 if report_out:
-    REPORT.write(report_str)
     REPORT.close()
-OUT.close()
-print("成功写入文件: %s" %args.file_out)
+print("成功写入文件: %s\n" %args.file_out)
 
 # 引物过滤情况report
 print("#########################")
@@ -1190,6 +1220,10 @@ if exclude_gc and (GC_content_filter_forward_num or GC_content_filter_reverse_nu
 if exclude_gc_clamp and (GC_clamp_filter_forward_num or GC_clamp_filter_reverse_num):
     print("正向引物中被GC帽子含量过滤掉的数目: %d" %GC_clamp_filter_forward_num)
     print("反向引物中被GC帽子含量过滤掉的数目: %d" %GC_clamp_filter_reverse_num)
+if tm_filter_forward_num or tm_filter_reverse_num:
+    print("(Tm值范围: %d ℃ - %d ℃)" %(min_tm, max_tm))
+    print("正向引物中被Tm值过滤掉的数目: %d" %tm_filter_forward_num)
+    print("反向引物中被Tm值过滤掉的数目: %d" %tm_filter_reverse_num)
 if exclude_rr and (run_filter_forward_num or run_filter_reverse_num):
     print("(单碱基重复最大值: %d)" %run)
     print("正向引物中被单碱基重复过滤掉的数目: %d" %run_filter_forward_num)
@@ -1198,11 +1232,9 @@ if exclude_rr and (repeat_filter_forward_num or repeat_filter_reverse_num):
     print("(多碱基重复最大值: %d)" %repeat)
     print("正向引物中被多碱基重复过滤掉的数目: %d" %repeat_filter_forward_num)
     print("反向引物中被多碱基重复过滤掉的数目: %d" %repeat_filter_reverse_num)
-if tm_filter_forward_num or tm_filter_reverse_num:
-    print("(Tm值范围: %d ℃ - %d ℃)" %(min_tm, max_tm))
-    print("正向引物中被Tm值过滤掉的数目: %d" %tm_filter_forward_num)
-    print("反向引物中被Tm值过滤掉的数目: %d" %tm_filter_reverse_num)
-print("----------------------------------")
+print("\n#########################")
+print("## 引物对过滤情况")
+print("-------------------------")
 print("候选引物对数目: %d" %all_pp_num)
 if tm_diff_filter_pp_num:
     print("Tm最大差值: %d ℃" %max_tm_diff)

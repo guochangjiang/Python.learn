@@ -1,0 +1,1 @@
+mktexpk --mfmode ljfour --bdpi 8000 --mag 0+7000/(2*4000) --dpi 7000 ectt0800
