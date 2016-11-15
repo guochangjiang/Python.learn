@@ -1,0 +1,154 @@
+Using Theano backend.
+Using Theano backend.
+Using Theano backend.
+D:\Program\Python35\lib\site-packages\h5py\_hl\dataset.py:76: DeprecationWarning: numpy boolean negative, the `-` operator, is deprecated, use the `~` operator or the logical_not function instead.
+  if isinstance(chunks, tuple) and (-numpy.array([ i>=j for i,j in zip(tmp_shape,chunks) if i is not None])).any():
+.........E..EE.............EE
+======================================================================
+ERROR: test_run_commands (tests.test_gtp_wrapper.TestGTPProcess)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\360yun\github.gcj\Python.learn\RocAlphaGo-develop\tests\test_gtp_wrapper.py", line 25, in test_run_commands
+    gtp_proc.start()
+  File "D:\Program\Python35\lib\multiprocessing\process.py", line 105, in start
+    self._popen = self._Popen(self)
+  File "D:\Program\Python35\lib\multiprocessing\context.py", line 212, in _Popen
+    return _default_context.get_context().Process._Popen(process_obj)
+  File "D:\Program\Python35\lib\multiprocessing\context.py", line 313, in _Popen
+    return Popen(process_obj)
+  File "D:\Program\Python35\lib\multiprocessing\popen_spawn_win32.py", line 66, in __init__
+    reduction.dump(process_obj, to_child)
+  File "D:\Program\Python35\lib\multiprocessing\reduction.py", line 59, in dump
+    ForkingPickler(file, protocol).dump(obj)
+AttributeError: Can't pickle local object 'TestGTPProcess.test_run_commands.<locals>.stdin_simulator'
+
+======================================================================
+ERROR: tests.test_mcts (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.test_mcts
+Traceback (most recent call last):
+  File "D:\Program\Python35\lib\unittest\loader.py", line 428, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\Program\Python35\lib\unittest\loader.py", line 369, in _get_module_from_name
+    __import__(name)
+  File "D:\360yun\github.gcj\Python.learn\RocAlphaGo-develop\tests\test_mcts.py", line 2, in <module>
+    from AlphaGo.mcts import MCTS, TreeNode
+  File "D:\360yun\github.gcj\Python.learn\RocAlphaGo-develop\AlphaGo\mcts.py", line 37
+    return max(self.children.iteritems(), key=(lambda (a, n): n.toValue()))
+                                                      ^
+SyntaxError: invalid syntax
+
+
+======================================================================
+ERROR: tests.test_policy (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.test_policy
+Traceback (most recent call last):
+  File "D:\Program\Python35\lib\unittest\loader.py", line 428, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\Program\Python35\lib\unittest\loader.py", line 369, in _get_module_from_name
+    __import__(name)
+  File "D:\360yun\github.gcj\Python.learn\RocAlphaGo-develop\tests\test_policy.py", line 1, in <module>
+    from AlphaGo.models.policy import CNNPolicy, ResnetPolicy
+  File "D:\360yun\github.gcj\Python.learn\RocAlphaGo-develop\AlphaGo\models\policy.py", line 1, in <module>
+    from keras.models import Sequential, Model
+  File "D:\Program\Python35\lib\site-packages\keras\__init__.py", line 2, in <module>
+    from . import backend
+  File "D:\Program\Python35\lib\site-packages\keras\backend\__init__.py", line 57, in <module>
+    from .theano_backend import *
+  File "D:\Program\Python35\lib\site-packages\keras\backend\theano_backend.py", line 1, in <module>
+    import theano
+  File "D:\Program\Python35\lib\site-packages\theano\__init__.py", line 42, in <module>
+    from theano.configdefaults import config
+  File "D:\Program\Python35\lib\site-packages\theano\configdefaults.py", line 16, in <module>
+    from theano.configparser import (AddConfigVar, BoolParam, ConfigParam, EnumStr,
+  File "D:\Program\Python35\lib\site-packages\theano\configparser.py", line 84, in <module>
+    theano_cfg.read(config_files)
+  File "D:\Program\Python35\lib\configparser.py", line 696, in read
+    self._read(fp, filename)
+  File "D:\Program\Python35\lib\configparser.py", line 1077, in _read
+    raise MissingSectionHeaderError(fpname, lineno, line)
+configparser.MissingSectionHeaderError: File contains no section headers.
+file: 'C:\\Users\\gcj/.theanorc.txt', line: 1
+'ldflags = -lblas'
+
+
+======================================================================
+ERROR: tests.test_reinforcement_policy_trainer (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.test_reinforcement_policy_trainer
+Traceback (most recent call last):
+  File "D:\Program\Python35\lib\unittest\loader.py", line 428, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\Program\Python35\lib\unittest\loader.py", line 369, in _get_module_from_name
+    __import__(name)
+  File "D:\360yun\github.gcj\Python.learn\RocAlphaGo-develop\tests\test_reinforcement_policy_trainer.py", line 2, in <module>
+    from AlphaGo.training.reinforcement_policy_trainer import run_training
+  File "D:\360yun\github.gcj\Python.learn\RocAlphaGo-develop\AlphaGo\training\reinforcement_policy_trainer.py", line 6, in <module>
+    from keras.optimizers import SGD
+  File "D:\Program\Python35\lib\site-packages\keras\__init__.py", line 2, in <module>
+    from . import backend
+  File "D:\Program\Python35\lib\site-packages\keras\backend\__init__.py", line 57, in <module>
+    from .theano_backend import *
+  File "D:\Program\Python35\lib\site-packages\keras\backend\theano_backend.py", line 1, in <module>
+    import theano
+  File "D:\Program\Python35\lib\site-packages\theano\__init__.py", line 42, in <module>
+    from theano.configdefaults import config
+  File "D:\Program\Python35\lib\site-packages\theano\configdefaults.py", line 16, in <module>
+    from theano.configparser import (AddConfigVar, BoolParam, ConfigParam, EnumStr,
+  File "D:\Program\Python35\lib\site-packages\theano\configparser.py", line 84, in <module>
+    theano_cfg.read(config_files)
+  File "D:\Program\Python35\lib\configparser.py", line 696, in read
+    self._read(fp, filename)
+  File "D:\Program\Python35\lib\configparser.py", line 1077, in _read
+    raise MissingSectionHeaderError(fpname, lineno, line)
+configparser.MissingSectionHeaderError: File contains no section headers.
+file: 'C:\\Users\\gcj/.theanorc.txt', line: 1
+'ldflags = -lblas'
+
+
+======================================================================
+ERROR: tests.test_supervised_policy_trainer (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.test_supervised_policy_trainer
+Traceback (most recent call last):
+  File "D:\Program\Python35\lib\unittest\loader.py", line 428, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\Program\Python35\lib\unittest\loader.py", line 369, in _get_module_from_name
+    __import__(name)
+  File "D:\360yun\github.gcj\Python.learn\RocAlphaGo-develop\tests\test_supervised_policy_trainer.py", line 2, in <module>
+    from AlphaGo.training.supervised_policy_trainer import run_training
+  File "D:\360yun\github.gcj\Python.learn\RocAlphaGo-develop\AlphaGo\training\supervised_policy_trainer.py", line 5, in <module>
+    from keras.optimizers import SGD
+  File "D:\Program\Python35\lib\site-packages\keras\__init__.py", line 2, in <module>
+    from . import backend
+  File "D:\Program\Python35\lib\site-packages\keras\backend\__init__.py", line 57, in <module>
+    from .theano_backend import *
+  File "D:\Program\Python35\lib\site-packages\keras\backend\theano_backend.py", line 1, in <module>
+    import theano
+  File "D:\Program\Python35\lib\site-packages\theano\__init__.py", line 42, in <module>
+    from theano.configdefaults import config
+  File "D:\Program\Python35\lib\site-packages\theano\configdefaults.py", line 16, in <module>
+    from theano.configparser import (AddConfigVar, BoolParam, ConfigParam, EnumStr,
+  File "D:\Program\Python35\lib\site-packages\theano\configparser.py", line 84, in <module>
+    theano_cfg.read(config_files)
+  File "D:\Program\Python35\lib\configparser.py", line 696, in read
+    self._read(fp, filename)
+  File "D:\Program\Python35\lib\configparser.py", line 1077, in _read
+    raise MissingSectionHeaderError(fpname, lineno, line)
+configparser.MissingSectionHeaderError: File contains no section headers.
+file: 'C:\\Users\\gcj/.theanorc.txt', line: 1
+'ldflags = -lblas'
+
+
+----------------------------------------------------------------------
+Ran 29 tests in 2.583s
+
+FAILED (errors=5)
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "D:\Program\Python35\lib\multiprocessing\spawn.py", line 100, in spawn_main
+    new_handle = steal_handle(parent_pid, pipe_handle)
+  File "D:\Program\Python35\lib\multiprocessing\reduction.py", line 81, in steal_handle
+    _winapi.PROCESS_DUP_HANDLE, False, source_pid)
+OSError: [WinError 87] ²ÎÊý´íÎó¡£

@@ -610,7 +610,7 @@ monovalent_cation_conc = 50                 # 一价阳离子,一般是钾离子
 dNTP_conc = 0.2                             # dNTP浓度(mM)
 
 # 温度
-temperature = 37                            # 计算引物二聚体ΔG时的温度
+temperature = 25                            # 计算引物二聚体ΔG时的温度
 
 
 # 全局变量
@@ -979,8 +979,12 @@ for primer_info in primer_pairs_list:
     max_dimer_id_pp_extend = 0
     p1_bind_str_list = primer_1_bind_list[p1_id-1]
     p1_bind_str_list_full = primer_1_bind_list_full[p1_id-1]
+    if len(p1_bind_str_list_full) == 0:
+        continue
     p2_bind_str_list = primer_2_bind_list[p2_id-1]
     p2_bind_str_list_full = primer_2_bind_list_full[p2_id-1]
+    if len(p2_bind_str_list_full) == 0:
+        continue
     pp_bind_str_list = primer_pairs_bind_list[pp_id-1]
     pp_bind_str_list_full = primer_pairs_bind_list_full[pp_id-1]
     p_dG_list = []
@@ -1156,7 +1160,7 @@ for primer_info in primer_pairs_list:
         max_3_dimer_filter_pp_num += 1
         continue
     primer_pair_num += 1
-    if not args.simple_out and best_pp_dG_extand == min(p_dG_list):
+    if not args.simple_out and len(p_dG_list) > 0 and best_pp_dG_extand == min(p_dG_list):
         best_pp_str += ("## %d\n" %primer_pair_num)
         best_pp_str += ("Forward: 5' %s 3' (3'ΔG: %.2f kcal/mol)\nReverse: 5' %s 3' (3'ΔG: %.2f kcal/mol)\n" %(primer_info[0],Tm(primer_info[0][-5:])[3], primer_info[4], Tm(primer_info[4][-5:])[3]))
     '''if best_pp_dG_full == min(min_p1_dG_full, min_p2_dG_full, min_pp_dG_full, primer_info[10]):
