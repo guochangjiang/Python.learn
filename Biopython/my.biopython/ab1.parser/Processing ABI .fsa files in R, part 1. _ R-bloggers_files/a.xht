@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html [
+  <!ENTITY % htmlDTD
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+  %htmlDTD;
+  <!ENTITY % netErrorDTD
+    SYSTEM "chrome://global/locale/netError.dtd">
+  %netErrorDTD;
+
+<!ENTITY loadError.label "页面载入出错">
+<!ENTITY retry.label "重试">
+<!ENTITY returnToPreviousPage.label "后退">
+<!ENTITY advanced.label "高级">
+
+<!-- Specific error messages -->
+
+<!ENTITY connectionFailure.title "无法连接">
+<!ENTITY connectionFailure.longDesc "&sharedLongDesc;">
+
+<!ENTITY deniedPortAccess.title "此地址访问受限">
+<!ENTITY deniedPortAccess.longDesc "">
+
+<!ENTITY dnsNotFound.title "找不到服务器">
+<!ENTITY dnsNotFound.longDesc "<ul> <li>请检查该地址是否输入错误，比如将<q><strong>www</strong>.example.com</q>错写成<q><strong>ww</strong>.example.com</q></li><li>如果您无法载入任何页面，请检查您计算机的网络连接。</li><li>如果您的计算机或网络受到防火墙或者代理服务器的保护，请确认 &brandShortName; 已被授权访问网络。</li></ul>">
+
+<!ENTITY fileNotFound.title "未找到文件">
+<!ENTITY fileNotFound.longDesc "<ul> 
+<li>请检查文件名的大小写或者其他输入错误。</li> 
+<li>请检查文件是否已被移动，重命名或删除。</li> 
+</ul>">
+
+<!ENTITY fileAccessDenied.title "访问该文件被拒绝">
+<!ENTITY fileAccessDenied.longDesc "
+<ul>
+  <li>它可能已被删除、移动，或者因文件权限拒绝访问。</li>
+</ul>
+">
+
+<!ENTITY generic.title "哎呀。">
+<!ENTITY generic.longDesc "<p>&brandShortName; 因未知原因无法载入此页面。</p>">
+
+<!ENTITY malformedURI.title "无效的地址">
+<!ENTITY malformedURI.longDesc "<ul> 
+<li>网页地址通常格式为 
+<strong>http://www.example.com/</strong></li> 
+<li>请确认您使用的是正斜杠（即 
+<strong>/</strong>）。</li> 
+</ul>">
+
+<!ENTITY netInterrupt.title "连接被中断">
+<!ENTITY netInterrupt.longDesc "&sharedLongDesc;">
+
+<!ENTITY notCached.title "文档已过期">
+<!ENTITY notCached.longDesc "<p>请求的文档已无法在 &brandShortName; 的缓存中找到。</p><ul><li>出于安全考虑，&brandShortName; 不会自动重新获取敏感文档。</li><li>请点击重试来重新请求从网站获取该文档。</li></ul>">
+
+<!ENTITY netOffline.title "脱机模式">
+<!ENTITY netOffline.longDesc2 "<ul> 
+<li>按“重试”切换到在线模式并重新加载此页面。</li> 
+</ul>">
+
+<!ENTITY contentEncodingError.title "内容编码错误">
+<!ENTITY contentEncodingError.longDesc "<ul><li>请联系此网站的管理员并告知此问题。</li></ul>">
+
+<!ENTITY unsafeContentType.title "不安全的文件类型">
+<!ENTITY unsafeContentType.longDesc "<ul><li>请联系此网站的管理员并告知此问题。</li></ul>">
+
+<!ENTITY netReset.title "连接被重置">
+<!ENTITY netReset.longDesc "&sharedLongDesc;">
+
+<!ENTITY netTimeout.title "连接超时">
+<!ENTITY netTimeout.longDesc "&sharedLongDesc;">
+
+<!ENTITY unknownProtocolFound.title "无法理解该地址">
+<!ENTITY unknownProtocolFound.longDesc "<ul> 
+<li>您可能需要安装其他软件以打开此地址。</li> 
+</ul>">
+
+<!ENTITY proxyConnectFailure.title "代理服务器拒绝连接">
+<!ENTITY proxyConnectFailure.longDesc "<ul><li>请检查浏览器的代理服务器设置是否正确。</li><li>请联系您的网络管理员以确认代理服务器工作正常。</li></ul>">
+
+<!ENTITY proxyResolveFailure.title "无法找到代理服务器">
+<!ENTITY proxyResolveFailure.longDesc "<ul><li>请检查浏览器的代理服务器设置是否正确。</li><li>请检查确认您的计算机有可用的网络连接。</li><li>如果您的计算机或网络受到防火墙或者代理服务器的保护，请确认 &brandShortName; 已被授权访问网络。</li></ul>">
+
+<!ENTITY redirectLoop.title "此页面不能正确地重定向">
+<!ENTITY redirectLoop.longDesc "<ul><li>此问题可能是因为禁用或拒绝 Cookie 导致。</li></ul>">
+
+<!ENTITY unknownSocketType.title "意外的服务器响应">
+<!ENTITY unknownSocketType.longDesc "<ul> 
+<li>请检查您的系统是否安装了个人安全管理器（PSM）。</li> 
+<li>这可能是由于服务器端的非标准配置所导致。</li> 
+</ul>">
+
+<!ENTITY nssFailure2.title "安全连接失败">
+<!ENTITY nssFailure2.longDesc2 "<ul> 
+<li>您尝试查看的页面无法显示，因为已收到数据的可靠性无法证实。</li> 
+<li>请联系此网站的管理员并告知此问题。</li> 
+</ul>">
+
+<!ENTITY certerror.longpagetitle1 "您的连接不安全">
+<!-- Localization note (certerror.introPara) - The text content of the span tag
+will be replaced at runtime with the name of the server to which the user
+was trying to connect. -->
+<!ENTITY certerror.introPara "<span class='hostname'/> 的管理员未正确配置网站。为避免您的信息被窃，&brandShortName; 没有建立与该网站的连接。">
+
+<!ENTITY sharedLongDesc "<ul> 
+<li>此站点暂时不可用或者太忙。请稍后再试。</li> 
+<li>如果您无法载入任何页面，请检查您计算机的网络连接。</li> 
+<li>如果您的计算机或网络受到防火墙或者代理服务器的保护，请确认 &brandShortName; 已被授权访问网络。</li> 
+</ul>">
+
+<!ENTITY cspBlocked.title "由于内容安全策略而被拦截">
+<!ENTITY cspBlocked.longDesc "<p>&brandShortName; 阻止了这个页面载入，因为这个页面的内容安全政策不允许其以这种方式被载入。</p>">
+
+<!ENTITY corruptedContentErrorv2.title "损坏内容错误">
+<!ENTITY corruptedContentErrorv2.longDesc "<p>您尝试查看的页面无法显示，因为检测到传输的数据含有错误。</p><ul><li>请联系此网站的管理员并告知此问题。</li></ul>">
+
+
+<!ENTITY securityOverride.exceptionButtonLabel "添加例外…">
+
+<!ENTITY errorReporting.automatic2 "报告此类错误以帮助 Mozilla 识别和拦截恶意站点">
+<!ENTITY errorReporting.learnMore "详细了解…">
+
+<!ENTITY remoteXUL.title "远程 XUL">
+<!ENTITY remoteXUL.longDesc "<p><ul><li>请联系此网站的管理员并告知此问题。</li></ul></p>">
+
+<!ENTITY sslv3Used.title "无法安全地连接">
+<!-- LOCALIZATION NOTE (sslv3Used.longDesc2) - Do not translate
+     "SSL_ERROR_UNSUPPORTED_VERSION". -->
+<!ENTITY sslv3Used.longDesc2 "高级信息: SSL_ERROR_UNSUPPORTED_VERSION">
+
+<!ENTITY weakCryptoUsed.title "您的连接并不安全">
+<!-- LOCALIZATION NOTE (weakCryptoUsed.longDesc2) - Do not translate
+     "SSL_ERROR_NO_CYPHER_OVERLAP". -->
+<!ENTITY weakCryptoUsed.longDesc2 "高级信息: SSL_ERROR_NO_CYPHER_OVERLAP">
+<!ENTITY weakCryptoAdvanced.title "高级">
+<!ENTITY weakCryptoAdvanced.longDesc "<span class='hostname'></span> 使用了过时的安全技术，较容易遭受攻击。攻击者可以容易地获取您认为是安全的信息。">
+<!ENTITY weakCryptoAdvanced.override "尝试使用过时的安全性设置载入此页面 <span class='hostname'></span>（不安全）">
+
+<!-- LOCALIZATION NOTE (certerror.wrongSystemTime) - The <span id='..' /> tags will be injected with actual values,
+     please leave them unchanged. -->
+<!ENTITY certerror.wrongSystemTime "<p>一个到 <span id='wrongSystemTime_URL'/> 的安全连接无法完成，因为您的计算机时钟好像使用了错误的时间。</p> <p>您的计算机认为现在是 <span id='wrongSystemTime_systemDate'/>，但它或许应该是 <span id='wrongSystemTime_actualDate'/>。请更正您的日期和时间设置以修复此问题。</p>">
+
+<!ENTITY certerror.pagetitle1  "不安全的连接">
+<!ENTITY certerror.whatShouldIDo.badStsCertExplanation "此网站使用了 HTTP 严格传输安全（HSTS）要求 &brandShortName; 只进行安全连接。正因如此，您不能为此证书添加一个例外。">
+<!ENTITY certerror.copyToClipboard.label "复制文本到剪贴板">
+
+<!ENTITY inadequateSecurityError.title "您的连接不安全">
+<!-- LOCALIZATION NOTE (inadequateSecurityError.longDesc) - Do not translate
+     "NS_ERROR_NET_INADEQUATE_SECURITY". -->
+<!ENTITY inadequateSecurityError.longDesc "<p><span class='hostname'></span> 使用了过时的安全技术，较容易遭受攻击。攻击者可以容易地获取您认为是安全的信息。需要该网站的管理员先修正服务器，然后您才能访问该网站。</p><p>错误代码：NS_ERROR_NET_INADEQUATE_SECURITY</p>">
+
+<!ENTITY prefReset.longDesc "看上去您的网络安全设置可能会导致此问题。您想还原到默认设置吗？">
+<!ENTITY prefReset.label "恢复默认设置">
+
+  <!ENTITY % globalDTD
+    SYSTEM "chrome://global/locale/global.dtd">
+  %globalDTD;
+]>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<html xmlns="http://www.w3.org/1999/xhtml" hasBrowserHandlers="true">
+  <head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>页面载入出错</title>
+    <link rel="stylesheet" href="a_data/aboutNetError.css" type="text/css" media="all" />
+    <!-- If the location of the favicon is changed here, the FAVICON_ERRORPAGE_URL symbol in
+         toolkit/components/places/src/nsFaviconService.h should be updated. -->
+    <link rel="icon" type="image/png" id="favicon" href="chrome://global/skin/icons/warning-16.png" />
+
+    <script type="application/javascript"><![CDATA[
+      // Error url MUST be formatted like this:
+      //   moz-neterror:page?e=error&u=url&d=desc
+      //
+      // or optionally, to specify an alternate CSS class to allow for
+      // custom styling and favicon:
+      //
+      //   moz-neterror:page?e=error&u=url&s=classname&d=desc
+
+      // Note that this file uses document.documentURI to get
+      // the URL (with the format from above). This is because
+      // document.location.href gets the current URI off the docshell,
+      // which is the URL displayed in the location bar, i.e.
+      // the URI that the user attempted to load.
+
+      function getErrorCode()
+      {
+        var url = document.documentURI;
+        var error = url.search(/e\=/);
+        var duffUrl = url.search(/\&u\=/);
+        return decodeURIComponent(url.slice(error + 2, duffUrl));
+      }
+
+      // Set to true on init if the error code is nssBadCert.
+      var gIsCertError;
+
+      function getCSSClass()
+      {
+        var url = document.documentURI;
+        var matches = url.match(/s\=([^&]+)\&/);
+        // s is optional, if no match just return nothing
+        if (!matches || matches.length < 2)
+          return "";
+
+        // parenthetical match is the second entry
+        return decodeURIComponent(matches[1]);
+      }
+
+      function getDescription()
+      {
+        var url = document.documentURI;
+        var desc = url.search(/d\=/);
+
+        // desc == -1 if not found; if so, return an empty string
+        // instead of what would turn out to be portions of the URI
+        if (desc == -1)
+          return "";
+
+        return decodeURIComponent(url.slice(desc + 2));
+      }
+
+      function retryThis(buttonEl)
+      {
+        // Note: The application may wish to handle switching off "offline mode"
+        // before this event handler runs, but using a capturing event handler.
+
+        // Session history has the URL of the page that failed
+        // to load, not the one of the error page. So, just call
+        // reload(), which will also repost POST data correctly.
+        try {
+          location.reload();
+        } catch (e) {
+          // We probably tried to reload a URI that caused an exception to
+          // occur;  e.g. a nonexistent file.
+        }
+
+        buttonEl.disabled = true;
+      }
+
+      function doOverride(buttonEl) {
+        var event = new CustomEvent("AboutNetErrorOverride", {bubbles:true});
+        document.dispatchEvent(event);
+        retryThis(buttonEl);
+      }
+
+      function toggleDisplay(node) {
+        toggle = {
+          "": "block",
+          "none": "block",
+          "block": "none"
+        };
+        return (node.style.display = toggle[node.style.display]);
+      }
+
+      function showCertificateErrorReporting() {
+        // Display error reporting UI
+        document.getElementById("certificateErrorReporting").style.display = "block";
+      }
+
+      function showPrefChangeContainer() {
+        const panel = document.getElementById("prefChangeContainer");
+        panel.style.display = "block";
+        document.getElementById("netErrorButtonContainer").style.display = "none";
+        document.getElementById("prefResetButton").addEventListener("click", function resetPreferences(e) {
+          const event = new CustomEvent("AboutNetErrorResetPreferences", {bubbles:true});
+          document.dispatchEvent(event);
+        });
+      }
+
+      function showAdvancedButton(allowOverride) {
+        // Get the hostname and add it to the panel
+        var panelId = gIsCertError ? "badCertAdvancedPanel" : "weakCryptoAdvancedPanel";
+        var panel = document.getElementById(panelId);
+        for (var span of panel.querySelectorAll("span.hostname")) {
+          span.textContent = document.location.hostname;
+        }
+        if (!gIsCertError) {
+          panel.replaceChild(document.getElementById("errorLongDesc"),
+                             document.getElementById("advancedLongDesc"));
+        }
+
+        // Register click handler for the weakCryptoAdvancedPanel
+        document.getElementById("advancedButton")
+                .addEventListener("click", function togglePanelVisibility() {
+          toggleDisplay(panel);
+          if (gIsCertError) {
+            // Toggling the advanced panel must ensure that the debugging
+            // information panel is hidden as well, since it's opened by the
+            // error code link in the advanced panel.
+            var div = document.getElementById("certificateErrorDebugInformation");
+            div.style.display = "none";
+          }
+
+          if (panel.style.display == "block") {
+            // send event to trigger telemetry ping
+            var event = new CustomEvent("AboutNetErrorUIExpanded", {bubbles:true});
+            document.dispatchEvent(event);
+          }
+        });
+
+        if (allowOverride) {
+          document.getElementById("overrideWeakCryptoPanel").style.display = "flex";
+          var overrideLink = document.getElementById("overrideWeakCrypto");
+          overrideLink.addEventListener("click", () => doOverride(overrideLink), false);
+        }
+      }
+
+      function initPageCertError() {
+        document.body.className = "certerror";
+        document.title = document.getElementById("certErrorPageTitle").textContent;
+        for (let host of document.querySelectorAll(".hostname")) {
+          host.textContent = document.location.hostname;
+        }
+
+        showAdvancedButton(true);
+
+        var cssClass = getCSSClass();
+        if (cssClass == "expertBadCert") {
+          toggleDisplay(document.getElementById("badCertAdvancedPanel"));
+          // Toggling the advanced panel must ensure that the debugging
+          // information panel is hidden as well, since it's opened by the
+          // error code link in the advanced panel.
+          var div = document.getElementById("certificateErrorDebugInformation");
+          div.style.display = "none";
+        }
+
+        document.getElementById("learnMoreContainer").style.display = "block";
+
+        var checkbox = document.getElementById("automaticallyReportInFuture");
+        checkbox.addEventListener("change", function ({target: {checked}}) {
+          document.dispatchEvent(new CustomEvent("AboutNetErrorSetAutomatic", {
+            detail: checked,
+            bubbles: true
+          }));
+        });
+
+        addEventListener("AboutNetErrorOptions", function (event) {
+          var options = JSON.parse(event.detail);
+          if (options && options.enabled) {
+            // Display error reporting UI
+            document.getElementById("certificateErrorReporting").style.display = "block";
+
+            // set the checkbox
+            checkbox.checked = !!options.automatic;
+          }
+        }, true, true);
+
+        // Disallow overrides if this is a Strict-Transport-Security
+        // host and the cert is bad (STS Spec section 7.3) or if the
+        // certerror is in a frame (bug 633691).
+        if (cssClass == "badStsCert" || window != top) {
+          document.getElementById("exceptionDialogButton").setAttribute("hidden", "true");
+        }
+        if (cssClass == "badStsCert") {
+          document.getElementById("badStsCertExplanation").removeAttribute("hidden");
+        }
+
+        document.getElementById("badCertTechnicalInfo").textContent = getDescription();
+
+        var event = new CustomEvent("AboutNetErrorLoad", {bubbles:true});
+        document.getElementById("advancedButton").dispatchEvent(event);
+
+        addDomainErrorLinks();
+      }
+
+      function initPage()
+      {
+        var err = getErrorCode();
+        gIsCertError = (err == "nssBadCert");
+
+        // if it's an unknown error or there's no title or description
+        // defined, get the generic message
+        var errTitle = document.getElementById("et_" + err);
+        var errDesc  = document.getElementById("ed_" + err);
+        if (!errTitle || !errDesc)
+        {
+          errTitle = document.getElementById("et_generic");
+          errDesc  = document.getElementById("ed_generic");
+        }
+
+        document.querySelector(".title-text").innerHTML = errTitle.innerHTML;
+
+        var sd = document.getElementById("errorShortDescText");
+        if (sd) {
+          if (gIsCertError) {
+            sd.innerHTML = document.getElementById("ed_nssBadCert").innerHTML;
+          }
+          else {
+            sd.textContent = getDescription();
+          }
+        }
+        if (gIsCertError) {
+          initPageCertError();
+          return;
+        }
+
+        var ld = document.getElementById("errorLongDesc");
+        if (ld)
+        {
+          ld.innerHTML = errDesc.innerHTML;
+        }
+
+        if (err == "sslv3Used") {
+          document.getElementById("learnMoreContainer").style.display = "block";
+          var learnMoreLink = document.getElementById("learnMoreLink");
+          learnMoreLink.href = "https://support.mozilla.org/kb/how-resolve-sslv3-error-messages-firefox";
+          document.body.className = "certerror";
+        }
+
+        if (err == "weakCryptoUsed") {
+          document.body.className = "certerror";
+        }
+
+        // remove undisplayed errors to avoid bug 39098
+        var errContainer = document.getElementById("errorContainer");
+        errContainer.parentNode.removeChild(errContainer);
+
+        var className = getCSSClass();
+        if (className && className != "expertBadCert") {
+          // Associate a CSS class with the root of the page, if one was passed in,
+          // to allow custom styling.
+          // Not "expertBadCert" though, don't want to deal with the favicon
+          document.documentElement.className = className;
+
+          // Also, if they specified a CSS class, they must supply their own
+          // favicon.  In order to trigger the browser to repaint though, we
+          // need to remove/add the link element.
+          var favicon = document.getElementById("favicon");
+          var faviconParent = favicon.parentNode;
+          faviconParent.removeChild(favicon);
+          favicon.setAttribute("href", "chrome://global/skin/icons/" + className + "_favicon.png");
+          faviconParent.appendChild(favicon);
+        }
+
+        if (err == "remoteXUL") {
+          // Remove the "Try again" button for remote XUL errors given that
+          // it is useless.
+          document.getElementById("netErrorButtonContainer").style.display = "none";
+        }
+
+        if (err == "cspBlocked") {
+          // Remove the "Try again" button for CSP violations, since it's
+          // almost certainly useless. (Bug 553180)
+          document.getElementById("netErrorButtonContainer").style.display = "none";
+        }
+
+        window.addEventListener("AboutNetErrorOptions", function(evt) {
+        // Pinning errors are of type nssFailure2
+          if (getErrorCode() == "nssFailure2" || getErrorCode() == "weakCryptoUsed") {
+            document.getElementById("learnMoreContainer").style.display = "block";
+            var learnMoreLink = document.getElementById("learnMoreLink");
+            // nssFailure2 also gets us other non-overrideable errors. Choose
+            // a "learn more" link based on description:
+            if (getDescription().includes("mozilla_pkix_error_key_pinning_failure")) {
+              learnMoreLink.href = "https://support.mozilla.org/kb/certificate-pinning-reports";
+            }
+            if (getErrorCode() == "weakCryptoUsed") {
+              learnMoreLink.href = "https://support.mozilla.org/kb/how-resolve-weak-crypto-error-messages-firefox";
+            }
+
+            var options = JSON.parse(evt.detail);
+            if (options && options.enabled) {
+              var checkbox = document.getElementById("automaticallyReportInFuture");
+              showCertificateErrorReporting();
+              if (options.automatic) {
+                // set the checkbox
+                checkbox.checked = true;
+              }
+
+              checkbox.addEventListener("change", function(evt) {
+                  var event = new CustomEvent("AboutNetErrorSetAutomatic",
+                    {bubbles:true, detail:evt.target.checked});
+                  document.dispatchEvent(event);
+                }, false);
+            }
+            const hasPrefStyleError = [
+              "interrupted", // This happens with subresources that are above the max tls
+              "SSL_ERROR_PROTOCOL_VERSION_ALERT",
+              "SSL_ERROR_UNSUPPORTED_VERSION",
+              "SSL_ERROR_NO_CYPHER_OVERLAP",
+              "SSL_ERROR_NO_CIPHERS_SUPPORTED"
+            ].some((substring) => getDescription().includes(substring));
+            // If it looks like an error that is user config based
+            if (getErrorCode() == "nssFailure2" && hasPrefStyleError && options && options.changedCertPrefs) {
+              showPrefChangeContainer();
+            }
+          }
+          if (getErrorCode() == "weakCryptoUsed" || getErrorCode() == "sslv3Used") {
+            showAdvancedButton(getErrorCode() == "weakCryptoUsed");
+          }
+        }.bind(this), true, true);
+
+        var event = new CustomEvent("AboutNetErrorLoad", {bubbles:true});
+        document.dispatchEvent(event);
+
+        if (err == "inadequateSecurityError") {
+          // Remove the "Try again" button for HTTP/2 inadequate security as it
+          // is useless.
+          document.getElementById("errorTryAgain").style.display = "none";
+
+          var container = document.getElementById("errorLongDesc");
+          for (var span of container.querySelectorAll("span.hostname")) {
+            span.textContent = document.location.hostname;
+          }
+        }
+
+        addDomainErrorLinks();
+      }
+
+      /* Try to preserve the links contained in the error description, like
+         the error code.
+
+         Also, in the case of SSL error pages about domain mismatch, see if
+         we can hyperlink the user to the correct site.  We don't want
+         to do this generically since it allows MitM attacks to redirect
+         users to a site under attacker control, but in certain cases
+         it is safe (and helpful!) to do so.  Bug 402210
+      */
+      function addDomainErrorLinks() {
+        // Rather than textContent, we need to treat description as HTML
+        var sdid = gIsCertError ? "badCertTechnicalInfo" : "errorShortDescText";
+        var sd = document.getElementById(sdid);
+        if (sd) {
+          var desc = getDescription();
+
+          // sanitize description text - see bug 441169
+
+          // First, find the index of the <a> tags we care about, being
+          // careful not to use an over-greedy regex.
+          var codeRe = /<a id="errorCode" title="([^"]+)">/;
+          var codeResult = codeRe.exec(desc);
+          var domainRe = /<a id="cert_domain_link" title="([^"]+)">/;
+          var domainResult = domainRe.exec(desc);
+
+          // The order of these links in the description is fixed in
+          // TransportSecurityInfo.cpp:formatOverridableCertErrorMessage.
+          var firstResult = domainResult;
+          if(!domainResult)
+            firstResult = codeResult;
+          if (!firstResult)
+            return;
+          // Remove sd's existing children
+          sd.textContent = "";
+
+          // Everything up to the first link should be text content.
+          sd.appendChild(document.createTextNode(desc.slice(0, firstResult.index)));
+
+          // Now create the actual links.
+          if (domainResult) {
+            createLink(sd, "cert_domain_link", domainResult[1])
+            // Append text for anything between the two links.
+            sd.appendChild(document.createTextNode(desc.slice(desc.indexOf("</a>") + "</a>".length, codeResult.index)));
+          }
+          createLink(sd, "errorCode", codeResult[1])
+
+          // Finally, append text for anything after the last closing </a>.
+          sd.appendChild(document.createTextNode(desc.slice(desc.lastIndexOf("</a>") + "</a>".length)));
+        }
+
+        if (gIsCertError) {
+          // Initialize the error code link embedded in the error message to
+          // display debug information about the cert error.
+          var errorCode = document.getElementById("errorCode");
+          if (errorCode) {
+            errorCode.href = "#technicalInformation";
+            errorCode.addEventListener("click", () => {
+              var div = document.getElementById("certificateErrorDebugInformation");
+              if (toggleDisplay(div) == "block") {
+                div.scrollIntoView({block: "start", behavior: "smooth"});
+              }
+            }, false);
+          }
+        }
+
+        // Initialize the cert domain link.
+        var link = document.getElementById("cert_domain_link");
+        if (!link)
+          return;
+
+        var okHost = link.getAttribute("title");
+        var thisHost = document.location.hostname;
+        var proto = document.location.protocol;
+
+        // If okHost is a wildcard domain ("*.example.com") let's
+        // use "www" instead.  "*.example.com" isn't going to
+        // get anyone anywhere useful. bug 432491
+        okHost = okHost.replace(/^\*\./, "www.");
+
+        /* case #1:
+         * example.com uses an invalid security certificate.
+         *
+         * The certificate is only valid for www.example.com
+         *
+         * Make sure to include the "." ahead of thisHost so that
+         * a MitM attack on paypal.com doesn't hyperlink to "notpaypal.com"
+         *
+         * We'd normally just use a RegExp here except that we lack a
+         * library function to escape them properly (bug 248062), and
+         * domain names are famous for having '.' characters in them,
+         * which would allow spurious and possibly hostile matches.
+         */
+        if (okHost.endsWith("." + thisHost))
+          link.href = proto + okHost;
+
+        /* case #2:
+         * browser.garage.maemo.org uses an invalid security certificate.
+         *
+         * The certificate is only valid for garage.maemo.org
+         */
+        if (thisHost.endsWith("." + okHost))
+          link.href = proto + okHost;
+
+        // If we set a link, meaning there's something helpful for
+        // the user here, expand the section by default
+        if (link.href && getCSSClass() != "expertBadCert") {
+          var panelId = gIsCertError ? "badCertAdvancedPanel" : "weakCryptoAdvancedPanel"
+          toggleDisplay(document.getElementById(panelId));
+          if (gIsCertError) {
+            // Toggling the advanced panel must ensure that the debugging
+            // information panel is hidden as well, since it's opened by the
+            // error code link in the advanced panel.
+            var div = document.getElementById("certificateErrorDebugInformation");
+            div.style.display = "none";
+          }
+        }
+      }
+
+      function createLink(el, id, text) {
+        var anchorEl = document.createElement("a");
+        anchorEl.setAttribute("id", id);
+        anchorEl.setAttribute("title", text);
+        anchorEl.appendChild(document.createTextNode(text));
+        el.appendChild(anchorEl);
+      }
+    ]]></script>
+  </head>
+
+  <body dir="ltr">
+    <!-- Contains an alternate page title set on page init for cert errors. -->
+    <div id="certErrorPageTitle" style="display: none;">不安全的连接</div>
+
+    <!-- ERROR ITEM CONTAINER (removed during loading to avoid bug 39098) -->
+    
+
+    <!-- PAGE CONTAINER (for styling purposes only) -->
+    <div id="errorPageContainer" class="container">
+
+      <!-- Error Title -->
+      <div class="title">
+        <h1 class="title-text">连接超时</h1>
+      </div>
+
+      <!-- LONG CONTENT (the section most likely to require scrolling) -->
+      <div id="errorLongContent">
+
+        <!-- Short Description -->
+        <div id="errorShortDesc">
+          <p id="errorShortDescText">platform.twitter.com 的服务器响应时间过长。</p>
+        </div>
+        <p id="badStsCertExplanation" hidden="true">此网站使用了 HTTP 严格传输安全（HSTS）要求 Firefox 只进行安全连接。正因如此，您不能为此证书添加一个例外。</p>
+
+        <div id="wrongSystemTimePanel" style="display: none;">
+          <p>一个到 <span id="wrongSystemTime_URL"></span> 的安全连接无法完成，因为您的计算机时钟好像使用了错误的时间。</p> <p>您的计算机认为现在是 <span id="wrongSystemTime_systemDate"></span>，但它或许应该是 <span id="wrongSystemTime_actualDate"></span>。请更正您的日期和时间设置以修复此问题。</p>
+        </div>
+
+        <!-- Long Description (Note: See netError.dtd for used XHTML tags) -->
+        <div id="errorLongDesc"><ul xmlns="http://www.w3.org/1999/xhtml"> 
+<li>此站点暂时不可用或者太忙。请稍后再试。</li> 
+<li>如果您无法载入任何页面，请检查您计算机的网络连接。</li> 
+<li>如果您的计算机或网络受到防火墙或者代理服务器的保护，请确认 Firefox 已被授权访问网络。</li> 
+</ul></div>
+
+        <div id="learnMoreContainer">
+          <p><a href="https://support.mozilla.org/kb/what-does-your-connection-is-not-secure-mean" id="learnMoreLink" target="new">详细了解…</a></p>
+        </div>
+
+        <div id="prefChangeContainer" class="button-container">
+          <p>看上去您的网络安全设置可能会导致此问题。您想还原到默认设置吗？</p>
+          <button id="prefResetButton" class="primary" autocomplete="off">恢复默认设置</button>
+        </div>
+
+        <div id="certErrorButtonContainer" class="button-container">
+          <button id="returnButton" class="primary" autocomplete="off" autofocus="true">后退</button>
+          <div class="button-spacer"></div>
+          <button id="advancedButton" autocomplete="off" autofocus="true">高级</button>
+        </div>
+      </div>
+
+      <div id="netErrorButtonContainer" class="button-container">
+        <button id="errorTryAgain" class="primary" autocomplete="off" onclick="retryThis(this);">重试</button>
+      </div>
+
+      <script>
+        // Only do autofocus if we're the toplevel frame; otherwise we
+        // don't want to call attention to ourselves!  The key part is
+        // that autofocus happens on insertion into the tree, so we
+        // can remove the button, add @autofocus, and reinsert the
+        // button.
+        if (window.top == window) {
+            var button = document.getElementById("errorTryAgain");
+            var parent = button.parentNode;
+            button.remove();
+            button.setAttribute("autofocus", "true");
+            parent.appendChild(button);
+        }
+      </script>
+
+      <!-- UI for option to report certificate errors to Mozilla. Removed on
+           init for other error types .-->
+      <div id="certificateErrorReporting">
+        <p>
+          <input id="automaticallyReportInFuture" type="checkbox" />
+          <label for="automaticallyReportInFuture" id="automaticallyReportInFuture">报告此类错误以帮助 Mozilla 识别和拦截恶意站点</label>
+        </p>
+      </div>
+
+      <div id="advancedPanelContainer">
+        <div id="weakCryptoAdvancedPanel" class="advanced-panel">
+          <div id="weakCryptoAdvancedDescription">
+            <p><span class="hostname"></span> 使用了过时的安全技术，较容易遭受攻击。攻击者可以容易地获取您认为是安全的信息。</p>
+          </div>
+          <div id="advancedLongDesc"></div>
+          <div id="overrideWeakCryptoPanel">
+            <a id="overrideWeakCrypto" href="#">尝试使用过时的安全性设置载入此页面 <span class="hostname"></span>（不安全）</a>
+          </div>
+        </div>
+
+        <div id="badCertAdvancedPanel" class="advanced-panel">
+          <p id="badCertTechnicalInfo"></p>
+          <button id="exceptionDialogButton">添加例外…</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="certificateErrorDebugInformation">
+      <a name="technicalInformation"></a>
+      <button id="copyToClipboard">复制文本到剪贴板</button>
+      <div id="certificateErrorText"></div>
+      <button id="copyToClipboard">复制文本到剪贴板</button>
+    </div>
+
+    <!--
+    - Note: It is important to run the script this way, instead of using
+    - an onload handler. This is because error pages are loaded as
+    - LOAD_BACKGROUND, which means that onload handlers will not be executed.
+    -->
+    <script type="application/javascript">initPage();</script>
+
+  </body>
+</html>

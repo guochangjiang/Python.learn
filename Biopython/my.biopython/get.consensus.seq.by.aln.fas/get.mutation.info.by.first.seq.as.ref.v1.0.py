@@ -20,7 +20,7 @@ parser.add_argument(
                     dest="file_out",
                     default="tmp.mutation.seq.out",
                     type=str,
-                    help=".out file to output, [default: tmp.txt]")
+                    help=".out file to output, [default: tmp.mutation.seq.out]")
 parser.add_argument("-v", "--version", action='version', help="The version of this program.", version="Version: " + __version__)
 args = parser.parse_args()
 

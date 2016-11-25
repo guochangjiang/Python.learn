@@ -1,0 +1,1011 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" prefix="og: http://ogp.me/ns#" lang="en-US"><head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Processing ABI .fsa files in R, part 1. | R-bloggers</title>
+
+ <script data-rocketsrc="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.zh_CN.e-hw7KbKQIc.O/m=plusone/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCPGiUm4AumI7ukCCcOvjJrDuk4awg/cb=gapi.loaded_0" data-rocketoptimized="true" async=""></script><script id="twitter-wjs" data-rocketsrc="https://platform.twitter.com/widgets.js" data-rocketoptimized="true"></script><script type="text/javascript" async="" data-rocketsrc="https://ssl.google-analytics.com/ga.js" data-rocketoptimized="true"></script><script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"},atok:"92596e8ecff51e78a31fe4c7eec3d340",petok:"44d04adece10c2e99ce7f18a0e78c564c6154a8f-1479259212-1800",zone:"r-bloggers.com",rocket:"a",apps:{}}];document.write('<script type="text/javascript" src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=088620b277/cloudflare.min.js"><'+'\/script>');}}catch(e){};
+//]]>
+</script><script type="text/javascript" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/cloudflare.js"></script><style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style><script data-module="cloudflare/rocket" id="cfjs_block_674b7faad9" onload="CloudFlare.__cfjs_block_674b7faad9_load()" onerror="CloudFlare.__cfjs_block_674b7faad9_error()" onreadystatechange="CloudFlare.__cfjs_block_674b7faad9_readystatechange()" type="text/javascript" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/rocket.js"></script>
+<link rel="stylesheet" href="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/style.css" type="text/css" media="screen">
+
+<style type="text/css">
+
+body { width: 1024px; }
+
+#mainwrapper { width: 1004px; }
+
+#sidebar { width: 180px; }
+
+#sidebar .side-widget { width: 160px; }
+
+
+#secondsidebar { width: 300px; }
+
+#secondsidebar .side-widget { width: 300px; }
+
+
+#leftcontent, #twocol, #threecol, #threecol2, .commentlist { width: 456px; }
+
+#leftcontent img, .wp-caption { max-width: 456px; }
+
+#leftcontent .wp-caption img, #leftcontent .gallery-thumb img { max-width: 444px; }
+
+<!-- fix for IE & Safari -->
+
+.threepost embed { width: 132.24px !important; }
+
+.twopost embed { width: 209.76px !important; }
+
+<!-- end fix for Safari -->
+
+</style>
+
+	<link rel="pingback" href="https://www.r-bloggers.com/xmlrpc.php">
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" href="https://www.r-bloggers.com/wp-content/themes/magazine-basic/iestyles.css" />
+<![endif]-->
+
+<!-- All in One SEO Pack 2.3.9.1 by Michael Torbert of Semper Fi Web Design[321,382] -->
+<meta name="description" itemprop="description" content="I’ve been working on a lot of AFLP data this winter. I’d really like to be able to do all the analysis in R, for a few reasons. First, it would mean">
+
+<link rel="canonical" href="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/a.htm">
+<!-- /all in one seo pack -->
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="R-bloggers » Feed" href="https://www.r-bloggers.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="R-bloggers » Comments Feed" href="https://www.r-bloggers.com/comments/feed/">
+		<script type="text/rocketscript" data-rocketoptimized="true">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.r-bloggers.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="snp_styles_reset-css" href="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/reset.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox2-css" href="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/jquery.css" type="text/css" media="all">
+<link rel="stylesheet" id="snp_styles_theme6-css" href="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/theme6.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpt-twitter-feed-css" href="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/twitter-feed.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpusb-style-css" href="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/style_003.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack-top-posts-widget-css" href="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/style_002.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/jetpack.css" type="text/css" media="all">
+<link rel="stylesheet" id="codebox-css" href="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/codebox.css" type="text/css" media="screen">
+<!-- This site uses the Google Analytics by MonsterInsights plugin v5.5.2 - Universal disabled - https://www.monsterinsights.com/ -->
+<script type="text/rocketscript" data-rocketoptimized="true">
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-419807-53']);
+	_gaq.push(['_gat._forceSSL']);
+	_gaq.push(['_trackPageview']);
+
+	(function () {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-includes/js/jquery/jquery.js?ver=1.12.4" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketoptimized="true">
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/jetpack/modules/related-posts/related-posts.js?ver=20150408" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/wp-codebox/js/codebox.js?ver=0.1" data-rocketoptimized="true"></script>
+<link rel="https://api.w.org/" href="https://www.r-bloggers.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.r-bloggers.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.r-bloggers.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Download File from Google Drive/Docs Programmatically with R" href="https://www.r-bloggers.com/download-file-from-google-drivedocs-programmatically-with-r/">
+<link rel="next" title="Travis CI for R! (not yet)" href="https://www.r-bloggers.com/travis-ci-for-r-not-yet/">
+<meta name="generator" content="WordPress 4.6.1">
+<link rel="shortlink" href="https://wp.me/pMm6L-jPP">
+<link rel="alternate" type="application/json+oembed" href="https://www.r-bloggers.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.r-bloggers.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F&amp;format=xml">
+<!-- This site is powered by Tweet, Like, Plusone and Share Plugin - http://techxt.com/tweet-like-google-1-and-share-plugin-wordpress/ -->
+<style type="text/css">div.socialicons{float:left;display:block;margin-right: 10px;line-height: 1;}div.socialiconsv{line-height: 1;}div.socialicons p{margin-bottom: 0px !important;margin-top: 0px !important;padding-bottom: 0px !important;padding-top: 0px !important;}div.social4iv{background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #aaa;border-radius: 3px 3px 3px 3px;box-shadow: 3px 3px 3px #DDDDDD;padding: 3px;position: fixed;text-align: center;top: 55px;width: 68px;display:none;}div.socialiconsv{padding-bottom: 5px;}</style>
+
+<link rel="dns-prefetch" href="https://i0.wp.com/">
+<link rel="dns-prefetch" href="https://i1.wp.com/">
+<link rel="dns-prefetch" href="https://i2.wp.com/">
+<style type="text/css">img#wpstats{display:none}</style><link rel="amphtml" href="https://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/amp/">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Processing ABI .fsa files in R, part 1.">
+<meta property="og:description" content="I’ve been working on a lot of AFLP data this winter. I’d really like to be able to do all the analysis in R, for a few reasons. First, it would mean no more fighting with GeneMapper, wh…">
+<meta property="article:published_time" content="2013-04-12T02:16:02+00:00">
+<meta property="article:modified_time" content="2013-04-12T02:16:02+00:00">
+<meta property="og:site_name" content="R-bloggers">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="http://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/">
+<link rel="stylesheet" type="text/css" href="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/shCore.css"><link rel="stylesheet" type="text/css" href="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/shThemeDefault.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+
+<!-- WordPress Facebook Open Graph protocol plugin (WPFBOGP v2.0.13) http://rynoweb.com/wordpress-plugins/ -->
+<meta property="fb:app_id" content="143207055763488">
+<meta property="og:image" content="https://www.r-bloggers.com/wp-content/uploads/2016/08/R_single_01-200-1.png">
+<meta property="og:image" content="http://plantarum.ca/wp-content/uploads/2013/04/raw-fsa-1024x512.jpg">
+<!-- // end wpfbogp -->
+<link rel="icon" href="https://i2.wp.com/www.r-bloggers.com/wp-content/uploads/2016/08/cropped-R_single_01-200.png?fit=32%2C32&amp;ssl=1" sizes="32x32">
+<link rel="icon" href="https://i2.wp.com/www.r-bloggers.com/wp-content/uploads/2016/08/cropped-R_single_01-200.png?fit=192%2C192&amp;ssl=1" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://i2.wp.com/www.r-bloggers.com/wp-content/uploads/2016/08/cropped-R_single_01-200.png?fit=180%2C180&amp;ssl=1">
+<meta name="msapplication-TileImage" content="https://i2.wp.com/www.r-bloggers.com/wp-content/uploads/2016/08/cropped-R_single_01-200.png?fit=270%2C270&amp;ssl=1">
+<style>.ios7.web-app-mode.has-fixed header{ background-color: rgba(255,255,255,.88) !important;}</style><script src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/jquery.js"></script><script src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/screentime.js"></script><script data-rocketsrc="https://www.r-bloggers.com/wp-includes/js/wp-emoji-release.min.js?ver=4.6.1" data-rocketoptimized="true" type="text/javascript"></script><script data-rocketsrc="https://platform.linkedin.com/js/secureAnonymousFramework?v=0.0.2000-RC8.59130-1429&amp;" data-rocketoptimized="true"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f9;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29487d;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f9;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style><script type="text/javascript" charset="utf-8" async="" data-rocketsrc="https://platform.twitter.com/js/button.09a4c69b9e9879b3a066b7ecd72136d2.js" data-rocketoptimized="true"></script><style type="text/css">* html #li_ui_li_gen_1479259297322_0 a#li_ui_li_gen_1479259297322_0-link{height:1% !important;}#li_ui_li_gen_1479259297322_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1479259297322_0 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1479259297322_0 a#li_ui_li_gen_1479259297322_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1479259297322_0 a#li_ui_li_gen_1479259297322_0-link:link, #li_ui_li_gen_1479259297322_0 a#li_ui_li_gen_1479259297322_0-link:visited, #li_ui_li_gen_1479259297322_0 a#li_ui_li_gen_1479259297322_0-link:hover, #li_ui_li_gen_1479259297322_0 a#li_ui_li_gen_1479259297322_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1479259297322_0 a#li_ui_li_gen_1479259297322_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1479259297322_0 #li_ui_li_gen_1479259297322_0-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -593px !important;background-repeat:no-repeat !important;background-color:#0077b5 !important;background-size:initial !important;cursor:pointer !important;border:0 !important;border-right:1px solid #066094 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;}#li_ui_li_gen_1479259297322_0 #li_ui_li_gen_1479259297322_0-title{color:#fff !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;text-shadow:0 -1px #005887 !important;line-height:20px !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}#li_ui_li_gen_1479259297322_0.hovered #li_ui_li_gen_1479259297322_0-title{border:1px solid #000 !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}#li_ui_li_gen_1479259297322_0.clicked #li_ui_li_gen_1479259297322_0-title, #li_ui_li_gen_1479259297322_0.down #li_ui_li_gen_1479259297322_0-title{color:#fff !important;border:1px solid #000 !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.IN-shadowed #li_ui_li_gen_1479259297322_0 #li_ui_li_gen_1479259297322_0-title{}.IN-shadowed #li_ui_li_gen_1479259297322_0.hovered #li_ui_li_gen_1479259297322_0-title{}.IN-shadowed #li_ui_li_gen_1479259297322_0.clicked #li_ui_li_gen_1479259297322_0-title, .IN-shadowed #li_ui_li_gen_1479259297322_0.down #li_ui_li_gen_1479259297322_0-title{}#li_ui_li_gen_1479259297322_0 #li_ui_li_gen_1479259297322_0-title-text, #li_ui_li_gen_1479259297322_0 #li_ui_li_gen_1479259297322_0-title-text *{color:#fff !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1479259297322_0 #li_ui_li_gen_1479259297322_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1479259297322_0 #li_ui_li_gen_1479259297322_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1479259297322_0.hovered #li_ui_li_gen_1479259297322_0-title-text, #li_ui_li_gen_1479259297322_0.hovered #li_ui_li_gen_1479259297322_0-title-text *{color:#fff !important;}#li_ui_li_gen_1479259297322_0.clicked #li_ui_li_gen_1479259297322_0-title-text, #li_ui_li_gen_1479259297322_0.down #li_ui_li_gen_1479259297322_0-title-text, #li_ui_li_gen_1479259297322_0.clicked #li_ui_li_gen_1479259297322_0-title-text *, #li_ui_li_gen_1479259297322_0.down #li_ui_li_gen_1479259297322_0-title-text *{color:#fff !important;}#li_ui_li_gen_1479259297322_0 #li_ui_li_gen_1479259297322_0-title #li_ui_li_gen_1479259297322_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1479259297322_0 #li_ui_li_gen_1479259297322_0-title{color:#fff !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}.success #li_ui_li_gen_1479259297322_0 #li_ui_li_gen_1479259297322_0-title-text, .success #li_ui_li_gen_1479259297322_0 #li_ui_li_gen_1479259297322_0-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1479259297322_0 #li_ui_li_gen_1479259297322_0-title{}.success #li_ui_li_gen_1479259297322_0.hovered #li_ui_li_gen_1479259297322_0-title{color:#fff !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}.success #li_ui_li_gen_1479259297322_0.hovered #li_ui_li_gen_1479259297322_0-title-text, .success #li_ui_li_gen_1479259297322_0.hovered #li_ui_li_gen_1479259297322_0-title-text *{color:#fff !important;}.success #li_ui_li_gen_1479259297322_0.clicked #li_ui_li_gen_1479259297322_0-title, .success #li_ui_li_gen_1479259297322_0.down #li_ui_li_gen_1479259297322_0-title{color:#fff !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.success #li_ui_li_gen_1479259297322_0.clicked #li_ui_li_gen_1479259297322_0-title-text, .success #li_ui_li_gen_1479259297322_0.down #li_ui_li_gen_1479259297322_0-title-text, .success #li_ui_li_gen_1479259297322_0.clicked #li_ui_li_gen_1479259297322_0-title-text *, .success #li_ui_li_gen_1479259297322_0.down #li_ui_li_gen_1479259297322_0-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1479259297322_0.clicked #li_ui_li_gen_1479259297322_0-title, .IN-shadowed .success #li_ui_li_gen_1479259297322_0.down #li_ui_li_gen_1479259297322_0-title{}#li_ui_li_gen_1479259297334_1-container.IN-right {display:inline-block !important;float:left !important;overflow:visible !important;position:relative !important;height:20px !important;padding-left:2px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1479259297334_1.IN-right {display:block !important;float:left !important;height:20px !important;margin-right:4px !important;padding-right:4px !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:right -447px !important;}#li_ui_li_gen_1479259297334_1-inner.IN-right {display:block !important;float:left !important;padding-left:8px !important;text-align:center !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:0px -426px !important;}#li_ui_li_gen_1479259297334_1-content.IN-right {display:inline !important;font-size:11px !important;color:#4e4e4e !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:20px !important;padding:0 5px 0 5px !important;}#li_ui_li_gen_1479259297334_1-container.IN-empty {display:none !important;}#li_ui_li_gen_1479259297334_1-container.IN-hidden #li_ui_li_gen_1479259297334_1 {display:none !important;}* html #li_ui_li_gen_1479259297340_2 a#li_ui_li_gen_1479259297340_2-link{height:1% !important;}#li_ui_li_gen_1479259297340_2{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1479259297340_2 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1479259297340_2 a#li_ui_li_gen_1479259297340_2-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1479259297340_2 a#li_ui_li_gen_1479259297340_2-link:link, #li_ui_li_gen_1479259297340_2 a#li_ui_li_gen_1479259297340_2-link:visited, #li_ui_li_gen_1479259297340_2 a#li_ui_li_gen_1479259297340_2-link:hover, #li_ui_li_gen_1479259297340_2 a#li_ui_li_gen_1479259297340_2-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1479259297340_2 a#li_ui_li_gen_1479259297340_2-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1479259297340_2 #li_ui_li_gen_1479259297340_2-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -593px !important;background-repeat:no-repeat !important;background-color:#0077b5 !important;background-size:initial !important;cursor:pointer !important;border:0 !important;border-right:1px solid #066094 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;}#li_ui_li_gen_1479259297340_2 #li_ui_li_gen_1479259297340_2-title{color:#fff !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;text-shadow:0 -1px #005887 !important;line-height:20px !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}#li_ui_li_gen_1479259297340_2.hovered #li_ui_li_gen_1479259297340_2-title{border:1px solid #000 !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}#li_ui_li_gen_1479259297340_2.clicked #li_ui_li_gen_1479259297340_2-title, #li_ui_li_gen_1479259297340_2.down #li_ui_li_gen_1479259297340_2-title{color:#fff !important;border:1px solid #000 !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.IN-shadowed #li_ui_li_gen_1479259297340_2 #li_ui_li_gen_1479259297340_2-title{}.IN-shadowed #li_ui_li_gen_1479259297340_2.hovered #li_ui_li_gen_1479259297340_2-title{}.IN-shadowed #li_ui_li_gen_1479259297340_2.clicked #li_ui_li_gen_1479259297340_2-title, .IN-shadowed #li_ui_li_gen_1479259297340_2.down #li_ui_li_gen_1479259297340_2-title{}#li_ui_li_gen_1479259297340_2 #li_ui_li_gen_1479259297340_2-title-text, #li_ui_li_gen_1479259297340_2 #li_ui_li_gen_1479259297340_2-title-text *{color:#fff !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1479259297340_2 #li_ui_li_gen_1479259297340_2-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1479259297340_2 #li_ui_li_gen_1479259297340_2-title-text em{font-style:italic !important;}#li_ui_li_gen_1479259297340_2.hovered #li_ui_li_gen_1479259297340_2-title-text, #li_ui_li_gen_1479259297340_2.hovered #li_ui_li_gen_1479259297340_2-title-text *{color:#fff !important;}#li_ui_li_gen_1479259297340_2.clicked #li_ui_li_gen_1479259297340_2-title-text, #li_ui_li_gen_1479259297340_2.down #li_ui_li_gen_1479259297340_2-title-text, #li_ui_li_gen_1479259297340_2.clicked #li_ui_li_gen_1479259297340_2-title-text *, #li_ui_li_gen_1479259297340_2.down #li_ui_li_gen_1479259297340_2-title-text *{color:#fff !important;}#li_ui_li_gen_1479259297340_2 #li_ui_li_gen_1479259297340_2-title #li_ui_li_gen_1479259297340_2-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1479259297340_2 #li_ui_li_gen_1479259297340_2-title{color:#fff !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}.success #li_ui_li_gen_1479259297340_2 #li_ui_li_gen_1479259297340_2-title-text, .success #li_ui_li_gen_1479259297340_2 #li_ui_li_gen_1479259297340_2-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1479259297340_2 #li_ui_li_gen_1479259297340_2-title{}.success #li_ui_li_gen_1479259297340_2.hovered #li_ui_li_gen_1479259297340_2-title{color:#fff !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}.success #li_ui_li_gen_1479259297340_2.hovered #li_ui_li_gen_1479259297340_2-title-text, .success #li_ui_li_gen_1479259297340_2.hovered #li_ui_li_gen_1479259297340_2-title-text *{color:#fff !important;}.success #li_ui_li_gen_1479259297340_2.clicked #li_ui_li_gen_1479259297340_2-title, .success #li_ui_li_gen_1479259297340_2.down #li_ui_li_gen_1479259297340_2-title{color:#fff !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.success #li_ui_li_gen_1479259297340_2.clicked #li_ui_li_gen_1479259297340_2-title-text, .success #li_ui_li_gen_1479259297340_2.down #li_ui_li_gen_1479259297340_2-title-text, .success #li_ui_li_gen_1479259297340_2.clicked #li_ui_li_gen_1479259297340_2-title-text *, .success #li_ui_li_gen_1479259297340_2.down #li_ui_li_gen_1479259297340_2-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1479259297340_2.clicked #li_ui_li_gen_1479259297340_2-title, .IN-shadowed .success #li_ui_li_gen_1479259297340_2.down #li_ui_li_gen_1479259297340_2-title{}#li_ui_li_gen_1479259297343_3-container.IN-right {display:inline-block !important;float:left !important;overflow:visible !important;position:relative !important;height:20px !important;padding-left:2px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1479259297343_3.IN-right {display:block !important;float:left !important;height:20px !important;margin-right:4px !important;padding-right:4px !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:right -447px !important;}#li_ui_li_gen_1479259297343_3-inner.IN-right {display:block !important;float:left !important;padding-left:8px !important;text-align:center !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:0px -426px !important;}#li_ui_li_gen_1479259297343_3-content.IN-right {display:inline !important;font-size:11px !important;color:#4e4e4e !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:20px !important;padding:0 5px 0 5px !important;}#li_ui_li_gen_1479259297343_3-container.IN-empty {display:none !important;}#li_ui_li_gen_1479259297343_3-container.IN-hidden #li_ui_li_gen_1479259297343_3 {display:none !important;}* html #li_ui_li_gen_1479259297347_4 a#li_ui_li_gen_1479259297347_4-link{height:1% !important;}#li_ui_li_gen_1479259297347_4{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1479259297347_4 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1479259297347_4 a#li_ui_li_gen_1479259297347_4-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1479259297347_4 a#li_ui_li_gen_1479259297347_4-link:link, #li_ui_li_gen_1479259297347_4 a#li_ui_li_gen_1479259297347_4-link:visited, #li_ui_li_gen_1479259297347_4 a#li_ui_li_gen_1479259297347_4-link:hover, #li_ui_li_gen_1479259297347_4 a#li_ui_li_gen_1479259297347_4-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1479259297347_4 a#li_ui_li_gen_1479259297347_4-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1479259297347_4 #li_ui_li_gen_1479259297347_4-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -593px !important;background-repeat:no-repeat !important;background-color:#0077b5 !important;background-size:initial !important;cursor:pointer !important;border:0 !important;border-right:1px solid #066094 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;}#li_ui_li_gen_1479259297347_4 #li_ui_li_gen_1479259297347_4-title{color:#fff !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;text-shadow:0 -1px #005887 !important;line-height:20px !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}#li_ui_li_gen_1479259297347_4.hovered #li_ui_li_gen_1479259297347_4-title{border:1px solid #000 !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}#li_ui_li_gen_1479259297347_4.clicked #li_ui_li_gen_1479259297347_4-title, #li_ui_li_gen_1479259297347_4.down #li_ui_li_gen_1479259297347_4-title{color:#fff !important;border:1px solid #000 !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.IN-shadowed #li_ui_li_gen_1479259297347_4 #li_ui_li_gen_1479259297347_4-title{}.IN-shadowed #li_ui_li_gen_1479259297347_4.hovered #li_ui_li_gen_1479259297347_4-title{}.IN-shadowed #li_ui_li_gen_1479259297347_4.clicked #li_ui_li_gen_1479259297347_4-title, .IN-shadowed #li_ui_li_gen_1479259297347_4.down #li_ui_li_gen_1479259297347_4-title{}#li_ui_li_gen_1479259297347_4 #li_ui_li_gen_1479259297347_4-title-text, #li_ui_li_gen_1479259297347_4 #li_ui_li_gen_1479259297347_4-title-text *{color:#fff !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1479259297347_4 #li_ui_li_gen_1479259297347_4-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1479259297347_4 #li_ui_li_gen_1479259297347_4-title-text em{font-style:italic !important;}#li_ui_li_gen_1479259297347_4.hovered #li_ui_li_gen_1479259297347_4-title-text, #li_ui_li_gen_1479259297347_4.hovered #li_ui_li_gen_1479259297347_4-title-text *{color:#fff !important;}#li_ui_li_gen_1479259297347_4.clicked #li_ui_li_gen_1479259297347_4-title-text, #li_ui_li_gen_1479259297347_4.down #li_ui_li_gen_1479259297347_4-title-text, #li_ui_li_gen_1479259297347_4.clicked #li_ui_li_gen_1479259297347_4-title-text *, #li_ui_li_gen_1479259297347_4.down #li_ui_li_gen_1479259297347_4-title-text *{color:#fff !important;}#li_ui_li_gen_1479259297347_4 #li_ui_li_gen_1479259297347_4-title #li_ui_li_gen_1479259297347_4-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1479259297347_4 #li_ui_li_gen_1479259297347_4-title{color:#fff !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}.success #li_ui_li_gen_1479259297347_4 #li_ui_li_gen_1479259297347_4-title-text, .success #li_ui_li_gen_1479259297347_4 #li_ui_li_gen_1479259297347_4-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1479259297347_4 #li_ui_li_gen_1479259297347_4-title{}.success #li_ui_li_gen_1479259297347_4.hovered #li_ui_li_gen_1479259297347_4-title{color:#fff !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}.success #li_ui_li_gen_1479259297347_4.hovered #li_ui_li_gen_1479259297347_4-title-text, .success #li_ui_li_gen_1479259297347_4.hovered #li_ui_li_gen_1479259297347_4-title-text *{color:#fff !important;}.success #li_ui_li_gen_1479259297347_4.clicked #li_ui_li_gen_1479259297347_4-title, .success #li_ui_li_gen_1479259297347_4.down #li_ui_li_gen_1479259297347_4-title{color:#fff !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.success #li_ui_li_gen_1479259297347_4.clicked #li_ui_li_gen_1479259297347_4-title-text, .success #li_ui_li_gen_1479259297347_4.down #li_ui_li_gen_1479259297347_4-title-text, .success #li_ui_li_gen_1479259297347_4.clicked #li_ui_li_gen_1479259297347_4-title-text *, .success #li_ui_li_gen_1479259297347_4.down #li_ui_li_gen_1479259297347_4-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1479259297347_4.clicked #li_ui_li_gen_1479259297347_4-title, .IN-shadowed .success #li_ui_li_gen_1479259297347_4.down #li_ui_li_gen_1479259297347_4-title{}#li_ui_li_gen_1479259297350_5-container.IN-top {display:inline-block !important;overflow:visible !important;position:relative !important;height:42px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1479259297350_5.IN-top {display:inline-block !important;height:42px !important;width:60px !important;text-align:center !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:-207px -470px !important;}#li_ui_li_gen_1479259297350_5-content.IN-top {display:inline !important;font-size:16px !important;color:#4e4e4e !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:38px !important;}#li_ui_li_gen_1479259297350_5-container.IN-empty #li_ui_li_gen_1479259297350_5-inner.IN-top {background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:0px -560px !important;background-size:initial !important;overflow:hidden !important;margin:4px auto 0 auto !important;width:28px !important;height:28px !important;display:block !important;}#li_ui_li_gen_1479259297350_5-container.IN-empty #li_ui_li_gen_1479259297350_5-content.IN-top {text-indent:-999px !important;display:inline-block !important;}#li_ui_li_gen_1479259297350_5-container.IN-hidden #li_ui_li_gen_1479259297350_5 {display:none !important;}* html #li_ui_li_gen_1479259297355_6 a#li_ui_li_gen_1479259297355_6-link{height:1% !important;}#li_ui_li_gen_1479259297355_6{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1479259297355_6 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1479259297355_6 a#li_ui_li_gen_1479259297355_6-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1479259297355_6 a#li_ui_li_gen_1479259297355_6-link:link, #li_ui_li_gen_1479259297355_6 a#li_ui_li_gen_1479259297355_6-link:visited, #li_ui_li_gen_1479259297355_6 a#li_ui_li_gen_1479259297355_6-link:hover, #li_ui_li_gen_1479259297355_6 a#li_ui_li_gen_1479259297355_6-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1479259297355_6 a#li_ui_li_gen_1479259297355_6-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1479259297355_6 #li_ui_li_gen_1479259297355_6-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -593px !important;background-repeat:no-repeat !important;background-color:#0077b5 !important;background-size:initial !important;cursor:pointer !important;border:0 !important;border-right:1px solid #066094 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;}#li_ui_li_gen_1479259297355_6 #li_ui_li_gen_1479259297355_6-title{color:#fff !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;text-shadow:0 -1px #005887 !important;line-height:20px !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}#li_ui_li_gen_1479259297355_6.hovered #li_ui_li_gen_1479259297355_6-title{border:1px solid #000 !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}#li_ui_li_gen_1479259297355_6.clicked #li_ui_li_gen_1479259297355_6-title, #li_ui_li_gen_1479259297355_6.down #li_ui_li_gen_1479259297355_6-title{color:#fff !important;border:1px solid #000 !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.IN-shadowed #li_ui_li_gen_1479259297355_6 #li_ui_li_gen_1479259297355_6-title{}.IN-shadowed #li_ui_li_gen_1479259297355_6.hovered #li_ui_li_gen_1479259297355_6-title{}.IN-shadowed #li_ui_li_gen_1479259297355_6.clicked #li_ui_li_gen_1479259297355_6-title, .IN-shadowed #li_ui_li_gen_1479259297355_6.down #li_ui_li_gen_1479259297355_6-title{}#li_ui_li_gen_1479259297355_6 #li_ui_li_gen_1479259297355_6-title-text, #li_ui_li_gen_1479259297355_6 #li_ui_li_gen_1479259297355_6-title-text *{color:#fff !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1479259297355_6 #li_ui_li_gen_1479259297355_6-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1479259297355_6 #li_ui_li_gen_1479259297355_6-title-text em{font-style:italic !important;}#li_ui_li_gen_1479259297355_6.hovered #li_ui_li_gen_1479259297355_6-title-text, #li_ui_li_gen_1479259297355_6.hovered #li_ui_li_gen_1479259297355_6-title-text *{color:#fff !important;}#li_ui_li_gen_1479259297355_6.clicked #li_ui_li_gen_1479259297355_6-title-text, #li_ui_li_gen_1479259297355_6.down #li_ui_li_gen_1479259297355_6-title-text, #li_ui_li_gen_1479259297355_6.clicked #li_ui_li_gen_1479259297355_6-title-text *, #li_ui_li_gen_1479259297355_6.down #li_ui_li_gen_1479259297355_6-title-text *{color:#fff !important;}#li_ui_li_gen_1479259297355_6 #li_ui_li_gen_1479259297355_6-title #li_ui_li_gen_1479259297355_6-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1479259297355_6 #li_ui_li_gen_1479259297355_6-title{color:#fff !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}.success #li_ui_li_gen_1479259297355_6 #li_ui_li_gen_1479259297355_6-title-text, .success #li_ui_li_gen_1479259297355_6 #li_ui_li_gen_1479259297355_6-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1479259297355_6 #li_ui_li_gen_1479259297355_6-title{}.success #li_ui_li_gen_1479259297355_6.hovered #li_ui_li_gen_1479259297355_6-title{color:#fff !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}.success #li_ui_li_gen_1479259297355_6.hovered #li_ui_li_gen_1479259297355_6-title-text, .success #li_ui_li_gen_1479259297355_6.hovered #li_ui_li_gen_1479259297355_6-title-text *{color:#fff !important;}.success #li_ui_li_gen_1479259297355_6.clicked #li_ui_li_gen_1479259297355_6-title, .success #li_ui_li_gen_1479259297355_6.down #li_ui_li_gen_1479259297355_6-title{color:#fff !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.success #li_ui_li_gen_1479259297355_6.clicked #li_ui_li_gen_1479259297355_6-title-text, .success #li_ui_li_gen_1479259297355_6.down #li_ui_li_gen_1479259297355_6-title-text, .success #li_ui_li_gen_1479259297355_6.clicked #li_ui_li_gen_1479259297355_6-title-text *, .success #li_ui_li_gen_1479259297355_6.down #li_ui_li_gen_1479259297355_6-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1479259297355_6.clicked #li_ui_li_gen_1479259297355_6-title, .IN-shadowed .success #li_ui_li_gen_1479259297355_6.down #li_ui_li_gen_1479259297355_6-title{}#li_ui_li_gen_1479259297359_7-container.IN-right {display:inline-block !important;float:left !important;overflow:visible !important;position:relative !important;height:20px !important;padding-left:2px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1479259297359_7.IN-right {display:block !important;float:left !important;height:20px !important;margin-right:4px !important;padding-right:4px !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:right -447px !important;}#li_ui_li_gen_1479259297359_7-inner.IN-right {display:block !important;float:left !important;padding-left:8px !important;text-align:center !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:0px -426px !important;}#li_ui_li_gen_1479259297359_7-content.IN-right {display:inline !important;font-size:11px !important;color:#4e4e4e !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:20px !important;padding:0 5px 0 5px !important;}#li_ui_li_gen_1479259297359_7-container.IN-empty {display:none !important;}#li_ui_li_gen_1479259297359_7-container.IN-hidden #li_ui_li_gen_1479259297359_7 {display:none !important;}</style></head>
+
+<body class="single single-post postid-76249 single-format-standard" style="margin-right: 0px;">
+<!-- begin header -->
+<div id="header">
+		    	    	<a href="https://www.r-bloggers.com/" class="headerimage"><img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/R_02_2016-05-01.png" alt="R-bloggers" class="aligncenter"></a>
+        <div id="description" class="aligncenter">
+        R news and tutorials contributed by (580) R bloggers    </div>     
+    <div class="main-navigation"><ul id="menu-top-nav" class="sf-menu sf-js-enabled sf-shadow"><li id="menu-item-48314" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-48314"><a href="https://www.r-bloggers.com/">Home</a></li>
+<li id="menu-item-92333" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92333"><a href="https://www.r-bloggers.com/about/">About</a></li>
+<li id="menu-item-50111" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-50111"><a href="https://feeds.feedburner.com/RBloggers" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://feeds.feedburner.com/RBloggers', 'RSS']);">RSS</a></li>
+<li id="menu-item-48313" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48313"><a href="https://www.r-bloggers.com/add-your-blog/">add your blog!</a></li>
+<li id="menu-item-111419" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-111419"><a href="https://www.r-bloggers.com/how-to-learn-r-2/">Learn R</a></li>
+<li id="menu-item-75513" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-75513"><a href="https://www.r-users.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://www.r-users.com/', 'R jobs']);" class="sf-with-ul">R jobs<span class="sf-sub-indicator">�</span><span class="sf-sub-indicator">�</span><span class="sf-sub-indicator">�</span></a>
+<ul class="sub-menu" style="float: none; width: 12em; display: none; visibility: hidden;">
+	<li id="menu-item-76945" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-76945" style="white-space: normal; float: left; width: 100%;"><a href="https://www.r-users.com/submit-job/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://www.r-users.com/submit-job/', 'Submit a new job (it’s free)']);" style="float: none; width: auto;">Submit a new job (it’s free)</a></li>
+	<li id="menu-item-76946" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-76946" style="white-space: normal; float: left; width: 100%;"><a href="https://www.r-users.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://www.r-users.com/', 'Browse latest jobs (also free)']);" style="float: none; width: auto;">Browse latest jobs (also free)</a></li>
+</ul>
+</li>
+<li id="menu-item-48311" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48311"><a href="https://www.r-bloggers.com/contact-us/">Contact us</a></li>
+</ul></div>
+</div>
+<!-- end header -->
+
+
+<div id="mainwrapper">
+<!-- begin sidebar -->
+    <div id="sidebar">
+		<div class="side-widget"><h2>Welcome!</h2>			<div class="textwidget"><iframe allowtransparency="true" scrolling="no" src="//platform.twitter.com/widgets/follow_button.html?screen_name=rbloggers&amp;data-show-count" style="width:164px; height:30px;" frameborder="0"></iframe>
+
+
+Here you will find daily <strong>news and tutorials about R</strong>, contributed by over 573 bloggers. 
+<br>
+There are many ways to <strong>follow us - </strong>
+<br>
+<a href="https://feedburner.google.com/fb/a/mailverify?uri=RBloggers" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://feedburner.google.com/fb/a/mailverify?uri=RBloggers', 'By e-mail:']);">By e-mail:</a>
+
+<form style="border:1px solid #ccc;padding:3px;text-align:center; background: none repeat scroll 0 0 #FDEADA;" action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=RBloggers', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+<input style="width:110px" onclick="if (this.value == 'Your e-mail here') this.value = '';" value="Your e-mail here" name="email" type="text">
+<input value="RBloggers" name="uri" type="hidden"><input name="loc" value="en_US" type="hidden"><input value="Subscribe" type="submit">
+<a href="https://feeds.feedburner.com/RBloggers" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://feeds.feedburner.com/RBloggers', '']);"><img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/RBloggers.gif" style="border:0" alt="" height="26" width="88"></a>
+</form>
+
+
+
+<a href="https://www.facebook.com/rbloggers" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://www.facebook.com/rbloggers', 'On Facebook:']);">On Facebook:</a>
+<iframe src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/likebox.htm" scrolling="no" style="border:none; overflow:hidden; width:160px; height:238px;" allowtransparency="true" frameborder="0"></iframe>
+
+
+<br>
+<strong>If you are an R blogger yourself</strong> you are invited to <a href="https://www.r-bloggers.com/add-your-blog/">add your own R content feed to this site</a> (<strong>Non-English</strong> R bloggers should add themselves- <a href="https://www.r-bloggers.com/lang/add-your-blog">here</a>)</div>
+		</div><div class="side-widget"><h2><a class="rsswidget" href="https://feeds.feedburner.com/Rjobs"><img class="rss-widget-icon" style="border:0" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/rss.png" alt="RSS" height="14" width="14"></a> <a class="rsswidget" href="https://www.r-users.com/">Jobs for R-users</a></h2><ul><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/RJobs/%7E3/cePNwH-0xYI/">Statistical Analyst @ Rostock, Mecklenburg-Vorpommern, Germany</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/RJobs/%7E3/YfuAk3j4mOg/">Data Engineer</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/RJobs/%7E3/pzRImg00CgY/">Data Scientist – Post-Graduate Programme @ Nottingham, England</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/RJobs/%7E3/GK2-tpMIZE0/">Director, Real World Informatics &amp; Analytics Data Science @ Northbrook, Illinois, U.S.</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/RJobs/%7E3/xChoJDUKfdo/">Junior statistician/demographer for UNICEF</a></li></ul></div><div class="side-widget"><form method="get" id="searchform" action="https://www.r-bloggers.com/">
+<div>
+<input class="search_input" value="Search &amp; Hit Enter" name="s" id="s" onfocus="if (this.value == 'Search &amp; Hit Enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search &amp; Hit Enter';}" type="text">
+<input id="searchsubmit" type="hidden">
+</div>
+</form></div><div class="side-widget"><h2>Popular Searches</h2>
+<ul>
+<li><a href="https://www.r-bloggers.com/search/web%20scraping">web scraping</a></li>
+<li><a href="https://www.r-bloggers.com/search/heatmap">heatmap</a></li>
+<li><a href="https://www.r-bloggers.com/search/twitter">twitter</a></li>
+<li><a href="https://www.r-bloggers.com/search/maps">maps</a></li>
+<li><a href="https://www.r-bloggers.com/search/time%20series">time series</a></li>
+<li><a href="https://www.r-bloggers.com/search/animation">animation</a></li>
+<li><a href="https://www.r-bloggers.com/search/shiny">shiny</a></li>
+<li><a href="https://www.r-bloggers.com/search/boxplot">boxplot</a></li>
+<li><a href="https://www.r-bloggers.com/search/hadoop">hadoop</a></li>
+<li><a href="https://www.r-bloggers.com/search/ggplot2">ggplot2</a></li>
+<li><a href="https://www.r-bloggers.com/search/trading">trading</a></li>
+<li><a href="https://www.r-bloggers.com/search/how%20to%20import%20image%20file%20to%20R">how to import image file to R</a></li>
+<li><a href="https://www.r-bloggers.com/search/finance">finance</a></li>
+<li><a href="https://www.r-bloggers.com/search/latex">latex</a></li>
+<li><a href="https://www.r-bloggers.com/search/eclipse">eclipse</a></li>
+<li><a href="https://www.r-bloggers.com/search/rstudio">rstudio</a></li>
+<li><a href="https://www.r-bloggers.com/search/excel">excel</a></li>
+<li><a href="https://www.r-bloggers.com/search/ggplot">ggplot</a></li>
+<li><a href="https://www.r-bloggers.com/search/sql">sql</a></li>
+<li><a href="https://www.r-bloggers.com/search/quantmod">quantmod</a></li>
+<li><a href="https://www.r-bloggers.com/search/googlevis">googlevis</a></li>
+<li><a href="https://www.r-bloggers.com/search/knitr">knitr</a></li>
+<li><a href="https://www.r-bloggers.com/search/market%20research">market research</a></li>
+<li><a href="https://www.r-bloggers.com/search/pca">pca</a></li>
+<li><a href="https://www.r-bloggers.com/search/regression">regression</a></li>
+<li><a href="https://www.r-bloggers.com/search/rattle">rattle</a></li>
+<li><a href="https://www.r-bloggers.com/search/tutorial">tutorial</a></li>
+<li><a href="https://www.r-bloggers.com/search/map">map</a></li>
+<li><a href="https://www.r-bloggers.com/search/coplot">coplot</a></li>
+<li><a href="https://www.r-bloggers.com/search/rcmdr">rcmdr</a></li>
+</ul>
+
+</div>		<div class="side-widget">		<h2>Recent Posts</h2>		<ul>
+					<li>
+				<a href="https://www.r-bloggers.com/apollo-moon-landings/">Apollo Moon Landings</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/basic-operations-exercises/">Basic Operations Exercises</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/set-application-domain-name-with-shiny-server/">Set Application Domain Name with Shiny Server</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/r-code-to-accompany-real-world-machine-learning-chapter-4/">R code to accompany Real-World Machine Learning (Chapter 4)</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/better-confidence-intervals-for-quantiles/">Better Confidence Intervals for Quantiles</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/a-quick-look-at-rstudios-r-notebooks/">A quick look at RStudio’s R notebooks</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/rcpparmadillo-0-7-500-0-0/">RcppArmadillo 0.7.500.0.0</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/election-2016-tracking-emotions-with-r-and-python/">Election 2016: Tracking Emotions with R and Python</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/data-science-for-executives-and-managers/">Data science for executives and managers</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/the-worlds-economic-data-shiny-apps-and-all-you-want-to-know-about-propensity-score-matching/">The Worlds Economic Data, Shiny Apps and all you want to know about Propensity Score Matching!</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/august-package-picks/">August Package Picks</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/slack-all-the-things/">Slack all the things!</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/the-beauty-face-of-r-warsaw-r-ladies/">Warsaw R-Ladies</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/notes-from-the-kolner-r-meeting-14-october-2016/">Notes from the Kölner R meeting, 14 October 2016</a>
+						</li>
+					<li>
+				<a href="https://www.r-bloggers.com/anytime-0-0-4-new-features-and-fixes/">anytime 0.0.4: New features and fixes</a>
+						</li>
+				</ul>
+		</div>		<div class="side-widget"><h2>Other sites</h2>
+	<ul class="xoxo blogroll">
+<li><a href="https://www.r-users.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://www.r-users.com/', 'Jobs for R-users']);">Jobs for R-users</a></li>
+<li><a href="http://www.proc-x.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.proc-x.com/', 'SAS blogs']);" title="SAS news gathered from bloggers">SAS blogs</a></li>
+
+	</ul>
+</div>
+    </div>
+<!-- end sidebar -->	<div id="leftcontent">
+	
+		
+
+	<div id="post-76249" class="post-76249 post type-post status-publish format-standard hentry category-r-bloggers">
+					
+				
+                <h1>Processing ABI .fsa files in R, part 1.</h1>
+                <div class="meta"><div class="date">April 11, 2013</div>By <a href="https://www.r-bloggers.com/author/tyler/" title="Posts by Tyler" rel="author">Tyler</a></div><div class="entry"><p class="syndicated-attribution"></p><div class="social4i" style="height:29px;"><div class="social4in" style="height:29px;float: left;"><div class="socialicons s4fblike" style="float:left;margin-right: 10px;"><div class="fb-like fb_iframe_widget" data-href="https://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/" data-send="true" data-layout="button_count" data-width="100" data-height="21" data-show-faces="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;container_width=0&amp;height=21&amp;href=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=true&amp;show_faces=false&amp;width=100"><span style="vertical-align: bottom; width: 128px; height: 20px;"><iframe name="f3974f27759adec" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" style="border: medium none; visibility: visible; width: 128px; height: 20px;" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/like.htm" class="" height="21px" frameborder="0" width="100px"></iframe></span></div></div><div class="socialicons s4twitter" style="float:left;margin-right: 10px;"><iframe id="twitter-widget-0" scrolling="no" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/tweet_button.htm" data-url="https://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/" frameborder="0"></iframe></div><div class="socialicons s4linkedin" style="float:left;margin-right: 10px;"><span style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;" class="IN-widget"><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1479259297322_0"><a id="li_ui_li_gen_1479259297322_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1479259297322_0-logo">in</span><span id="li_ui_li_gen_1479259297322_0-title"><span id="li_ui_li_gen_1479259297322_0-mark"></span><span id="li_ui_li_gen_1479259297322_0-title-text">Share</span></span></a></span></span><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1479259297334_1-container" class="IN-right IN-hidden"><span id="li_ui_li_gen_1479259297334_1" class="IN-right"><span id="li_ui_li_gen_1479259297334_1-inner" class="IN-right"><span id="li_ui_li_gen_1479259297334_1-content" class="IN-right">0</span></span></span></span></span></span><script type="in/share+init" data-url="https://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/" data-counter="right"></script></div></div><div style="clear:both"></div></div>
+
+<div style="border: 1px solid; background: none repeat scroll 0 0 #EDEDED; margin: 1px; font-size: 12px;">
+(This article was first published on  <strong><a href="http://plantarum.ca/2013/04/11/processing-abi-fsa-files-in-r-part-1/"> Tyler Smith » r</a></strong>, and kindly contributed to <a href="https://www.r-bloggers.com/" rel="nofollow">R-bloggers)</a>      
+</div><p></p>
+<p>I’ve been working on a lot of AFLP data this winter. I’d really like 
+to be able to do all the analysis in R, for a few reasons. First, it 
+would mean no more fighting with GeneMapper, which is incredibly 
+frustrating: it’s Windows-only, expensive, closed-source and painfully 
+underpowered for the job. Second, presumably if I can figure out how to 
+code this myself I will develop a deeper understanding of the system. 
+And third, if I can get the code working in R, I will be able to 
+automate most of the process.</p>
+<p>There are two R projects already in progress for working with AFLP data. <a href="http://sourceforge.net/projects/rawgeno/" onclick="_gaq.push(['_trackEvent', 'outbound-article', 'http://sourceforge.net/projects/rawgeno/', 'RawGeno']);" title="RawGeno" rel="nofollow" target="_blank">RawGeno</a>
+ is one option. It doesn’t yet allow for importing fsa files directly, 
+but the example scripts provide some clues about how to do this. I 
+couldn’t get the code to work as written, but I was able to steal some 
+ideas from it.</p>
+<p>The other R package is <a href="http://r-forge.r-project.org/projects/aflp/" onclick="_gaq.push(['_trackEvent', 'outbound-article', 'http://r-forge.r-project.org/projects/aflp/', 'AFLP']);" title="AFLP R package" rel="nofollow" target="_blank">AFLP</a>. This package includes a <tt>read.fsa()</tt>
+ function, but it doesn’t seem to work yet. I understand they’ve only 
+recently switched to ABI sequencers, and haven’t yet updated their code.
+ <tt>AFLP</tt> also combines reading the fsa files, calibrating the 
+sizing, and defining the bins into one step. That’s a sensible thing to 
+do, but I’m not that clever. I need to break things into small pieces if
+ I hope to get anywhere.</p>
+<p>Since one of my goals is self-education, I’m not concerned about 
+duplicating some of the effort of these other projects. In fact, I’m 
+going to try and steal as much as I can from them. That’s one of the 
+benefits of Free Software, we get to learn from each other.</p>
+<p><span id="more-157"></span></p>
+<h2>Step one, reading the raw data</h2>
+<p>Lucky for me, most of the work involved in actually getting the contents of an <tt>.fsa</tt> file into R has already been done, via the package <a href="http://seqinr.r-forge.r-project.org/" onclick="_gaq.push(['_trackEvent', 'outbound-article', 'http://seqinr.r-forge.r-project.org/', 'seqinr']);" title="seqinr R package" rel="nofollow" target="_blank"><tt>seqinr</tt></a>. All that I need to do is extract the useful bits and reformat it into a data.frame.</p>
+<p></p>
+<pre class="crayon-plain-tag">library(seqinr)
+
+read.fsa &lt;- function(files = NULL, path = "./", sig.channel = 1:3, lad.channel = 105, pretrim = FALSE,
+                     posttrim = ".fsa", thresh = -100, verbose = TRUE){
+
+  if(is.null(files))
+    files &lt;- list.files(path, pattern = "\\.fsa$", full.names = TRUE)
+  else
+    files &lt;- paste(path, files, sep = "")
+
+  res &lt;- do.call(rbind, lapply(files, function(file) {
+    if (verbose) message(file)
+    abif &lt;- read.abif(file)
+    tag &lt;- tag.trimmer(basename(file), pretrim, posttrim)
+    
+    lad.dat &lt;- abif$Data[[paste('DATA.', lad.channel, sep='')]]
+    
+    res1 &lt;- data.frame(tag = as.character(rep(tag, length(lad.dat))),
+                       chan = as.character(rep("standard", length(lad.dat))),
+                       time = as.numeric(1:length(lad.dat)),
+                       peak = as.numeric(lad.dat))
+    
+    for (i in sig.channel) {
+      chan.dat &lt;- abif$Data[[paste('DATA.', i, sep='')]]
+      res1 &lt;- rbind(res1, data.frame(tag = as.character(rep(tag, length(chan.dat))),
+                                     chan = as.character(rep(i, length(chan.dat))),
+                                     time = as.numeric(1:length(chan.dat)),
+                                     peak = as.numeric(chan.dat)))
+    }
+    res1
+  }))
+    
+  if (thresh &gt; -10) res &lt;- subset(res, peak &gt; thresh)
+  return(res)
+}
+
+tag.trimmer &lt;- function(x, pretrim = FALSE, posttrim = FALSE) {
+  if(! is.na(pretrim)) {
+    x &lt;- sub(paste("^", pretrim, sep = ""), "", x)
+  }
+  if(! is.na(posttrim)){
+    x &lt;- sub(paste(posttrim, "$", sep = ""), "", x)
+  }
+  x
+}</pre>
+<p></p>
+<p><tt>sig.channel</tt> is a vector of the DATA channels to read from the fsa file. I’m using FAM dye, which gets recorded in channel 1. <tt>lad.channel</tt> is the DATA channel where the size standard is found. We use the orange dye for the ladder, which is in channel 105. <tt>pretrim</tt> and <tt>posttrim</tt> are conveniences, for removing leading and trailing strings from the filenames, via <tt>tag.trimmer</tt>.</p>
+<p></p>
+<pre class="crayon-plain-tag">fsa &lt;- read.fsa(path = "./path/to/fsa/files/", sig.channel = 1,
+                pretrim = "AFLP.*AFLP_", posttrim = "-5_Frag.*fsa")   
+
+head(fsa)
+      tag     chan time peak
+1 QCWR-25 standard    1   -3
+2 QCWR-25 standard    2    3
+3 QCWR-25 standard    3    1
+4 QCWR-25 standard    4   -3
+5 QCWR-25 standard    5   -2
+6 QCWR-25 standard    6   -1</pre>
+<p></p>
+<p>The actual data, in my case, is composed of 8959 rows for each sample
+ x dye combination. Each row is the reading from the laser at that point
+ in the run (the <tt>time</tt>). In other words, the size of the 
+fragments that are migrating past the window at that particular time. 
+Since we have multiple readings for each time, the <tt>time</tt> column allows us to refer to information from different dyes and different samples that were detected at the same time. <tt>peak</tt>
+ is the strength of the fluorescence associated with each sample x  dye x
+ time combination. The negative numbers are obviously noise. You can use
+ the <tt>thresh</tt> argument to clear out all rows that are below a 
+particular fluorescence value. This isn’t necessary unless you’ve got a 
+really big data set. I ran this on nearly 200 samples and had no 
+problems – I don’t think you’re likely to run into issues with less than
+ 1000 samples.</p>
+<p>This isn’t useful yet. First we need to convert the times into actual
+ fragment sizes, in base pairs. In the meantime, we can at least plot 
+our raw data in R now:</p>
+<p></p>
+<pre class="crayon-plain-tag">plot(peak ~ time, data = subset(fsa, tag == "QCWR-25" &amp; chan == "standard"), 
+       col = "orange", type = 'l', ylim = c(0, 4000), xlim = c(700, 4000))
+points(peak ~ time, data = subset(fsa, tag == "QCWR-25" &amp; chan == "1"), 
+           col = "blue", type = 'l')</pre>
+<p></p>
+<p>
+</p><div id="attachment_168" style="width: 635px" class="wp-caption aligncenter"><a href="https://i2.wp.com/plantarum.ca/wp-content/uploads/2013/04/raw-fsa.jpg" onclick="_gaq.push(['_trackEvent', 'outbound-article', 'http://plantarum.ca/wp-content/uploads/2013/04/raw-fsa.jpg', '']);" rel="nofollow" target="_blank"><img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/raw-fsa-1024x512.htm" alt="Raw fsa data produced by read.fsa" class="size-large wp-image-168" data-recalc-dims="1" style="display: inline;" data-lazy-loaded="true"><noscript><img src="https://i2.wp.com/plantarum.ca/wp-content/uploads/2013/04/raw-fsa-1024x512.jpg?resize=456%2C228" alt="Raw fsa data produced by read.fsa" class="size-large wp-image-168" data-recalc-dims="1" /></noscript></a>
+<p class="wp-caption-text">Raw fsa data produced by read.fsa</p>
+</div>
+<p>Next up is finding the peaks in each channel, matching up the size 
+standard peaks to the known values, and using that to convert the rest 
+of the peaks from <tt>time</tt> to base-pairs.</p>
+<hr>
+<iframe id="twitter-widget-1" scrolling="no" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/tweet_button_002.htm" frameborder="0"></iframe><br>
+<script type="text/rocketscript" data-rocketoptimized="true">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><p></p>
+<div class="social4i" style="height:29px;">
+<div class="social4in" style="height:29px;float: left;">
+<div class="socialicons s4fblike" style="float:left;margin-right: 10px;">
+<div class="fb-like fb_iframe_widget" data-href="https://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/" data-send="true" data-layout="button_count" data-width="100" data-height="21" data-show-faces="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;container_width=0&amp;height=21&amp;href=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=true&amp;show_faces=false&amp;width=100"><span style="vertical-align: bottom; width: 128px; height: 20px;"><iframe name="f3c78f31f656cf" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" style="border: medium none; visibility: visible; width: 128px; height: 20px;" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/like_002.htm" class="" height="21px" frameborder="0" width="100px"></iframe></span></div>
+</div>
+<div class="socialicons s4twitter" style="float:left;margin-right: 10px;"><iframe id="twitter-widget-2" scrolling="no" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/tweet_button_003.htm" data-url="https://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/" frameborder="0"></iframe></div>
+<div class="socialicons s4linkedin" style="float:left;margin-right: 10px;"><span style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;" class="IN-widget"><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1479259297340_2"><a id="li_ui_li_gen_1479259297340_2-link" href="javascript:void(0);"><span id="li_ui_li_gen_1479259297340_2-logo">in</span><span id="li_ui_li_gen_1479259297340_2-title"><span id="li_ui_li_gen_1479259297340_2-mark"></span><span id="li_ui_li_gen_1479259297340_2-title-text">Share</span></span></a></span></span><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1479259297343_3-container" class="IN-right IN-hidden"><span id="li_ui_li_gen_1479259297343_3" class="IN-right"><span id="li_ui_li_gen_1479259297343_3-inner" class="IN-right"><span id="li_ui_li_gen_1479259297343_3-content" class="IN-right">0</span></span></span></span></span></span><script type="in/share+init" data-url="https://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/" data-counter="right"></script></div>
+</div>
+<div style="clear:both"></div>
+</div>
+
+<div id="jp-relatedposts" class="jp-relatedposts" style="display: block;">
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+<div class="jp-relatedposts-items jp-relatedposts-items-visual"><div class="jp-relatedposts-post jp-relatedposts-post0 jp-relatedposts-post-thumbs" data-post-id="75465" data-post-format="false"><a class="jp-relatedposts-post-a" href="https://www.r-bloggers.com/reproducible-research-training-wheels-and-knitr/" title="Reproducible research, training wheels, and knitr
+
+Last week I gave a short talk at CMU’s statistical computing seminar, Stat Bytes. I summarized why reproducible research (RR) and literate programming are worthwhile, not just for serious research but also for homework reports or statistical blog posts. I … Continue reading →" rel="nofollow" data-origin="76249" data-position="0"><img class="jp-relatedposts-post-img" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/latex.xml" alt="Reproducible research, training wheels, and knitr" width="350"></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://www.r-bloggers.com/reproducible-research-training-wheels-and-knitr/" title="Reproducible research, training wheels, and knitr
+
+Last week I gave a short talk at CMU’s statistical computing seminar, Stat Bytes. I summarized why reproducible research (RR) and literate programming are worthwhile, not just for serious research but also for homework reports or statistical blog posts. I … Continue reading →" rel="nofollow" data-origin="76249" data-position="0">Reproducible research, training wheels, and knitr</a></h4><p class="jp-relatedposts-post-excerpt">Last
+ week I gave a short talk at CMU’s statistical computing seminar, Stat 
+Bytes. I summarized why reproducible research (RR) and literate 
+programming are worthwhile, not just for serious research but also for 
+homework reports or statistical blog posts. I … Continue reading →</p><p class="jp-relatedposts-post-date">February 15, 2014</p><p class="jp-relatedposts-post-context">In "R bloggers"</p></div><div class="jp-relatedposts-post jp-relatedposts-post1 jp-relatedposts-post-thumbs" data-post-id="64663" data-post-format="false"><a class="jp-relatedposts-post-a" href="https://www.r-bloggers.com/dc-r-meetup-analyze-us-government-survey-data-with-r/" title="DC R Meetup: “Analyze US Government Survey Data with R”
+
+I really enjoyed tonight’s DC R Meetup, presented by the prolific Anthony Damico. [Edit: adding link to the full video of Anthony's talk; review is below.] I’ve met Anthony before to discuss whether the Census Bureau could either… publish R-readable … Continue reading →" rel="nofollow" data-origin="76249" data-position="1"><img class="jp-relatedposts-post-img" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/IMG_8807-500x375.jpg" alt="DC R Meetup: “Analyze US Government Survey Data with R”" width="350"></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://www.r-bloggers.com/dc-r-meetup-analyze-us-government-survey-data-with-r/" title="DC R Meetup: “Analyze US Government Survey Data with R”
+
+I really enjoyed tonight’s DC R Meetup, presented by the prolific Anthony Damico. [Edit: adding link to the full video of Anthony's talk; review is below.] I’ve met Anthony before to discuss whether the Census Bureau could either… publish R-readable … Continue reading →" rel="nofollow" data-origin="76249" data-position="1">DC R Meetup: “Analyze US Government Survey Data with R”</a></h4><p class="jp-relatedposts-post-excerpt">I
+ really enjoyed tonight’s DC R Meetup, presented by the prolific Anthony
+ Damico. [Edit: adding link to the full video of Anthony's talk; review 
+is below.] I’ve met Anthony before to discuss whether the Census Bureau 
+could either… publish R-readable … Continue reading →</p><p class="jp-relatedposts-post-date">January 10, 2013</p><p class="jp-relatedposts-post-context">In "R bloggers"</p></div><div class="jp-relatedposts-post jp-relatedposts-post2 jp-relatedposts-post-nothumbs" data-post-id="104582" data-post-format="false"><a class="jp-relatedposts-post-a jp-relatedposts-post-aoverlay" href="https://www.r-bloggers.com/render-reports-directly-from-r-scripts/" title="Render reports directly from R scripts
+
+Workflow This post is really about workflow. Specifically a data-science workflow, although it should be relevant for others. It will probably resonate most (if at all) with those who have some experience (mostly positive) generating reports from Rmarkdown files with knitr, but might have some gripes. Maybe not gripes, maybe…" rel="nofollow" data-origin="76249" data-position="2"></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://www.r-bloggers.com/render-reports-directly-from-r-scripts/" title="Render reports directly from R scripts
+
+Workflow This post is really about workflow. Specifically a data-science workflow, although it should be relevant for others. It will probably resonate most (if at all) with those who have some experience (mostly positive) generating reports from Rmarkdown files with knitr, but might have some gripes. Maybe not gripes, maybe…" rel="nofollow" data-origin="76249" data-position="2">Render reports directly from R scripts</a></h4><p class="jp-relatedposts-post-excerpt" style="max-height: 7.14286em;">Workflow
+ This post is really about workflow. Specifically a data-science 
+workflow, although it should be relevant for others. It will probably 
+resonate most (if at all) with those who have some experience (mostly 
+positive) generating reports from Rmarkdown files with knitr, but might 
+have some gripes. Maybe not gripes, maybe…</p><p class="jp-relatedposts-post-date">March 4, 2015</p><p class="jp-relatedposts-post-context">In "R bloggers"</p></div></div></div>
+<p class="syndicated-attribution"></p><div class="social4i" style="height:82px;"><div class="social4in" style="height:82px;float: right;"><div class="socialicons s4fblike" style="float:left;margin-right: 10px;"><div class="fb-like fb_iframe_widget" data-href="https://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/" data-send="true" data-layout="box_count" data-width="55" data-height="62" data-show-faces="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;container_width=0&amp;height=62&amp;href=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F&amp;layout=box_count&amp;locale=en_US&amp;sdk=joey&amp;send=true&amp;show_faces=false&amp;width=55"><span style="vertical-align: bottom; width: 51px; height: 85px;"><iframe name="f1bf2f98370953" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" style="border: medium none; visibility: visible; width: 51px; height: 85px;" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/like_003.htm" class="" height="62px" frameborder="0" width="55px"></iframe></span></div></div><div class="socialicons s4twitter" style="float:left;margin-right: 10px;"><iframe id="twitter-widget-3" scrolling="no" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/tweet_button_004.htm" data-url="https://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/" frameborder="0"></iframe></div><div class="socialicons s4linkedin" style="float:left;margin-right: 10px;"><span style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;" class="IN-widget"><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1479259297350_5-container" class="IN-top IN-empty"><span id="li_ui_li_gen_1479259297350_5" class="IN-top"><span id="li_ui_li_gen_1479259297350_5-inner" class="IN-top"><span id="li_ui_li_gen_1479259297350_5-content" class="IN-top">0</span></span></span></span></span><br><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1479259297347_4"><a id="li_ui_li_gen_1479259297347_4-link" href="javascript:void(0);"><span id="li_ui_li_gen_1479259297347_4-logo">in</span><span id="li_ui_li_gen_1479259297347_4-title"><span id="li_ui_li_gen_1479259297347_4-mark"></span><span id="li_ui_li_gen_1479259297347_4-title-text">Share</span></span></a></span></span></span><script type="in/share+init" data-url="https://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/" data-counter="top"></script></div></div><div style="clear:both"></div></div>
+
+<div style="border: 1px solid; background: none repeat scroll 0 0 #EDEDED; margin: 1px; font-size: 13px;">
+<div style="text-align: center;">To <strong>leave a comment</strong> for the author, please follow the link and comment on their blog: <strong><a href="http://plantarum.ca/2013/04/11/processing-abi-fsa-files-in-r-part-1/"> Tyler Smith » r</a></strong>.</div>
+<hr>
+<a href="https://www.r-bloggers.com/" rel="nofollow">R-bloggers.com</a> offers <strong><a href="https://feedburner.google.com/fb/a/mailverify?uri=RBloggers" rel="nofollow">daily e-mail updates</a></strong> about <a title="The R Project for Statistical Computing" href="https://www.r-project.org/" rel="nofollow">R</a> news and <a title="R tutorials" href="https://www.r-bloggers.com/?s=tutorial" rel="nofollow">tutorials</a> on topics such as: <a title="Data science" href="https://www.r-bloggers.com/?s=data%20science" rel="nofollow">Data science</a>, <a title="Big Data" href="https://www.r-bloggers.com/?s=Big%20Data" rel="nofollow">Big Data, </a><a title="R jobs" href="https://www.r-users.com/" rel="nofollow">R jobs</a>, visualization (<a title="ggplot and ggplot2 tutorials" href="https://www.r-bloggers.com/?s=ggplot2" rel="nofollow">ggplot2</a>, <a title="Boxplots using lattice and ggplot2 tutorials" href="https://www.r-bloggers.com/?s=boxplot" rel="nofollow">Boxplots</a>, <a title="Maps and gis" href="https://www.r-bloggers.com/?s=map" rel="nofollow">maps</a>, <a title="Animation in R" href="https://www.r-bloggers.com/?s=animation" rel="nofollow">animation</a>), programming (<a title="RStudio IDE for R" href="https://www.r-bloggers.com/?s=RStudio" rel="nofollow">RStudio</a>, <a title="Sweave and literate programming" href="https://www.r-bloggers.com/?s=sweave" rel="nofollow">Sweave</a>, <a title="LaTeX in R" href="https://www.r-bloggers.com/?s=LaTeX" rel="nofollow">LaTeX</a>, <a title="SQL and databases" href="https://www.r-bloggers.com/?s=SQL" rel="nofollow">SQL</a>, <a title="Eclipse IDE for R" href="https://www.r-bloggers.com/?s=eclipse" rel="nofollow">Eclipse</a>, <a title="git and github, Version Control System" href="https://www.r-bloggers.com/?s=git" rel="nofollow">git</a>, <a title="Large data in R using Hadoop" href="https://www.r-bloggers.com/?s=hadoop" rel="nofollow">hadoop</a>, <a title="Web Scraping of google, facebook, yahoo, twitter and more using R" href="https://www.r-bloggers.com/?s=Web+Scraping" rel="nofollow">Web Scraping</a>) statistics (<a title="Regressions and ANOVA analysis tutorials" href="https://www.r-bloggers.com/?s=regression" rel="nofollow">regression</a>, <a title="principal component analysis tutorial" href="https://www.r-bloggers.com/?s=PCA" rel="nofollow">PCA</a>, <a title="Time series" href="https://www.r-bloggers.com/?s=time+series" rel="nofollow">time series</a>, <a title="finance trading" href="https://www.r-bloggers.com/?s=trading" rel="nofollow">trading</a>) and more...
+</div><p></p><hr><hr>
+<div style="border: 1px solid #EB9349; background: none repeat scroll 0 0 #FDEADA; text-align: center; margin: 10px; font-size: 16px;">
+If you got this far, why not <strong><u>subscribe for updates</u> </strong>from the site?  Choose your flavor: <a href="http://feedburner.google.com/fb/a/mailverify?uri=RBloggers" rel="nofollow">e-mail</a>, <a href="https://twitter.com/#%21/rbloggers" rel="nofollow">twitter</a>, <a href="http://feeds.feedburner.com/RBloggers" rel="nofollow">RSS</a>, or <a href="http://www.facebook.com/pages/R-bloggers/191414254890" rel="nofollow">facebook</a>...
+</div><div class="social4i" style="height:29px;"><div class="social4in" style="height:29px;float: left;"><div class="socialicons s4fblike" style="float:left;margin-right: 10px;"><div class="fb-like fb_iframe_widget" data-href="https://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/" data-send="true" data-layout="button_count" data-width="100" data-height="21" data-show-faces="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;container_width=0&amp;height=21&amp;href=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=true&amp;show_faces=false&amp;width=100"><span style="vertical-align: bottom; width: 128px; height: 20px;"><iframe name="f260d824e121848" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" style="border: medium none; visibility: visible; width: 128px; height: 20px;" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/like_004.htm" class="" height="21px" frameborder="0" width="100px"></iframe></span></div></div><div class="socialicons s4twitter" style="float:left;margin-right: 10px;"><iframe id="twitter-widget-4" scrolling="no" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/tweet_button_005.htm" data-url="https://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/" frameborder="0"></iframe></div><div class="socialicons s4linkedin" style="float:left;margin-right: 10px;"><span style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;" class="IN-widget"><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1479259297355_6"><a id="li_ui_li_gen_1479259297355_6-link" href="javascript:void(0);"><span id="li_ui_li_gen_1479259297355_6-logo">in</span><span id="li_ui_li_gen_1479259297355_6-title"><span id="li_ui_li_gen_1479259297355_6-mark"></span><span id="li_ui_li_gen_1479259297355_6-title-text">Share</span></span></a></span></span><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1479259297359_7-container" class="IN-right IN-hidden"><span id="li_ui_li_gen_1479259297359_7" class="IN-right"><span id="li_ui_li_gen_1479259297359_7-inner" class="IN-right"><span id="li_ui_li_gen_1479259297359_7-content" class="IN-right">0</span></span></span></span></span></span><script type="in/share+init" data-url="https://www.r-bloggers.com/processing-abi-fsa-files-in-r-part-1/" data-counter="right"></script></div></div><div style="clear:both"></div></div></div>
+
+	</div><!-- #post-## -->
+
+
+
+   				<div id="comments">
+
+
+<div id="comment-user-details">
+
+
+
+
+
+		<p class="nocomments">Comments are closed.</p>
+
+
+
+</div>
+
+</div><!-- #comments -->
+
+       
+	</div>
+    <!-- begin second sidebar -->
+    <div id="secondsidebar">
+
+		
+		<div class="side-widget"><form method="get" id="searchform" action="https://www.r-bloggers.com/">
+<div>
+<input class="search_input" value="Search &amp; Hit Enter" name="s" id="s" onfocus="if (this.value == 'Search &amp; Hit Enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search &amp; Hit Enter';}" type="text">
+<input id="searchsubmit" type="hidden">
+</div>
+</form></div><div class="side-widget"><h2>Recent popular posts</h2><ul>				<li>
+										<a href="https://www.r-bloggers.com/a-quick-look-at-rstudios-r-notebooks/" class="bump-view" data-bump-view="tp">
+						A quick look at RStudio’s R notebooks					</a>
+									</li>
+							<li>
+										<a href="https://www.r-bloggers.com/election-2016-tracking-emotions-with-r-and-python/" class="bump-view" data-bump-view="tp">
+						Election 2016: Tracking Emotions with R and Python					</a>
+									</li>
+							<li>
+										<a href="https://www.r-bloggers.com/basic-operations-exercises/" class="bump-view" data-bump-view="tp">
+						Basic Operations Exercises					</a>
+									</li>
+							<li>
+										<a href="https://www.r-bloggers.com/r-code-to-accompany-real-world-machine-learning-chapter-4/" class="bump-view" data-bump-view="tp">
+						R code to accompany Real-World Machine Learning (Chapter 4)					</a>
+									</li>
+			</ul></div><div class="side-widget"><h2>Most visited articles of the week</h2>
+<ol class="wppp_list">
+	<li><a href="https://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/" title="How to write the first for loop in R">How to write the first for loop in R</a></li>
+	<li><a href="https://www.r-bloggers.com/installing-r-packages/" title="Installing R packages">Installing R packages</a></li>
+	<li><a href="https://www.r-bloggers.com/election-2016-tracking-emotions-with-r-and-python/" title="Election 2016: Tracking Emotions with R and Python">Election 2016: Tracking Emotions with R and Python</a></li>
+	<li><a href="https://www.r-bloggers.com/using-apply-sapply-lapply-in-r/" title="Using apply, sapply, lapply in R">Using apply, sapply, lapply in R</a></li>
+	<li><a href="https://www.r-bloggers.com/how-to-learn-r-2/" title="R tutorials">R tutorials</a></li>
+	<li><a href="https://www.r-bloggers.com/how-to-make-a-histogram-with-basic-r/" title="How to Make a Histogram with Basic R">How to Make a Histogram with Basic R</a></li>
+	<li><a href="https://www.r-bloggers.com/how-to-get-good-at-r/" title="How to “get good at R”">How to “get good at R”</a></li>
+	<li><a href="https://www.r-bloggers.com/how-to-perform-a-logistic-regression-in-r/" title="How to perform a Logistic Regression in R">How to perform a Logistic Regression in R</a></li>
+	<li><a href="https://www.r-bloggers.com/paper-published-mlr-machine-learning-in-r/" title="Paper published: mlr - Machine Learning in R">Paper published: mlr - Machine Learning in R</a></li>
+</ol>
+</div><div class="side-widget"><h2>Sponsors</h2>			<div class="textwidget"><a href="https://earlconf.com/boston/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://earlconf.com/boston/', '\n\n']);" rel="nofollow" target="_blank">
+<img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/EARL-Boston-Mango-Solutions-R-Conference.png" alt="Mango solutions">
+</a>
+
+<br><hr>
+
+<a href="https://www.datacamp.com/courses/free-introduction-to-r/?tap_a=5644-dce66f&amp;tap_s=10907-287229" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://www.datacamp.com/courses/free-introduction-to-r/?tap_a=5644-dce66f&amp;tap_s=10907-287229', '\n\n']);" rel="nofollow" target="_blank">
+<img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/ads_dc.jpg">
+</a>
+
+
+
+<br><hr>
+
+<a href="https://plotcon.plot.ly/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://plotcon.plot.ly/', '\n\n']);" rel="nofollow" target="_blank">
+<img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/plotlycon_image.png" alt="plotly webpage">
+</a>
+
+
+<br><hr>
+
+<a href="https://www.dominodatalab.com/resource/benchmarking-predictive-models?utm_source=rbloggers&amp;utm_campaign=benchmarking-models-paper&amp;utm_medium=cpc&amp;utm_content=" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://www.dominodatalab.com/resource/benchmarking-predictive-models?utm_source=rbloggers&amp;utm_campaign=benchmarking-models-paper&amp;utm_medium=cpc&amp;utm_content=', '\n\n']);" rel="nofollow" target="_blank">
+<img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/rbloggers-banner2-1.png" alt="dominolab webpage">
+</a>
+
+
+
+<br><hr>
+
+<a href="https://www.rstudio.com/products/rstudio-server-pro/evaluation/?utm_source=rblogger&amp;utm_medium=newfeatureorangeflatbannertosite&amp;utm_campaign=newfeatureflatorange" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://www.rstudio.com/products/rstudio-server-pro/evaluation/?utm_source=rblogger&amp;utm_medium=newfeatureorangeflatbannertosite&amp;utm_campaign=newfeatureflatorange', '\n    \n']);" rel="nofollow" target="_blank">
+    <img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/RBloggerAD.png" alt="" title="Plotly">
+</a>
+
+
+
+
+<br><hr>
+<a href="http://www.highstat.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.highstat.com/', '\n\n']);" rel="nofollow" target="_blank">
+<img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/2016-10-21-Genoa2017-300X125.jpg" alt="Zero Inflated Models and Generalized Linear Mixed Models with R">
+</a>
+
+
+
+<br><hr>
+<a href="http://www.quantide.com/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.quantide.com/', '\n\n']);" rel="nofollow" target="_blank">
+<img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/quantide-2016-04-15.png" alt="Quantide: statistical consulting and training">
+</a>
+
+
+
+
+<br><hr>
+<a href="http://www.datasociety.co/coursedescriptions/?utm_medium=advert&amp;utm_source=rbloggers&amp;utm_campaign=august3" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.datasociety.co/coursedescriptions/?utm_medium=advert&amp;utm_source=rbloggers&amp;utm_campaign=august3', '\n\n']);" rel="nofollow" target="_blank">
+<img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/Rbloggers_Data-Society-300-125.png" alt="datasociety">
+</a>
+
+
+
+<br><hr>
+<a href="http://www.eoda.de/de/R-Kenntnis-Tage.html" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.eoda.de/de/R-Kenntnis-Tage.html', '\n\n']);" rel="nofollow" target="_blank">
+<img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/Banner_eodaGmbH-300_125.png" alt="http://www.eoda.de">
+</a>
+
+
+
+
+<br><hr>
+<a href="http://www.statisticsviews.com/view/index.html?utm_source=RBlogger&amp;utm_medium=banner&amp;utm_term=StatViews&amp;utm_content=StatViewsAd&amp;utm_campaign=webbanner" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.statisticsviews.com/view/index.html?utm_source=RBlogger&amp;utm_medium=banner&amp;utm_term=StatViews&amp;utm_content=StatViewsAd&amp;utm_campaign=webbanner', '\n\n']);" rel="nofollow" target="_blank">
+<img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/SVbanner300x125.jpg">
+</a>
+
+
+
+<br><hr>
+<a href="http://pages.northeastern.edu/ALYOLA2016-09RBloggers_LPFA.html?utm_campaign=mofu-niche&amp;utm_medium=display&amp;utm_source=rbloggers&amp;utm_content=october-banner&amp;program=&amp;aoi=" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://pages.northeastern.edu/ALYOLA2016-09RBloggers_LPFA.html?utm_campaign=mofu-niche&amp;utm_medium=display&amp;utm_source=rbloggers&amp;utm_content=october-banner&amp;program=&amp;aoi=', '\n\n']);" rel="nofollow" target="_blank">
+<img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/16-NEU-131-1_PSA_300x125_9.gif" alt="" title="">
+</a>
+
+
+<br><hr>
+<a href="http://info.nycdatascience.com/become-a-data-scientist-in-12-week-nyc-data-science-bootcamp-r-blogger" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://info.nycdatascience.com/become-a-data-scientist-in-12-week-nyc-data-science-bootcamp-r-blogger', '\n\n']);" rel="nofollow" target="_blank">
+<img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/r-blogger-NYCDSA-300-125-2016-05-02.png" alt="" title="">
+</a>
+
+<br><hr>
+<a href="https://www.odsc.com/london/workshops" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://www.odsc.com/london/workshops ', '\n    \n']);" rel="nofollow" target="_blank">
+    <img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/R-bloggers-300-x-125-UK-Training.jpg" alt="ODSC" title="ODSC 2016">
+</a>
+
+
+
+
+<br><hr>
+<a href="https://www.odsc.com/california/workshops" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://www.odsc.com/california/workshops', '\n    \n']);" rel="nofollow" target="_blank">
+    <img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/R-bloggers-300-x-125-West-Training.jpg" alt="ODSC" title="ODSC 2016">
+</a>
+
+
+
+<br><hr>
+<a href="https://www.crcpress.com/go/CZQ33_RBlogger_K25559?utm_source=RBlogger&amp;utm_medium=bannerad&amp;utm_campaign=CZQ33_RBlogger_K25559" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://www.crcpress.com/go/CZQ33_RBlogger_K25559?utm_source=RBlogger&amp;utm_medium=bannerad&amp;utm_campaign=CZQ33_RBlogger_K25559', '\n    \n']);" rel="nofollow" target="_blank">
+    <img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/CZQ33_K25559_300x125_BannerADRBlogger.jpg" alt="CRC R books series" title="CRC R books series">
+</a>
+
+
+<br><hr>
+<a href="http://www.statworx.de/r-statistik/" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.statworx.de/r-statistik/', '\n    \n']);" rel="nofollow" target="_blank">
+    <img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/STATWORX-R-Bloggers.png" alt="" title="STATWORX">
+</a>
+
+
+<br><hr>
+<a href="http://yottamine.com/try-yottamine-now" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://yottamine.com/try-yottamine-now', '\n    \n']);" rel="nofollow" target="_blank">
+    <img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/R-Blog_Speed.png" alt="" title="yottamine">
+</a>
+
+
+
+
+<br><hr>
+<a href="http://www.6sigma.us/six-sigma-online-training.php" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://www.6sigma.us/six-sigma-online-training.php', '\n    \n']);" rel="nofollow" target="_blank">
+    <img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/sixsigma300x125-1.jpg" alt="Six Sigma Online Training" title="6 sigma">
+</a>
+
+
+
+<br><hr>
+<a href="https://www.springboard.com/workshops/dataschool?utm_medium=banner&amp;utm_campaign=ds1leadgen&amp;utm_source=rbloggers" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://www.springboard.com/workshops/dataschool?utm_medium=banner&amp;utm_campaign=ds1leadgen&amp;utm_source=rbloggers', '\n    \n']);" rel="nofollow" target="_blank">
+    <img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/r-bloggers-creative-2.png" alt="" title="R training">
+</a>
+
+<br><hr>
+
+<script data-cfasync="false" type="text/javascript">
+/* VRTZ JS   300 x 250 pagead  DO NOT MODIFY  */
+document.write('<s'+'cript src="//banner.vrtzads.com/scripts/pageads.js?vzId=VZJ130060V994954&vzR='+Math.floor(Math.random()*100*(new Date().getTime()/1000))+'"></s'+'cript>');
+</script><script src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/pageads.js"></script><script src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/ad.htm"></script><iframe id="vertozuid_3fddc155-40ef-418f-b694-beb0d8d91ef2" src="javascript:'<html><body></body></html>'" marginwidth="0" marginheight="0" scrolling="NO" height="250" frameborder="0" width="300"></iframe>
+
+
+<br><hr>
+<a href="http://click.linksynergy.com/fs-bin/click?id=eO5bByfCCNo&amp;offerid=406329.4926&amp;type=3&amp;subid=0" onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'http://click.linksynergy.com/fs-bin/click?id=eO5bByfCCNo&amp;offerid=406329.4926&amp;type=3&amp;subid=0', '\n    \n']);" rel="nofollow" target="_blank">
+    <img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/R-Bloggers-300x125-1.png" alt="" title="R in Udemy">
+</a>
+
+
+
+
+
+
+<br><hr>
+<a href="https://www.r-bloggers.com/contact-us/" rel="nofollow" target="_blank">Contact us </a> if you wish to help support R-bloggers, and place your banner here.
+
+</div>
+		</div><div class="side-widget"><h2><a class="rsswidget" href="https://feeds.feedburner.com/Rjobs"><img class="rss-widget-icon" style="border:0" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/rss.png" alt="RSS" height="14" width="14"></a> <a class="rsswidget" href="https://www.r-users.com/">Jobs for R users</a></h2><ul><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/RJobs/%7E3/cePNwH-0xYI/">Statistical Analyst @ Rostock, Mecklenburg-Vorpommern, Germany</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/RJobs/%7E3/YfuAk3j4mOg/">Data Engineer</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/RJobs/%7E3/pzRImg00CgY/">Data Scientist – Post-Graduate Programme @ Nottingham, England</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/RJobs/%7E3/GK2-tpMIZE0/">Director, Real World Informatics &amp; Analytics Data Science @ Northbrook, Illinois, U.S.</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/RJobs/%7E3/xChoJDUKfdo/">Junior statistician/demographer for UNICEF</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/RJobs/%7E3/3J43F5ubuoM/">Health Data Scientist @ Boston, Massachusetts, U.S.</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/%7Er/RJobs/%7E3/XxiUuCdHEq8/">Data Science Consultant @ Notre Dame, Indiana, United States</a></li></ul></div><div class="side-widget"><form method="get" id="searchform" action="https://www.r-bloggers.com/">
+<div>
+<input class="search_input" value="Search &amp; Hit Enter" name="s" id="s" onfocus="if (this.value == 'Search &amp; Hit Enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search &amp; Hit Enter';}" type="text">
+<input id="searchsubmit" type="hidden">
+</div>
+</form></div><div class="side-widget">			<div class="textwidget"><strong><a href="https://www.r-bloggers.com/blogs-list/">Full list of contributing R-bloggers</a></strong></div>
+		</div>    </div>
+<!-- end second sidebar --></div>
+<!-- begin footer -->
+<div id="footer">
+	<strong><a href="https://www.r-bloggers.com/">R-bloggers</a></strong> was founded by <a href="http://www.r-statistics.com/about/">Tal Galili</a>, with gratitude to the <a href="http://www.r-project.org/">R</a> community.  <br>
+    Is powered by <a href="http://www.wordpress.org/">WordPress</a> using a <a href="http://themes.bavotasan.com/" rel="nofollow">bavotasan.com</a> design.<br>
+    Copyright © 2016 <strong>R-bloggers</strong>. All Rights Reserved. <a href="http://www.r-bloggers.com/terms/">Terms and Conditions</a> for this website<br>
+</div>
+
+<!--
+TPC! Memory Usage (http://webjawns.com)
+Memory Usage: 54838928
+Memory Peak Usage: 55078632
+WP Memory Limit: 820M
+PHP Memory Limit: 512M
+Checkpoints: 11
+-->
+
+<!-- Powered by WPtouch: 4.2.6 -->    <script type="text/rocketscript" data-rocketoptimized="true">
+        var snp_f = [];
+        var snp_hostname = new RegExp(location.host);
+        var snp_http = new RegExp("^(http|https)://", "i");
+        var snp_cookie_prefix = '';
+        var snp_ajax_url = 'https://www.r-bloggers.com/wp-admin/admin-ajax.php';
+        var snp_ignore_cookies = false;
+        var snp_enable_analytics_events = false;
+        var snp_enable_mobile = false;
+        var snp_use_in_all = false;
+        var snp_excluded_urls = [];
+        snp_excluded_urls.push('');    </script>
+    <div class="snp-root">
+        <input id="snp_popup" value="" type="hidden">
+        <input id="snp_popup_id" value="" type="hidden">
+        <input id="snp_popup_theme" value="" type="hidden">
+        <input id="snp_exithref" value="" type="hidden">
+        <input id="snp_exittarget" value="" type="hidden">
+    	<div id="snppopup-welcome" class="snp-pop-109583 snppopup" style="display: none;"><input class="snp_open" value="scroll" type="hidden"><input class="snp_show_on_exit" value="2" type="hidden"><input class="snp_exit_js_alert_text" value="" type="hidden"><input class="snp_open_scroll" value="50" type="hidden"><input class="snp_optin_redirect_url" value="" type="hidden"><input class="snp_show_cb_button" value="yes" type="hidden"><input class="snp_popup_id" value="109583" type="hidden"><input class="snp_popup_theme" value="theme6" type="hidden"><input class="snp_overlay" value="disabled" type="hidden"><input class="snp_cookie_conversion" value="30" type="hidden"><input class="snp_cookie_close" value="180" type="hidden"><div class="snp-fb snp-theme6">
+    <div class="snp-subscribe-inner">
+	<h1 class="snp-header"><i>Never miss an update! </i>
+<br>
+<strong>Subscribe to R-bloggers</strong> to receive <br>e-mails with the latest R posts.<br>
+
+<small>(You will not see this message again.)</small></h1>	<div class="snp-form">
+	    <form action="https://feedburner.google.com/fb/a/mailverify?uri=RBloggers" method="post" class="snp-subscribeform snp_subscribeform">
+				<fieldset>
+		    <div class="snp-field">
+			<input name="email" id="snp_email" placeholder="Your E-mail..." class="snp-field snp-field-email" type="text">		
+		    </div>
+		    <button type="submit" class="snp-submit">Submit</button>
+		</fieldset>
+	    </form>
+	</div>
+	<a href="#" class="snp_nothanks snp-close">Click here to close (This popup will not appear again)</a>    </div>
+    </div>
+<style>.snp-pop-109583 .snp-theme6 { max-width: 700px;}
+.snp-pop-109583 .snp-theme6 h1 {font-size: 17px;}
+.snp-pop-109583 .snp-theme6 { color: #a0a4a9;}
+.snp-pop-109583 .snp-theme6 .snp-field ::-webkit-input-placeholder { color: #a0a4a9;}
+.snp-pop-109583 .snp-theme6 .snp-field :-moz-placeholder { color: #a0a4a9;}
+.snp-pop-109583 .snp-theme6 .snp-field :-ms-input-placeholder { color: #a0a4a9;}
+.snp-pop-109583  .snp-theme6 .snp-field input { border: 1px solid #a0a4a9;}
+.snp-pop-109583 .snp-theme6 .snp-field { color: #000000;}
+.snp-pop-109583 .snp-theme6 { background: #f2f2f2;}
+</style></div>    </div>
+    <script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushAS3.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushBash.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushColdFusion.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/third-party-brushes/shBrushClojure.js?ver=20090602" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushCpp.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushCSharp.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushCss.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushDelphi.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushDiff.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushErlang.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/third-party-brushes/shBrushFSharp.js?ver=20091003" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushGroovy.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJava.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJavaFX.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJScript.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/third-party-brushes/shBrushLatex.js?ver=20090613" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/third-party-brushes/shBrushMatlabKey.js?ver=20091209" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/third-party-brushes/shBrushObjC.js?ver=20091207" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPerl.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPhp.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPowerShell.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPython.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/third-party-brushes/shBrushR.js?ver=20100919" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushRuby.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushScala.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushSql.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushVb.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushXml.js?ver=3.0.9b" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketoptimized="true">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "https://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/arscode-ninja-popups/js/jquery.ck.min.js?ver=4.6.1" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/arscode-ninja-popups/js/ninjapopups.min.js?ver=4.6.1" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/arscode-ninja-popups/fancybox2/jquery.fancybox.min.js?ver=4.6.1" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-includes/js/comment-reply.min.js?ver=4.6.1" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/themes/magazine-basic/js/effects.js?ver=4.6.1" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/jetpack/modules/photon/photon.js?ver=20130122" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketoptimized="true">
+/* <![CDATA[ */
+var WPUSBVars = {"ajaxUrl":"https:\/\/www.r-bloggers.com\/wp-admin\/admin-ajax.php","context":""};
+/* ]]> */
+</script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/wpupper-share-buttons/assets/javascripts/front/built.js?ver=3.13" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201643" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/lazy-load/js/jquery.sonar.min.js?ver=0.6.1" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/plugins/lazy-load/js/lazy-load.js?ver=0.6.1" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-includes/js/wp-embed.min.js?ver=4.6.1" data-rocketoptimized="true"></script>
+			<div class="wpusb-modal-mask" data-wpusb-component="social-modal" style="display:none;">
+
+				<a class="wpusb-btn-close" data-action="close-popup">
+					<i class="wpusb-icon-close"></i>
+				</a>
+			</div>
+			<div class="wpusb-modal-networks" style="display: none; top: 341.5px; left: 660px;">				<div class="wpusb-element-popup">
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share" target="_blank" class="wpusb-button-popup wpusb-facebook-popup" rel="nofollow" title="Share on Facebook" data-action="open-popup">
+
+						<i class="wpusb-icon-facebook wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Facebook"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="https://twitter.com/share?url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share&amp;text=Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201.%20#rstats%20#datascience&amp;via=rbloggers" target="_blank" class="wpusb-button-popup wpusb-twitter-popup" rel="nofollow" title="Tweet" data-action="open-popup">
+
+						<i class="wpusb-icon-twitter wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Twitter"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share&amp;title=Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201." target="_blank" class="wpusb-button-popup wpusb-linkedin-popup" rel="nofollow" title="Share on Linkedin" data-action="open-popup">
+
+						<i class="wpusb-icon-linkedin wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Linkedin"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="https://plus.google.com/share?url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share" target="_blank" class="wpusb-button-popup wpusb-google-plus-popup" rel="nofollow" title="Share on Google+" data-action="open-popup">
+
+						<i class="wpusb-icon-google-plus wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Google Plus"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="mailto:?subject=Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201.&amp;body=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share%0A%0AProcessing%20ABI%20.fsa%20files%20in%20R%2C%20part%201.%0A%0AI%26%238217%3Bve%20been%20working%20on%20a%20lot%20of%20AFLP%20data%20this%20winter.%20I%26%238217%3Bd%20really%20like%20to%20be%20able%20to%20do%20all%20the%20analysis%20in%20R%2C%20for%20a%20few%20reasons.%20First%2C%20it%20would%20mean%20no%20more%20fighting%20with%20GeneMapper%2C%20which%20is%20incredibly%20frustrating%3A%20it%26%238217%3Bs%20Windows-only%2C%20expensive%2C%20closed-source%20and%20painfully%20underpowered%20for%20the%20job.%20Second%2C%20presumably%20if%20I%20can%20figure%20out%20how%20to%20code%20this%20myself%20I%20will%20develop%20a%20deeper%20understanding%20of%20the%20system.%20And%20third%2C%20if%20I%20can%20get%20the%20code%20working%20in%20R%2C%20I%20will%20be%20able%20to%20automate%20most%20of%20the%20process.%0AThere%20are%20two%20R%20projects%20already%20in%20progress%20for%20working%20with%20AFLP%20data.%20RawGeno%20is%20one%20option.%20It%20doesn%26%238217%3Bt%20yet%20allow%20for%20importing%20fsa%20files%20directly%2C%20but%20the%20example%20scripts%20provide%20some%20clues%20about%20how%20to%20do%20this.%20I%20couldn%26%238217%3Bt%20get%20the%20code%20to%20work%20as%20written%2C%20but%20I%20was%20able%20to%20steal%20some%20ideas%20from%20it.%0AThe%20other%20R%20package%20is%20AFLP.%20This%20package%20includes%20a%20read.fsa%28%29%20function%2C%20but%20it%20doesn%26%238217%3Bt%20seem%20to%20work%20yet.%20I%20understand%20they%26%238217%3Bve%20only%20recently%20switched%20to%20ABI%20sequencers%2C%20and%20haven%26%238217%3Bt%20yet%20updated%20their%20code.%20AFLP%20also%20combines%20reading%20the%20fsa%20files%2C%20calibrating%20the%20sizing%2C%20and%20defining%20the%20bins%20into%20one%20step.%20That%26%238217%3Bs%20a%20sensible%20thing%20to%20do%2C%20but%20I%26%238217%3Bm%20not%20that%20clever.%20I%20need%20to%20break%20things%20into%20small%20pieces%20if%20I%20hope%20to%20get%20anywhere.%0ASince%20one%20of%20my%20goals%20is%20self-education%2C%20I%26%238217%3Bm%20not%20concerned%20about%20duplicating%20some%20of%20the%20effort%20of%20these%20other%20projects.%20In%20fact%2C%20I%26%238217%3Bm%20going%20to%20try%20and%20steal%20as%20much%20as%20I%20can%20from%20them.%20That%26%238217%3Bs%20one%20of%20the%20benefits%20of%20Free%20Software%2C%20we%20get%20to%20learn%20from%20each%20other.%0A%0AStep%20one%2C%20reading%20the%20raw%20data%0ALucky%20for%20me%2C%20most%20of%20the%20work%20involved%20in%20actually%20getting%20the%20contents%20of%20an%20.fsa%20file%20into%20R%20has%20already%20been%20done%2C%20via%20the%20package%20seqinr.%20All%20that%20I%20need%20to%20do%20is%20extract%20the%20useful%20bits%20and%20reformat%20it%20into%20a%20data.frame.%0Alibrary%28seqinr%29%0A%0Aread.fsa%0A" target="_blank" class="wpusb-button-popup wpusb-email-popup" rel="nofollow" title="Send by email" data-action="open-popup">
+
+						<i class="wpusb-icon-email wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Email"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="http://victorfreitas.github.io/wpupper-share-buttons/?href=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share" target="_blank" class="wpusb-button-popup wpusb-like-popup" rel="nofollow" title="Like on Facebook" data-action="open-popup">
+
+						<i class="wpusb-icon-like wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Like"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="http://www.printfriendly.com/print?url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share" target="_blank" class="wpusb-button-popup wpusb-printer-popup" rel="nofollow" title="Print via PrintFriendly" data-action="open-popup">
+
+						<i class="wpusb-icon-printer wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="PrintFriendly"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="whatsapp://send?text=Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201.%20%E2%98%9B%20https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share" target="_blank" class="wpusb-button-popup wpusb-whatsapp-popup" rel="nofollow" title="Share on WhatsApp" data-action="open-popup">
+
+						<i class="wpusb-icon-whatsapp wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="WhatsApp"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="https://pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share&amp;media=&amp;description=Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201." target="_blank" class="wpusb-button-popup wpusb-pinterest-popup" rel="nofollow" title="Share on Pinterest" data-action="open-popup">
+
+						<i class="wpusb-icon-pinterest wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Pinterest"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="http://tumblr.com/widgets/share/tool?canonicalUrl=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share" target="_blank" class="wpusb-button-popup wpusb-tumblr-popup" rel="nofollow" title="Share on Tumblr" data-action="open-popup">
+
+						<i class="wpusb-icon-tumblr wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Tumblr"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="tg://msg_url?url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share&amp;text=Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201." target="_blank" class="wpusb-button-popup wpusb-telegram-popup" rel="nofollow" title="Share on Telegram" data-action="open-popup">
+
+						<i class="wpusb-icon-telegram wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Telegram"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="https://web.skype.com/share?url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share&amp;text=Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201." target="_blank" class="wpusb-button-popup wpusb-skype-popup" rel="nofollow" title="Share on Skype" data-action="open-popup">
+
+						<i class="wpusb-icon-skype wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Skype"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="viber://forward?text=Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201.%20%E2%98%9B%20https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share" target="_blank" class="wpusb-button-popup wpusb-viber-popup" rel="nofollow" title="Share on Viber" data-action="open-popup">
+
+						<i class="wpusb-icon-viber wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Viber"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="https://mail.google.com/mail/u/0/?view=cm&amp;fs=1&amp;su=Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201.&amp;body=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share%0A%0AProcessing%20ABI%20.fsa%20files%20in%20R%2C%20part%201.%0A%0AI%26%238217%3Bve%20been%20working%20on%20a%20lot%20of%20AFLP%20data%20this%20winter.%20I%26%238217%3Bd%20really%20like%20to%20be%20able%20to%20do%20all%20the%20analysis%20in%20R%2C%20for%20a%20few%20reasons.%20First%2C%20it%20would%20mean%20no%20more%20fighting%20with%20GeneMapper%2C%20which%20is%20incredibly%20frustrating%3A%20it%26%238217%3Bs%20Windows-only%2C%20expensive%2C%20closed-source%20and%20painfully%20underpowered%20for%20the%20job.%20Second%2C%20presumably%20if%20I%20can%20figure%20out%20how%20to%20code%20this%20myself%20I%20will%20develop%20a%20deeper%20understanding%20of%20the%20system.%20And%20third%2C%20if%20I%20can%20get%20the%20code%20working%20in%20R%2C%20I%20will%20be%20able%20to%20automate%20most%20of%20the%20process.%0AThere%20are%20two%20R%20projects%20already%20in%20progress%20for%20working%20with%20AFLP%20data.%20RawGeno%20is%20one%20option.%20It%20doesn%26%238217%3Bt%20yet%20allow%20for%20importing%20fsa%20files%20directly%2C%20but%20the%20example%20scripts%20provide%20some%20clues%20about%20how%20to%20do%20this.%20I%20couldn%26%238217%3Bt%20get%20the%20code%20to%20work%20as%20written%2C%20but%20I%20was%20able%20to%20steal%20some%20ideas%20from%20it.%0AThe%20other%20R%20package%20is%20AFLP.%20This%20package%20includes%20a%20read.fsa%28%29%20function%2C%20but%20it%20doesn%26%238217%3Bt%20seem%20to%20work%20yet.%20I%20understand%20they%26%238217%3Bve%20only%20recently%20switched%20to%20ABI%20sequencers%2C%20and%20haven%26%238217%3Bt%20yet%20updated%20their%20code.%20AFLP%20also%20combines%20reading%20the%20fsa%20files%2C%20calibrating%20the%20sizing%2C%20and%20defining%20the%20bins%20into%20one%20step.%20That%26%238217%3Bs%20a%20sensible%20thing%20to%20do%2C%20but%20I%26%238217%3Bm%20not%20that%20clever.%20I%20need%20to%20break%20things%20into%20small%20pieces%20if%20I%20hope%20to%20get%20anywhere.%0ASince%20one%20of%20my%20goals%20is%20self-education%2C%20I%26%238217%3Bm%20not%20concerned%20about%20duplicating%20some%20of%20the%20effort%20of%20these%20other%20projects.%20In%20fact%2C%20I%26%238217%3Bm%20going%20to%20try%20and%20steal%20as%20much%20as%20I%20can%20from%20them.%20That%26%238217%3Bs%20one%20of%20the%20benefits%20of%20Free%20Software%2C%20we%20get%20to%20learn%20from%20each%20other.%0A%0AStep%20one%2C%20reading%20the%20raw%20data%0ALucky%20for%20me%2C%20most%20of%20the%20work%20involved%20in%20actually%20getting%20the%20contents%20of%20an%20.fsa%20file%20into%20R%20has%20already%20been%20done%2C%20via%20the%20package%20seqinr.%20All%20that%20I%20need%20to%20do%20is%20extract%20the%20useful%20bits%20and%20reformat%20it%20into%20a%20data.frame.%0Alibrary%28seqinr%29%0A%0Aread.fsa%0A&amp;tf=1" target="_blank" class="wpusb-button-popup wpusb-gmail-popup" rel="nofollow" title="Send by Gmail" data-action="open-popup">
+
+						<i class="wpusb-icon-gmail wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Gmail"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="https://www.reddit.com/submit?url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share&amp;title=Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201." target="_blank" class="wpusb-button-popup wpusb-reddit-popup" rel="nofollow" title="Share on Reddit" data-action="open-popup">
+
+						<i class="wpusb-icon-reddit wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Reddit"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="https://share.flipboard.com/bookmarklet/popout?v=2&amp;ext=WPUpper%20Share%20Buttons&amp;title=Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201.&amp;url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share" target="_blank" class="wpusb-button-popup wpusb-flipboard-popup" rel="nofollow" title="Share on Flipboard" data-action="open-popup">
+
+						<i class="wpusb-icon-flipboard wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Flipboard"></span>
+					</a>
+				</div>				<div class="wpusb-element-popup">
+					<a href="https://www.facebook.com/dialog/send?app_id=140586622674265&amp;link=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share&amp;redirect_uri=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share" target="_blank" class="wpusb-button-popup wpusb-messenger-popup" rel="nofollow" title="Send on Facebook Messenger">
+
+						<i class="wpusb-icon-messenger wpusb-icon-popup"></i>
+						<span class="wpusb-name-popup" data-name="Messenger"></span>
+					</a>
+				</div></div>		<div class="wpusb wpusb-buttons wpusb-fixed-right  " data-element-url="https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share" data-element-title="Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201." data-tracking="?utm_source=share_buttons&amp;utm_medium=social_media&amp;utm_campaign=social_share" data-attr-reference="76249" data-element="fixed" data-attr-nonce="7f8aa5f5c8" data-attr-nonce-gplus="2e81fb0e27" data-wpusb-component="counter-social-share">
+
+			<div data-element="buttons" class="wpusb-fixed-right-container">
+						<div class="wpusb-item wpusb-facebook ">
+
+				<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share" target="_blank" data-action="open-popup" class="wpusb-button " title="Share on Facebook" rel="nofollow">
+
+				   <i class="wpusb-icon-facebook-buttons "></i>
+				</a>
+			</div>			<div class="wpusb-item wpusb-twitter ">
+
+				<a href="https://twitter.com/share?url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share&amp;text=Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201.%20#rstats%20#datascience&amp;via=rbloggers" target="_blank" data-action="open-popup" class="wpusb-button " title="Tweet" rel="nofollow">
+
+				   <i class="wpusb-icon-twitter-buttons "></i>
+				</a>
+			</div>			<div class="wpusb-item wpusb-linkedin ">
+
+				<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share&amp;title=Processing%20ABI%20.fsa%20files%20in%20R%2C%20part%201." target="_blank" data-action="open-popup" class="wpusb-button " title="Share on Linkedin" rel="nofollow">
+
+				   <i class="wpusb-icon-linkedin-buttons "></i>
+				</a>
+			</div>			<div class="wpusb-item wpusb-google-plus ">
+
+				<a href="https://plus.google.com/share?url=https%3A%2F%2Fwww.r-bloggers.com%2Fprocessing-abi-fsa-files-in-r-part-1%2F%3Futm_source%3Dshare_buttons%26utm_medium%3Dsocial_media%26utm_campaign%3Dsocial_share" target="_blank" data-action="open-popup" class="wpusb-button " title="Share on Google+" rel="nofollow">
+
+				   <i class="wpusb-icon-google-plus-buttons "></i>
+				</a>
+			</div>				</div>
+				<span class="wpusb-toggle" data-action="close-buttons"></span>
+			</div>	<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_https" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" style="border: medium none;" src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/fTmIQU3LxvB.htm" frameborder="0"></iframe></div></div></div>
+	<script type="text/rocketscript" data-rocketsrc="https://platform.twitter.com/widgets.js" data-rocketoptimized="true"></script><script type="text/rocketscript" data-rocketsrc="//connect.facebook.net/en_US/all.js#xfbml=1" data-rocketoptimized="true"></script><script type="text/rocketscript" data-rocketsrc="https://apis.google.com/js/plusone.js" data-rocketoptimized="true"></script><script type="text/rocketscript" data-rocketsrc="https://platform.linkedin.com/in.js" data-rocketoptimized="true"></script><script type="text/rocketscript" data-rocketsrc="https://stats.wp.com/e-201643.js" async="" defer="defer" data-rocketoptimized="true"></script>
+<script type="text/rocketscript" data-rocketoptimized="true">
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:4.2.2',blog:'11524731',post:'76249',tz:'-6',srv:'www.r-bloggers.com'} ]);
+	_stq.push([ 'clickTrackerInit', '11524731', '76249' ]);
+</script>
+<script type="text/rocketscript" data-rocketsrc="https://www.r-bloggers.com/wp-content/themes/magazine-basic/js/effects.js" data-rocketoptimized="true"></script> 
+<script type="text/rocketscript" data-rocketoptimized="true">
+/* <![CDATA[ */
+jQuery(function(){
+	jQuery("ul.sf-menu").supersubs({ 
+		minWidth:    12,
+		maxWidth:    27,
+		extraWidth:  1
+	}).superfish({ 
+		delay:       100,
+		speed:       250 
+	});	});
+/* ]]> */
+</script>
+
+
+
+<script type="text/javascript">/* <![CDATA[ */(function(d,s,a,i,j,r,l,m,t){try{l=d.getElementsByTagName('a');t=d.createElement('textarea');for(i=0;l.length-i;i++){try{a=l[i].href;s=a.indexOf('/cdn-cgi/l/email-protection');m=a.length;if(a&&s>-1&&m>28){j=28+s;s='';if(j<m){r='0x'+a.substr(j,2)|0;for(j+=2;j<m&&a.charAt(j)!='X';j+=2)s+='%'+('0'+('0x'+a.substr(j,2)^r).toString(16)).slice(-2);j++;s=decodeURIComponent(s)+a.substr(j,m-j)}t.innerHTML=s.replace(/</g,'&lt;').replace(/>/g,'&gt;');l[i].href='mailto:'+t.value}}catch(e){}}}catch(e){}})(document);/* ]]> */</script>
+
+
+
+
+<iframe id="rufous-sandbox" scrolling="no" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" frameborder="0"></iframe><img src="Processing%20ABI%20.fsa%20files%20in%20R,%20part%201.%20_%20R-bloggers_files/g.gif" alt=":)" id="wpstats" height="5" width="6"></body></html>
+<!-- Dynamic page generated in 3.686 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2016-10-24 08:13:53 -->
+<!-- Compression = gzip -->

@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" style="" lang="en"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="BigMoyan">
+  
+  <title>Keras中文文档</title>
+  
+
+  <link rel="shortcut icon" href="http://keras-cn.readthedocs.io/en/latest/img/favicon.ico">
+
+  
+  <link href="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/css.css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/theme_extra.css" type="text/css">
+  <link rel="stylesheet" href="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/highlight.css">
+  <link href="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/badge_only.css" rel="stylesheet">
+  <link href="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/readthedocs-doc-embed.css" rel="stylesheet">
+
+  
+  <script type="text/javascript" async="" src="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/ga.js"></script><script>
+    // Current page data
+    var mkdocs_page_name = "None";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/jquery-2.js"></script>
+  <script src="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/modernizr-2.js"></script>
+  <script type="text/javascript" src="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/highlight.js"></script>
+  <script src="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/theme.js"></script> 
+  <script src="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/readthedocs-data.js"></script>
+  <script src="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/readthedocs-dynamic-include.js"></script>
+  <script src="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/readthedocs-doc-embed.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="http://keras-cn.readthedocs.io/en/latest/" class="icon icon-home"> Keras中文文档</a>
+        <div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://readthedocs.org/search/" method="get">
+    <input name="q" placeholder="Search docs" type="text">
+    <input name="check_keywords" value="yes" type="hidden">
+    <input name="area" value="default" type="hidden">
+  <input name="project" value="keras-cn" type="hidden"><input name="version" value="latest" type="hidden"><input name="type" value="file" type="hidden"></form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    </li><li class="toctree-l1 current">
+        <a class="current" href="http://keras-cn.readthedocs.io/en/latest/">主页</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#kerastheanotensorflow">Keras:基于Theano和TensorFlow的深度学习库</a></li>
+                
+                    <li><a class="toctree-l4" href="#keras">这就是Keras</a></li>
+                
+                    <li><a class="toctree-l4" href="#keras-cn">关于Keras-cn</a></li>
+                
+                    <li><a class="toctree-l4" href="#_1">当前版本与更新</a></li>
+                
+                    <li><a class="toctree-l4" href="#30skeras">快速开始：30s上手Keras</a></li>
+                
+                    <li><a class="toctree-l4" href="#_2">安装</a></li>
+                
+                    <li><a class="toctree-l4" href="#theanotensorflow">在Theano和TensorFlow间切换</a></li>
+                
+                    <li><a class="toctree-l4" href="#_3">技术支持</a></li>
+                
+                    <li><a class="toctree-l4" href="#_4">小额赞助</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            </li><li>
+    <ul class="subnav">
+    <li><span>快速开始</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/getting_started/concepts/">一些基本概念</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/getting_started/keras_linux/">Keras安装和配置指南(Linux)</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/getting_started/keras_windows/">Keras安装和配置指南(Windows)</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/getting_started/sequential_model/">快速开始Sequential模型</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/getting_started/functional_API/">快速开始泛型模型</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/getting_started/FAQ/">FAQ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/getting_started/trap/">Keras使用陷阱</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/getting_started/examples/">Keras示例列表</a>
+        
+    </li>
+
+        
+    </ul>
+</li><li>
+          
+            </li><li>
+    <ul class="subnav">
+    <li><span>模型</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/models/about_model/">关于Keras模型</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/models/sequential/">Sequential模型</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/models/model/">泛型模型</a>
+        
+    </li>
+
+        
+    </ul>
+</li><li>
+          
+            </li><li>
+    <ul class="subnav">
+    <li><span>网络层</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/layers/about_layer/">关于Keras层</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/layers/core_layer/">常用层Core</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/layers/convolutional_layer/">卷积层Convolutional</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/layers/pooling_layer/">池化层Pooling</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/layers/locally_connected_layer/">局部连接层Locally-connented</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/layers/recurrent_layer/">递归层Recurrent</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/layers/embedding_layer/">嵌入层Embedding</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/layers/advanced_activation_layer/">高级激活层Advanced Activation</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/layers/normalization_layer/">规范层BatchNormalization</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/layers/noise_layer/">噪声层Noise</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/layers/wrapper/">包装器Wrapper</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/layers/writting_layer/">编写自己的层</a>
+        
+    </li>
+
+        
+    </ul>
+</li><li>
+          
+            </li><li>
+    <ul class="subnav">
+    <li><span>预处理</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/preprocessing/sequence/">序列预处理</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/preprocessing/text/">文本预处理</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/preprocessing/image/">图片预处理</a>
+        
+    </li>
+
+        
+    </ul>
+</li><li>
+          
+            </li><li>
+    <ul class="subnav">
+    <li><span>其他重要模块</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/other/objectives/">目标函数Objective</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/other/optimizers/">优化器Optimizer</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/other/activations/">激活函数Activation</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/other/callbacks/">回调函数Callback</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/other/metrices/">性能评估Metrices</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/other/initializations/">初始化方法Initialization</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/other/regularizers/">正则项Regularizer</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/other/constraints/">约束项Constraint</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/other/application/">预训练模型Application</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/other/datasets/">常用数据库Dataset</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/other/visualization/">可视化Visualization</a>
+        
+    </li>
+
+        
+    </ul>
+</li><li>
+          
+            </li><li>
+    </li><li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/backend/">keras后端Backend</a>
+        
+    </li>
+<li>
+          
+            </li><li>
+    </li><li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/scikit-learn_API/">scikit-learn接口</a>
+        
+    </li>
+<li>
+          
+            </li><li>
+    <ul class="subnav">
+    <li><span>工具</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/utils/data_utils/">数据工具</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/utils/io_utils/">输入输出I/O</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/utils/layer_utils/">Keras层工具</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/utils/np_utils/">numpy工具</a>
+        
+    </li>
+
+        
+    </ul>
+</li><li>
+          
+            </li><li>
+    <ul class="subnav">
+    <li><span>深度学习与Keras</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/blog/cnn_see_world/">CNN眼中的世界</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/blog/autoencoder/">花式自动编码器</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/blog/image_classification_using_very_little_data/">面向小数据集构建图像分类模型</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/blog/word_embedding/">在Keras模型中使用预训练的词向量</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/blog/keras_and_tensorflow/">将Keras作为tensorflow的精简接口</a>
+        
+    </li>
+
+        
+    </ul>
+</li><li>
+          
+            </li><li>
+    </li><li class="toctree-l1 ">
+        <a class="" href="http://keras-cn.readthedocs.io/en/latest/acknowledgement/">致谢</a>
+        
+    </li>
+<li>
+          
+        </li></ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="http://keras-cn.readthedocs.io/en/latest/">Keras中文文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="http://keras-cn.readthedocs.io/en/latest/">Docs</a> »</li>
+    
+      
+    
+    <li>主页</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="kerastheanotensorflow">Keras:基于Theano和TensorFlow的深度学习库</h1>
+<h2 id="keras">这就是Keras</h2>
+<p>Keras是一个高层神经网络库，Keras由纯Python编写而成并基Tensorflow或Theano。Keras
+为支持快速实验而生，能够把你的idea迅速转换为结果，如果你有如下需求，请选择Keras：</p>
+<ul>
+<li>简易和快速的原型设计（keras具有高度模块化，极简，和可扩充特性）</li>
+<li>支持CNN和RNN，或二者的结合</li>
+<li>支持任意的链接方案（包括多输入和多输出训练）</li>
+<li>无缝CPU和GPU切换</li>
+</ul>
+<p>Keras适用的Python版本是：Python 2.7-3.5</p>
+<p>Keras的设计原则是</p>
+<ul>
+<li>
+<p>模块性：模型可理解为一个独立的序列或图，完全可配置的模块以最少的代价自由组合在一起。具体而言，网络层、损失函数、优化器、初始化策略、激活函数、正则化方法都是独立的模块，你可以使用它们来构建自己的模型。</p>
+</li>
+<li>
+<p>极简主义：每个模块都应该尽量的简洁。每一段代码都应该在初次阅读时都显得直观易懂。没有黑魔法，因为它将给迭代和创新带来麻烦。</p>
+</li>
+<li>
+<p>易扩展性：添加新模块超级简单的容易，只需要仿照现有的模块编写新的类或函数即可。创建新模块的便利性使得Keras更适合于先进的研究工作。</p>
+</li>
+<li>
+<p>与Python协作：Keras没有单独的模型配置文件类型（作为对比，caffe有），模型由python代码描述，使其更紧凑和更易debug，并提供了扩展的便利性。</p>
+</li>
+</ul>
+<p>Keras从2015年3月开始启动，经过一年多的开发，目前Keras进入了1.0的时代。Keras 1.0依然遵循相同的设计原则，但与之前的版本相比有很大的不同。如果你曾经使用过此前的其他版本Keras。你或许会关心1.0的新特性。</p>
+<ul>
+<li>
+<p>泛型模型：简单和强大的新模块，用于支持复杂深度学习模型的搭建。</p>
+</li>
+<li>
+<p>更优秀的性能：现在，Keras模型的编译时间得到缩短。所有的RNN现在都可以用两种方式实现，以供用户在不同配置任务和配置环境下取得最大性能。现在，基于Theano的RNN也可以被展开，以获得大概25%的加速计算。</p>
+</li>
+<li>
+<p>测量指标：现在，你可以提供一系列的测量指标来在Keras的任何监测点观察模型性能。</p>
+</li>
+<li>
+<p>更优的用户体验：我们面向使用者重新编写了代码，使得函数API更简单易记，同时提供更有效的出错信息。</p>
+</li>
+<li>
+<p>新版本的Keras提供了Lambda层，以实现一些简单的计算任务。</p>
+</li>
+<li>
+<p>...</p>
+</li>
+</ul>
+<p>如果你已经基于Keras0.3编写了自己的层，那么在升级后，你需要为自己的代码做以下调整，以在Keras1.0上继续运行。请参考<a href="http://keras-cn.readthedocs.io/en/latest/layers/writting_layer/#adjust"><font color="#FF0000">编写自己的层</font></a></p>
+<hr>
+<h2 id="keras-cn">关于Keras-cn</h2>
+<p>本文档是Keras文档的中文版，包括<a href="http://keras.io/"><font color="#FF0000">keras.io</font></a>的全部内容，以及更多的例子、解释和建议，目前，文档的计划是：</p>
+<ul>
+<li>
+<p>1.x版本：现有keras.io文档的中文翻译，保持与官方文档的同步</p>
+</li>
+<li>
+<p>2.x版本：完善所有【Tips】模块，澄清深度学习中的相关概念和Keras模块的使用方法</p>
+</li>
+<li>
+<p>3.x版本：增加Keras相关模块的实现原理和部分细节，帮助用户更准确的把握Keras，并添加更多的示例代码</p>
+</li>
+</ul>
+<p>现在，keras-cn的版本号将简单的跟随最新的keras release版本</p>
+<p>由于作者水平和研究方向所限，无法对所有模块都非常精通，因此文档中不可避免的会出现各种错误、疏漏和不足之处。如果您在使用过程中有任何意见、建议和疑问，欢迎发送邮件到moyan_work@foxmail.com与我取得联系。</p>
+<p>您对文档的任何贡献，包括文档的翻译、查缺补漏、概念解释、发现和修改问题、贡献示例程序等，均会被记录在<a href="http://keras-cn.readthedocs.io/en/latest/acknowledgement"><font color="FF0000">致谢</font></a>，十分感谢您对Keras中文文档的贡献！</p>
+<p>同时，也欢迎您撰文向本文档投稿，您的稿件被录用后将以单独的页面显示在网站中，您有权在您的网页下设置赞助二维码，以获取来自网友的小额赞助。</p>
+<p>如果你发现本文档缺失了官方文档的部分内容，请积极联系我补充。</p>
+<p>本文档相对于原文档有更多的使用指导和概念澄清，请在使用时关注文档中的Tips，特别的，本文档的额外模块还有：</p>
+<ul>
+<li>
+<p>一些基本概念：位于快速开始模块的<a href="http://keras-cn.readthedocs.io/en/latest/getting_started/concepts"><font color="#FF0000">一些基本概念</font></a>简单介绍了使用Keras前需要知道的一些小知识，新手在使用前应该先阅读本部分的文档。</p>
+</li>
+<li>
+<p>Keras安装和配置指南，提供了详细的Linux和Windows下Keras的安装和配置步骤。</p>
+</li>
+<li>
+<p>深度学习与Keras：位于导航栏最下方的该模块翻译了来自Keras作者博客<a href="http://blog.keras.io/"><font color="#FF0000">keras.io</font></a>和其他Keras相关博客的文章，该栏目的文章提供了对深度学习的理解和大量使用Keras的例子，您也可以向这个栏目投稿。
+所有的文章均在醒目位置标志标明来源与作者，本文档对该栏目文章的原文不具有任何处置权。如您仍觉不妥，请联系本人（moyan_work@foxmail.com）删除。</p>
+</li>
+</ul>
+<hr>
+<h2 id="_1">当前版本与更新</h2>
+<p>如果你发现本文档提供的信息有误，有两种可能：</p>
+<ul>
+<li>
+<p>你的Keras版本过低：记住Keras是一个发展迅速的深度学习框架，请保持你的Keras与官方最新的release版本相符</p>
+</li>
+<li>
+<p>我们的中文文档没有及时更新：如果是这种情况，请发邮件给我，我会尽快更新</p>
+</li>
+</ul>
+<p>目前文档的版本号是1.1.1，对应于官方的1.1.1 release 版本, 本次更新的主要内容是：</p>
+<ul>
+<li>加入了新模块"评价指标", 提供了更丰富的评价模型的方法</li>
+<li>加入了常用工具模块的文档,对应于源代码的utils文件夹,尽管内容目前还很简单</li>
+<li>application模块加入了两种新的模型,Xception和MusicTaggerCRNN,后者用于音乐风格标定</li>
+<li>增加了一种卷积层，<code>AtrousConvolution1D</code>，带有孔洞的1D卷积。</li>
+<li>增加了用于简单介绍Keras example的文档,这部分文档将在未来逐渐丰富</li>
+<li>增加了若干后端函数</li>
+<li>修正了一些文档错误</li>
+</ul>
+<p>注意，keras在github上的master往往要高于当前的release版本，如果你从源码编译keras，可能某些模块与文档说明不相符，请以官方Github代码为准</p>
+<hr>
+<h2 id="30skeras">快速开始：30s上手Keras</h2>
+<p>Keras的核心数据结构是“模型”，模型是一种组织网络层的方式。Keras中主要的模型是Sequential模型，Sequential是一系列网络层按顺序构成的栈。你也可以查看<a href="http://keras-cn.readthedocs.io/en/latest/getting_started/functional_API/"><font color="#FF0000">泛型模型</font></a>来学习建立更复杂的模型</p>
+<p>Sequential模型如下</p>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> keras.models <span class="hljs-keyword">import</span> Sequential
+
+model = Sequential()
+</code></pre>
+
+<p>将一些网络层通过<code>.add()</code>堆叠起来，就构成了一个模型：</p>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> keras.layers <span class="hljs-keyword">import</span> Dense, Activation
+
+model.add(Dense(output_dim=<span class="hljs-number">64</span>, input_dim=<span class="hljs-number">100</span>))
+model.add(Activation(<span class="hljs-string">"relu"</span>))
+model.add(Dense(output_dim=<span class="hljs-number">10</span>))
+model.add(Activation(<span class="hljs-string">"softmax"</span>))
+</code></pre>
+
+<p>完成模型的搭建后，我们需要使用<code>.compile()</code>方法来编译模型：</p>
+<pre><code class="python hljs">model.compile(loss=<span class="hljs-string">'categorical_crossentropy'</span>, optimizer=<span class="hljs-string">'sgd'</span>, metrics=[<span class="hljs-string">'accuracy'</span>])
+</code></pre>
+
+<p>编译模型时必须指明损失函数和优化器，如果你需要的话，也可以自己定制损失函数。Keras的一个核心理念就是简明易用同时，保证用户对Keras的绝对控制力度，用户可以根据自己的需要定制自己的模型、网络层，甚至修改源代码。</p>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> keras.optimizers <span class="hljs-keyword">import</span> SGD
+model.compile(loss=<span class="hljs-string">'categorical_crossentropy'</span>, optimizer=SGD(lr=<span class="hljs-number">0.01</span>, momentum=<span class="hljs-number">0.9</span>, nesterov=<span class="hljs-keyword">True</span>))
+</code></pre>
+
+<p>完成模型编译后，我们在训练数据上按batch进行一定次数的迭代训练，以拟合网络，关于为什么要使用‘batch’，请参考<a href="http://keras-cn.readthedocs.io/en/latest/getting_started/concepts/#batch"><font color="#FF0000">一些基本概念</font></a></p>
+<pre><code class="python hljs">model.fit(X_train, Y_train, nb_epoch=<span class="hljs-number">5</span>, batch_size=<span class="hljs-number">32</span>)
+</code></pre>
+
+<p>当然，我们也可以手动将一个个batch的数据送入网络中训练，这时候需要使用：</p>
+<pre><code class="python hljs">model.train_on_batch(X_batch, Y_batch)
+</code></pre>
+
+<p>随后，我们可以使用一行代码对我们的模型进行评估，看看模型的指标是否满足我们的要求：</p>
+<pre><code class="python hljs">loss_and_metrics = model.evaluate(X_test, Y_test, batch_size=<span class="hljs-number">32</span>)
+</code></pre>
+
+<p>或者，我们可以使用我们的模型，对新的数据进行预测：</p>
+<pre><code class="python hljs">classes = model.predict_classes(X_test, batch_size=<span class="hljs-number">32</span>)
+proba = model.predict_proba(X_test, batch_size=<span class="hljs-number">32</span>)
+</code></pre>
+
+<p>搭建一个问答系统、图像分类模型，或神经图灵机、word2vec词嵌入器就是这么快。支撑深度学习的基本想法本就是简单的，现在让我们把它的实现也变的简单起来！</p>
+<p>为了更深入的了解Keras，我们建议你查看一下下面的两个tutorial</p>
+<ul>
+<li><a href="http://keras-cn.readthedocs.io/en/latest/getting_started/sequential_model"><font color="#FF0000">快速开始Sequntial模型</font></a></li>
+<li><a href="http://keras-cn.readthedocs.io/en/latest/getting_started/functional_API"><font color="#FF0000">快速开始泛型模型</font></a></li>
+</ul>
+<p>还有我们对一些概念的解释</p>
+<ul>
+<li><a href="http://keras-cn.readthedocs.io/en/latest/getting_started/concepts"><font color="#FF0000">一些基本概念</font></a></li>
+</ul>
+<p>在Keras代码包的examples文件夹里，我们提供了一些更高级的模型：基于记忆网络的问答系统、基于LSTM的文本的文本生成等。</p>
+<hr>
+<h2 id="_2">安装</h2>
+<p>Keras使用了下面的依赖包：</p>
+<ul>
+<li>
+<p>numpy，scipy</p>
+</li>
+<li>
+<p>pyyaml</p>
+</li>
+<li>
+<p>HDF5, h5py（可选，仅在模型的save/load函数中使用）</p>
+</li>
+</ul>
+<p>当使用TensorFlow为后端时：</p>
+<ul>
+<li><a href="https://github.com/tensorflow/tensorflow#download-and-setup"><font color="FF0000">TensorFlow</font></a></li>
+</ul>
+<p>当使用Theano作为后端时：</p>
+<ul>
+<li><a href="http://www.deeplearning.net/software/theano/install.html#install"><font color="FF0000">Theano</font></a></li>
+</ul>
+<p>【Tips】“后端”翻译自backend，指的是Keras依赖于完成底层的张量运算的软件包。【@Bigmoyan】</p>
+<p>安装Keras时，请<code>cd</code>到Keras的文件夹中，并运行下面的安装命令：</p>
+<pre><code class="python hljs">sudo python setup.py install
+</code></pre>
+
+<p>你也可以使用PyPI来安装Keras</p>
+<pre><code class="python hljs">sudo pip install keras
+</code></pre>
+
+<p><strong>详细的Windows和Linux安装教程请参考“快速开始”一节中给出的安装教程，特别鸣谢SCP-173编写了这些教程</strong></p>
+<hr>
+<h2 id="theanotensorflow">在Theano和TensorFlow间切换</h2>
+<p>Keras默认使用TensorFlow作为后端来进行张量操作，如需切换到Theano，请查看<a href="http://keras-cn.readthedocs.io/en/latest/backend"><font color="FF0000">这里</font></a></p>
+<hr>
+<h2 id="_3">技术支持</h2>
+<p>你可以在下列网址提问或加入Keras开发讨论:</p>
+<ul>
+<li><a href="https://groups.google.com/forum/#%21forum/keras-users"><font color="FF0000">Keras Google group</font></a></li>
+<li><a href="https://gitter.im/Keras-io/Lobby"><font color="FF0000">Keras Gitter channel</font></a></li>
+</ul>
+<p>你也可以在<a href="https://github.com/fchollet/keras/issues"><font color="FF0000">Github issues</font></a>里提问。在提问之前请确保你阅读过我们的<a href="https://github.com/fchollet/keras/blob/master/CONTRIBUTING.md"><font color="FF0000">指导</font></a></p>
+<p>同时，我们也欢迎同学们加我们的QQ群119427073进行讨论（潜水和灌水会被T，入群说明公司/学校-职位/年级）</p>
+<hr>
+<h2 id="_4">小额赞助</h2>
+<p>如果你觉得本文档对你的研究和使用有所帮助，欢迎扫下面的二维码对作者进行小额赞助，以鼓励作者进一步完善文档内容，提高文档质量。同时，不妨为<a href="https://github.com/MoyanZitto/keras-cn"><font color="#FF0000">本文档的github</font></a>加颗星哦</p>
+<p><img alt="付款二维码" src="Keras%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3_files/moyan.png"></p>
+<p><strong>如果你觉得有用页面下有小额赞助的二维码或微信/支付宝账号，说明该页面由其他作者贡献，要对他们进行小额赞助请使用该页面下的二维码或账号</strong></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="http://keras-cn.readthedocs.io/en/latest/getting_started/concepts/" class="btn btn-neutral float-right" title="一些基本概念">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions"><!-- Inserted RTD Footer -->
+<div class="injected">
+
+  
+
+      
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+         <strong> 
+        <dd><a href="http://keras-cn.readthedocs.io/en/latest/">latest</a></dd>
+         </strong> 
+        
+      </dl>
+      
+      
+
+      
+      
+      <dl>
+        <dt>Downloads</dt>
+        
+        <dd><a href="http://readthedocs.org/projects/keras-cn/downloads/pdf/latest/">PDF</a></dd>
+        
+        <dd><a href="http://readthedocs.org/projects/keras-cn/downloads/htmlzip/latest/">HTML</a></dd>
+        
+        <dd><a href="http://readthedocs.org/projects/keras-cn/downloads/epub/latest/">Epub</a></dd>
+        
+      </dl>
+      
+      
+
+      
+      <dl>
+        <!-- These are kept as relative links for internal installs that are http -->
+        <dt>On Read the Docs</dt>
+        <dd>
+          <a href="http://readthedocs.org/projects/keras-cn/">Project Home</a>
+        </dd>
+        <dd>
+          <a href="http://readthedocs.org/projects/keras-cn/builds/">Builds</a>
+        </dd>
+        <dd>
+          <a href="http://readthedocs.org/projects/keras-cn/downloads/">Downloads</a>
+        </dd>
+      </dl>
+      
+
+      
+
+      
+      <dl>
+        <dt>On GitHub</dt>
+        <dd>
+          <a href="https://github.com/MoyanZitto/keras-cn/blob/master/home/docs/checkouts/readthedocs.org/user_builds/keras-cn/checkouts/latest/docs/index.md">View</a>
+        </dd>
+        <dd>
+          <a href="https://github.com/MoyanZitto/keras-cn/edit/master/home/docs/checkouts/readthedocs.org/user_builds/keras-cn/checkouts/latest/docs/index.md">Edit</a>
+        </dd>
+      </dl>
+      
+      
+
+      
+      <dl>
+        <dt>Search</dt>
+        <dd>
+          <div style="padding: 6px;">
+            <form id="flyout-search-form" class="wy-form" target="_blank" action="https://readthedocs.org/projects/keras-cn/search/" method="get">
+              <input name="q" placeholder="Search docs" type="text">
+              </form>
+          </div>
+        </dd>
+      </dl>
+      
+
+
+
+      <hr>
+      
+      Free document hosting provided by <a href="https://readthedocs.org/">Read the Docs</a>. 
+      
+
+      
+
+</div>
+</div>
+  </div>
+
+
+
+
+
+</body></html>
+<!--
+MkDocs version : 0.15.0
+Build Date UTC : 2016-11-17 13:10:03.100270
+-->

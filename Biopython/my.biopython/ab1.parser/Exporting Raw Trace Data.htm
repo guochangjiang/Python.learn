@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <link rel="shortcut icon" href="https://www.biostars.org/static/favicon.ico">
+
+    <title>
+    Exporting Raw Trace Data
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="Exporting%20Raw%20Trace%20Data_files/bootstrap.css" rel="stylesheet">
+    <link href="Exporting%20Raw%20Trace%20Data_files/font-awesome.css" rel="stylesheet">
+
+    <script type="text/javascript" async="" src="Exporting%20Raw%20Trace%20Data_files/ga.js"></script><script async="" type="text/javascript" src="Exporting%20Raw%20Trace%20Data_files/gpt.js"></script><script src="Exporting%20Raw%20Trace%20Data_files/jquery.js"></script>
+    <script src="Exporting%20Raw%20Trace%20Data_files/bootstrap.js"></script>
+
+    
+    
+
+        
+        <link rel="stylesheet" href="Exporting%20Raw%20Trace%20Data_files/a263178e5ed2.css" type="text/css">
+
+        <script type="text/javascript" src="Exporting%20Raw%20Trace%20Data_files/6f945e6b21cf.js"></script>
+
+    
+
+    
+
+    <script type="text/javascript" src="Exporting%20Raw%20Trace%20Data_files/Markdown.js"></script>
+    <script type="text/javascript" src="Exporting%20Raw%20Trace%20Data_files/Markdown_002.js"></script>
+    <script type="text/javascript" src="Exporting%20Raw%20Trace%20Data_files/Markdown_003.js"></script>
+
+    
+    <link rel="stylesheet" href="Exporting%20Raw%20Trace%20Data_files/markdown.css">
+
+
+
+    <script type="text/javascript">
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') +
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type="text/javascript">
+googletag.cmd.push(function() {
+googletag.pubads().collapseEmptyDivs(true);
+googletag.defineSlot('/64550467/special_sidebar', [220, 250], 'special_sidebar').addService(googletag.pubads());
+googletag.defineSlot('/64550467/Leaderboard', [728, 90], 'div-gpt-ad-1412001329349-0').addService(googletag.pubads());
+googletag.defineSlot('/64550467/Sidebar-220x250', [220, 250], 'div-gpt-ad-1412001329349-1').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
+
+    <script type="application/javascript">
+        
+            USER_ID = null;
+        
+        TITLE_SEARCH_URL = "/local/search/title/"
+        POST_DISPLAY_URL = "/p/"
+    </script>
+<script src="Exporting%20Raw%20Trace%20Data_files/pubads_impl_105.js" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-5/html/container.html"></head>
+<body>
+
+<div class="container" id="content">
+
+    
+    
+    
+
+
+<div class="row visible-lg visible-md">
+    <div class="col-md-12 text-center" id="topnav">
+            
+                <div class="col-md-1 ">
+                    <a href="https://www.biostars.org/t/Latest/">Latest</a>
+                </div>
+            
+                <div class="col-md-1 ">
+                    <a href="https://www.biostars.org/t/Open/">Open</a>
+                </div>
+            
+                <div class="col-md-1 ">
+                    <a href="https://www.biostars.org/t/RNA-Seq/">RNA-Seq</a>
+                </div>
+            
+                <div class="col-md-1 ">
+                    <a href="https://www.biostars.org/t/ChIP-Seq/">ChIP-Seq</a>
+                </div>
+            
+                <div class="col-md-1 ">
+                    <a href="https://www.biostars.org/t/SNP/">SNP</a>
+                </div>
+            
+                <div class="col-md-1 ">
+                    <a href="https://www.biostars.org/t/Assembly/">Assembly</a>
+                </div>
+            
+                <div class="col-md-1 ">
+                    <a href="https://www.biostars.org/t/Tutorials/">Tutorials</a>
+                </div>
+            
+                <div class="col-md-1 ">
+                    <a href="https://www.biostars.org/t/Tools/">Tools</a>
+                </div>
+            
+                <div class="col-md-1 ">
+                    <a href="https://www.biostars.org/t/Jobs/">Jobs</a>
+                </div>
+            
+                <div class="col-md-1 ">
+                    <a href="https://www.biostars.org/t/Forum/">Forum</a>
+                </div>
+            
+            <div class="col-md-1 "><a href="https://www.biostars.org/planet/">Planet</a></div>
+            <div class="col-md-1 "><a href="https://www.biostars.org/t/">All »</a></div>
+        
+    </div>
+</div>
+
+<div class="row visible-sm visible-xs">
+
+    <div class="col-xs-4">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                 View Posts 
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                
+                    <li>
+                        <a href="https://www.biostars.org/t/Latest">Latest</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.biostars.org/t/Open">Open</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.biostars.org/t/RNA-Seq">RNA-Seq</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.biostars.org/t/ChIP-Seq">ChIP-Seq</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.biostars.org/t/SNP">SNP</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.biostars.org/t/Assembly">Assembly</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.biostars.org/t/Tutorials">Tutorials</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.biostars.org/t/Tools">Tools</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.biostars.org/t/Jobs">Jobs</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://www.biostars.org/t/Forum">Forum</a>
+                    </li>
+                
+                <li><a href="https://www.biostars.org/planet/">Planet</a></li>
+                <li><a href="https://www.biostars.org/t/">All »</a></li>
+            </ul>
+        </div>
+    </div>
+
+        <div class="col-xs-4 text-center" style="margin-bottom:5px">
+        <a role="button" class="btn btn-primary" href="https://www.biostars.org/">
+            <i class="fa fa-star fa-1x"></i> Home </a>
+        
+
+    </div>
+
+    <div class="col-xs-4 ">
+        <div class="btn-group pull-right">
+
+            
+                <div>
+                    <a class="btn btn-primary active" role="button" href="https://www.biostars.org/site/login/">
+                        <i class="fa fa-user fa-1x"></i> Log In
+                    </a>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="row visible-lg visible-md">
+
+    <div class="col-md-12" id="navbar">
+
+        <div class="col-lg-3 visible-lg" id="logo">
+            <a href="https://www.biostars.org/"><img src="Exporting%20Raw%20Trace%20Data_files/biostar2.png"></a>
+        </div>
+
+        <div class="col-md-3 visible-md text-center">
+            <a href="https://www.biostars.org/">
+                </a><a href="https://www.biostars.org/"><img style="width:200px; height: auto;" src="Exporting%20Raw%20Trace%20Data_files/biostar2.png"></a>
+            
+        </div>
+
+        
+
+            <div class="col-md-9 top text-center">
+                 Welcome to Biostar!
+                <span class="pull-right">
+                    <a href="https://www.biostars.org/info/about/">about</a> • <a href="https://www.biostars.org/info/faq/">faq</a>
+                    • <a href="https://www.biostars.org/info/rss/">rss <i class="fa fa-rss"></i></a>
+                </span>
+            </div>
+
+            <div class="col-md-2 col-md-offset-10 mid ">
+                <a href="https://www.biostars.org/user/list/">
+                    <div><i class="fa fa-globe"></i>
+                    </div>
+                    <div>Community</div>
+                </a>
+            </div>
+
+            <div class="col-md-2 mid ">
+                <b><a href="https://www.biostars.org/site/login/">
+                    <div><i class="fa fa-user fa-1x"></i></div>
+                    <div>Log In</div>
+                </a></b>
+            </div>
+
+            <div class="col-md-2 mid ">
+                <b><a href="https://www.biostars.org/accounts/signup/">
+                    <div><i class="fa fa-arrow-circle-up fa-1x"></i></div>
+                    <div>Sign Up</div>
+                </a></b>
+            </div>
+
+            <div class="col-md-2 mid newpost">
+                <a href="https://www.biostars.org/p/new/post/" class="navitem ">
+                    <div><i class="fa fa-plus-circle fa-1x"></i></div>
+                    <div>Add New Post</div>
+                </a>
+            </div>
+
+        
+    </div>
+</div>
+
+
+    
+
+    
+    
+
+    
+    
+
+    
+
+    <div class="row" itemscope="" itemtype="http://schema.org/QAPage">
+
+        <div class="col-xs-12 col-md-9">
+
+            <div id="post-details">
+                
+                <span itemscope="" itemtype="http://schema.org/Question">
+                    
+
+<div class="post-body Open clearfix">
+
+
+    
+        
+
+    <div style="padding-bottom:1em" align="center">
+        <!-- Leaderboard 728x90 -->
+        <div id="div-gpt-ad-1412001329349-0" style="width: 728px; height: 90px; display: none;" data-google-query-id="CKPbuaXkqtACFU5olgodDQwOQw">
+            <script type="text/javascript">
+                googletag.cmd.push(function () {
+                    googletag.display('div-gpt-ad-1412001329349-0');
+                });
+            </script>
+        <div id="google_ads_iframe_/64550467/Leaderboard_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/64550467/Leaderboard_0" title="3rd party ad content" name="google_ads_iframe_/64550467/Leaderboard_0" scrolling="no" marginwidth="0" marginheight="0" style="border: 0px none; vertical-align: bottom;" srcdoc="" height="90" frameborder="0" width="728"></iframe></div><iframe id="google_ads_iframe_/64550467/Leaderboard_0__hidden__" title="" name="google_ads_iframe_/64550467/Leaderboard_0__hidden__" scrolling="no" marginwidth="0" marginheight="0" style="border: 0px none; vertical-align: bottom; visibility: hidden; display: none;" srcdoc="" height="0" frameborder="0" width="0"></iframe></div>
+    </div>
+
+
+
+        <div class="title">Question: <span itemprop="name">Exporting Raw Trace Data</span></div>
+
+    
+
+    <div class="post vote-box visible-lg visible-md" data-post_id="4097">
+
+
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="vote" title="" data-original-title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-2x"></i></div>
+
+        <div class="count" itemprop="voteCount">6</div>
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="bookmark" title="" data-original-title="Bookmark!">
+            <i class="fa fa-book fa-2x"></i>
+        </div>
+
+        
+
+
+
+    </div>
+
+    <div>
+
+        <a name="4097"></a>
+        
+        <div class="content">
+
+            
+
+
+
+
+<div class="col-xs-3 col-md-2 box pull-right text-center visible-lg visible-md">
+        <div><a href="https://www.biostars.org/u/964/"><img src="Exporting%20Raw%20Trace%20Data_files/c0b05c5abd64091fa38fbd1802ef53a9.png" alt="gravatar for Gregory"></a></div>
+        <div class="ago">6.0 years ago by</div>
+        <div class="uname">
+
+
+<a href="https://www.biostars.org/u/964/">Gregory</a> • <b>70</b></div>
+        <div class="loc">United States</div>
+</div>
+
+<div class="box text-center visible-sm visible-xs">
+    <div class="uname">
+
+
+<a href="https://www.biostars.org/u/964/">Gregory</a> • <b>70</b> wrote:</div>
+</div>
+
+            <span itemprop="text"><p>Hi all,</p>
+
+<p>Is there any software out there that can export raw traces from .ab1 
+or .scf files as coordinates?  By this I mean extracting a table of 
+amplitude at each horizontal pixel (raw X-Y data) so that I can 
+reconstruct the trace in Excel or some other graphing program.  Thanks 
+in advance for your insight.</p>
+
+<p>Gregory</p>
+</span>
+
+
+            <div class="clearfix">
+                
+                    <div class="tags clearfix" style="margin-bottom:0.5em;">
+                        
+                            <a class="tag" href="https://www.biostars.org/t/sequencing/">sequencing</a>
+                        
+
+                    • 4.2k views
+
+                    </div>
+                
+
+                
+                
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="4097" id="C4097">ADD COMMENT</span>
+
+    • <a href="https://www.biostars.org/p/4097/">link</a>
+    
+
+    
+        
+        •
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-default btn-xs dropdown-toggle" id="F4097" data-toggle="dropdown">
+                
+                    Not following
+                
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropup" role="menu">
+
+                <li><a href="https://www.biostars.org/local/sub/4097/local/">Follow via messages</a></li>
+                <li><a href="https://www.biostars.org/local/sub/4097/email/">Follow via email</a></li>
+                <li><a href="https://www.biostars.org/local/sub/4097/nofollow/">Do not follow</a></li>
+            </ul>
+        </div>
+    
+
+    <span class="userlink muted">
+            
+            modified 16 months ago
+            
+                by 
+
+
+<a href="https://www.biostars.org/u/1/">Biostar</a> ♦♦ <b>0</b>
+            
+            •
+        
+        written <span itemprop="dateCreated" content="2010-12-05T04:14:01.433000-06:00">
+        6.0 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/964/">Gregory</a> • <b>70</b>
+    </span>
+</div>
+
+
+            </div>
+
+            
+            <div class="comment" itemprop="comment">
+                
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+                </span>
+
+
+                
+                
+                    <span itemscope="" itemtype="http://schema.org/Answer">
+                        
+
+<div class="post-body Open clearfix">
+
+
+    
+
+    <div class="post vote-box visible-lg visible-md" data-post_id="4100">
+
+
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="vote" title="" data-original-title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-2x"></i></div>
+
+        <div class="count" itemprop="voteCount">8</div>
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="bookmark" title="" data-original-title="Bookmark!">
+            <i class="fa fa-book fa-2x"></i>
+        </div>
+
+        
+
+
+
+    </div>
+
+    <div>
+
+        <a name="4100"></a>
+        
+        <div class="content">
+
+            
+
+
+
+
+<div class="col-xs-3 col-md-2 box pull-right text-center visible-lg visible-md">
+        <div><a href="https://www.biostars.org/u/66/"><img src="Exporting%20Raw%20Trace%20Data_files/e41743fa8aee7f5c7d1cd7ebfa77da85.png" alt="gravatar for Neilfws"></a></div>
+        <div class="ago">5.9 years ago by</div>
+        <div class="uname">
+
+
+<a href="https://www.biostars.org/u/66/">Neilfws</a> ♦ <b>46k</b></div>
+        <div class="loc">Sydney, Australia</div>
+</div>
+
+<div class="box text-center visible-sm visible-xs">
+    <div class="uname">
+
+
+<a href="https://www.biostars.org/u/66/">Neilfws</a> ♦ <b>46k</b> wrote:</div>
+</div>
+
+            <span itemprop="text"><p>As answered by lh3, io_lib is 
+probably the best option.  Applied Biosystems are one of those companies
+ that like to deal in proprietary formats that no-one else can read 
+easily. </p>
+
+<p>You may also be able to use <a rel="nofollow" href="http://emboss.sourceforge.net/apps/release/5.0/emboss/apps/abiview.html">abiview</a> from the EMBOSS suite, using the "-graph data" option:</p>
+
+<pre><code>abiview -graph data -outseq myseq.fa myseq.ab1
+</code></pre>
+
+<p>When I run this on a sample .ab1 found on my hard drive, it creates 4
+ ASCII files, named "abiviewN.dat", where N is 1-4.  They seem to 
+contain raw coordinates (a few sample lines):</p>
+
+<pre><code>403.333344      6.000000
+403.416656      5.000000
+403.500000      4.000000
+403.583344      3.000000
+403.666656      2.000000
+403.750000      2.000000
+403.833344      3.000000
+403.916656      6.000000
+404.000000      8.000000
+404.083344      10.000000
+</code></pre>
+
+<p>I'm not clear why 4 files are generated.  However, once you work it 
+out, it should be easy enough to parse out the data for plotting in 
+other packages.</p>
+</span>
+
+
+            <div class="clearfix">
+                
+
+                
+                
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="4100" id="C4100">ADD COMMENT</span>
+
+    • <a href="https://www.biostars.org/p/4097/#4100">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+            modified 5.9 years ago
+            
+            •
+        
+        written <span itemprop="dateCreated" content="2010-12-05T09:48:01.127000-06:00">
+        5.9 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/66/">Neilfws</a> ♦ <b>46k</b>
+    </span>
+</div>
+
+
+            </div>
+
+            
+            <div class="comment" itemprop="comment">
+                <div class="indent">
+
+<a name="24323"></a>
+<div class="entry Open  clearfix">
+
+    <div class="comment vote-box" data-post_id="24323">
+        <div class="vote mark off " data-type="vote" title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-1x"></i></div>
+        <div class="count">1</div>
+    </div>
+
+   <p>Your abiview suggestion is fantastic.  The Windows port (mEMBOSS) 
+even lets me do it right at the Windows command prompt.  The four files 
+correspond to each of the dye terminators (for A, C, G, and T).  Thanks 
+again!</p>
+
+    
+    
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="24323" id="C24323">ADD REPLY</span>
+
+    • <a href="https://www.biostars.org/p/4097/#24323">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2010-12-05T20:00:30.007000-06:00">
+        5.9 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/964/">Gregory</a> • <b>70</b>
+    </span>
+</div>
+
+
+</div>
+</div>
+<div class="indent">
+
+<a name="24325"></a>
+<div class="entry Open  clearfix">
+
+    <div class="comment vote-box" data-post_id="24325">
+        <div class="vote mark off " data-type="vote" title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-1x"></i></div>
+        <div class="count"></div>
+    </div>
+
+   <p>Good to hear. I thought the files might be A,C,G,T but was a little confused by their content - glad you worked it out.</p>
+
+    
+    
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="24325" id="C24325">ADD REPLY</span>
+
+    • <a href="https://www.biostars.org/p/4097/#24325">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2010-12-06T01:02:53.973000-06:00">
+        5.9 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/66/">Neilfws</a> ♦ <b>46k</b>
+    </span>
+</div>
+
+
+</div>
+</div>
+<div class="indent">
+
+<a name="26604"></a>
+<div class="entry Open  clearfix">
+
+    <div class="comment vote-box" data-post_id="26604">
+        <div class="vote mark off " data-type="vote" title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-1x"></i></div>
+        <div class="count"></div>
+    </div>
+
+   <p>@Gregory: How do we interpret the output from abiview abve? What 
+order are the 4 data files in (GATC or ACGT)? Any assistance or links to
+ resources for this would be useful.</p>
+
+    
+    
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="26604" id="C26604">ADD REPLY</span>
+
+    • <a href="https://www.biostars.org/p/4097/#26604">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2011-03-03T06:57:53.683000-06:00">
+        5.7 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/1135/">Sabrewolfy</a> • <b>80</b>
+    </span>
+</div>
+
+
+</div>
+<div class="indent">
+
+<a name="103381"></a>
+<div class="entry Open  clearfix">
+
+    <div class="comment vote-box" data-post_id="103381">
+        <div class="vote mark off " data-type="vote" title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-1x"></i></div>
+        <div class="count"></div>
+    </div>
+
+   <p>The order is G,A,T,C by default.&nbsp; You can change the selection using the -bases option.</p>
+
+
+    
+    
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="103381" id="C103381">ADD REPLY</span>
+
+    • <a href="https://www.biostars.org/p/4097/#103381">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2014-06-12T18:38:27.801257-05:00">
+        2.4 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/964/">Gregory</a> • <b>70</b>
+    </span>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="indent">
+
+<a name="27954"></a>
+<div class="entry Open  clearfix">
+
+    <div class="comment vote-box" data-post_id="27954">
+        <div class="vote mark off " data-type="vote" title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-1x"></i></div>
+        <div class="count"></div>
+    </div>
+
+   <p>Anyone able to give any more information on the file format of these four files output from <code>abiview</code>?
+ I've searched online and can find nothing. I compared the content of 
+these four files with a trace, but found nothing helpful. Do we even 
+know if the content of these four files is "correct"?</p>
+
+    
+    
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="27954" id="C27954">ADD REPLY</span>
+
+    • <a href="https://www.biostars.org/p/4097/#27954">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2011-04-04T00:08:40.050000-05:00">
+        5.6 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/1135/">Sabrewolfy</a> • <b>80</b>
+    </span>
+</div>
+
+
+</div>
+</div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+                    </span>
+                
+                    <span itemscope="" itemtype="http://schema.org/Answer">
+                        
+
+<div class="post-body Open clearfix">
+
+
+    
+
+    <div class="post vote-box visible-lg visible-md" data-post_id="4099">
+
+
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="vote" title="" data-original-title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-2x"></i></div>
+
+        <div class="count" itemprop="voteCount">6</div>
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="bookmark" title="" data-original-title="Bookmark!">
+            <i class="fa fa-book fa-2x"></i>
+        </div>
+
+        
+
+
+
+    </div>
+
+    <div>
+
+        <a name="4099"></a>
+        
+        <div class="content">
+
+            
+
+
+
+
+<div class="col-xs-3 col-md-2 box pull-right text-center visible-lg visible-md">
+        <div><a href="https://www.biostars.org/u/10932/"><img src="Exporting%20Raw%20Trace%20Data_files/d27ada6f595edfde6acffe688409d696.png" alt="gravatar for lh3"></a></div>
+        <div class="ago">6.0 years ago by</div>
+        <div class="uname">
+
+
+<a href="https://www.biostars.org/u/10932/">lh3</a> ♦ <b>28k</b></div>
+        <div class="loc">United States</div>
+</div>
+
+<div class="box text-center visible-sm visible-xs">
+    <div class="uname">
+
+
+<a href="https://www.biostars.org/u/10932/">lh3</a> ♦ <b>28k</b> wrote:</div>
+</div>
+
+            <span itemprop="text"><p><a rel="nofollow" href="http://sourceforge.net/projects/staden/files/io_lib/">io_lib</a>.
+ When you compile it, you will find a few programs in the progs/ 
+directory. Probably one of those "*_dump" executables is for you.</p>
+<p>If you want to do serious things, learning to use io_lib is recommended. The APIs are quite straightforward.</p></span>
+
+
+            <div class="clearfix">
+                
+
+                
+                
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="4099" id="C4099">ADD COMMENT</span>
+
+    • <a href="https://www.biostars.org/p/4097/#4099">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2010-12-05T06:33:02.280000-06:00">
+        6.0 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/10932/">lh3</a> ♦ <b>28k</b>
+    </span>
+</div>
+
+
+            </div>
+
+            
+            <div class="comment" itemprop="comment">
+                
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+                    </span>
+                
+                    <span itemscope="" itemtype="http://schema.org/Answer">
+                        
+
+<div class="post-body Open clearfix">
+
+
+    
+
+    <div class="post vote-box visible-lg visible-md" data-post_id="4116">
+
+
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="vote" title="" data-original-title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-2x"></i></div>
+
+        <div class="count" itemprop="voteCount">3</div>
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="bookmark" title="" data-original-title="Bookmark!">
+            <i class="fa fa-book fa-2x"></i>
+        </div>
+
+        
+
+
+
+    </div>
+
+    <div>
+
+        <a name="4116"></a>
+        
+        <div class="content">
+
+            
+
+
+
+
+<div class="col-xs-3 col-md-2 box pull-right text-center visible-lg visible-md">
+        <div><a href="https://www.biostars.org/u/266/"><img src="Exporting%20Raw%20Trace%20Data_files/ce3d61802fb1f51fc33d762ed84aa0c4.jpg" alt="gravatar for Malcolm.Cook"></a></div>
+        <div class="ago">5.9 years ago by</div>
+        <div class="uname">
+
+
+<a href="https://www.biostars.org/u/266/">Malcolm.Cook</a> • <b>680</b></div>
+        <div class="loc">kansas, usa</div>
+</div>
+
+<div class="box text-center visible-sm visible-xs">
+    <div class="uname">
+
+
+<a href="https://www.biostars.org/u/266/">Malcolm.Cook</a> • <b>680</b> wrote:</div>
+</div>
+
+            <span itemprop="text"><p>Hmmm.... I don't think the emboss abiview fits the bill as requested, but I'll leave that up to the OP.  In any case....</p>
+<p>If you are after raw intensity at each sequencer scan, you can generate a table like this:</p>
+<p>[?]</p>
+<p>using perl modules:</p>
+<ul>
+<li><a rel="nofollow" href="http://search.cpan.org/%7Evita/Bio-Trace-ABIF-1.05/lib/Bio/Trace/ABIF.pm">ABIF</a> - "Perl extension for reading and parsing ABIF (Applied Biosystems, Inc. Format) files"</li>
+<li><a rel="nofollow" href="http://search.cpan.org/%7Emrdvt/Array-Transpose-0.05/lib/Array/Transpose.pm">Array::Transpose</a> - "Transposes a 2-Dimensional Array"</li>
+</ul>
+<p>like this:</p>
+<pre><code># install the perl modules:
+&gt; sudo cpan Bio::Trace::ABIF Array::Transpose
+
+# perl one-liners (which arguably should be in a script):
+&gt; perl -MBio::Trace::ABIF -MArray::Transpose -e 'BEGIN{$abif=Bio::Trace::ABIF-&gt;new($_); $,="\t",$\="\n"}; $abif-&gt;open_abif(@ARGV) or die "can not open";  print @$_ foreach transpose ([map {[$_,$abif-&gt;raw_trace($_)]} qw(A T G C)])' my.ab1 &gt; my_ab1_trace.tab
+</code></pre>
+<p>--Malcolm</p></span>
+
+
+            <div class="clearfix">
+                
+
+                
+                
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="4116" id="C4116">ADD COMMENT</span>
+
+    • <a href="https://www.biostars.org/p/4097/#4116">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2010-12-06T18:27:20.773000-06:00">
+        5.9 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/266/">Malcolm.Cook</a> • <b>680</b>
+    </span>
+</div>
+
+
+            </div>
+
+            
+            <div class="comment" itemprop="comment">
+                <div class="indent">
+
+<a name="24347"></a>
+<div class="entry Open  clearfix">
+
+    <div class="comment vote-box" data-post_id="24347">
+        <div class="vote mark off " data-type="vote" title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-1x"></i></div>
+        <div class="count"></div>
+    </div>
+
+   <p>Your solution is considerably more elegant and efficient than 
+running abiview and manually merging the four output files, to be sure. 
+ All the more reason to learn perl...</p>
+
+    
+    
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="24347" id="C24347">ADD REPLY</span>
+
+    • <a href="https://www.biostars.org/p/4097/#24347">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2010-12-07T05:57:25.377000-06:00">
+        5.9 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/964/">Gregory</a> • <b>70</b>
+    </span>
+</div>
+
+
+</div>
+</div>
+<div class="indent">
+
+<a name="195604"></a>
+<div class="entry Open  clearfix">
+
+    <div class="comment vote-box" data-post_id="195604">
+        <div class="vote mark off " data-type="vote" title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-1x"></i></div>
+        <div class="count"></div>
+    </div>
+
+   <p>sir thank you for this
+ but its generating the values for 16000 bases even my sequence is no longer than 805 bp</p>
+
+
+    
+    
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="195604" id="C195604">ADD REPLY</span>
+
+    • <a href="https://www.biostars.org/p/4097/#195604">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2016-06-08T03:17:49.876260-05:00">
+        5 months ago</span> by 
+
+
+<a href="https://www.biostars.org/u/21514/">kapil.joshi036</a> • <b>80</b>
+    </span>
+</div>
+
+
+</div>
+</div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+                    </span>
+                
+                    <span itemscope="" itemtype="http://schema.org/Answer">
+                        
+
+<div class="post-body Open clearfix">
+
+
+    
+
+    <div class="post vote-box visible-lg visible-md" data-post_id="6272">
+
+
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="vote" title="" data-original-title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-2x"></i></div>
+
+        <div class="count" itemprop="voteCount">2</div>
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="bookmark" title="" data-original-title="Bookmark!">
+            <i class="fa fa-book fa-2x"></i>
+        </div>
+
+        
+
+
+
+    </div>
+
+    <div>
+
+        <a name="6272"></a>
+        
+        <div class="content">
+
+            
+
+
+
+
+<div class="col-xs-3 col-md-2 box pull-right text-center visible-lg visible-md">
+        <div><a href="https://www.biostars.org/u/1416/"><img src="Exporting%20Raw%20Trace%20Data_files/1379a548b0ecfcbe5fe13f3bf1984a2b.jpg" alt="gravatar for Mac Cowell"></a></div>
+        <div class="ago">5.7 years ago by</div>
+        <div class="uname">
+
+
+<a href="https://www.biostars.org/u/1416/">Mac Cowell</a> • <b>20</b></div>
+        <div class="loc">Cambridge, MA</div>
+</div>
+
+<div class="box text-center visible-sm visible-xs">
+    <div class="uname">
+
+
+<a href="https://www.biostars.org/u/1416/">Mac Cowell</a> • <b>20</b> wrote:</div>
+</div>
+
+            <span itemprop="text"><p>If you want to roll your own .abi 
+file parser, this technical examination of the format by  Clark Tibbetts
+ could be helpful, if a little dated (circa 1995):</p>
+<p><em>"Raw Data File Formats and the Digital and Analog Raw Data Streams of the ABI PRISM™ 377 DNA Sequencer.</em>"  Here is <a rel="nofollow" href="http://www.cs.cmu.edu/afs/cs/project/genome/ftp/other/377_Raw_Data.ps">the postscript original</a> and <a rel="nofollow" href="http://www.google.com/url?sa=t&amp;source=web&amp;cd=1&amp;ved=0CBYQITAA&amp;url=http%3A%2F%2Fwebcache.googleusercontent.com%2Fsearch%3Fq%3Dcache%3A6X3YtHT2SU0J%3Awww.cs.cmu.edu%2Fafs%2Fcs%2Fproject%2Fgenome%2Fftp%2Fother%2F377_Raw_Data.ps%2Bhttp%3A%2F%2Fwww.cs.cmu.edu%2Fafs%2Fcs%2Fproject%2Fgenome%2Fftp%2Fother%2F377_Raw_Data.ps%26cd%3D1%26hl%3Den%26ct%3Dclnk%26gl%3Dus%26source%3Dwww.google.com&amp;ei=F-13TZPDLKuF0QHntojaBg&amp;usg=AFQjCNHaHlRU3JWgIhncsxDJBNZiKeKoKA">an html version by google</a>.</p></span>
+
+
+            <div class="clearfix">
+                
+
+                
+                
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="6272" id="C6272">ADD COMMENT</span>
+
+    • <a href="https://www.biostars.org/p/4097/#6272">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2011-03-09T21:12:46.623000-06:00">
+        5.7 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/1416/">Mac Cowell</a> • <b>20</b>
+    </span>
+</div>
+
+
+            </div>
+
+            
+            <div class="comment" itemprop="comment">
+                <div class="indent">
+
+<a name="26923"></a>
+<div class="entry Open  clearfix">
+
+    <div class="comment vote-box" data-post_id="26923">
+        <div class="vote mark off " data-type="vote" title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-1x"></i></div>
+        <div class="count"></div>
+    </div>
+
+   <p>Thanks for these links. I've just posted a question (<a rel="nofollow" href="http://biostar.stackexchange.com/questions/6356/plotting">http://biostar.stackexchange.com/questions/6356/plotting</a>-dna-sequence-traces) after reading this answer several times previously, so your answer is very timely :)</p>
+
+    
+    
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="26923" id="C26923">ADD REPLY</span>
+
+    • <a href="https://www.biostars.org/p/4097/#26923">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2011-03-11T16:44:07.273000-06:00">
+        5.7 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/1135/">Sabrewolfy</a> • <b>80</b>
+    </span>
+</div>
+
+
+</div>
+</div>
+<div class="indent">
+
+<a name="36369"></a>
+<div class="entry Open  clearfix">
+
+    <div class="comment vote-box" data-post_id="36369">
+        <div class="vote mark off " data-type="vote" title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-1x"></i></div>
+        <div class="count"></div>
+    </div>
+
+   <p>I'd just like to add to that. There is an official file format 
+specification: 
+www6.appliedbiosystems.com/support/software_community/ABIF_File_Format.pdf</p>
+
+    
+    
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="36369" id="C36369">ADD REPLY</span>
+
+    • <a href="https://www.biostars.org/p/4097/#36369">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2011-11-20T11:46:57.953000-06:00">
+        5.0 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/119/">Phis</a> • <b>1.0k</b>
+    </span>
+</div>
+
+
+</div>
+</div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+                    </span>
+                
+                    <span itemscope="" itemtype="http://schema.org/Answer">
+                        
+
+<div class="post-body Open clearfix">
+
+
+    
+
+    <div class="post vote-box visible-lg visible-md" data-post_id="4098">
+
+
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="vote" title="" data-original-title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-2x"></i></div>
+
+        <div class="count" itemprop="voteCount">1</div>
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="bookmark" title="" data-original-title="Bookmark!">
+            <i class="fa fa-book fa-2x"></i>
+        </div>
+
+        
+
+
+
+    </div>
+
+    <div>
+
+        <a name="4098"></a>
+        
+        <div class="content">
+
+            
+
+
+
+
+<div class="col-xs-3 col-md-2 box pull-right text-center visible-lg visible-md">
+        <div><a href="https://www.biostars.org/u/419/"><img src="Exporting%20Raw%20Trace%20Data_files/b3e438936e66e91721617c47d2331ff7.jpg" alt="gravatar for Michael Schubert"></a></div>
+        <div class="ago">6.0 years ago by</div>
+        <div class="uname">
+
+
+<a href="https://www.biostars.org/u/419/">Michael Schubert</a> • <b>6.6k</b></div>
+        <div class="loc">Cambridge, UK</div>
+</div>
+
+<div class="box text-center visible-sm visible-xs">
+    <div class="uname">
+
+
+<a href="https://www.biostars.org/u/419/">Michael Schubert</a> • <b>6.6k</b> wrote:</div>
+</div>
+
+            <span itemprop="text"><p>There are a lot of tools (even free
+ ones) for manually checking traces, you would most likely be better of 
+using one of those than trying to do your analysis in Excel.</p>
+<p>Probably the easiest way is to go with the <a rel="nofollow" href="https://products.appliedbiosystems.com/ab/en/US/adirect/ab?cmd=catNavigate2&amp;catID=600583&amp;tab=Overview">Sequence Scanner Software</a> directly from Applied Biosystems (for Windows, free). It can print, edit, and export your chromatograms.</p>
+<p>There is also a list of available tools for this at the <a rel="nofollow" href="http://seqcore.brcf.med.umich.edu/usechrom.html">University of Michigan's Website</a>.</p></span>
+
+
+            <div class="clearfix">
+                
+
+                
+                
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="4098" id="C4098">ADD COMMENT</span>
+
+    • <a href="https://www.biostars.org/p/4097/#4098">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2010-12-05T04:44:29.850000-06:00">
+        6.0 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/419/">Michael Schubert</a> • <b>6.6k</b>
+    </span>
+</div>
+
+
+            </div>
+
+            
+            <div class="comment" itemprop="comment">
+                <div class="indent">
+
+<a name="24319"></a>
+<div class="entry Open  clearfix">
+
+    <div class="comment vote-box" data-post_id="24319">
+        <div class="vote mark off " data-type="vote" title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-1x"></i></div>
+        <div class="count"></div>
+    </div>
+
+   <p>Thanks for your suggestions.  The software that I looked into, 
+including AB's Sequence Scanner Software, exports traces only in 
+graphical form (jpg, pdf, etc).  My reason for wanting the raw 
+coordinates actually has little to do with base calling, but to 
+calculate peak areas.  I agree that few people would actually want the 
+coordinates, but I'm really hoping that some something out there would 
+offer this feature.</p>
+
+    
+    
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="24319" id="C24319">ADD REPLY</span>
+
+    • <a href="https://www.biostars.org/p/4097/#24319">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2010-12-05T04:54:13.927000-06:00">
+        6.0 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/964/">Gregory</a> • <b>70</b>
+    </span>
+</div>
+
+
+</div>
+</div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+                    </span>
+                
+                    <span itemscope="" itemtype="http://schema.org/Answer">
+                        
+
+<div class="post-body Open clearfix">
+
+
+    
+
+    <div class="post vote-box visible-lg visible-md" data-post_id="16448">
+
+
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="vote" title="" data-original-title="Upvote!">
+            <i class="fa fa-thumbs-o-up fa-2x"></i></div>
+
+        <div class="count" itemprop="voteCount">0</div>
+
+        <div class="vote mark off tip" data-toggle="tooltip" data-placement="top" data-type="bookmark" title="" data-original-title="Bookmark!">
+            <i class="fa fa-book fa-2x"></i>
+        </div>
+
+        
+
+
+
+    </div>
+
+    <div>
+
+        <a name="16448"></a>
+        
+        <div class="content">
+
+            
+
+
+
+
+<div class="col-xs-3 col-md-2 box pull-right text-center visible-lg visible-md">
+        <div><a href="https://www.biostars.org/u/3652/"><img src="Exporting%20Raw%20Trace%20Data_files/5f3590a4972a322c8c6df5c89804f54b.png" alt="gravatar for Dryice"></a></div>
+        <div class="ago">4.8 years ago by</div>
+        <div class="uname">
+
+
+<a href="https://www.biostars.org/u/3652/">Dryice</a> • <b>0</b></div>
+        <div class="loc"></div>
+</div>
+
+<div class="box text-center visible-sm visible-xs">
+    <div class="uname">
+
+
+<a href="https://www.biostars.org/u/3652/">Dryice</a> • <b>0</b> wrote:</div>
+</div>
+
+            <span itemprop="text"><p>Thanks for all your input.</p>
+<p>I have the same question as I could not succeed in export raw abi 
+data to excel. My goal is to calculte area under each peak, so any more 
+suggestions are appreciated.</p></span>
+
+
+            <div class="clearfix">
+                
+
+                
+                
+
+<div class="post-action">
+
+    <span class="label label-default add-comment" data-value="16448" id="C16448">ADD COMMENT</span>
+
+    • <a href="https://www.biostars.org/p/4097/#16448">link</a>
+    
+
+    
+
+    <span class="userlink muted">
+            
+        written <span itemprop="dateCreated" content="2012-01-19T02:53:31.563000-06:00">
+        4.8 years ago</span> by 
+
+
+<a href="https://www.biostars.org/u/3652/">Dryice</a> • <b>0</b>
+    </span>
+</div>
+
+
+            </div>
+
+            
+            <div class="comment" itemprop="comment">
+                
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+                    </span>
+                
+
+                
+                <span id="csrf_token"><input name="csrfmiddlewaretoken" value="SC4tpNOmwlmsPew1DwuzmNE2DIuX1VG7" type="hidden"></span>
+
+                
+                <div>
+
+                    
+
+                    
+                    
+                        <div class="alert alert-info">
+                            Please <a href="https://www.biostars.org/site/login/">log in</a> to add an answer.
+                        </div>
+                    
+
+                    
+                    
+
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-3 sidebar">
+            
+                <h4>Similar posts • <a href="https://www.biostars.org/local/search/page/">Search »</a></h4>
+
+                
+
+                <ul class="more-like-this">
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/161997/">how to normalise Sangar ab1 raw trace data? </a>
+
+                                    <div class="peek">Hi,
+
+I am searching for any papers/studies for information regarding the normalization techniques...</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/57251/">Looking For Tools That Support Visual Comparisons Of Trace Files </a>
+
+                                    <div class="peek">What tools are available for visualising trace files in such a way that I can compare traces betw...</div>
+                                </li>
+                            
+                        
+                        
+                            
+
+                        
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/51133/">Derive Chromatogram From Raw Fluorescence Data </a>
+
+                                    <div class="peek">I'm trying to understand how raw data in an .abi file is transformed into the chromatogram I'm us...</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/162474/">edegR, export TMM normalized method </a>
+
+                                    <div class="peek">Hello, everyone.
+
+I'm using edgeR perorming normalization on my raw count data.&nbsp; The problem is t...</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/622/">Converting Ab1 Trace Files Into Scf Trace Files </a>
+
+                                    <div class="peek">I've got a large collection of trace sequence files which are in .ab1 file format.  I need to imp...</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/6335/">Plotting Dna Sequence Traces </a>
+
+                                    <div class="peek">I have read/consulted these two threads here, the ABI file format document, the BioPython project...</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/145080/">Converting illumina raw genotype data into PLINK PED format </a>
+
+                                    <div class="peek">Hello
+
+How can I converting illumina raw genotype data into PLINK format?
+
+&nbsp;
+</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/70099/">Download Geo Samples Table </a>
+
+                                    <div class="peek">I would like to download the complete GEO samples table. I am not interested in all the raw data ...</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/123133/">exporting raw data from CNV Summary track in Broad IGV </a>
+
+                                    <div class="peek">Hi,
+
+I'm looking at ~1000 genomes in IGV, at the CNV summary track. Looks like the summary bins a...</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/19374/">Mapping Reads Back To Assembly Contigs To Generate Pileup </a>
+
+                                    <div class="peek">I am trying to map the raw reads of a genome back to its assembled genome to generate the pileup....</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/80456/">Zero Trace error running Eigenstrat 5 </a>
+
+                                    <div class="peek">I'm trying to run EIGENSTRAT 5 on my PC. After a successful installation I tried to carry out a P...</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/180850/">Trace element utilisation project </a>
+
+                                    <div class="peek">I have recently been set the task of carrying out a research project based on trace element utili...</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/14466/">.Ab1 Trace File Quality Threshold </a>
+
+                                    <div class="peek">Hi,
+
+I've several .ab1 files from a sanger sequencing experiment. What is a good threshold for th...</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/87429/">Rna Raw Count Data Normalization </a>
+
+                                    <div class="peek">Hi,
+
+I have raw count data of RNA seq. I want to normalize it .
+which normalization methods do yo...</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/111040/">How to download raw sequence data from GEO/SRA </a>
+
+                                    <div class="peek">Suppose you want to download some raw sequence data in fastq format from GEO/SRA and run through ...</div>
+                                </li>
+                            
+                        
+                        
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                            
+                        
+                        
+                    
+                        
+                            
+                                <li>
+                                    <a href="https://www.biostars.org/p/11859/">Pacbio Sample Raw Output </a>
+
+                                    <div class="peek">Where can I find sample output of PacBio Raw Data?
+Does it have quality score?
+
+Also, I couldn't ...</div>
+                                </li>
+                            
+                        
+                        
+                    
+                </ul>
+            
+        </div>
+    </div>
+    <script src="Exporting%20Raw%20Trace%20Data_files/prism.js" type="text/javascript"></script>
+
+
+
+    
+    
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <hr>
+            </div>
+        </div>
+
+        <div class="row toc">
+
+            <div class="col-xs-3 col-xs-offset-1 col-md-2 col-md-offset-3">
+                <div class="title">Content</div>
+                <ul class="flat">
+                    <li><a href="https://www.biostars.org/local/search/page/">Search</a></li>
+                    <li><a href="https://www.biostars.org/user/list/">Users</a></li>
+                    <li><a href="https://www.biostars.org/t/">Tags</a></li>
+                    <li><a href="https://www.biostars.org/b/list/">Badges</a></li>
+                </ul>
+            </div>
+
+            <div class="col-xs-3 col-md-2">
+                <div class="title">Help</div>
+                <ul class="flat">
+                    <li><a href="https://www.biostars.org/info/about/">About</a></li>
+                    <li><a href="https://www.biostars.org/info/faq/">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="col-xs-3 col-md-2 ">
+                <div class="title">Access</div>
+                <ul class="flat">
+                    <li><a href="https://www.biostars.org/info/rss/">RSS</a></li>
+                    <li>Stats</li>
+                    <li><a href="https://www.biostars.org/info/api/">API</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                Use of this site constitutes acceptance of our <a href="https://www.biostars.org/info/policy/">User
+                Agreement
+                and Privacy
+                Policy</a>.
+            </div>
+            <div class="col-md-12 text-center">
+                Powered by <a href="https://github.com/ialbert/biostar-central">Biostar</a>
+                version 2.3.0
+            </div>
+        </div>
+    
+
+    
+    <div id="traffic">Traffic: 1349 users visited in the last hour</div>
+
+ 	<div style="margin-top:2em" align="center">
+    <iframe style="background:transparent !important" scrolling="no" allowtransparency="true" src="Exporting%20Raw%20Trace%20Data_files/a_003.htm" height="300" frameborder="0" width="300"></iframe><script type="text/javascript" src="Exporting%20Raw%20Trace%20Data_files/6.js" async="async"></script>
+</div>
+
+</div>
+
+
+
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-101522-12']);
+        _gaq.push(['_setDomainName', 'biostars.org']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+
+
+</body></html>

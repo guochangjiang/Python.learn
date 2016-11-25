@@ -1,0 +1,84 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>abi2xml</title><link rel="stylesheet" href="abi2xml_files/style.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"></head><body><div class="article" xml:lang="en" lang="en"><div class="titlepage"><div><div><h1 class="title"><a id="abi2xml"></a>abi2xml</h1></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="#introduction">1. Introduction</a></span></dt><dt><span class="sect1"><a href="#download">2. Download</a></span></dt><dt><span class="sect1"><a href="#installation">3. Installation</a></span></dt><dd><dl><dt><span class="sect2"><a href="#building_from_source">3.1. Alternative 1: building from source</a></span></dt><dt><span class="sect2"><a href="#installing_prebuilt_binary">3.2. Alternative 2: installing prebuilt binary</a></span></dt></dl></dd><dt><span class="sect1"><a href="#usage">4. Usage</a></span></dt><dt><span class="sect1"><a href="#related_projects">5. Related projects</a></span></dt><dd><dl><dt><span class="sect2"><a href="#ABIParser.py">5.1. ABIParser.py</a></span></dt><dt><span class="sect2"><a href="#biojava">5.2. Biojava - Class ABITrace</a></span></dt><dt><span class="sect2"><a href="#bioperl_Bio_SeqIO_abi">5.3. Bioperl - Bio::SeqIO::abi</a></span></dt><dt><span class="sect2"><a href="#emboss">5.4. Emboss - abiview</a></span></dt><dt><span class="sect2"><a href="#staden">5.5. Staden</a></span></dt></dl></dd></dl></div><div class="sect1" xml:lang="en" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="introduction"></a>1.&nbsp;Introduction</h2></div></div></div><p>
+<span class="application">abi2xml</span> is a command line utility to 
+convert an abi trace file to an xml file. Abi trace files contain DNA 
+sequence data and are e.g. produced by ABI PRISM TM 377 DNA sequencers. 
+This bioinformatics utility is written in C++ and released under the GPL
+ license.
+</p></div><div class="sect1" xml:lang="en" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="download"></a>2.&nbsp;Download</h2></div></div></div><p>
+Download the software from the <a href="http://sourceforge.net/projects/abi2xml" target="_top">sourceforge</a> project page.
+
+</p></div><div class="sect1" xml:lang="en" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="installation"></a>3.&nbsp;Installation</h2></div></div></div><div class="sect2" xml:lang="en" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="building_from_source"></a>3.1.&nbsp;Alternative 1: building from source</h3></div></div></div><p>
+The <a href="http://www.trolltech.com/products/qt/index.html" target="_top">qt</a>
+ library version 4.1 or later is required for abi2xml. The qt library is
+ available for Linux, Microsoft Windows and Mac OS X and others.
+</p><p>
+When qt is installed, you just have to unpack the abi2xml sources and run <strong class="userinput"><code>qmake &amp;&amp; make &amp;&amp; make install</code></strong>
+</p></div><div class="sect2" xml:lang="en" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="installing_prebuilt_binary"></a>3.2.&nbsp;Alternative 2: installing prebuilt binary</h3></div></div></div><p>If
+ you are running Windows on a 32-bit (i386) platform you can download 
+the file abi2xml-1.2.zip and unzip it. If your Windows computer lacks 
+zip support you first  have to install <a href="http://www.7-zip.org/" target="_top">7-zip</a> to be able to unzip the file.
+</p></div></div><div class="sect1" xml:lang="en" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="usage"></a>4.&nbsp;Usage</h2></div></div></div><p>
+
+
+</p><pre class="programlisting">[erik@saturn abi2xml-1.2]$ bin/abi2xml --help
+abi2xml 1.2
+
+This program parses the binary file format coming from an
+ABI PRISM TM 377 DNA Sequencer and writes the information out as
+an xml file
+
+Usage: abi2xml [OPTIONS]...
+
+  -h, --help                    Print help and exit
+  -V, --version                 Print version and exit
+  -i, --input-file=STRING       input abi file
+  -o, --output-file=STRING      output xml file
+  -I, --input-dir=STRING        input dir with abi files
+  -O, --output-dir=STRING       output dir
+  -s, --abi-file-suffix=STRING  suffix of abi files ( used with --input-dir )
+                                  (default=`abi')
+  -a, --int-vector-as-attribute write integer vectors inside attributes ( It
+                                  makes file size smaller )
+  -e, --input-encoding=STRING   input string encoding.  Available encodings
+                                  listed at:
+                                  http://doc.trolltech.com/3.0/qtextcodec.html
+                                  (default=`Apple Roman')
+</pre><p>
+
+To convert a single abi file to xml
+</p><pre class="programlisting">[erik@saturn abi2xml-1.2]$ bin/abi2xml -i data.abi -o data.xml
+</pre><p>
+To convert a whole directory of abi files to xml
+</p><pre class="programlisting">[erik@saturn abi2xml-1.2]$ bin/abi2xml -I dir_with_abi_files -O output_dir
+</pre><p>
+
+
+If you want to test abi2xml but you don't have any abi files, you may use the file
+<code class="filename">staden-src-1-6-0/userdata/Sample_671.ab1</code> found in the <code class="filename">staden-src-1-6-0.tar.gz</code> from
+the Staden project ( see also <a href="#staden" title="5.5.&nbsp;Staden">Section&nbsp;5.5, “Staden”</a> ).
+
+</p></div><div class="sect1" xml:lang="en" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="related_projects"></a>5.&nbsp;Related projects</h2></div></div></div><p>
+
+
+</p><div class="sect2" xml:lang="en" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="ABIParser.py"></a>5.1.&nbsp;ABIParser.py</h3></div></div></div><p>
+<a href="http://bioinformatics.org/project/?group_id=497" target="_top">ABIParser.py</a> is a python module for parsing ABI files. License: GPL. Programming language: Python.
+</p></div><div class="sect2" xml:lang="en" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="biojava"></a>5.2.&nbsp;Biojava - Class ABITrace</h3></div></div></div><p>
+<a href="http://www.biojava.org/docs/api14/org/biojava/bio/program/abi/ABITrace.html" target="_top">
+ABITrace java class
+</a> in <a href="http://www.biojava.org/" target="_top">biojava</a>. License: LGPL. Programming language: Java.
+</p></div><div class="sect2" xml:lang="en" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="bioperl_Bio_SeqIO_abi"></a>5.3.&nbsp;Bioperl - Bio::SeqIO::abi</h3></div></div></div><p>
+<a href="http://doc.bioperl.org/releases/bioperl-1.4/Bio/SeqIO/abi.html" target="_top">Bio::SeqIO::abi</a> is a perl module in <a href="http://www.bioperl.org/" target="_top">bioperl</a> for parsing ABI files. It doesn't actually parse the abi files but uses the Staden package for that ( see <a href="#staden" title="5.5.&nbsp;Staden">Section&nbsp;5.5, “Staden”</a> ). License: "You may distribute this module under the same terms as perl itself". Programming language: Perl. 
+</p></div><div class="sect2" xml:lang="en" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="emboss"></a>5.4.&nbsp;Emboss - abiview</h3></div></div></div><p>
+<a href="http://emboss.sourceforge.net/" target="_top">Emboss</a> 
+includes abiview, an application that parses an abi file and converts 
+the information to vector or bitmap images or to text files. License: 
+GPL. Programming language: C.
+</p></div><div class="sect2" xml:lang="en" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="staden"></a>5.5.&nbsp;Staden</h3></div></div></div><p>
+<a href="http://staden.sourceforge.net/" target="_top">Staden</a> has 
+capabilities to extract information from abi trace files ( e.g. the 
+program extract_seq ). License: BSD. Programming language: C.
+</p></div></div></div><hr xmlns="">
+abi2xml is hosted at <br xmlns=""><br xmlns=""><a xmlns="" href="http://sourceforge.net/"><img src="abi2xml_files/sflogo.png" alt="SourceForge.net Logo" height="31" width="88" border="0"></a>
+</body></html>

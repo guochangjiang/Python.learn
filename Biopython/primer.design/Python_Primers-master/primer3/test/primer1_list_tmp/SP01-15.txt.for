@@ -1,3 +1,0 @@
-ACCEPTABLE LEFT PRIMERS
-                                  1-based     #               self  self  qual-
-   # sequence                       start ln  N   GC%     Tm   any   end   lity
